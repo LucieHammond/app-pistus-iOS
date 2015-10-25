@@ -9,7 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
+{
+    int translation;
+}
 
+@property (weak, nonatomic) IBOutlet UIImageView *background;
+@property (weak, nonatomic) IBOutlet UITextField *login;
+@property (weak, nonatomic) IBOutlet UITextField *mdp;
+@property (weak, nonatomic) IBOutlet UIButton *valider;
+
+- (IBAction)finDeSaisieID:(id)sender;
+- (IBAction)finDeSaisieMDP:(id)sender;
+- (IBAction)translationID:(id)sender;
+- (IBAction)translationMDP:(id)sender;
 
 @end
 

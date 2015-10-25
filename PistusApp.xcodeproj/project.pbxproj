@@ -14,6 +14,11 @@
 		C54F8ACD1BD94D5A00CE7B3A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C54F8ACC1BD94D5A00CE7B3A /* Images.xcassets */; };
 		C54F8AD01BD94D5A00CE7B3A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54F8ACE1BD94D5A00CE7B3A /* LaunchScreen.xib */; };
 		C54F8ADC1BD94D5A00CE7B3A /* PistusAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C54F8ADB1BD94D5A00CE7B3A /* PistusAppTests.m */; };
+		C557803D1BDA44510054BFE9 /* Login-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C55780381BDA44510054BFE9 /* Login-568h@2x~iphone.png */; };
+		C557803E1BDA44510054BFE9 /* Login-667h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C55780391BDA44510054BFE9 /* Login-667h@2x~iphone.png */; };
+		C557803F1BDA44510054BFE9 /* Login-736h@3x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C557803A1BDA44510054BFE9 /* Login-736h@3x~iphone.png */; };
+		C55780411BDA44510054BFE9 /* Login@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C557803C1BDA44510054BFE9 /* Login@2x~iphone.png */; };
+		C557804A1BDAB4E10054BFE9 /* connexion.png in Resources */ = {isa = PBXBuildFile; fileRef = C55780491BDAB4E10054BFE9 /* connexion.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +45,11 @@
 		C54F8AD51BD94D5A00CE7B3A /* PistusAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PistusAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C54F8ADA1BD94D5A00CE7B3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C54F8ADB1BD94D5A00CE7B3A /* PistusAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PistusAppTests.m; sourceTree = "<group>"; };
+		C55780381BDA44510054BFE9 /* Login-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-568h@2x~iphone.png"; sourceTree = "<group>"; };
+		C55780391BDA44510054BFE9 /* Login-667h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-667h@2x~iphone.png"; sourceTree = "<group>"; };
+		C557803A1BDA44510054BFE9 /* Login-736h@3x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-736h@3x~iphone.png"; sourceTree = "<group>"; };
+		C557803C1BDA44510054BFE9 /* Login@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login@2x~iphone.png"; sourceTree = "<group>"; };
+		C55780491BDAB4E10054BFE9 /* connexion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connexion.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +73,7 @@
 		C54F8AB31BD94D5A00CE7B3A = {
 			isa = PBXGroup;
 			children = (
+				C54F8B1D1BD97E1800CE7B3A /* Ressources */,
 				C54F8ABE1BD94D5A00CE7B3A /* PistusApp */,
 				C54F8AD81BD94D5A00CE7B3A /* PistusAppTests */,
 				C54F8ABD1BD94D5A00CE7B3A /* Products */,
@@ -117,6 +128,18 @@
 				C54F8ADA1BD94D5A00CE7B3A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C54F8B1D1BD97E1800CE7B3A /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				C55780381BDA44510054BFE9 /* Login-568h@2x~iphone.png */,
+				C55780491BDAB4E10054BFE9 /* connexion.png */,
+				C55780391BDA44510054BFE9 /* Login-667h@2x~iphone.png */,
+				C557803A1BDA44510054BFE9 /* Login-736h@3x~iphone.png */,
+				C557803C1BDA44510054BFE9 /* Login@2x~iphone.png */,
+			);
+			name = Ressources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,8 +223,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C54F8ACB1BD94D5A00CE7B3A /* Main.storyboard in Resources */,
+				C557804A1BDAB4E10054BFE9 /* connexion.png in Resources */,
+				C55780411BDA44510054BFE9 /* Login@2x~iphone.png in Resources */,
+				C557803E1BDA44510054BFE9 /* Login-667h@2x~iphone.png in Resources */,
 				C54F8AD01BD94D5A00CE7B3A /* LaunchScreen.xib in Resources */,
+				C557803F1BDA44510054BFE9 /* Login-736h@3x~iphone.png in Resources */,
 				C54F8ACD1BD94D5A00CE7B3A /* Images.xcassets in Resources */,
+				C557803D1BDA44510054BFE9 /* Login-568h@2x~iphone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,9 +375,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = PistusApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -357,9 +388,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = PistusApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -416,6 +450,7 @@
 				C54F8AE11BD94D5A00CE7B3A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C54F8AE21BD94D5A00CE7B3A /* Build configuration list for PBXNativeTarget "PistusAppTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +459,7 @@
 				C54F8AE41BD94D5A00CE7B3A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
