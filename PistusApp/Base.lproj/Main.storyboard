@@ -29,7 +29,7 @@
                                     <action selector="translationID:" destination="vXZ-lx-hvc" eventType="editingDidBegin" id="Wcc-gx-NsH"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.89999999999999991" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Votre mot de passe" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sAD-VO-ciU">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.89999999999999991" contentMode="scaleToFill" fixedFrame="YES" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Votre mot de passe" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sAD-VO-ciU">
                                 <rect key="frame" x="47" y="279" width="227" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
@@ -39,7 +39,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FA0-sh-QaK">
-                                <rect key="frame" x="94" y="328" width="133" height="36"/>
+                                <rect key="frame" x="94" y="328" width="133" height="41"/>
                                 <state key="normal" title="Button" image="connexion.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+///#import "NXOAuth2.h"
 
 @interface ViewController ()
 
@@ -71,7 +72,7 @@
     if(translation == 1)
     {
         //Translation vers le haut
-        [UIView animateWithDuration:0.3
+        [UIView animateWithDuration:0.2
             delay:0
             options: UIViewAnimationOptionTransitionFlipFromBottom
             animations:^{
@@ -86,7 +87,7 @@
     else if(translation==-1)
     {
         //Translation vers le bas
-        [UIView animateWithDuration:0.3
+        [UIView animateWithDuration:0.2
                               delay:0
                             options: UIViewAnimationOptionTransitionFlipFromTop
                          animations:^{

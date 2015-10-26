@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "NXOAuth2.h"
 
 @interface AppDelegate ()
 
@@ -41,5 +42,15 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+/*
++ (void) initialize{
+    [[NXOAuth2AccountStore sharedStore] setClientID:@"clientID"
+                                             secret:@"clientSecret"
+                                   authorizationURL:[NSURL URLWithString:@"https://...your auth URL..."]
+                                           tokenURL:[NSURL URLWithString:@"https://...your token URL..."]
+                                        redirectURL:[NSURL URLWithString:@"https://...your redirect URL..."]
+                                     forAccountType:@"myFancyService"];
+}*/
+
 
 @end
