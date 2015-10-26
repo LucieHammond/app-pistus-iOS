@@ -100,7 +100,6 @@
                          }];
     }
     
-    //TEST
 }
 
 - (void)didReceiveMemoryWarning {
