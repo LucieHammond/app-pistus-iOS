@@ -22,6 +22,7 @@
 - (IBAction)finDeSaisieMDP:(id)sender;
 - (IBAction)translationID:(id)sender;
 - (IBAction)translationMDP:(id)sender;
+- (IBAction)connection:(id)sender;
 
 @end
 

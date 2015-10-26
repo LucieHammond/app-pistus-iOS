@@ -135,5 +135,9 @@
         translation= 1;[self viewDidLayoutSubviews];
 }
 
+- (IBAction)connection:(id)sender {
+    
+}
+
 
 @end

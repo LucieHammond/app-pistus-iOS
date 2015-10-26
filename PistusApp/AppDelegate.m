@@ -42,15 +42,30 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-/*
+
 + (void) initialize{
     [[NXOAuth2AccountStore sharedStore] setClientID:@"clientID"
                                              secret:@"clientSecret"
-                                   authorizationURL:[NSURL URLWithString:@"https://...your auth URL..."]
-                                           tokenURL:[NSURL URLWithString:@"https://...your token URL..."]
-                                        redirectURL:[NSURL URLWithString:@"https://...your redirect URL..."]
+                                   authorizationURL:[NSURL URLWithString:@"https://my.ecp.fr/oauth/v2/auth "]
+                                           tokenURL:[NSURL URLWithString:@"https://my.ecp.fr/oauth/v2/token"]
+                                        redirectURL:[NSURL URLWithString:@"monpistus://login"]
                                      forAccountType:@"myFancyService"];
-}*/
+}
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    NSLog(@"Calling Application Bundle ID: %@", sourceApplication);
+    NSLog(@"URL scheme:%@", [url scheme]);
+    NSLog(@"URL host: %@", [url host]);
+    NSLog(@"URL path: %@", [url path]);
+    NSLog(@"URL query: %@", [url query]);
+    if([[url host]  isEqual: @"login"])
+        NSLog(@"Reponse reçue !");
+    else
+        NSLog(@"Pas le bon URI");
+    
+    return YES;
+}
 
 @end
