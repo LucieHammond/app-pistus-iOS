@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-///#import "NXOAuth2.h"
+#import "NXOAuth2.h"
 
 @interface ViewController ()
 
@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     translation = 0;
+    success = false;
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -102,6 +103,13 @@
     
 }
 
+- (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    if (success == true)
+        return true;
+    else
+        return false;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -136,7 +144,40 @@
 }
 
 - (IBAction)connection:(id)sender {
+    NSString *login = _login.text;
+    NSString *mdp = _mdp.text;
+    NSString *message = @"RAS";
     
+    //Détection de cas non conformes et affectation de messages
+    if ([login isEqualToString:@""])
+        message = @"Veuillez renseigner votre identifiant !";
+    else if ([mdp isEqualToString:@""])
+        message = @"Veuillez renseigner votre mot de passe !";
+    
+    // Creation d'une alerte
+    if (![message isEqualToString:@"RAS"])
+    {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:message
+                              message:nil delegate:self
+                              cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    else
+    {
+        /* Ici j'envoie le login et le mdp de l'utilisateur au serveur d'authentification de VIA
+        Celui ci me renvoie un token d'autorisation ou un code d'erreur. Si il y a une erreur 
+         j'affiche une alerte avec un message correspondant, sinon je fais la suite*/
+        
+        //[[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:@"pistonski" username:login password:mdp];
+        
+        /* Puis je demande au serveur de ressources de VIA de me fournir les infos dont j'ai besoin (nom, prenom, photo...) et je les met dans une variable globale que je transmet à la page main view*/
+        
+        // Transition vers la vue principale de l'appli (Main View Controller)
+        success = true;
+        [self shouldPerformSegueWithIdentifier:@"loginReussi" sender:self];
+                
+    }
 }
 
 

@@ -20,6 +20,7 @@
 		C557803F1BDA44510054BFE9 /* Login-736h@3x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C557803A1BDA44510054BFE9 /* Login-736h@3x~iphone.png */; };
 		C55780411BDA44510054BFE9 /* Login@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C557803C1BDA44510054BFE9 /* Login@2x~iphone.png */; };
 		C557804A1BDAB4E10054BFE9 /* connexion.png in Resources */ = {isa = PBXBuildFile; fileRef = C55780491BDAB4E10054BFE9 /* connexion.png */; };
+		C5F3488F1BE8FB98003B94C6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F3488E1BE8FB98003B94C6 /* MainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,8 @@
 		C557803C1BDA44510054BFE9 /* Login@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login@2x~iphone.png"; sourceTree = "<group>"; };
 		C55780491BDAB4E10054BFE9 /* connexion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connexion.png; sourceTree = "<group>"; };
 		C5AEBCC01BDD605900223811 /* OAuth2Client.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2Client.xcodeproj; path = ../OAuth2Client/OAuth2Client.xcodeproj; sourceTree = "<group>"; };
+		C5F3488D1BE8FB98003B94C6 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		C5F3488E1BE8FB98003B94C6 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +138,8 @@
 				C54F8AC41BD94D5A00CE7B3A /* AppDelegate.m */,
 				C54F8AC61BD94D5A00CE7B3A /* ViewController.h */,
 				C54F8AC71BD94D5A00CE7B3A /* ViewController.m */,
+				C5F3488D1BE8FB98003B94C6 /* MainViewController.h */,
+				C5F3488E1BE8FB98003B94C6 /* MainViewController.m */,
 				C54F8AC91BD94D5A00CE7B3A /* Main.storyboard */,
 				C54F8ACC1BD94D5A00CE7B3A /* Images.xcassets */,
 				C54F8ACE1BD94D5A00CE7B3A /* LaunchScreen.xib */,
@@ -331,6 +336,7 @@
 				C54F8AC81BD94D5A00CE7B3A /* ViewController.m in Sources */,
 				C54F8AC51BD94D5A00CE7B3A /* AppDelegate.m in Sources */,
 				C54F8AC21BD94D5A00CE7B3A /* main.m in Sources */,
+				C5F3488F1BE8FB98003B94C6 /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

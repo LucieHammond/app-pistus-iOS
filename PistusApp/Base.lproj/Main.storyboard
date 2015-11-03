@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="M25-bk-U8u">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Page d'identification-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                <viewController title="Page d'identification" id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -20,15 +20,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Login.png" translatesAutoresizingMaskIntoConstraints="NO" id="U9U-lA-Tzv">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.89999999999999991" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login MyECP" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9kG-7y-Na6">
-                                <rect key="frame" x="47" y="132" width="227" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                <connections>
-                                    <action selector="finDeSaisieID:" destination="vXZ-lx-hvc" eventType="editingDidEndOnExit" id="EAM-MX-GzN"/>
-                                    <action selector="translationID:" destination="vXZ-lx-hvc" eventType="editingDidBegin" id="Wcc-gx-NsH"/>
-                                </connections>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" alpha="0.89999999999999991" contentMode="scaleToFill" fixedFrame="YES" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Votre mot de passe" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sAD-VO-ciU">
                                 <rect key="frame" x="47" y="279" width="227" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -47,9 +38,29 @@
                                     <action selector="connection:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="8Kn-S1-qOb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeG-Al-D1u">
+                                <rect key="frame" x="94" y="328" width="133" height="41"/>
+                                <state key="normal" title="Button" image="connexion.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="connection:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="QKx-vH-lMo"/>
+                                    <segue destination="rTf-Kw-dH5" kind="presentation" identifier="loginReussi" id="lQ6-pM-AE6"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.89999999999999991" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login MyECP" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9kG-7y-Na6">
+                                <rect key="frame" x="47" y="156" width="227" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="finDeSaisieID:" destination="vXZ-lx-hvc" eventType="editingDidEndOnExit" id="EAM-MX-GzN"/>
+                                    <action selector="translationID:" destination="vXZ-lx-hvc" eventType="editingDidBegin" id="Wcc-gx-NsH"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="HhP-6K-a84"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="background" destination="U9U-lA-Tzv" id="qDW-ZJ-Woz"/>
@@ -60,7 +71,46 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="392" y="197"/>
+            <point key="canvasLocation" x="1204" y="197"/>
+        </scene>
+        <!--Page principale-->
+        <scene sceneID="Huu-NC-dsU">
+            <objects>
+                <viewController storyboardIdentifier="MainView" title="Page principale" id="rTf-Kw-dH5" customClass="MainViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WnN-3n-ak5"/>
+                        <viewControllerLayoutGuide type="bottom" id="jrn-rv-uQo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hib-7z-TYh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="P5v-7R-NCT"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DpD-oY-QP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1610" y="197"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Yne-4I-BPX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="M25-bk-U8u" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HRp-KS-wtd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="7aN-Nb-1Fa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y5E-X2-OxX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="780" y="197"/>
         </scene>
     </scenes>
     <resources>
