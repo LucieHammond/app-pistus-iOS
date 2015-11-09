@@ -15,11 +15,21 @@
 		C54F8ACD1BD94D5A00CE7B3A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C54F8ACC1BD94D5A00CE7B3A /* Images.xcassets */; };
 		C54F8AD01BD94D5A00CE7B3A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54F8ACE1BD94D5A00CE7B3A /* LaunchScreen.xib */; };
 		C54F8ADC1BD94D5A00CE7B3A /* PistusAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C54F8ADB1BD94D5A00CE7B3A /* PistusAppTests.m */; };
-		C557803D1BDA44510054BFE9 /* Login-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C55780381BDA44510054BFE9 /* Login-568h@2x~iphone.png */; };
-		C557803E1BDA44510054BFE9 /* Login-667h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C55780391BDA44510054BFE9 /* Login-667h@2x~iphone.png */; };
-		C557803F1BDA44510054BFE9 /* Login-736h@3x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C557803A1BDA44510054BFE9 /* Login-736h@3x~iphone.png */; };
-		C55780411BDA44510054BFE9 /* Login@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C557803C1BDA44510054BFE9 /* Login@2x~iphone.png */; };
-		C557804A1BDAB4E10054BFE9 /* connexion.png in Resources */ = {isa = PBXBuildFile; fileRef = C55780491BDAB4E10054BFE9 /* connexion.png */; };
+		C5C05E791BEFF6FC007D763E /* accueil_5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E6F1BEFF6FC007D763E /* accueil_5.jpg */; };
+		C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E701BEFF6FC007D763E /* accueil_6.jpg */; };
+		C5C05E7B1BEFF6FC007D763E /* accueil_6Plus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E711BEFF6FC007D763E /* accueil_6Plus.jpg */; };
+		C5C05E7C1BEFF6FC007D763E /* iconConcours.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E721BEFF6FC007D763E /* iconConcours.png */; };
+		C5C05E7D1BEFF6FC007D763E /* iconHoraires.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E731BEFF6FC007D763E /* iconHoraires.png */; };
+		C5C05E7E1BEFF6FC007D763E /* iconInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E741BEFF6FC007D763E /* iconInfo.png */; };
+		C5C05E7F1BEFF6FC007D763E /* iconMap.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E751BEFF6FC007D763E /* iconMap.png */; };
+		C5C05E801BEFF6FC007D763E /* iconMeteo.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E761BEFF6FC007D763E /* iconMeteo.png */; };
+		C5C05E811BEFF6FC007D763E /* iconStats.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E771BEFF6FC007D763E /* iconStats.png */; };
+		C5C05E881BEFF7A0007D763E /* connexion.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E831BEFF7A0007D763E /* connexion.png */; };
+		C5C05E891BEFF7A0007D763E /* Login-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E841BEFF7A0007D763E /* Login-568h@2x~iphone.png */; };
+		C5C05E8A1BEFF7A0007D763E /* Login-667h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E851BEFF7A0007D763E /* Login-667h@2x~iphone.png */; };
+		C5C05E8B1BEFF7A0007D763E /* Login-736h@3x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E861BEFF7A0007D763E /* Login-736h@3x~iphone.png */; };
+		C5C05E8C1BEFF7A0007D763E /* Login@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E871BEFF7A0007D763E /* Login@2x~iphone.png */; };
+		C5C05E8E1BEFFBA5007D763E /* accueil_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E8D1BEFFBA5007D763E /* accueil_4.jpg */; };
 		C5F3488F1BE8FB98003B94C6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F3488E1BE8FB98003B94C6 /* MainViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -82,12 +92,22 @@
 		C54F8AD51BD94D5A00CE7B3A /* PistusAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PistusAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C54F8ADA1BD94D5A00CE7B3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C54F8ADB1BD94D5A00CE7B3A /* PistusAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PistusAppTests.m; sourceTree = "<group>"; };
-		C55780381BDA44510054BFE9 /* Login-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-568h@2x~iphone.png"; sourceTree = "<group>"; };
-		C55780391BDA44510054BFE9 /* Login-667h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-667h@2x~iphone.png"; sourceTree = "<group>"; };
-		C557803A1BDA44510054BFE9 /* Login-736h@3x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-736h@3x~iphone.png"; sourceTree = "<group>"; };
-		C557803C1BDA44510054BFE9 /* Login@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login@2x~iphone.png"; sourceTree = "<group>"; };
-		C55780491BDAB4E10054BFE9 /* connexion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connexion.png; sourceTree = "<group>"; };
 		C5AEBCC01BDD605900223811 /* OAuth2Client.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2Client.xcodeproj; path = ../OAuth2Client/OAuth2Client.xcodeproj; sourceTree = "<group>"; };
+		C5C05E6F1BEFF6FC007D763E /* accueil_5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_5.jpg; sourceTree = "<group>"; };
+		C5C05E701BEFF6FC007D763E /* accueil_6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_6.jpg; sourceTree = "<group>"; };
+		C5C05E711BEFF6FC007D763E /* accueil_6Plus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_6Plus.jpg; sourceTree = "<group>"; };
+		C5C05E721BEFF6FC007D763E /* iconConcours.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconConcours.png; sourceTree = "<group>"; };
+		C5C05E731BEFF6FC007D763E /* iconHoraires.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconHoraires.png; sourceTree = "<group>"; };
+		C5C05E741BEFF6FC007D763E /* iconInfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconInfo.png; sourceTree = "<group>"; };
+		C5C05E751BEFF6FC007D763E /* iconMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconMap.png; sourceTree = "<group>"; };
+		C5C05E761BEFF6FC007D763E /* iconMeteo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconMeteo.png; sourceTree = "<group>"; };
+		C5C05E771BEFF6FC007D763E /* iconStats.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconStats.png; sourceTree = "<group>"; };
+		C5C05E831BEFF7A0007D763E /* connexion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connexion.png; sourceTree = "<group>"; };
+		C5C05E841BEFF7A0007D763E /* Login-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-568h@2x~iphone.png"; sourceTree = "<group>"; };
+		C5C05E851BEFF7A0007D763E /* Login-667h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-667h@2x~iphone.png"; sourceTree = "<group>"; };
+		C5C05E861BEFF7A0007D763E /* Login-736h@3x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-736h@3x~iphone.png"; sourceTree = "<group>"; };
+		C5C05E871BEFF7A0007D763E /* Login@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login@2x~iphone.png"; sourceTree = "<group>"; };
+		C5C05E8D1BEFFBA5007D763E /* accueil_4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_4.jpg; sourceTree = "<group>"; };
 		C5F3488D1BE8FB98003B94C6 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		C5F3488E1BE8FB98003B94C6 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -177,11 +197,21 @@
 		C54F8B1D1BD97E1800CE7B3A /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
-				C55780381BDA44510054BFE9 /* Login-568h@2x~iphone.png */,
-				C55780491BDAB4E10054BFE9 /* connexion.png */,
-				C55780391BDA44510054BFE9 /* Login-667h@2x~iphone.png */,
-				C557803A1BDA44510054BFE9 /* Login-736h@3x~iphone.png */,
-				C557803C1BDA44510054BFE9 /* Login@2x~iphone.png */,
+				C5C05E831BEFF7A0007D763E /* connexion.png */,
+				C5C05E841BEFF7A0007D763E /* Login-568h@2x~iphone.png */,
+				C5C05E851BEFF7A0007D763E /* Login-667h@2x~iphone.png */,
+				C5C05E861BEFF7A0007D763E /* Login-736h@3x~iphone.png */,
+				C5C05E871BEFF7A0007D763E /* Login@2x~iphone.png */,
+				C5C05E8D1BEFFBA5007D763E /* accueil_4.jpg */,
+				C5C05E6F1BEFF6FC007D763E /* accueil_5.jpg */,
+				C5C05E701BEFF6FC007D763E /* accueil_6.jpg */,
+				C5C05E711BEFF6FC007D763E /* accueil_6Plus.jpg */,
+				C5C05E721BEFF6FC007D763E /* iconConcours.png */,
+				C5C05E731BEFF6FC007D763E /* iconHoraires.png */,
+				C5C05E741BEFF6FC007D763E /* iconInfo.png */,
+				C5C05E751BEFF6FC007D763E /* iconMap.png */,
+				C5C05E761BEFF6FC007D763E /* iconMeteo.png */,
+				C5C05E771BEFF6FC007D763E /* iconStats.png */,
 			);
 			name = Ressources;
 			sourceTree = "<group>";
@@ -308,14 +338,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5C05E891BEFF7A0007D763E /* Login-568h@2x~iphone.png in Resources */,
 				C54F8ACB1BD94D5A00CE7B3A /* Main.storyboard in Resources */,
-				C557804A1BDAB4E10054BFE9 /* connexion.png in Resources */,
-				C55780411BDA44510054BFE9 /* Login@2x~iphone.png in Resources */,
-				C557803E1BDA44510054BFE9 /* Login-667h@2x~iphone.png in Resources */,
+				C5C05E7D1BEFF6FC007D763E /* iconHoraires.png in Resources */,
+				C5C05E7B1BEFF6FC007D763E /* accueil_6Plus.jpg in Resources */,
+				C5C05E8B1BEFF7A0007D763E /* Login-736h@3x~iphone.png in Resources */,
+				C5C05E7F1BEFF6FC007D763E /* iconMap.png in Resources */,
+				C5C05E7E1BEFF6FC007D763E /* iconInfo.png in Resources */,
+				C5C05E8E1BEFFBA5007D763E /* accueil_4.jpg in Resources */,
+				C5C05E8A1BEFF7A0007D763E /* Login-667h@2x~iphone.png in Resources */,
 				C54F8AD01BD94D5A00CE7B3A /* LaunchScreen.xib in Resources */,
-				C557803F1BDA44510054BFE9 /* Login-736h@3x~iphone.png in Resources */,
+				C5C05E791BEFF6FC007D763E /* accueil_5.jpg in Resources */,
+				C5C05E7C1BEFF6FC007D763E /* iconConcours.png in Resources */,
+				C5C05E881BEFF7A0007D763E /* connexion.png in Resources */,
+				C5C05E811BEFF6FC007D763E /* iconStats.png in Resources */,
+				C5C05E8C1BEFF7A0007D763E /* Login@2x~iphone.png in Resources */,
+				C5C05E801BEFF6FC007D763E /* iconMeteo.png in Resources */,
 				C54F8ACD1BD94D5A00CE7B3A /* Images.xcassets in Resources */,
-				C557803D1BDA44510054BFE9 /* Login-568h@2x~iphone.png in Resources */,
+				C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

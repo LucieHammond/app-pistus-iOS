@@ -35,6 +35,8 @@
 	<true/>
 	<key>UIMainStoryboardFile~iphone</key>
 	<string>Main</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

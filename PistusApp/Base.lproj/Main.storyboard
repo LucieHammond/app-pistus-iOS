@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="M25-bk-U8u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rTf-Kw-dH5">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Login.png" translatesAutoresizingMaskIntoConstraints="NO" id="U9U-lA-Tzv">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U9U-lA-Tzv">
+                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" alpha="0.89999999999999991" contentMode="scaleToFill" fixedFrame="YES" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Votre mot de passe" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sAD-VO-ciU">
                                 <rect key="frame" x="47" y="279" width="227" height="30"/>
@@ -45,7 +45,7 @@
                                 </state>
                                 <connections>
                                     <action selector="connection:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="QKx-vH-lMo"/>
-                                    <segue destination="rTf-Kw-dH5" kind="presentation" identifier="loginReussi" id="lQ6-pM-AE6"/>
+                                    <segue destination="rTf-Kw-dH5" kind="presentation" identifier="loginReussi" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="lQ6-pM-AE6"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" alpha="0.89999999999999991" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login MyECP" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9kG-7y-Na6">
@@ -76,7 +76,8 @@
         <!--Page principale-->
         <scene sceneID="Huu-NC-dsU">
             <objects>
-                <viewController storyboardIdentifier="MainView" title="Page principale" id="rTf-Kw-dH5" customClass="MainViewController" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DpD-oY-QP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="MainView" title="Page principale" extendedLayoutIncludesOpaqueBars="YES" modalPresentationStyle="formSheet" id="rTf-Kw-dH5" customClass="MainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WnN-3n-ak5"/>
                         <viewControllerLayoutGuide type="bottom" id="jrn-rv-uQo"/>
@@ -84,14 +85,110 @@
                     <view key="view" contentMode="scaleToFill" id="hib-7z-TYh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="accueil_4.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="MIs-8U-WMK">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Statistiques" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBk-2C-Xu8">
+                                <rect key="frame" x="45" y="303" width="91" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Météo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jc3-EM-Faq">
+                                <rect key="frame" x="66" y="436" width="49" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Concours" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6E8-JT-waM">
+                                <rect key="frame" x="204" y="303" width="75" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aef-ae-JJ4">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <color key="barTintColor" red="0.2398989161" green="0.41543649570000002" blue="0.70200047350000006" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Bonjour" id="DlN-kc-16B"/>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NOE-Vv-8za">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                <color key="backgroundColor" red="0.2398989161" green="0.41543649570000002" blue="0.70200047350000006" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeW-2V-hqq">
+                                <rect key="frame" x="20" y="71" width="133" height="110"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" image="iconMap.png"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yh6-rN-leN">
+                                <rect key="frame" x="173" y="97" width="129" height="64"/>
+                                <state key="normal" title="Button" image="iconInfo.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqt-C7-vy3">
+                                <rect key="frame" x="33" y="212" width="102" height="83"/>
+                                <state key="normal" title="Button" image="iconStats.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXt-xN-iVq">
+                                <rect key="frame" x="161" y="197" width="155" height="105"/>
+                                <state key="normal" title="Button" image="iconConcours.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FoF-PY-WHS">
+                                <rect key="frame" x="33" y="339" width="109" height="89"/>
+                                <state key="normal" title="Button" image="iconMeteo.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xo5-7a-yFR">
+                                <rect key="frame" x="164" y="335" width="137" height="101"/>
+                                <state key="normal" title="Button" image="iconHoraires.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Carte" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMj-bA-Lc6">
+                                <rect key="frame" x="69" y="166" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Informations" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deS-je-y9g">
+                                <rect key="frame" x="193" y="166" width="96" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Horaires" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4xY-ov-n6q">
+                                <rect key="frame" x="209" y="436" width="65" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="P5v-7R-NCT"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="barre" destination="aef-ae-JJ4" id="Rxk-XF-a9o"/>
+                        <outlet property="fondEcran" destination="MIs-8U-WMK" id="QXP-fy-b9R"/>
+                        <outlet property="topBande" destination="NOE-Vv-8za" id="V5w-WH-bI0"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DpD-oY-QP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1610" y="197"/>
+            <point key="canvasLocation" x="1607" y="191"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Yne-4I-BPX">
@@ -114,7 +211,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Login.png" width="320" height="480"/>
+        <image name="accueil_4.jpg" width="640" height="960"/>
         <image name="connexion.png" width="332" height="108"/>
+        <image name="iconConcours.png" width="450" height="342"/>
+        <image name="iconHoraires.png" width="515" height="425"/>
+        <image name="iconInfo.png" width="640" height="469"/>
+        <image name="iconMap.png" width="256" height="256"/>
+        <image name="iconMeteo.png" width="256" height="256"/>
+        <image name="iconStats.png" width="256" height="256"/>
     </resources>
 </document>

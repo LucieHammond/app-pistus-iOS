@@ -10,5 +10,8 @@
 
 @interface MainViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIImageView *fondEcran;
+@property (weak, nonatomic) IBOutlet UINavigationBar *barre;
+@property (weak, nonatomic) IBOutlet UIView *topBande;
 
 @end
