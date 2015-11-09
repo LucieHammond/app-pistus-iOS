@@ -21,6 +21,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *concours;
 @property (weak, nonatomic) IBOutlet UIButton *meteo;
 @property (weak, nonatomic) IBOutlet UIButton *horaires;
-
+@property (weak, nonatomic) IBOutlet UILabel *txtCarte;
+@property (weak, nonatomic) IBOutlet UILabel *txtInfos;
+@property (weak, nonatomic) IBOutlet UILabel *txtStats;
+@property (weak, nonatomic) IBOutlet UILabel *txtConcours;
+@property (weak, nonatomic) IBOutlet UILabel *txtMeteo;
+@property (weak, nonatomic) IBOutlet UILabel *txtHoraires;
 
 @end

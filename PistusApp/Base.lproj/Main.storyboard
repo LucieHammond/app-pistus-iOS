@@ -139,7 +139,7 @@
                         <viewControllerLayoutGuide type="bottom" id="jrn-rv-uQo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hib-7z-TYh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="accueil_4.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="MIs-8U-WMK">
@@ -254,7 +254,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="P5v-7R-NCT"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="barre" destination="aef-ae-JJ4" id="Rxk-XF-a9o"/>
                         <outlet property="carte" destination="jeW-2V-hqq" id="BGJ-Os-FDB"/>
@@ -265,6 +265,12 @@
                         <outlet property="meteo" destination="FoF-PY-WHS" id="byp-07-5wj"/>
                         <outlet property="stats" destination="Qqt-C7-vy3" id="moW-Jf-niL"/>
                         <outlet property="topBande" destination="NOE-Vv-8za" id="V5w-WH-bI0"/>
+                        <outlet property="txtCarte" destination="OMj-bA-Lc6" id="cWh-Di-xhB"/>
+                        <outlet property="txtConcours" destination="6E8-JT-waM" id="szZ-L6-OBF"/>
+                        <outlet property="txtHoraires" destination="4xY-ov-n6q" id="BRw-4c-EGb"/>
+                        <outlet property="txtInfos" destination="deS-je-y9g" id="Cfb-hA-MAw"/>
+                        <outlet property="txtMeteo" destination="jc3-EM-Faq" id="qqg-66-nUl"/>
+                        <outlet property="txtStats" destination="lBk-2C-Xu8" id="ZMy-iK-Wgu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DpD-oY-QP8" userLabel="First Responder" sceneMemberID="firstResponder"/>

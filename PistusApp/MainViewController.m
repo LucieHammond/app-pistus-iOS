@@ -43,6 +43,49 @@
     [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 50)];
     [_topBande setFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, 20)];
     
+    //Positionnement des icones en fonction de la taille de l'écran
+    if(hauteur<500){
+        [_carte setFrame:CGRectMake(18,71,133,110)];
+        [_infos setFrame:CGRectMake(173,106,126,63)];
+        [_stats setFrame:CGRectMake(33,211,102,83)];
+        [_concours setFrame:CGRectMake(162,202,149,101)];
+        [_meteo setFrame:CGRectMake(30,343,109,89)];
+        [_horaires setFrame:CGRectMake(169,338,135,99)];
+        [_txtCarte setFrame:CGRectMake(55,164,56,21)];
+        [_txtInfos setFrame:CGRectMake(174,164,127,21)];
+        [_txtStats setFrame:CGRectMake(24,303,119,21)];
+        [_txtConcours setFrame:CGRectMake(189,303,96,21)];
+        [_txtMeteo setFrame:CGRectMake(44,436,78,21)];
+        [_txtHoraires setFrame:CGRectMake(192,436,91,21)];
+        
+    }
+    else if(hauteur<600){
+        [_carte setFrame:CGRectMake(18,79,133,110)];
+        [_infos setFrame:CGRectMake(173,98,126,63)];
+        [_stats setFrame:CGRectMake(33,224,102,83)];
+        [_concours setFrame:CGRectMake(162,215,149,101)];
+        [_meteo setFrame:CGRectMake(30,343,361,89)];
+        [_horaires setFrame:CGRectMake(169,356,135,99)];
+    }
+
+    else if(hauteur<700){
+        [_carte setFrame:CGRectMake(18,71,133,110)];
+        [_infos setFrame:CGRectMake(173,98,126,63)];
+        [_stats setFrame:CGRectMake(33,211,102,83)];
+        [_concours setFrame:CGRectMake(162,202,149,101)];
+        [_meteo setFrame:CGRectMake(30,343,109,89)];
+        [_horaires setFrame:CGRectMake(169,338,135,99)];
+    }
+
+    else{
+        [_carte setFrame:CGRectMake(18,71,133,110)];
+        [_infos setFrame:CGRectMake(173,98,126,63)];
+        [_stats setFrame:CGRectMake(33,211,102,83)];
+        [_concours setFrame:CGRectMake(162,202,149,101)];
+        [_meteo setFrame:CGRectMake(30,343,109,89)];
+        [_horaires setFrame:CGRectMake(169,338,135,99)];
+    }
+    
 }
      
 - (void)didReceiveMemoryWarning {
