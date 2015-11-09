@@ -5,6 +5,63 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="Znf-Fh-BCB">
+            <objects>
+                <viewController id="t2j-nU-UHC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="V21-BE-zG8"/>
+                        <viewControllerLayoutGuide type="bottom" id="7zu-YS-S0T"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZK1-9T-FT2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P5N-Pe-qJ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1230" y="-477"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="3Jn-ep-mko">
+            <objects>
+                <viewController id="em1-vh-C6d" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="klj-FF-UPY"/>
+                        <viewControllerLayoutGuide type="bottom" id="bFL-aY-FqN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8Ts-0J-vie">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rOF-0Q-gC2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1702" y="-477"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="yg0-TW-kgq">
+            <objects>
+                <viewController id="qHC-qm-yjn" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="q0M-BI-GxU"/>
+                        <viewControllerLayoutGuide type="bottom" id="aqh-01-aIV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="d2h-JU-Zs8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t7q-4d-hb8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2178" y="-477"/>
+        </scene>
         <!--Page d'identification-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -76,7 +133,6 @@
         <!--Page principale-->
         <scene sceneID="Huu-NC-dsU">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DpD-oY-QP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="MainView" title="Page principale" extendedLayoutIncludesOpaqueBars="YES" modalPresentationStyle="formSheet" id="rTf-Kw-dH5" customClass="MainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WnN-3n-ak5"/>
@@ -87,23 +143,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="accueil_4.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="MIs-8U-WMK">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="-1" y="0.0" width="320" height="480"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Statistiques" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBk-2C-Xu8">
-                                <rect key="frame" x="45" y="303" width="91" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Statistiques" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBk-2C-Xu8">
+                                <rect key="frame" x="24" y="303" width="119" height="21"/>
+                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Météo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jc3-EM-Faq">
-                                <rect key="frame" x="66" y="436" width="49" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Concours" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6E8-JT-waM">
-                                <rect key="frame" x="204" y="303" width="75" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Concours" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6E8-JT-waM">
+                                <rect key="frame" x="189" y="303" width="96" height="21"/>
+                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -123,55 +173,79 @@
                                 <color key="backgroundColor" red="0.2398989161" green="0.41543649570000002" blue="0.70200047350000006" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeW-2V-hqq">
-                                <rect key="frame" x="20" y="71" width="133" height="110"/>
+                                <rect key="frame" x="18" y="71" width="133" height="110"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" image="iconMap.png"/>
+                                <connections>
+                                    <segue destination="t2j-nU-UHC" kind="presentation" modalTransitionStyle="crossDissolve" id="9tJ-xg-ig5"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yh6-rN-leN">
-                                <rect key="frame" x="173" y="97" width="129" height="64"/>
+                                <rect key="frame" x="173" y="98" width="126" height="63"/>
                                 <state key="normal" title="Button" image="iconInfo.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="em1-vh-C6d" kind="presentation" modalTransitionStyle="crossDissolve" id="zt2-Qa-NX8"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqt-C7-vy3">
-                                <rect key="frame" x="33" y="212" width="102" height="83"/>
+                                <rect key="frame" x="33" y="211" width="102" height="83"/>
                                 <state key="normal" title="Button" image="iconStats.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="qHC-qm-yjn" kind="presentation" modalTransitionStyle="crossDissolve" id="fn1-gK-Fe8"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXt-xN-iVq">
-                                <rect key="frame" x="161" y="197" width="155" height="105"/>
+                                <rect key="frame" x="162" y="202" width="149" height="101"/>
                                 <state key="normal" title="Button" image="iconConcours.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="MHw-Lw-Ajl" kind="presentation" modalTransitionStyle="crossDissolve" id="Nw8-Ji-5Hm"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FoF-PY-WHS">
-                                <rect key="frame" x="33" y="339" width="109" height="89"/>
+                                <rect key="frame" x="30" y="343" width="109" height="89"/>
                                 <state key="normal" title="Button" image="iconMeteo.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="yrl-kZ-yLj" kind="presentation" modalTransitionStyle="crossDissolve" id="PkH-KC-fuL"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xo5-7a-yFR">
-                                <rect key="frame" x="164" y="335" width="137" height="101"/>
+                                <rect key="frame" x="169" y="338" width="135" height="99"/>
                                 <state key="normal" title="Button" image="iconHoraires.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="BUk-ML-F3U" kind="presentation" modalTransitionStyle="crossDissolve" id="Bs9-Tr-PaH"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Carte" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMj-bA-Lc6">
-                                <rect key="frame" x="69" y="166" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Carte" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMj-bA-Lc6">
+                                <rect key="frame" x="55" y="164" width="56" height="21"/>
+                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Informations" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deS-je-y9g">
-                                <rect key="frame" x="193" y="166" width="96" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Informations" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deS-je-y9g">
+                                <rect key="frame" x="174" y="164" width="127" height="21"/>
+                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Horaires" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4xY-ov-n6q">
-                                <rect key="frame" x="209" y="436" width="65" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Horaires" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4xY-ov-n6q">
+                                <rect key="frame" x="192" y="436" width="91" height="21"/>
+                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Météo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jc3-EM-Faq">
+                                <rect key="frame" x="44" y="436" width="78" height="21"/>
+                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -183,12 +257,76 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="barre" destination="aef-ae-JJ4" id="Rxk-XF-a9o"/>
+                        <outlet property="carte" destination="jeW-2V-hqq" id="BGJ-Os-FDB"/>
+                        <outlet property="concours" destination="lXt-xN-iVq" id="g2T-oa-Odb"/>
                         <outlet property="fondEcran" destination="MIs-8U-WMK" id="QXP-fy-b9R"/>
+                        <outlet property="horaires" destination="Xo5-7a-yFR" id="FpQ-D5-Ib9"/>
+                        <outlet property="infos" destination="Yh6-rN-leN" id="U78-qd-yqc"/>
+                        <outlet property="meteo" destination="FoF-PY-WHS" id="byp-07-5wj"/>
+                        <outlet property="stats" destination="Qqt-C7-vy3" id="moW-Jf-niL"/>
                         <outlet property="topBande" destination="NOE-Vv-8za" id="V5w-WH-bI0"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DpD-oY-QP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1607" y="191"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="pjs-gv-SDn">
+            <objects>
+                <viewController id="yrl-kZ-yLj" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B09-C9-aQJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="beK-Js-BG8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hO2-3M-xXU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JbH-8Y-lrY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1702" y="851"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="jhl-Vo-dqQ">
+            <objects>
+                <viewController id="BUk-ML-F3U" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cdV-z6-fEp"/>
+                        <viewControllerLayoutGuide type="bottom" id="ebj-0d-9o5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IFX-oz-BLT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M3X-vj-V9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2178" y="851"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="cQu-Za-p5W">
+            <objects>
+                <viewController id="MHw-Lw-Ajl" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GRc-H0-bEv"/>
+                        <viewControllerLayoutGuide type="bottom" id="xnS-nD-tsP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wXL-eO-S7K">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cmq-oc-phm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1230" y="851"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Yne-4I-BPX">

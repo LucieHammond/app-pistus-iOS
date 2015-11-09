@@ -14,4 +14,13 @@
 @property (weak, nonatomic) IBOutlet UINavigationBar *barre;
 @property (weak, nonatomic) IBOutlet UIView *topBande;
 
+//Icones
+@property (weak, nonatomic) IBOutlet UIButton *carte;
+@property (weak, nonatomic) IBOutlet UIButton *infos;
+@property (weak, nonatomic) IBOutlet UIButton *stats;
+@property (weak, nonatomic) IBOutlet UIButton *concours;
+@property (weak, nonatomic) IBOutlet UIButton *meteo;
+@property (weak, nonatomic) IBOutlet UIButton *horaires;
+
+
 @end
