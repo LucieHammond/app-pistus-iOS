@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C539A78D1BF1F56A00B9E3ED /* iconContact.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7881BF1F56A00B9E3ED /* iconContact.png */; };
+		C539A78E1BF1F56A00B9E3ED /* iconHoraires.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7891BF1F56A00B9E3ED /* iconHoraires.png */; };
+		C539A78F1BF1F56A00B9E3ED /* iconMeteo.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */; };
+		C539A7901BF1F56A00B9E3ED /* iconStats.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78B1BF1F56A00B9E3ED /* iconStats.png */; };
+		C539A7911BF1F56A00B9E3ED /* iconTroc.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78C1BF1F56A00B9E3ED /* iconTroc.png */; };
 		C547AE6D1BDD60E800A0E4A8 /* libOAuth2Client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5AEBCC91BDD605900223811 /* libOAuth2Client.a */; };
 		C54F8AC21BD94D5A00CE7B3A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C54F8AC11BD94D5A00CE7B3A /* main.m */; };
 		C54F8AC51BD94D5A00CE7B3A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C54F8AC41BD94D5A00CE7B3A /* AppDelegate.m */; };
@@ -19,11 +24,8 @@
 		C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E701BEFF6FC007D763E /* accueil_6.jpg */; };
 		C5C05E7B1BEFF6FC007D763E /* accueil_6Plus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E711BEFF6FC007D763E /* accueil_6Plus.jpg */; };
 		C5C05E7C1BEFF6FC007D763E /* iconConcours.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E721BEFF6FC007D763E /* iconConcours.png */; };
-		C5C05E7D1BEFF6FC007D763E /* iconHoraires.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E731BEFF6FC007D763E /* iconHoraires.png */; };
 		C5C05E7E1BEFF6FC007D763E /* iconInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E741BEFF6FC007D763E /* iconInfo.png */; };
 		C5C05E7F1BEFF6FC007D763E /* iconMap.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E751BEFF6FC007D763E /* iconMap.png */; };
-		C5C05E801BEFF6FC007D763E /* iconMeteo.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E761BEFF6FC007D763E /* iconMeteo.png */; };
-		C5C05E811BEFF6FC007D763E /* iconStats.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E771BEFF6FC007D763E /* iconStats.png */; };
 		C5C05E881BEFF7A0007D763E /* connexion.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E831BEFF7A0007D763E /* connexion.png */; };
 		C5C05E891BEFF7A0007D763E /* Login-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E841BEFF7A0007D763E /* Login-568h@2x~iphone.png */; };
 		C5C05E8A1BEFF7A0007D763E /* Login-667h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E851BEFF7A0007D763E /* Login-667h@2x~iphone.png */; };
@@ -79,6 +81,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C539A7881BF1F56A00B9E3ED /* iconContact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconContact.png; sourceTree = "<group>"; };
+		C539A7891BF1F56A00B9E3ED /* iconHoraires.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconHoraires.png; sourceTree = "<group>"; };
+		C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconMeteo.png; sourceTree = "<group>"; };
+		C539A78B1BF1F56A00B9E3ED /* iconStats.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconStats.png; sourceTree = "<group>"; };
+		C539A78C1BF1F56A00B9E3ED /* iconTroc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconTroc.png; sourceTree = "<group>"; };
 		C54F8ABC1BD94D5A00CE7B3A /* PistusApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PistusApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C54F8AC01BD94D5A00CE7B3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C54F8AC11BD94D5A00CE7B3A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -97,11 +104,8 @@
 		C5C05E701BEFF6FC007D763E /* accueil_6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_6.jpg; sourceTree = "<group>"; };
 		C5C05E711BEFF6FC007D763E /* accueil_6Plus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_6Plus.jpg; sourceTree = "<group>"; };
 		C5C05E721BEFF6FC007D763E /* iconConcours.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconConcours.png; sourceTree = "<group>"; };
-		C5C05E731BEFF6FC007D763E /* iconHoraires.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconHoraires.png; sourceTree = "<group>"; };
 		C5C05E741BEFF6FC007D763E /* iconInfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconInfo.png; sourceTree = "<group>"; };
 		C5C05E751BEFF6FC007D763E /* iconMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconMap.png; sourceTree = "<group>"; };
-		C5C05E761BEFF6FC007D763E /* iconMeteo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconMeteo.png; sourceTree = "<group>"; };
-		C5C05E771BEFF6FC007D763E /* iconStats.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconStats.png; sourceTree = "<group>"; };
 		C5C05E831BEFF7A0007D763E /* connexion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connexion.png; sourceTree = "<group>"; };
 		C5C05E841BEFF7A0007D763E /* Login-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		C5C05E851BEFF7A0007D763E /* Login-667h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-667h@2x~iphone.png"; sourceTree = "<group>"; };
@@ -207,11 +211,13 @@
 				C5C05E701BEFF6FC007D763E /* accueil_6.jpg */,
 				C5C05E711BEFF6FC007D763E /* accueil_6Plus.jpg */,
 				C5C05E721BEFF6FC007D763E /* iconConcours.png */,
-				C5C05E731BEFF6FC007D763E /* iconHoraires.png */,
 				C5C05E741BEFF6FC007D763E /* iconInfo.png */,
 				C5C05E751BEFF6FC007D763E /* iconMap.png */,
-				C5C05E761BEFF6FC007D763E /* iconMeteo.png */,
-				C5C05E771BEFF6FC007D763E /* iconStats.png */,
+				C539A7881BF1F56A00B9E3ED /* iconContact.png */,
+				C539A7891BF1F56A00B9E3ED /* iconHoraires.png */,
+				C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */,
+				C539A78B1BF1F56A00B9E3ED /* iconStats.png */,
+				C539A78C1BF1F56A00B9E3ED /* iconTroc.png */,
 			);
 			name = Ressources;
 			sourceTree = "<group>";
@@ -340,20 +346,22 @@
 			files = (
 				C5C05E891BEFF7A0007D763E /* Login-568h@2x~iphone.png in Resources */,
 				C54F8ACB1BD94D5A00CE7B3A /* Main.storyboard in Resources */,
-				C5C05E7D1BEFF6FC007D763E /* iconHoraires.png in Resources */,
 				C5C05E7B1BEFF6FC007D763E /* accueil_6Plus.jpg in Resources */,
 				C5C05E8B1BEFF7A0007D763E /* Login-736h@3x~iphone.png in Resources */,
+				C539A7911BF1F56A00B9E3ED /* iconTroc.png in Resources */,
 				C5C05E7F1BEFF6FC007D763E /* iconMap.png in Resources */,
 				C5C05E7E1BEFF6FC007D763E /* iconInfo.png in Resources */,
 				C5C05E8E1BEFFBA5007D763E /* accueil_4.jpg in Resources */,
+				C539A78D1BF1F56A00B9E3ED /* iconContact.png in Resources */,
 				C5C05E8A1BEFF7A0007D763E /* Login-667h@2x~iphone.png in Resources */,
+				C539A78F1BF1F56A00B9E3ED /* iconMeteo.png in Resources */,
 				C54F8AD01BD94D5A00CE7B3A /* LaunchScreen.xib in Resources */,
+				C539A78E1BF1F56A00B9E3ED /* iconHoraires.png in Resources */,
+				C539A7901BF1F56A00B9E3ED /* iconStats.png in Resources */,
 				C5C05E791BEFF6FC007D763E /* accueil_5.jpg in Resources */,
 				C5C05E7C1BEFF6FC007D763E /* iconConcours.png in Resources */,
 				C5C05E881BEFF7A0007D763E /* connexion.png in Resources */,
-				C5C05E811BEFF6FC007D763E /* iconStats.png in Resources */,
 				C5C05E8C1BEFF7A0007D763E /* Login@2x~iphone.png in Resources */,
-				C5C05E801BEFF6FC007D763E /* iconMeteo.png in Resources */,
 				C54F8ACD1BD94D5A00CE7B3A /* Images.xcassets in Resources */,
 				C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */,
 			);
