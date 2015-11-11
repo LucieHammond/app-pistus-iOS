@@ -31,5 +31,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *txtHoraires;
 @property (weak, nonatomic) IBOutlet UILabel *txtTroc;
 @property (weak, nonatomic) IBOutlet UILabel *txtContact;
+@property (weak, nonatomic) IBOutlet UIButton *test;
 
 @end
