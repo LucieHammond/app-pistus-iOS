@@ -73,7 +73,7 @@
     if(translation == 1)
     {
         //Translation vers le haut
-        [UIView animateWithDuration:0.2
+        [UIView animateWithDuration:0.15
             delay:0
             options: UIViewAnimationOptionTransitionFlipFromBottom
             animations:^{
@@ -88,7 +88,7 @@
     else if(translation==-1)
     {
         //Translation vers le bas
-        [UIView animateWithDuration:0.2
+        [UIView animateWithDuration:0.15
                               delay:0
                             options: UIViewAnimationOptionTransitionFlipFromTop
                          animations:^{
@@ -169,7 +169,25 @@
         Celui ci me renvoie un token d'autorisation ou un code d'erreur. Si il y a une erreur 
          j'affiche une alerte avec un message correspondant, sinon je fais la suite*/
         
-        //[[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:@"pistonski" username:login password:mdp];
+        [[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:@"pistonski"
+                                                                  username:login                                                                  password:mdp];
+        //En cas de succes, j'ajoute
+        [[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreAccountsDidChangeNotification
+                    object:[NXOAuth2AccountStore sharedStore]
+                    queue:nil
+                    usingBlock:^(NSNotification *aNotification){
+                            NSLog(@"Bravo !");
+                    }];
+        
+        // En cas d'erreur, j'affiche une alerte avec un message correspondant
+        [[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreDidFailToRequestAccessNotification
+                    object:[NXOAuth2AccountStore sharedStore]
+                    queue:nil
+                    usingBlock:^(NSNotification *aNotification){
+                            NSError *error = [aNotification.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
+                        
+                        
+                    }];
         
         /* Puis je demande au serveur de ressources de VIA de me fournir les infos dont j'ai besoin (nom, prenom, photo...) et je les met dans une variable globale que je transmet à la page main view*/
         

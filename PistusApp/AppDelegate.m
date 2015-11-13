@@ -43,18 +43,17 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-/*+ (void) initialize{
-    [[NXOAuth2AccountStore sharedStore] setClientID:@"clientID"
-                                             secret:@"clientSecret"
-                                   authorizationURL:[NSURL URLWithString:@"https://my.ecp.fr/oauth/v2/auth "]
-                                           tokenURL:[NSURL URLWithString:@"https://my.ecp.fr/oauth/v2/token"]
-                                        redirectURL:[NSURL URLWithString:@"monpistus://login"]
-                                     forAccountType:@"pistonski"];
++ (void) initialize{
+    [[NXOAuth2AccountStore sharedStore] setClientID:@"33_vjatz1es19ckoo44ookw4o4w0scw0s4g0cwco8ogwsow0scok"
+        secret:@"3oslqcvwxiskcw0gcws4s4k44kogw0wksggsso0co4okswwk4c"
+        authorizationURL:[NSURL URLWithString:@"https://my.ecp.fr/oauth/v2/auth"]
+        tokenURL:[NSURL URLWithString:@"https://my.ecp.fr/oauth/v2/token"]
+        redirectURL:[NSURL URLWithString:@"monpistus://login"]
+        forAccountType:@"pistonski"];
     
     NSMutableDictionary *configuration = [NSMutableDictionary dictionaryWithDictionary:[[NXOAuth2AccountStore sharedStore] configurationForAccountType:@"pistonski"]];
-    
     [[NXOAuth2AccountStore sharedStore] setConfiguration:configuration forAccountType:@"pistonski"];
-}*/
+}
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
