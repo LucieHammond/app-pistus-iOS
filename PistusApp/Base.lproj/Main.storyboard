@@ -150,6 +150,15 @@
                                     <action selector="translationID:" destination="vXZ-lx-hvc" eventType="editingDidBegin" id="Wcc-gx-NsH"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vv7-fX-CjS">
+                                <rect key="frame" x="184" y="56" width="90" height="30"/>
+                                <state key="normal" title="Deconnexion">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deconnection:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kNq-im-AJa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>

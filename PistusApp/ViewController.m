@@ -149,7 +149,7 @@
     NSString *titre = @"RAS";
     NSString *message = nil;
     
-    //Détection de cas non conformes et affectation de messages
+    /*//Détection de cas non conformes et affectation de messages
     if ([login isEqualToString:@""])
         titre = @"Veuillez renseigner votre identifiant !";
     else if ([mdp isEqualToString:@""])
@@ -161,7 +161,10 @@
             conforme = false;
         else{
             NSInteger year = [[login substringWithRange:NSMakeRange(0,4)] integerValue];
+            NSString *nom = [login substringFromIndex:4];
             if (year<1980 || year>=2020)
+                conforme = false;
+            else if(![nom isEqualToString: [nom lowercaseString]])
                 conforme = false;
         }
         if(conforme == false){
@@ -171,7 +174,7 @@
         
     }
     // Creation d'une alerte
-    if (![message isEqualToString:@"RAS"])
+    if (![titre isEqualToString:@"RAS"])
     {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:titre
@@ -180,18 +183,33 @@
         [alert show];
     }
     else
-    {
+    {*/
         /* Ici j'envoie le login et le mdp de l'utilisateur au serveur d'authentification de VIA
         Celui ci me renvoie un token d'autorisation ou un code d'erreur.*/
         
         [[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:@"pistonski"
                                                                   username:@"2014hammondl"                                                                  password:@"ECParis2017VIA"];
-        //En cas de succes, j'ajoute
+        //En cas de succes, un nouvel account est ajouté à [NXOAuth2AccountStore sharedStore]
         [[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreAccountsDidChangeNotification
                     object:[NXOAuth2AccountStore sharedStore]
                     queue:nil
                     usingBlock:^(NSNotification *aNotification){
-                            NSLog(@"Bravo !");
+                        NSInteger s=0;
+                        for (NXOAuth2Account *account in [[NXOAuth2AccountStore sharedStore] accounts]) {
+                            s+=1;
+                        };
+                        NSLog(@"%i",s);
+                        [NXOAuth2Request performMethod:@"GET"
+                                            onResource:[NSURL URLWithString:@"https://my.ecp.fr/api/v1/members/me"]
+                                       usingParameters:nil
+                                           withAccount:[[[NXOAuth2AccountStore sharedStore] accounts] lastObject]
+                                   sendProgressHandler:^(unsigned long long bytesSend, unsigned long long bytesTotal) { // e.g., update a progress indicator
+                                   }
+                                   responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error){
+                                       NSLog(@"Success");
+                                       // Process the response
+                                   }];
+                        
                         //NSLog([NSString stringWithFormat:@"%@", [aNotification.userInfo objectForKey:NXOAuth2AccountStoreNewAccountUserInfoKey]]);
                     }];
         
@@ -201,8 +219,10 @@
                     queue:nil
                     usingBlock:^(NSNotification *aNotification){
                         NSError *error = [aNotification.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
-                        for(id key in aNotification.userInfo)
-                            NSLog(@"key=%@ value=%@", key, [aNotification.userInfo objectForKey:key]);
+                        
+                        //Report de l'erreur dans la console
+                        /*for(id key in aNotification.userInfo)
+                            NSLog(@"key=%@ value=%@", key, [aNotification.userInfo objectForKey:key]);*/
                         
                         NSString *titre;
                         NSString *mes;
@@ -219,13 +239,20 @@
                                                 cancelButtonTitle:@"Réessayer" otherButtonTitles:nil];
                         [alert show];
                     }];
-        
+    
         /* Puis je demande au serveur de ressources de VIA de me fournir les infos dont j'ai besoin (nom, prenom, photo...) et je les met dans une variable globale que je transmet à la page main view*/
         
         // Transition vers la vue principale de l'appli (Main View Controller)
-        success = true;
+        success = false;
         [self shouldPerformSegueWithIdentifier:@"loginReussi" sender:self];
                 
+        //}
+
+}
+
+- (IBAction)deconnection:(id)sender {
+    for (NXOAuth2Account *account in [[NXOAuth2AccountStore sharedStore] accounts]) {
+        [[NXOAuth2AccountStore sharedStore]  removeAccount:account];
     }
 }
 
