@@ -149,7 +149,7 @@
     NSString *titre = @"RAS";
     NSString *message = nil;
     
-    /*//Détection de cas non conformes et affectation de messages
+    //Détection de cas non conformes et affectation de messages
     if ([login isEqualToString:@""])
         titre = @"Veuillez renseigner votre identifiant !";
     else if ([mdp isEqualToString:@""])
@@ -183,12 +183,13 @@
         [alert show];
     }
     else
-    {*/
+    {
         /* Ici j'envoie le login et le mdp de l'utilisateur au serveur d'authentification de VIA
         Celui ci me renvoie un token d'autorisation ou un code d'erreur.*/
         
         [[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:@"pistonski"
-                                                                  username:@"2014hammondl"                                                                  password:@"ECParis2017VIA"];
+                                                                  username:login                                                                password:mdp];
+    
         //En cas de succes, un nouvel account est ajouté à [NXOAuth2AccountStore sharedStore]
         [[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreAccountsDidChangeNotification
                     object:[NXOAuth2AccountStore sharedStore]
@@ -246,7 +247,7 @@
         success = false;
         [self shouldPerformSegueWithIdentifier:@"loginReussi" sender:self];
                 
-        //}
+        }
 
 }
 

@@ -10,6 +10,8 @@
 	<string>PistusApp</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>DFE7FB88D0DF974A081F8ECEF537F23D58935FBA</key>
+		<string>gitlab.my.ecp.fr:2014hammondl/application-pistus-ios.git</string>
 		<key>EB5674475998A0DD33CD59076628ED3B93CBE9CA</key>
 		<string>git://github.com/nxtbgthng/OAuth2Client.git</string>
 	</dict>
@@ -17,11 +19,17 @@
 	<string>PistusApp.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>DFE7FB88D0DF974A081F8ECEF537F23D58935FBA</key>
+		<string>../..</string>
 		<key>EB5674475998A0DD33CD59076628ED3B93CBE9CA</key>
-		<string>../../../../../../../../../../../../OAuth2Client</string>
+		<string>../../../OAuth2Client</string>
 	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>gitlab.my.ecp.fr:2014hammondl/application-pistus-ios.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>DFE7FB88D0DF974A081F8ECEF537F23D58935FBA</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -31,6 +39,14 @@
 			<string>EB5674475998A0DD33CD59076628ED3B93CBE9CA</string>
 			<key>IDESourceControlWCCName</key>
 			<string>OAuth2Client</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DFE7FB88D0DF974A081F8ECEF537F23D58935FBA</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PistusApp</string>
 		</dict>
 	</array>
 </dict>

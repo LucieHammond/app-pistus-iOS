@@ -20,6 +20,8 @@
 		C54F8ACD1BD94D5A00CE7B3A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C54F8ACC1BD94D5A00CE7B3A /* Images.xcassets */; };
 		C54F8AD01BD94D5A00CE7B3A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54F8ACE1BD94D5A00CE7B3A /* LaunchScreen.xib */; };
 		C54F8ADC1BD94D5A00CE7B3A /* PistusAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C54F8ADB1BD94D5A00CE7B3A /* PistusAppTests.m */; };
+		C570B8391C2B440F003E0E16 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C570B8381C2B440F003E0E16 /* libsqlite3.dylib */; };
+		C570B83D1C2B44C5003E0E16 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C570B83C1C2B44C5003E0E16 /* DBManager.m */; };
 		C5C05E791BEFF6FC007D763E /* accueil_5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E6F1BEFF6FC007D763E /* accueil_5.jpg */; };
 		C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E701BEFF6FC007D763E /* accueil_6.jpg */; };
 		C5C05E7B1BEFF6FC007D763E /* accueil_6Plus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E711BEFF6FC007D763E /* accueil_6Plus.jpg */; };
@@ -99,6 +101,9 @@
 		C54F8AD51BD94D5A00CE7B3A /* PistusAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PistusAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C54F8ADA1BD94D5A00CE7B3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C54F8ADB1BD94D5A00CE7B3A /* PistusAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PistusAppTests.m; sourceTree = "<group>"; };
+		C570B8381C2B440F003E0E16 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		C570B83B1C2B44C5003E0E16 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		C570B83C1C2B44C5003E0E16 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		C5AEBCC01BDD605900223811 /* OAuth2Client.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2Client.xcodeproj; path = ../OAuth2Client/OAuth2Client.xcodeproj; sourceTree = "<group>"; };
 		C5C05E6F1BEFF6FC007D763E /* accueil_5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_5.jpg; sourceTree = "<group>"; };
 		C5C05E701BEFF6FC007D763E /* accueil_6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_6.jpg; sourceTree = "<group>"; };
@@ -121,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C570B8391C2B440F003E0E16 /* libsqlite3.dylib in Frameworks */,
 				C547AE6D1BDD60E800A0E4A8 /* libOAuth2Client.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,6 +144,9 @@
 		C54F8AB31BD94D5A00CE7B3A = {
 			isa = PBXGroup;
 			children = (
+				C570B83B1C2B44C5003E0E16 /* DBManager.h */,
+				C570B83C1C2B44C5003E0E16 /* DBManager.m */,
+				C570B8381C2B440F003E0E16 /* libsqlite3.dylib */,
 				C5AEBCC01BDD605900223811 /* OAuth2Client.xcodeproj */,
 				C54F8B1D1BD97E1800CE7B3A /* Ressources */,
 				C54F8ABE1BD94D5A00CE7B3A /* PistusApp */,
@@ -385,6 +394,7 @@
 				C54F8AC51BD94D5A00CE7B3A /* AppDelegate.m in Sources */,
 				C54F8AC21BD94D5A00CE7B3A /* main.m in Sources */,
 				C5F3488F1BE8FB98003B94C6 /* MainViewController.m in Sources */,
+				C570B83D1C2B44C5003E0E16 /* DBManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
