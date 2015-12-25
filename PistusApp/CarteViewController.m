@@ -21,8 +21,16 @@
 }
 
 -(void) viewDidLayoutSubviews{
+    
     //Ajustement et ajout de la barre de navigation en haut
     [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
+    
+    // Configuration du scrollView pour pouvoir zoomer et se déplacer sur le plan
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Plan Val d'Allos Official corrigé.jpg"]];
+    [_scrollView addSubview:imageView];
+    
+    [_scrollView setContentSize:CGSizeMake(imageView.frame.size.width, imageView.frame.size.height)];
+    [_scrollView setScrollEnabled:YES];
 }
 
 - (void)didReceiveMemoryWarning {
