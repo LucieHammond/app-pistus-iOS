@@ -40,7 +40,7 @@
     [_fondEcran setImage:[UIImage imageNamed:image]];
     
     //Ajustement et ajout de la barre de navigation en haut
-    [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 50)];
+    [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
     [_topBande setFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, 20)];
     
     //Préparation pour repositionnement des icones (qui sont des boutons)
