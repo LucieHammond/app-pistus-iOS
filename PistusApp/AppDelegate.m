@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "NXOAuth2.h"
+#import "GeolocalisationManager.h"
 
 @interface AppDelegate ()
 
@@ -53,6 +54,9 @@
     
     NSMutableDictionary *configuration = [NSMutableDictionary dictionaryWithDictionary:[[NXOAuth2AccountStore sharedStore] configurationForAccountType:@"pistonski"]];
     [[NXOAuth2AccountStore sharedStore] setConfiguration:configuration forAccountType:@"pistonski"];
+    
+    // On désactive la géolocalisation par défaut
+    [GeolocalisationManager sharedInstance].trackAccept = false;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url

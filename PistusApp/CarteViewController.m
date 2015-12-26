@@ -12,6 +12,8 @@
 
 @interface CarteViewController ()
 
+@property (nonatomic, strong) GeolocalisationManager *glManager;
+
 @end
 
 @implementation CarteViewController
@@ -22,6 +24,7 @@
     _scrollView.delegate=self;
     self.scrollView.minimumZoomScale=1.0;
     self.scrollView.maximumZoomScale=8.0;
+    self.glManager=[GeolocalisationManager sharedInstance];
     // Do any additional setup after loading the view.
 }
 
@@ -29,6 +32,23 @@
     
     //Ajustement de la barre de navigation en haut et configuration des icones
     [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
+    [_trackAcceptButton setBackgroundImage:[UIImage imageNamed:@"sateliteoff.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    
+    /*if(!_glManager.trackAccept)
+    {
+        NSLog(@"Point 0 atteint");
+        [_trackAcceptButton setImage:[UIImage imageNamed:@"satelliteon.png"]];
+    }
+    else if(_glManager.trackAccept)
+    {
+        NSLog(@"Point 1 atteint");
+        [_trackAcceptButton setImage:[UIImage imageNamed:@"satelliteoff.png"]];
+    }
+    else
+    {
+        NSLog(@"Erreur. TrackAccept non initialisé");
+    }*/
+
     
     // Configuration du scrollView pour pouvoir se déplacer sur le plan
     imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Plan Val d'Allos Official corrigé.jpg"]];
@@ -59,6 +79,23 @@
 }
 
 - (IBAction)trackChange:(id)sender {
+    if(!_glManager.trackAccept)
+    {
+        NSLog(@"Point 0 atteint");
+        [_trackAcceptButton setImage:[UIImage imageNamed:@"satelliteon.png"]];
+        
+        [_glManager beginTrack];
+    }
+    else if(_glManager.trackAccept)
+    {
+        NSLog(@"Point 1 atteint");
+        [_trackAcceptButton setImage:[UIImage imageNamed:@"satelliteoff.png"]];
+        [_glManager endTrack];
+    }
+    else
+    {
+        NSLog(@"Erreur. TrackAccept non initialisé");
+    }
 }
 
 /*

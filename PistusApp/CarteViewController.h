@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UINavigationBar *barre;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIPinchGestureRecognizer *pinchGesture;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *trackAccept;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *trackAcceptButton;
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;
 - (IBAction)trackChange:(id)sender;

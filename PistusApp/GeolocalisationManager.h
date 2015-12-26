@@ -12,5 +12,7 @@
 
 @property (nonatomic) BOOL trackAccept;
 +(GeolocalisationManager*)sharedInstance;
+-(void)beginTrack;
+-(void)endTrack;
 
 @end
