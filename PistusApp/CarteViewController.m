@@ -27,8 +27,9 @@
     
     // Configuration du scrollView pour pouvoir zoomer et se déplacer sur le plan
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Plan Val d'Allos Official corrigé.jpg"]];
+    [imageView setFrame:CGRectMake(0,0,_scrollView.frame.size.height*imageView.frame.size.width/imageView.frame.size.height,_scrollView.frame.size.height)];
     [_scrollView addSubview:imageView];
-    
+    [_scrollView setContentOffset:CGPointMake((imageView.frame.size.width-_scrollView.frame.size.width)/2,0)];
     [_scrollView setContentSize:CGSizeMake(imageView.frame.size.width, imageView.frame.size.height)];
     [_scrollView setScrollEnabled:YES];
 }
