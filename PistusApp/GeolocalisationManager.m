@@ -8,10 +8,10 @@
 
 #import "GeolocalisationManager.h"
 
+static BOOL trackAccept;
+static NSTimer *timerPosition;
+
 @implementation GeolocalisationManager
-{
-    NSTimer *timerPosition;
-}
 
 +(GeolocalisationManager*)sharedInstance
 {
@@ -19,19 +19,27 @@
     return sharedInstance;
 }
 
--(void)beginTrack
++(void)beginTrack
 {
-    timerPosition = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(boucle) userInfo:nil repeats:YES];
+    trackAccept = true;
+    timerPosition = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(boucle) userInfo:nil repeats:YES];
 }
 
--(void)endTrack
++(void)endTrack
 {
+    trackAccept = false;
     [timerPosition invalidate];
 }
 
--(void)boucle
++(void)boucle
 {
     NSLog(@"1");
 }
+
++(BOOL)trackAccept
+{
+    return trackAccept;
+}
+
 
 @end

@@ -13,6 +13,7 @@
 @interface CarteViewController ()
 
 @property (nonatomic, strong) GeolocalisationManager *glManager;
+@property (nonatomic,strong) UIButton *boutonSatellite;
 
 @end
 
@@ -32,24 +33,19 @@
     
     //Ajustement de la barre de navigation en haut et configuration des icones
     [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
-    [_trackAcceptButton setBackgroundImage:[UIImage imageNamed:@"sateliteoff.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    
-    /*if(!_glManager.trackAccept)
+    _boutonSatellite = [[UIButton alloc] initWithFrame:CGRectMake(0,0,32,33)];
+    if(![GeolocalisationManager trackAccept])
     {
-        NSLog(@"Point 0 atteint");
-        [_trackAcceptButton setImage:[UIImage imageNamed:@"satelliteon.png"]];
+        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
     }
-    else if(_glManager.trackAccept)
+    else if([GeolocalisationManager trackAccept])
     {
-        NSLog(@"Point 1 atteint");
-        [_trackAcceptButton setImage:[UIImage imageNamed:@"satelliteoff.png"]];
+        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
     }
-    else
-    {
-        NSLog(@"Erreur. TrackAccept non initialisé");
-    }*/
+    [_trackAcceptButton setCustomView:_boutonSatellite];
+    [_boutonSatellite addTarget:self action:@selector(trackChange)
+         forControlEvents:UIControlEventTouchUpInside];
 
-    
     // Configuration du scrollView pour pouvoir se déplacer sur le plan
     imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Plan Val d'Allos Official corrigé.jpg"]];
     [imageView setFrame:CGRectMake(0,0,_scrollView.frame.size.height*imageView.frame.size.width/imageView.frame.size.height,_scrollView.frame.size.height)];
@@ -78,24 +74,21 @@
     return self->imageView;
 }
 
-- (IBAction)trackChange:(id)sender {
-    if(!_glManager.trackAccept)
+- (void)trackChange
+{
+    if(![GeolocalisationManager trackAccept])
     {
         NSLog(@"Point 0 atteint");
-        [_trackAcceptButton setImage:[UIImage imageNamed:@"satelliteon.png"]];
-        
-        [_glManager beginTrack];
+        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
+        [GeolocalisationManager beginTrack];
     }
-    else if(_glManager.trackAccept)
+    else if([GeolocalisationManager trackAccept])
     {
         NSLog(@"Point 1 atteint");
-        [_trackAcceptButton setImage:[UIImage imageNamed:@"satelliteoff.png"]];
-        [_glManager endTrack];
+        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
+        [GeolocalisationManager endTrack];
     }
-    else
-    {
-        NSLog(@"Erreur. TrackAccept non initialisé");
-    }
+    [_trackAcceptButton setCustomView:_boutonSatellite];
 }
 
 /*

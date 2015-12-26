@@ -19,6 +19,5 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *trackAcceptButton;
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;
-- (IBAction)trackChange:(id)sender;
 
 @end

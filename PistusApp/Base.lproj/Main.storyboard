@@ -46,13 +46,15 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Carte" id="QDK-oF-UJe">
-                                        <barButtonItem key="rightBarButtonItem" id="Ba3-nG-9ow">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6v1-Rh-Rcd">
-                                                <rect key="frame" x="272" y="-234" width="32" height="33"/>
+                                        <barButtonItem key="rightBarButtonItem" id="nxL-JU-RIz">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gJx-DN-dbF">
+                                                <rect key="frame" x="57" y="55" width="32" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" image="satelliteon.png"/>
+                                                <state key="normal" title="Button" image="satelliteoff.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
-                                                    <action selector="trackChange:" destination="t2j-nU-UHC" eventType="touchUpInside" id="dGf-ez-NEF"/>
+                                                    <action selector="trackChange:" destination="t2j-nU-UHC" eventType="touchUpInside" id="pJG-Jw-Q8X"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -68,7 +70,7 @@
                         <outlet property="barre" destination="c2J-Fv-7vs" id="1zQ-ug-125"/>
                         <outlet property="pinchGesture" destination="H6q-3p-j7c" id="f4G-b9-dWG"/>
                         <outlet property="scrollView" destination="R7k-Nv-Qz0" id="AjG-Ef-pK5"/>
-                        <outlet property="trackAcceptButton" destination="Ba3-nG-9ow" id="QpB-dU-Uof"/>
+                        <outlet property="trackAcceptButton" destination="nxL-JU-RIz" id="zdb-fI-TaN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P5N-Pe-qJ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -496,6 +498,6 @@
         <image name="iconMeteo.png" width="256" height="272"/>
         <image name="iconStats.png" width="256" height="270"/>
         <image name="iconTroc.png" width="256" height="256"/>
-        <image name="satelliteon.png" width="512" height="512"/>
+        <image name="satelliteoff.png" width="512" height="512"/>
     </resources>
 </document>

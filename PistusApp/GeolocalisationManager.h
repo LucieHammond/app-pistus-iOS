@@ -10,9 +10,9 @@
 
 @interface GeolocalisationManager : NSObject
 
-@property (nonatomic) BOOL trackAccept;
 +(GeolocalisationManager*)sharedInstance;
--(void)beginTrack;
--(void)endTrack;
++(void)beginTrack;
++(void)endTrack;
++(BOOL)trackAccept;
 
 @end
