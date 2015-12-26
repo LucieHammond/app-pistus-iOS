@@ -4,10 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+<<<<<<< HEAD
 		<key>PistusApp.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
+=======
+		<key>,ds&lt;,hcgs.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>PistusApp.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+>>>>>>> new_branch_name
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -22,6 +34,19 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+<<<<<<< HEAD
+=======
+		<key>C56B57301BDD4B2F00EA76A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C56B57481BDD4B2F00EA76A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+>>>>>>> new_branch_name
 	</dict>
 </dict>
 </plist>

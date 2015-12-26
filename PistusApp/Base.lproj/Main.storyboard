@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rTf-Kw-dH5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="t2j-nU-UHC">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Carte View Controller-->
         <scene sceneID="Znf-Fh-BCB">
             <objects>
-                <viewController id="t2j-nU-UHC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Carte" title="Carte View Controller" id="t2j-nU-UHC" customClass="CarteViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="V21-BE-zG8"/>
                         <viewControllerLayoutGuide type="bottom" id="7zu-YS-S0T"/>
@@ -16,13 +16,67 @@
                     <view key="view" contentMode="scaleToFill" id="ZK1-9T-FT2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CR8-ro-caC">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                <color key="backgroundColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szM-TS-NsI">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <color key="barTintColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Carte" id="WtP-vE-zPg"/>
+                                </items>
+                            </navigationBar>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" maximumZoomScale="8" translatesAutoresizingMaskIntoConstraints="NO" id="R7k-Nv-Qz0">
+                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="H6q-3p-j7c" appends="YES" id="Oo8-Qk-8Ap"/>
+                                </connections>
+                            </scrollView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2J-Fv-7vs">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <color key="barTintColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Carte" id="QDK-oF-UJe">
+                                        <barButtonItem key="rightBarButtonItem" id="nxL-JU-RIz">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gJx-DN-dbF">
+                                                <rect key="frame" x="57" y="55" width="32" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button" image="satelliteoff.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="trackChange:" destination="t2j-nU-UHC" eventType="touchUpInside" id="pJG-Jw-Q8X"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="barre" destination="c2J-Fv-7vs" id="1zQ-ug-125"/>
+                        <outlet property="pinchGesture" destination="H6q-3p-j7c" id="f4G-b9-dWG"/>
+                        <outlet property="scrollView" destination="R7k-Nv-Qz0" id="AjG-Ef-pK5"/>
+                        <outlet property="trackAcceptButton" destination="nxL-JU-RIz" id="zdb-fI-TaN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P5N-Pe-qJ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="H6q-3p-j7c"/>
             </objects>
-            <point key="canvasLocation" x="1230" y="-477"/>
+            <point key="canvasLocation" x="1172" y="-477"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="3Jn-ep-mko">
@@ -41,7 +95,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rOF-0Q-gC2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1702" y="-477"/>
+            <point key="canvasLocation" x="1604" y="-477"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="yg0-TW-kgq">
@@ -60,7 +114,43 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t7q-4d-hb8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2178" y="-477"/>
+            <point key="canvasLocation" x="1999" y="-489"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Hgs-Ib-0M8">
+            <objects>
+                <viewController id="IRz-zR-tQK" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wm2-sE-M1h"/>
+                        <viewControllerLayoutGuide type="bottom" id="I1t-8G-deE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="S7C-cy-jCC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YqW-wy-sKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2414" y="-99"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Wz6-Qr-GaQ">
+            <objects>
+                <viewController id="A4M-m4-kI9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oEZ-C0-tLb"/>
+                        <viewControllerLayoutGuide type="bottom" id="TmM-36-lKy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hrQ-nj-dJ4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ski-B1-fEs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2414" y="561"/>
         </scene>
         <!--Page d'identification-->
         <scene sceneID="ufC-wZ-h7g">
@@ -114,6 +204,15 @@
                                     <action selector="translationID:" destination="vXZ-lx-hvc" eventType="editingDidBegin" id="Wcc-gx-NsH"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vv7-fX-CjS">
+                                <rect key="frame" x="184" y="56" width="90" height="30"/>
+                                <state key="normal" title="Deconnexion">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deconnection:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kNq-im-AJa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -139,27 +238,27 @@
                         <viewControllerLayoutGuide type="bottom" id="jrn-rv-uQo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hib-7z-TYh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="accueil_4.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="MIs-8U-WMK">
-                                <rect key="frame" x="-1" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="-1" y="2" width="320" height="568"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Statistiques" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBk-2C-Xu8">
-                                <rect key="frame" x="24" y="303" width="119" height="21"/>
+                                <rect key="frame" x="35" y="277" width="105" height="21"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Concours" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6E8-JT-waM">
-                                <rect key="frame" x="189" y="303" width="96" height="21"/>
+                                <rect key="frame" x="185" y="277" width="96" height="21"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aef-ae-JJ4">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <color key="barTintColor" red="0.2398989161" green="0.41543649570000002" blue="0.70200047350000006" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <textAttributes key="titleTextAttributes">
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -170,10 +269,10 @@
                             </navigationBar>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NOE-Vv-8za">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
-                                <color key="backgroundColor" red="0.2398989161" green="0.41543649570000002" blue="0.70200047350000006" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeW-2V-hqq">
-                                <rect key="frame" x="18" y="71" width="133" height="110"/>
+                                <rect key="frame" x="31" y="75" width="113" height="94"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" image="iconMap.png"/>
                                 <connections>
@@ -181,72 +280,102 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yh6-rN-leN">
-                                <rect key="frame" x="173" y="98" width="126" height="63"/>
-                                <state key="normal" title="Button" image="iconInfo.png">
+                                <rect key="frame" x="179" y="97" width="108" height="53"/>
+                                <state key="normal" image="iconInfo.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="em1-vh-C6d" kind="presentation" modalTransitionStyle="crossDissolve" id="zt2-Qa-NX8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqt-C7-vy3">
-                                <rect key="frame" x="33" y="211" width="102" height="83"/>
-                                <state key="normal" title="Button" image="iconStats.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="qHC-qm-yjn" kind="presentation" modalTransitionStyle="crossDissolve" id="fn1-gK-Fe8"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXt-xN-iVq">
-                                <rect key="frame" x="162" y="202" width="149" height="101"/>
-                                <state key="normal" title="Button" image="iconConcours.png">
+                                <rect key="frame" x="178" y="192" width="112" height="82"/>
+                                <state key="normal" image="iconConcours.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="MHw-Lw-Ajl" kind="presentation" modalTransitionStyle="crossDissolve" id="Nw8-Ji-5Hm"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FoF-PY-WHS">
-                                <rect key="frame" x="30" y="343" width="109" height="89"/>
-                                <state key="normal" title="Button" image="iconMeteo.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="yrl-kZ-yLj" kind="presentation" modalTransitionStyle="crossDissolve" id="PkH-KC-fuL"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xo5-7a-yFR">
-                                <rect key="frame" x="169" y="338" width="135" height="99"/>
-                                <state key="normal" title="Button" image="iconHoraires.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="BUk-ML-F3U" kind="presentation" modalTransitionStyle="crossDissolve" id="Bs9-Tr-PaH"/>
+                                    <segue destination="IRz-zR-tQK" kind="presentation" modalTransitionStyle="crossDissolve" id="oFv-b9-hGL"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Carte" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMj-bA-Lc6">
-                                <rect key="frame" x="55" y="164" width="56" height="21"/>
+                                <rect key="frame" x="59" y="154" width="56" height="21"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Informations" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deS-je-y9g">
-                                <rect key="frame" x="174" y="164" width="127" height="21"/>
+                                <rect key="frame" x="172" y="154" width="127" height="21"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Horaires" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4xY-ov-n6q">
-                                <rect key="frame" x="192" y="436" width="91" height="21"/>
+                                <rect key="frame" x="188" y="409" width="91" height="21"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Météo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jc3-EM-Faq">
-                                <rect key="frame" x="44" y="436" width="78" height="21"/>
+                                <rect key="frame" x="48" y="409" width="78" height="21"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxf-Ud-6al">
+                                <rect key="frame" x="51" y="193" width="73" height="77"/>
+                                <state key="normal" image="iconStats.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="qHC-qm-yjn" kind="presentation" modalTransitionStyle="crossDissolve" id="5jH-qy-Jma"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQJ-cU-sXY">
+                                <rect key="frame" x="44" y="320" width="83" height="87"/>
+                                <state key="normal" image="iconMeteo.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="MHw-Lw-Ajl" kind="presentation" modalTransitionStyle="crossDissolve" id="gr8-7F-4CS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Zx-1Z-fI4">
+                                <rect key="frame" x="182" y="320" width="99" height="86"/>
+                                <state key="normal" image="iconHoraires.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="yrl-kZ-yLj" kind="presentation" modalTransitionStyle="crossDissolve" id="oYM-Xd-xpA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pae-2B-TRc">
+                                <rect key="frame" x="45" y="439" width="84" height="84"/>
+                                <state key="normal" image="iconTroc.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BUk-ML-F3U" kind="presentation" modalTransitionStyle="crossDissolve" id="deS-aW-IKM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y8A-qD-HDi">
+                                <rect key="frame" x="185" y="436" width="92" height="92"/>
+                                <state key="normal" image="iconContact.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="A4M-m4-kI9" kind="presentation" modalTransitionStyle="crossDissolve" id="DA6-g8-RsS"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contact" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="32s-4P-y3z">
+                                <rect key="frame" x="206" y="530" width="58" height="21"/>
+                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Troc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHT-Az-wmC">
+                                <rect key="frame" x="67" y="530" width="40" height="21"/>
+                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -254,28 +383,32 @@
                     </view>
                     <navigationItem key="navigationItem" id="P5v-7R-NCT"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="barre" destination="aef-ae-JJ4" id="Rxk-XF-a9o"/>
                         <outlet property="carte" destination="jeW-2V-hqq" id="BGJ-Os-FDB"/>
                         <outlet property="concours" destination="lXt-xN-iVq" id="g2T-oa-Odb"/>
+                        <outlet property="contact" destination="y8A-qD-HDi" id="KYx-Qk-IFH"/>
                         <outlet property="fondEcran" destination="MIs-8U-WMK" id="QXP-fy-b9R"/>
-                        <outlet property="horaires" destination="Xo5-7a-yFR" id="FpQ-D5-Ib9"/>
+                        <outlet property="horaires" destination="6Zx-1Z-fI4" id="eey-Yh-Z5y"/>
                         <outlet property="infos" destination="Yh6-rN-leN" id="U78-qd-yqc"/>
-                        <outlet property="meteo" destination="FoF-PY-WHS" id="byp-07-5wj"/>
-                        <outlet property="stats" destination="Qqt-C7-vy3" id="moW-Jf-niL"/>
+                        <outlet property="meteo" destination="FQJ-cU-sXY" id="0kE-qr-Hv5"/>
+                        <outlet property="stats" destination="Mxf-Ud-6al" id="Cm3-N2-Kpw"/>
                         <outlet property="topBande" destination="NOE-Vv-8za" id="V5w-WH-bI0"/>
+                        <outlet property="troc" destination="Pae-2B-TRc" id="v5Q-yR-cFQ"/>
                         <outlet property="txtCarte" destination="OMj-bA-Lc6" id="cWh-Di-xhB"/>
                         <outlet property="txtConcours" destination="6E8-JT-waM" id="szZ-L6-OBF"/>
+                        <outlet property="txtContact" destination="32s-4P-y3z" id="25H-mF-PAc"/>
                         <outlet property="txtHoraires" destination="4xY-ov-n6q" id="BRw-4c-EGb"/>
                         <outlet property="txtInfos" destination="deS-je-y9g" id="Cfb-hA-MAw"/>
                         <outlet property="txtMeteo" destination="jc3-EM-Faq" id="qqg-66-nUl"/>
                         <outlet property="txtStats" destination="lBk-2C-Xu8" id="ZMy-iK-Wgu"/>
+                        <outlet property="txtTroc" destination="iHT-Az-wmC" id="Tgd-jl-uOE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DpD-oY-QP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1607" y="191"/>
+            <point key="canvasLocation" x="1645" y="177"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="pjs-gv-SDn">
@@ -294,7 +427,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbH-8Y-lrY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1702" y="851"/>
+            <point key="canvasLocation" x="1609" y="851"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="jhl-Vo-dqQ">
@@ -313,7 +446,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M3X-vj-V9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2178" y="851"/>
+            <point key="canvasLocation" x="1999" y="851"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="cQu-Za-p5W">
@@ -358,10 +491,13 @@
         <image name="accueil_4.jpg" width="640" height="960"/>
         <image name="connexion.png" width="332" height="108"/>
         <image name="iconConcours.png" width="450" height="342"/>
-        <image name="iconHoraires.png" width="515" height="425"/>
+        <image name="iconContact.png" width="1192" height="1200"/>
+        <image name="iconHoraires.png" width="515" height="437"/>
         <image name="iconInfo.png" width="640" height="469"/>
         <image name="iconMap.png" width="256" height="256"/>
-        <image name="iconMeteo.png" width="256" height="256"/>
-        <image name="iconStats.png" width="256" height="256"/>
+        <image name="iconMeteo.png" width="256" height="272"/>
+        <image name="iconStats.png" width="256" height="270"/>
+        <image name="iconTroc.png" width="256" height="256"/>
+        <image name="satelliteoff.png" width="512" height="512"/>
     </resources>
 </document>

@@ -73,7 +73,7 @@
     if(translation == 1)
     {
         //Translation vers le haut
-        [UIView animateWithDuration:0.2
+        [UIView animateWithDuration:0.15
             delay:0
             options: UIViewAnimationOptionTransitionFlipFromBottom
             animations:^{
@@ -88,7 +88,7 @@
     else if(translation==-1)
     {
         //Translation vers le bas
-        [UIView animateWithDuration:0.2
+        [UIView animateWithDuration:0.15
                               delay:0
                             options: UIViewAnimationOptionTransitionFlipFromTop
                          animations:^{
@@ -146,39 +146,120 @@
 - (IBAction)connection:(id)sender {
     NSString *login = _login.text;
     NSString *mdp = _mdp.text;
-    NSString *message = @"RAS";
+    NSString *titre = @"RAS";
+    NSString *message = nil;
     
     //Détection de cas non conformes et affectation de messages
     if ([login isEqualToString:@""])
-        message = @"Veuillez renseigner votre identifiant !";
+        titre = @"Veuillez renseigner votre identifiant !";
     else if ([mdp isEqualToString:@""])
-        message = @"Veuillez renseigner votre mot de passe !";
-    
+        titre = @"Veuillez renseigner votre mot de passe !";
+    else{
+        //Première vérification de la forme du mot de passe
+        BOOL conforme = true;
+        if ([login length]<=3)
+            conforme = false;
+        else{
+            NSInteger year = [[login substringWithRange:NSMakeRange(0,4)] integerValue];
+            NSString *nom = [login substringFromIndex:4];
+            if (year<1980 || year>=2020)
+                conforme = false;
+            else if(![nom isEqualToString: [nom lowercaseString]])
+                conforme = false;
+        }
+        if(conforme == false){
+            titre = @"Login incorrect !";
+            message = @"Il faut indiquer votre login VIA, de la forme : \"2015durandm\" (pour le GPA Martin Durand)";
+        }
+        
+    }
     // Creation d'une alerte
-    if (![message isEqualToString:@"RAS"])
+    if (![titre isEqualToString:@"RAS"])
     {
         UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:message
-                              message:nil delegate:self
+                              initWithTitle:titre
+                              message:message delegate:self
                               cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
     else
     {
         /* Ici j'envoie le login et le mdp de l'utilisateur au serveur d'authentification de VIA
-        Celui ci me renvoie un token d'autorisation ou un code d'erreur. Si il y a une erreur 
-         j'affiche une alerte avec un message correspondant, sinon je fais la suite*/
+        Celui ci me renvoie un token d'autorisation ou un code d'erreur.*/
         
-        //[[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:@"pistonski" username:login password:mdp];
+        [[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:@"pistonski"
+                                                                  username:login                                                                password:mdp];
+    
+        //En cas de succes, un nouvel account est ajouté à [NXOAuth2AccountStore sharedStore]
+        [[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreAccountsDidChangeNotification
+                    object:[NXOAuth2AccountStore sharedStore]
+                    queue:nil
+                    usingBlock:^(NSNotification *aNotification){
+                        NSInteger s=0;
+                        for (NXOAuth2Account *account in [[NXOAuth2AccountStore sharedStore] accounts]) {
+                            s+=1;
+                        };
+                        NSLog(@"%i",s);
+                        [NXOAuth2Request performMethod:@"GET"
+                                            onResource:[NSURL URLWithString:@"https://my.ecp.fr/api/v1/members/me"]
+                                       usingParameters:nil
+                                           withAccount:[[[NXOAuth2AccountStore sharedStore] accounts] lastObject]
+                                   sendProgressHandler:^(unsigned long long bytesSend, unsigned long long bytesTotal) { // e.g., update a progress indicator
+                                   }
+                                   responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error){
+                                       NSLog(@"Success");
+                                       // Process the response
+                                   }];
+                        
+                        //NSLog([NSString stringWithFormat:@"%@", [aNotification.userInfo objectForKey:NXOAuth2AccountStoreNewAccountUserInfoKey]]);
+                    }];
         
+        // En cas d'erreur, j'affiche une alerte avec un message correspondant
+        [[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreDidFailToRequestAccessNotification
+                    object:[NXOAuth2AccountStore sharedStore]
+                    queue:nil
+                    usingBlock:^(NSNotification *aNotification){
+                        NSError *error = [aNotification.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
+                        
+                        //Report de l'erreur dans la console
+                        /*for(id key in aNotification.userInfo)
+                            NSLog(@"key=%@ value=%@", key, [aNotification.userInfo objectForKey:key]);*/
+                        
+                        NSString *titre;
+                        NSString *mes;
+                        if(error.code == 400){
+                            titre = @"Mot de passe incorrect"; mes = @"Mauvaise combinaison entre l'identifiant et le mot de passe";}
+                        else if(error.code == -1009){
+                            titre = @"Pas de connection Internet"; mes = @"Il semble que vous ne soyiez pas connecté à Internet";}
+                        else{
+                            titre = @"Erreur non identifiée"; mes = @"Une erreur s'est produite qui n'a pas été identifiée. Vérifiez que vous avez correctement renseigné vos identifiants";}
+                        
+                        UIAlertView *alert = [[UIAlertView alloc]
+                                                initWithTitle:titre
+                                                message:mes delegate:self
+                                                cancelButtonTitle:@"Réessayer" otherButtonTitles:nil];
+                        [alert show];
+                    }];
+    
         /* Puis je demande au serveur de ressources de VIA de me fournir les infos dont j'ai besoin (nom, prenom, photo...) et je les met dans une variable globale que je transmet à la page main view*/
         
         // Transition vers la vue principale de l'appli (Main View Controller)
-        success = true;
+        success = false;
         [self shouldPerformSegueWithIdentifier:@"loginReussi" sender:self];
                 
+        }
+
+}
+
+- (IBAction)deconnection:(id)sender {
+    for (NXOAuth2Account *account in [[NXOAuth2AccountStore sharedStore] accounts]) {
+        [[NXOAuth2AccountStore sharedStore]  removeAccount:account];
     }
 }
 
 
 @end
+
+
+
+

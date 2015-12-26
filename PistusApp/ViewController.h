@@ -24,6 +24,7 @@
 - (IBAction)translationID:(id)sender;
 - (IBAction)translationMDP:(id)sender;
 - (IBAction)connection:(id)sender;
+- (IBAction)deconnection:(id)sender;
 
 @end
 
