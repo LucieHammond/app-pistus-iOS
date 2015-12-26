@@ -31,6 +31,13 @@
                                     <navigationItem title="Carte" id="WtP-vE-zPg"/>
                                 </items>
                             </navigationBar>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" maximumZoomScale="8" translatesAutoresizingMaskIntoConstraints="NO" id="R7k-Nv-Qz0">
+                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="H6q-3p-j7c" appends="YES" id="Oo8-Qk-8Ap"/>
+                                </connections>
+                            </scrollView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2J-Fv-7vs">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <color key="barTintColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -38,12 +45,24 @@
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Carte" id="QDK-oF-UJe"/>
+                                    <navigationItem title="Carte" id="QDK-oF-UJe">
+                                        <barButtonItem key="rightBarButtonItem" id="Ba3-nG-9ow">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6v1-Rh-Rcd">
+                                                <rect key="frame" x="270" y="5" width="34" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button" image="satelliteoff.png">
+                                                    <color key="titleColor" red="0.13257943089999999" green="0.90621227029999996" blue="0.46490752699999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" red="0.13257943089999999" green="0.90621227029999996" blue="0.46490752699999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="trackChange:" destination="t2j-nU-UHC" eventType="touchUpInside" id="dGf-ez-NEF"/>
+                                                </connections>
+                                            </button>
+                                            <color key="tintColor" red="0.13257943089999999" green="0.90621227029999996" blue="0.46490752699999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R7k-Nv-Qz0">
-                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -51,10 +70,13 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="barre" destination="c2J-Fv-7vs" id="1zQ-ug-125"/>
+                        <outlet property="pinchGesture" destination="H6q-3p-j7c" id="f4G-b9-dWG"/>
                         <outlet property="scrollView" destination="R7k-Nv-Qz0" id="AjG-Ef-pK5"/>
+                        <outlet property="trackAccept" destination="Ba3-nG-9ow" id="8dM-Go-yK6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P5N-Pe-qJ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="H6q-3p-j7c"/>
             </objects>
             <point key="canvasLocation" x="1172" y="-477"/>
         </scene>
@@ -75,7 +97,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rOF-0Q-gC2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1609" y="-489"/>
+            <point key="canvasLocation" x="1604" y="-477"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="yg0-TW-kgq">
@@ -478,5 +500,6 @@
         <image name="iconMeteo.png" width="256" height="272"/>
         <image name="iconStats.png" width="256" height="270"/>
         <image name="iconTroc.png" width="256" height="256"/>
+        <image name="satelliteoff.png" width="512" height="512"/>
     </resources>
 </document>

@@ -24,6 +24,9 @@
 		C570B83D1C2B44C5003E0E16 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C570B83C1C2B44C5003E0E16 /* DBManager.m */; };
 		C570B8511C2DF46F003E0E16 /* CarteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C570B8501C2DF46F003E0E16 /* CarteViewController.m */; };
 		C570B8531C2DF703003E0E16 /* Plan Val d'Allos Official corrigé.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C570B8521C2DF703003E0E16 /* Plan Val d'Allos Official corrigé.jpg */; };
+		C570B8561C2EBE50003E0E16 /* GeolocalisationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C570B8551C2EBE50003E0E16 /* GeolocalisationManager.m */; };
+		C570B8661C2ED85C003E0E16 /* satelliteon.png in Resources */ = {isa = PBXBuildFile; fileRef = C570B8651C2ED85C003E0E16 /* satelliteon.png */; };
+		C570B8681C2EDC23003E0E16 /* satelliteoff.png in Resources */ = {isa = PBXBuildFile; fileRef = C570B8671C2EDC23003E0E16 /* satelliteoff.png */; };
 		C5C05E791BEFF6FC007D763E /* accueil_5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E6F1BEFF6FC007D763E /* accueil_5.jpg */; };
 		C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E701BEFF6FC007D763E /* accueil_6.jpg */; };
 		C5C05E7B1BEFF6FC007D763E /* accueil_6Plus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E711BEFF6FC007D763E /* accueil_6Plus.jpg */; };
@@ -109,6 +112,10 @@
 		C570B84F1C2DF46F003E0E16 /* CarteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarteViewController.h; sourceTree = "<group>"; };
 		C570B8501C2DF46F003E0E16 /* CarteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarteViewController.m; sourceTree = "<group>"; };
 		C570B8521C2DF703003E0E16 /* Plan Val d'Allos Official corrigé.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Plan Val d'Allos Official corrigé.jpg"; sourceTree = "<group>"; };
+		C570B8541C2EBE50003E0E16 /* GeolocalisationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeolocalisationManager.h; path = PistusApp/GeolocalisationManager.h; sourceTree = "<group>"; };
+		C570B8551C2EBE50003E0E16 /* GeolocalisationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeolocalisationManager.m; path = PistusApp/GeolocalisationManager.m; sourceTree = "<group>"; };
+		C570B8651C2ED85C003E0E16 /* satelliteon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satelliteon.png; sourceTree = "<group>"; };
+		C570B8671C2EDC23003E0E16 /* satelliteoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satelliteoff.png; sourceTree = "<group>"; };
 		C5AEBCC01BDD605900223811 /* OAuth2Client.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2Client.xcodeproj; path = ../OAuth2Client/OAuth2Client.xcodeproj; sourceTree = "<group>"; };
 		C5C05E6F1BEFF6FC007D763E /* accueil_5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_5.jpg; sourceTree = "<group>"; };
 		C5C05E701BEFF6FC007D763E /* accueil_6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_6.jpg; sourceTree = "<group>"; };
@@ -151,6 +158,8 @@
 			children = (
 				C570B83B1C2B44C5003E0E16 /* DBManager.h */,
 				C570B83C1C2B44C5003E0E16 /* DBManager.m */,
+				C570B8541C2EBE50003E0E16 /* GeolocalisationManager.h */,
+				C570B8551C2EBE50003E0E16 /* GeolocalisationManager.m */,
 				C570B8381C2B440F003E0E16 /* libsqlite3.dylib */,
 				C5AEBCC01BDD605900223811 /* OAuth2Client.xcodeproj */,
 				C54F8B1D1BD97E1800CE7B3A /* Ressources */,
@@ -217,6 +226,8 @@
 		C54F8B1D1BD97E1800CE7B3A /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				C570B8671C2EDC23003E0E16 /* satelliteoff.png */,
+				C570B8651C2ED85C003E0E16 /* satelliteon.png */,
 				C570B8521C2DF703003E0E16 /* Plan Val d'Allos Official corrigé.jpg */,
 				C5C05E831BEFF7A0007D763E /* connexion.png */,
 				C5C05E841BEFF7A0007D763E /* Login-568h@2x~iphone.png */,
@@ -365,6 +376,7 @@
 				C570B8531C2DF703003E0E16 /* Plan Val d'Allos Official corrigé.jpg in Resources */,
 				C54F8ACB1BD94D5A00CE7B3A /* Main.storyboard in Resources */,
 				C5C05E7B1BEFF6FC007D763E /* accueil_6Plus.jpg in Resources */,
+				C570B8661C2ED85C003E0E16 /* satelliteon.png in Resources */,
 				C5C05E8B1BEFF7A0007D763E /* Login-736h@3x~iphone.png in Resources */,
 				C539A7911BF1F56A00B9E3ED /* iconTroc.png in Resources */,
 				C5C05E7F1BEFF6FC007D763E /* iconMap.png in Resources */,
@@ -376,6 +388,7 @@
 				C54F8AD01BD94D5A00CE7B3A /* LaunchScreen.xib in Resources */,
 				C539A78E1BF1F56A00B9E3ED /* iconHoraires.png in Resources */,
 				C539A7901BF1F56A00B9E3ED /* iconStats.png in Resources */,
+				C570B8681C2EDC23003E0E16 /* satelliteoff.png in Resources */,
 				C5C05E791BEFF6FC007D763E /* accueil_5.jpg in Resources */,
 				C5C05E7C1BEFF6FC007D763E /* iconConcours.png in Resources */,
 				C5C05E881BEFF7A0007D763E /* connexion.png in Resources */,
@@ -400,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C54F8AC81BD94D5A00CE7B3A /* ViewController.m in Sources */,
+				C570B8561C2EBE50003E0E16 /* GeolocalisationManager.m in Sources */,
 				C54F8AC51BD94D5A00CE7B3A /* AppDelegate.m in Sources */,
 				C570B8511C2DF46F003E0E16 /* CarteViewController.m in Sources */,
 				C54F8AC21BD94D5A00CE7B3A /* main.m in Sources */,

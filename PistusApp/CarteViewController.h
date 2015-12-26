@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CarteViewController : UIViewController
+@interface CarteViewController : UIViewController <UIScrollViewDelegate>
+{
+    UIImageView *imageView;
+}
+
 @property (weak, nonatomic) IBOutlet UINavigationBar *barre;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIPinchGestureRecognizer *pinchGesture;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *trackAccept;
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;
+- (IBAction)trackChange:(id)sender;
 
 @end
