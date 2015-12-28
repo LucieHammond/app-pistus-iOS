@@ -27,6 +27,7 @@
 		C570B8561C2EBE50003E0E16 /* GeolocalisationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C570B8551C2EBE50003E0E16 /* GeolocalisationManager.m */; };
 		C570B8661C2ED85C003E0E16 /* satelliteon.png in Resources */ = {isa = PBXBuildFile; fileRef = C570B8651C2ED85C003E0E16 /* satelliteon.png */; };
 		C570B8681C2EDC23003E0E16 /* satelliteoff.png in Resources */ = {isa = PBXBuildFile; fileRef = C570B8671C2EDC23003E0E16 /* satelliteoff.png */; };
+		C570B86C1C30999B003E0E16 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C570B86B1C30999B003E0E16 /* CoreLocation.framework */; };
 		C5C05E791BEFF6FC007D763E /* accueil_5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E6F1BEFF6FC007D763E /* accueil_5.jpg */; };
 		C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E701BEFF6FC007D763E /* accueil_6.jpg */; };
 		C5C05E7B1BEFF6FC007D763E /* accueil_6Plus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E711BEFF6FC007D763E /* accueil_6Plus.jpg */; };
@@ -116,6 +117,7 @@
 		C570B8551C2EBE50003E0E16 /* GeolocalisationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeolocalisationManager.m; path = PistusApp/GeolocalisationManager.m; sourceTree = "<group>"; };
 		C570B8651C2ED85C003E0E16 /* satelliteon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satelliteon.png; sourceTree = "<group>"; };
 		C570B8671C2EDC23003E0E16 /* satelliteoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satelliteoff.png; sourceTree = "<group>"; };
+		C570B86B1C30999B003E0E16 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C5AEBCC01BDD605900223811 /* OAuth2Client.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2Client.xcodeproj; path = ../OAuth2Client/OAuth2Client.xcodeproj; sourceTree = "<group>"; };
 		C5C05E6F1BEFF6FC007D763E /* accueil_5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_5.jpg; sourceTree = "<group>"; };
 		C5C05E701BEFF6FC007D763E /* accueil_6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_6.jpg; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C570B86C1C30999B003E0E16 /* CoreLocation.framework in Frameworks */,
 				C570B8391C2B440F003E0E16 /* libsqlite3.dylib in Frameworks */,
 				C547AE6D1BDD60E800A0E4A8 /* libOAuth2Client.a in Frameworks */,
 			);
@@ -156,6 +159,7 @@
 		C54F8AB31BD94D5A00CE7B3A = {
 			isa = PBXGroup;
 			children = (
+				C570B86B1C30999B003E0E16 /* CoreLocation.framework */,
 				C570B83B1C2B44C5003E0E16 /* DBManager.h */,
 				C570B83C1C2B44C5003E0E16 /* DBManager.m */,
 				C570B8541C2EBE50003E0E16 /* GeolocalisationManager.h */,

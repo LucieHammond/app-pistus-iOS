@@ -10,19 +10,41 @@
 
 static BOOL trackAccept;
 static NSTimer *timerPosition;
+static CLLocationManager* locationManager;
 
 @implementation GeolocalisationManager
 
 +(GeolocalisationManager*)sharedInstance
 {
-    static GeolocalisationManager* sharedInstance;
+    static GeolocalisationManager* sharedInstance=nil;
+    if (sharedInstance == nil) {
+        sharedInstance = [[[self class] alloc] init];
+    }
     return sharedInstance;
 }
 
-+(void)beginTrack
++(BOOL)beginTrack
 {
     trackAccept = true;
+    if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined)
+    {
+        [locationManager requestAlwaysAuthorization];
+    }
+    if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusRestricted || [CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied)
+    {
+        return false;
+    }
+    
+    locationManager = [[CLLocationManager alloc] init];
+    if ([CLLocationManager locationServicesEnabled])
+    {
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        locationManager.distanceFilter = 100.0f;
+        [locationManager startUpdatingLocation];
+    }
     timerPosition = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(boucle) userInfo:nil repeats:YES];
+    return true;
 }
 
 +(void)endTrack

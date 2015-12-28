@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface GeolocalisationManager : NSObject
+@interface GeolocalisationManager : NSObject <CLLocationManagerDelegate>
 
 +(GeolocalisationManager*)sharedInstance;
-+(void)beginTrack;
++(BOOL)beginTrack;
 +(void)endTrack;
 +(BOOL)trackAccept;
 
