@@ -12,7 +12,6 @@
 
 @interface CarteViewController ()
 
-@property (nonatomic, strong) GeolocalisationManager *glManager;
 @property (nonatomic,strong) UIButton *boutonSatellite;
 
 @end
@@ -25,7 +24,6 @@
     _scrollView.delegate=self;
     self.scrollView.minimumZoomScale=1.0;
     self.scrollView.maximumZoomScale=8.0;
-    //self.glManager=[GeolocalisationManager sharedInstance];
     // Do any additional setup after loading the view.
 }
 
@@ -49,6 +47,7 @@
     // Configuration du scrollView pour pouvoir se déplacer sur le plan
     imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Plan Val d'Allos Official corrigé.jpg"]];
     [imageView setFrame:CGRectMake(0,0,_scrollView.frame.size.height*imageView.frame.size.width/imageView.frame.size.height,_scrollView.frame.size.height)];
+    //[self.view sendSubviewToBack:_scrollView];
     [_scrollView addSubview:imageView];
     [_scrollView setContentOffset:CGPointMake((imageView.frame.size.width-_scrollView.frame.size.width)/2,0)];
     [_scrollView setContentSize:CGSizeMake(imageView.frame.size.width, imageView.frame.size.height)];
@@ -56,7 +55,9 @@
     
     // Configuration du scrollView pour pouvoir zoomer sur le plan
     [_scrollView addGestureRecognizer:_pinchGesture];
-
+    
+    // Ajustement du texte qui s'affiche en cas de localisation hors de la station
+    _texteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, [UIScreen mainScreen].bounds.size.height - 70);
 }
 
 - (void)didReceiveMemoryWarning {

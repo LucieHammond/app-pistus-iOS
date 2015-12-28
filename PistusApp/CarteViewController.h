@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIPinchGestureRecognizer *pinchGesture;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *trackAcceptButton;
+@property (weak, nonatomic) IBOutlet UILabel *texteDistance;
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;
 
