@@ -56,7 +56,7 @@
     [[NXOAuth2AccountStore sharedStore] setConfiguration:configuration forAccountType:@"pistonski"];
     
     // On désactive la géolocalisation par défaut
-    [GeolocalisationManager beginTrack];
+    [[GeolocalisationManager sharedInstance] endTrack];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url

@@ -8,59 +8,55 @@
 
 #import "GeolocalisationManager.h"
 
-static BOOL trackAccept;
-static NSTimer *timerPosition;
-static CLLocationManager* locationManager;
+static GeolocalisationManager* sharedInstance=nil;
 
 @implementation GeolocalisationManager
 
 +(GeolocalisationManager*)sharedInstance
 {
-    static GeolocalisationManager* sharedInstance=nil;
     if (sharedInstance == nil) {
         sharedInstance = [[[self class] alloc] init];
     }
     return sharedInstance;
 }
 
-+(BOOL)beginTrack
+-(BOOL)beginTrack
 {
-    trackAccept = true;
+    _trackAccept = true;
     if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined)
     {
-        [locationManager requestAlwaysAuthorization];
+        [_locationManager requestAlwaysAuthorization];
     }
-    if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusRestricted || [CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied)
+    if ([CLLocationManager locationServicesEnabled])
+    {
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.delegate = self;
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        _locationManager.distanceFilter = 100.0f;
+        [_locationManager startUpdatingLocation];
+        timerPosition = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(boucle) userInfo:nil repeats:YES];
+        return true;
+    }
+    else
     {
         return false;
     }
-    
-    locationManager = [[CLLocationManager alloc] init];
-    if ([CLLocationManager locationServicesEnabled])
-    {
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        locationManager.distanceFilter = 100.0f;
-        [locationManager startUpdatingLocation];
-    }
-    timerPosition = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(boucle) userInfo:nil repeats:YES];
-    return true;
 }
 
-+(void)endTrack
+-(void)endTrack
 {
-    trackAccept = false;
+    _trackAccept = false;
     [timerPosition invalidate];
 }
 
-+(void)boucle
+-(void)boucle
 {
     NSLog(@"1");
 }
 
-+(BOOL)trackAccept
+-(BOOL)trackAccept
 {
-    return trackAccept;
+    return _trackAccept;
 }
 
 

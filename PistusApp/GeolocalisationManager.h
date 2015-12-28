@@ -10,10 +10,16 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface GeolocalisationManager : NSObject <CLLocationManagerDelegate>
+{
+    NSTimer *timerPosition;
+}
+
+@property (nonatomic) BOOL trackAccept;
+@property (nonatomic) CLLocationManager* locationManager;
 
 +(GeolocalisationManager*)sharedInstance;
-+(BOOL)beginTrack;
-+(void)endTrack;
-+(BOOL)trackAccept;
+-(BOOL)beginTrack;
+-(void)endTrack;
+-(BOOL)trackAccept;
 
 @end

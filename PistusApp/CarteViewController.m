@@ -25,7 +25,7 @@
     _scrollView.delegate=self;
     self.scrollView.minimumZoomScale=1.0;
     self.scrollView.maximumZoomScale=8.0;
-    self.glManager=[GeolocalisationManager sharedInstance];
+    //self.glManager=[GeolocalisationManager sharedInstance];
     // Do any additional setup after loading the view.
 }
 
@@ -34,11 +34,11 @@
     //Ajustement de la barre de navigation en haut et configuration des icones
     [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
     _boutonSatellite = [[UIButton alloc] initWithFrame:CGRectMake(0,0,32,33)];
-    if(![GeolocalisationManager trackAccept])
+    if(![[GeolocalisationManager sharedInstance] trackAccept])
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
     }
-    else if([GeolocalisationManager trackAccept])
+    else if([[GeolocalisationManager sharedInstance] trackAccept])
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
     }
@@ -76,24 +76,27 @@
 
 - (void)trackChange
 {
-    if(![GeolocalisationManager trackAccept])
+    if(![[GeolocalisationManager sharedInstance] trackAccept])
     {
         NSLog(@"Point 0 atteint");
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
-        if(![GeolocalisationManager beginTrack])
+        if(![[GeolocalisationManager sharedInstance] beginTrack])
         {
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:@"Permission refusée"
                                   message:@"L'application ne peut pas accéder à votre localisation car vous ne lui avez pas donné l'autorisation. Si ce n'est pas volontaire, vérifiez vos réglages !" delegate:self
                                   cancelButtonTitle:@"J'ai compris" otherButtonTitles:nil];
             [alert show];
+            [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
+            [[GeolocalisationManager sharedInstance] endTrack];
         }
     }
-    else if([GeolocalisationManager trackAccept])
+    else if([[GeolocalisationManager sharedInstance] trackAccept])
     {
+        
         NSLog(@"Point 1 atteint");
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
-        [GeolocalisationManager endTrack];
+        [[GeolocalisationManager sharedInstance] endTrack];
     }
     [_trackAcceptButton setCustomView:_boutonSatellite];
 }
