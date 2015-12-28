@@ -8,14 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import <UIKit/UIKit.h>
 
 @interface GeolocalisationManager : NSObject <CLLocationManagerDelegate>
 {
     NSTimer *timerPosition;
+    CLLocationManager* locationManager;
 }
 
 @property (nonatomic) BOOL trackAccept;
-@property (nonatomic) CLLocationManager* locationManager;
+@property (nonatomic) double distanceStation;
 
 +(GeolocalisationManager*)sharedInstance;
 -(BOOL)beginTrack;

@@ -7,6 +7,7 @@
 //
 
 #import "GeolocalisationManager.h"
+#import "CarteViewController.h"
 
 static GeolocalisationManager* sharedInstance=nil;
 
@@ -25,21 +26,20 @@ static GeolocalisationManager* sharedInstance=nil;
     _trackAccept = true;
     if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined)
     {
-        [_locationManager requestAlwaysAuthorization];
+        [locationManager requestAlwaysAuthorization];
     }
     if ([CLLocationManager locationServicesEnabled])
     {
-        _locationManager = [[CLLocationManager alloc] init];
-        _locationManager.delegate = self;
+        locationManager = [[CLLocationManager alloc] init];
+        locationManager.delegate = self;
         
         // Les préférences par défaut sont peu précises et adaptés à un déplacement en car.
-        _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-        _locationManager.distanceFilter = 700.0f;
-        _locationManager.pausesLocationUpdatesAutomatically = true;
-        _locationManager.activityType = CLActivityTypeAutomotiveNavigation;
-        [_locationManager startUpdatingLocation];
-        
-        timerPosition = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(boucle) userInfo:nil repeats:YES];
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+        locationManager.distanceFilter = 700.0f;
+        locationManager.pausesLocationUpdatesAutomatically = true;
+        locationManager.activityType = CLActivityTypeAutomotiveNavigation;
+        [locationManager startUpdatingLocation];
+        //timerPosition = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(boucle) userInfo:nil repeats:YES];
         return true;
     }
     else
@@ -64,15 +64,14 @@ static GeolocalisationManager* sharedInstance=nil;
     return _trackAccept;
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
-    NSLog(@"Changement de status d'autorisation");
+    
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateLocations:(NSArray *)locations
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
+    NSLog(@"Je suis ici");
     NSLog(@"%d",locations.count);
     CLLocation *lastLocation = locations.lastObject;
     double latitude = lastLocation.coordinate.latitude;
@@ -82,14 +81,23 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status
     if(latitude > 44.21 && latitude < 44.37 && longitude > 6.53 && longitude < 6.63)
     {
         NSLog(@"Potentiellement localisable sur la carte");
+        _distanceStation=0;
     }
     else
     {
         /* Dans le cas où l'utilisateur ne se trouve pas sur la station, on affiche la distance
          que le sépare de la résidence */
         CLLocation *residence = [[CLLocation alloc]initWithLatitude:44.292 longitude:6.565];
-        double distance = [lastLocation distanceFromLocation:residence];
+        _distanceStation = [lastLocation distanceFromLocation:residence];
+        NSLog(@"%f",_distanceStation);
     }
+    UINavigationController *nav;
+    if ([nav.visibleViewController.title isEqual:@"Carte View Controller"])
+    {
+        [nav.visibleViewController viewDidLoad];
+        NSLog(@"Hey, je suis ici");
+    }
+    
 }
 
 - (void)locationManager:(CLLocationManager *)manager

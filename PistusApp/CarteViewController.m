@@ -24,6 +24,15 @@
     _scrollView.delegate=self;
     self.scrollView.minimumZoomScale=1.0;
     self.scrollView.maximumZoomScale=8.0;
+    
+    if([[GeolocalisationManager sharedInstance] trackAccept])
+    {
+        if([GeolocalisationManager sharedInstance].distanceStation!=0)
+        {
+            double distance = [GeolocalisationManager sharedInstance].distanceStation;
+            _texteDistance.text=[NSString stringWithFormat:@"%@%f%@",@"Impossible de vous localiser sur la carte. Vous vous trouvez à ",distance,@" km de la station"];
+        }
+    }
     // Do any additional setup after loading the view.
 }
 
@@ -85,7 +94,6 @@
 {
     if(![[GeolocalisationManager sharedInstance] trackAccept])
     {
-        NSLog(@"Point 0 atteint");
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
         if(![[GeolocalisationManager sharedInstance] beginTrack])
         {
@@ -100,8 +108,6 @@
     }
     else if([[GeolocalisationManager sharedInstance] trackAccept])
     {
-        
-        NSLog(@"Point 1 atteint");
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
         [[GeolocalisationManager sharedInstance] endTrack];
     }
