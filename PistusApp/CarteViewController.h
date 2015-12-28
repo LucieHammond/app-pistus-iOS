@@ -14,10 +14,12 @@
 }
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *barre;
+@property (weak, nonatomic) IBOutlet UIView *topBande;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIPinchGestureRecognizer *pinchGesture;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *trackAcceptButton;
 @property (weak, nonatomic) IBOutlet UILabel *texteDistance;
+@property (weak, nonatomic) IBOutlet UIView *fondTexteDistance;
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;
 

@@ -31,6 +31,7 @@
     
     //Ajustement de la barre de navigation en haut et configuration des icones
     [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
+    [_topBande setFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, 20)];
     _boutonSatellite = [[UIButton alloc] initWithFrame:CGRectMake(0,0,32,33)];
     if(![[GeolocalisationManager sharedInstance] trackAccept])
     {
@@ -45,9 +46,9 @@
          forControlEvents:UIControlEventTouchUpInside];
 
     // Configuration du scrollView pour pouvoir se déplacer sur le plan
+    [_scrollView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 65)];
     imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Plan Val d'Allos Official corrigé.jpg"]];
     [imageView setFrame:CGRectMake(0,0,_scrollView.frame.size.height*imageView.frame.size.width/imageView.frame.size.height,_scrollView.frame.size.height)];
-    //[self.view sendSubviewToBack:_scrollView];
     [_scrollView addSubview:imageView];
     [_scrollView setContentOffset:CGPointMake((imageView.frame.size.width-_scrollView.frame.size.width)/2,0)];
     [_scrollView setContentSize:CGSizeMake(imageView.frame.size.width, imageView.frame.size.height)];
@@ -57,7 +58,12 @@
     [_scrollView addGestureRecognizer:_pinchGesture];
     
     // Ajustement du texte qui s'affiche en cas de localisation hors de la station
-    _texteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, [UIScreen mainScreen].bounds.size.height - 70);
+    _texteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
+    _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
+    [self.view insertSubview:_fondTexteDistance aboveSubview:_scrollView];
+    [self.view insertSubview:_texteDistance aboveSubview:_fondTexteDistance];
+    _texteDistance.text=@"";
+    _fondTexteDistance.hidden=true;
 }
 
 - (void)didReceiveMemoryWarning {

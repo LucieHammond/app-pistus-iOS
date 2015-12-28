@@ -30,21 +30,13 @@
                                 </items>
                             </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" maximumZoomScale="8" id="R7k-Nv-Qz0">
-                                <rect key="frame" x="0.0" y="64" width="320" height="279"/>
+                                <rect key="frame" x="0.0" y="155" width="320" height="325"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="H6q-3p-j7c" appends="YES" id="Oo8-Qk-8Ap"/>
                                 </connections>
                             </scrollView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999964" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Texte si hors champ" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Esu-a3-KJL">
-                                <rect key="frame" x="36" y="360" width="248" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.76873458059210531" green="0.75246710526315785" blue="0.84763055098684215" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <navigationBar contentMode="scaleToFill" translucent="NO" id="c2J-Fv-7vs">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -61,14 +53,26 @@
                                                 <state key="normal" title="Button" image="satelliteoff.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="trackChange:" destination="t2j-nU-UHC" eventType="touchUpInside" id="pJG-Jw-Q8X"/>
-                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <view alpha="0.19999999999999968" contentMode="scaleToFill" id="lGN-gA-AFZ">
+                                <rect key="frame" x="35" y="86" width="250" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999964" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Texte si l'utilisateur est hors de la station Val d'Allos " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Esu-a3-KJL">
+                                        <rect key="frame" x="11" y="0.0" width="229" height="53"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.68348914380000003" green="0.82675462960000001" blue="0.96088445190000005" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -76,9 +80,11 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="barre" destination="c2J-Fv-7vs" id="1zQ-ug-125"/>
+                        <outlet property="fondTexteDistance" destination="lGN-gA-AFZ" id="MdX-1v-UaY"/>
                         <outlet property="pinchGesture" destination="H6q-3p-j7c" id="f4G-b9-dWG"/>
                         <outlet property="scrollView" destination="R7k-Nv-Qz0" id="AjG-Ef-pK5"/>
                         <outlet property="texteDistance" destination="Esu-a3-KJL" id="7dS-Lk-wMQ"/>
+                        <outlet property="topBande" destination="CR8-ro-caC" id="wbg-ih-1LS"/>
                         <outlet property="trackAcceptButton" destination="nxL-JU-RIz" id="zdb-fI-TaN"/>
                     </connections>
                 </viewController>

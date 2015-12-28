@@ -199,7 +199,7 @@
                         for (NXOAuth2Account *account in [[NXOAuth2AccountStore sharedStore] accounts]) {
                             s+=1;
                         };
-                        NSLog(@"%i",s);
+                        NSLog(@"%li",(long)s);
                         [NXOAuth2Request performMethod:@"GET"
                                             onResource:[NSURL URLWithString:@"https://my.ecp.fr/api/v1/members/me"]
                                        usingParameters:nil
