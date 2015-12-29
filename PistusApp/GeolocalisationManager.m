@@ -24,10 +24,6 @@ static GeolocalisationManager* sharedInstance=nil;
 -(BOOL)beginTrack
 {
     _trackAccept = true;
-    if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined)
-    {
-        [locationManager requestAlwaysAuthorization];
-    }
     if ([CLLocationManager locationServicesEnabled])
     {
         locationManager = [[CLLocationManager alloc] init];
@@ -36,6 +32,10 @@ static GeolocalisationManager* sharedInstance=nil;
         // Les préférences par défaut sont peu précises et adaptés à un déplacement en car.
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
         locationManager.distanceFilter = 700.0f;
+        if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
+        {
+            [locationManager requestWhenInUseAuthorization];
+        }
         locationManager.pausesLocationUpdatesAutomatically = true;
         locationManager.activityType = CLActivityTypeAutomotiveNavigation;
         [locationManager startUpdatingLocation];
@@ -71,7 +71,6 @@ static GeolocalisationManager* sharedInstance=nil;
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    NSLog(@"Je suis ici");
     NSLog(@"%d",locations.count);
     CLLocation *lastLocation = locations.lastObject;
     double latitude = lastLocation.coordinate.latitude;
@@ -85,6 +84,7 @@ static GeolocalisationManager* sharedInstance=nil;
     }
     else
     {
+        NSLog(@"Je suis là");
         /* Dans le cas où l'utilisateur ne se trouve pas sur la station, on affiche la distance
          que le sépare de la résidence */
         CLLocation *residence = [[CLLocation alloc]initWithLatitude:44.292 longitude:6.565];
@@ -92,12 +92,12 @@ static GeolocalisationManager* sharedInstance=nil;
         NSLog(@"%f",_distanceStation);
     }
     UINavigationController *nav;
+    NSLog(@"%@",nav.visibleViewController.title);
     if ([nav.visibleViewController.title isEqual:@"Carte View Controller"])
     {
         [nav.visibleViewController viewDidLoad];
         NSLog(@"Hey, je suis ici");
-    }
-    
+    }    
 }
 
 - (void)locationManager:(CLLocationManager *)manager
