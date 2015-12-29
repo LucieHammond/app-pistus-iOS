@@ -8,6 +8,7 @@
 
 #import "GeolocalisationManager.h"
 #import "CarteViewController.h"
+#import "AppDelegate.h"
 
 static GeolocalisationManager* sharedInstance=nil;
 
@@ -84,20 +85,20 @@ static GeolocalisationManager* sharedInstance=nil;
     }
     else
     {
-        NSLog(@"Je suis là");
         /* Dans le cas où l'utilisateur ne se trouve pas sur la station, on affiche la distance
          que le sépare de la résidence */
         CLLocation *residence = [[CLLocation alloc]initWithLatitude:44.292 longitude:6.565];
         _distanceStation = [lastLocation distanceFromLocation:residence];
         NSLog(@"%f",_distanceStation);
     }
-    UINavigationController *nav;
-    NSLog(@"%@",nav.visibleViewController.title);
+    
+    // Si l'utilisateur est sur la carte, on update la vue automatiquement
+    AppDelegate *tmpDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    UINavigationController *nav= (UINavigationController*)tmpDelegate.window.rootViewController;
     if ([nav.visibleViewController.title isEqual:@"Carte View Controller"])
     {
         [nav.visibleViewController viewDidLoad];
-        NSLog(@"Hey, je suis ici");
-    }    
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager

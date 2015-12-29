@@ -29,8 +29,9 @@
     {
         if([GeolocalisationManager sharedInstance].distanceStation!=0)
         {
-            double distance = [GeolocalisationManager sharedInstance].distanceStation;
-            _texteDistance.text=[NSString stringWithFormat:@"%@%f%@",@"Impossible de vous localiser sur la carte. Vous vous trouvez à ",distance,@" km de la station"];
+            double distance = [GeolocalisationManager sharedInstance].distanceStation/1000;
+            _texteDistance.text=[NSString stringWithFormat:@"%@%f%@",@"Impossible de vous localiser sur la carte. Vous vous trouvez à ",distance,@" km de la station Val d'Allos"];
+            _fondTexteDistance.hidden=false;
         }
     }
     // Do any additional setup after loading the view.
