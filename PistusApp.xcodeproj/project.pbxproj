@@ -13,6 +13,7 @@
 		C539A7901BF1F56A00B9E3ED /* iconStats.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78B1BF1F56A00B9E3ED /* iconStats.png */; };
 		C539A7911BF1F56A00B9E3ED /* iconTroc.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78C1BF1F56A00B9E3ED /* iconTroc.png */; };
 		C547AE6D1BDD60E800A0E4A8 /* libOAuth2Client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5AEBCC91BDD605900223811 /* libOAuth2Client.a */; };
+		C54EA3591C3C098700F0BA81 /* bddPistes.db in Resources */ = {isa = PBXBuildFile; fileRef = C54EA3581C3C098700F0BA81 /* bddPistes.db */; };
 		C54F8AC21BD94D5A00CE7B3A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C54F8AC11BD94D5A00CE7B3A /* main.m */; };
 		C54F8AC51BD94D5A00CE7B3A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C54F8AC41BD94D5A00CE7B3A /* AppDelegate.m */; };
 		C54F8AC81BD94D5A00CE7B3A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C54F8AC71BD94D5A00CE7B3A /* ViewController.m */; };
@@ -94,6 +95,7 @@
 		C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconMeteo.png; sourceTree = "<group>"; };
 		C539A78B1BF1F56A00B9E3ED /* iconStats.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconStats.png; sourceTree = "<group>"; };
 		C539A78C1BF1F56A00B9E3ED /* iconTroc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconTroc.png; sourceTree = "<group>"; };
+		C54EA3581C3C098700F0BA81 /* bddPistes.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = bddPistes.db; sourceTree = "<group>"; };
 		C54F8ABC1BD94D5A00CE7B3A /* PistusApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PistusApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C54F8AC01BD94D5A00CE7B3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C54F8AC11BD94D5A00CE7B3A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				C570B83C1C2B44C5003E0E16 /* DBManager.m */,
 				C570B8541C2EBE50003E0E16 /* GeolocalisationManager.h */,
 				C570B8551C2EBE50003E0E16 /* GeolocalisationManager.m */,
+				C54EA3581C3C098700F0BA81 /* bddPistes.db */,
 				C570B8381C2B440F003E0E16 /* libsqlite3.dylib */,
 				C5AEBCC01BDD605900223811 /* OAuth2Client.xcodeproj */,
 				C54F8B1D1BD97E1800CE7B3A /* Ressources */,
@@ -378,6 +381,7 @@
 			files = (
 				C5C05E891BEFF7A0007D763E /* Login-568h@2x~iphone.png in Resources */,
 				C570B8531C2DF703003E0E16 /* Plan Val d'Allos Official corrigé.jpg in Resources */,
+				C54EA3591C3C098700F0BA81 /* bddPistes.db in Resources */,
 				C54F8ACB1BD94D5A00CE7B3A /* Main.storyboard in Resources */,
 				C5C05E7B1BEFF6FC007D763E /* accueil_6Plus.jpg in Resources */,
 				C570B8661C2ED85C003E0E16 /* satelliteon.png in Resources */,

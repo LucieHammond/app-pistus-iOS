@@ -18,6 +18,13 @@
 
 @property (nonatomic) BOOL trackAccept;
 @property (nonatomic) double distanceStation;
+@property (nonatomic) double vitesseMax;
+@property (nonatomic) double altitudeMax;
+@property (nonatomic) double deniveleTotal;
+@property (nonatomic) NSTimeInterval tempsDeSki;
+@property (nonatomic) NSDate *derniereDate;
+@property (nonatomic) int dernierX;
+@property (nonatomic) int dernierY;
 
 +(GeolocalisationManager*)sharedInstance;
 -(BOOL)beginTrack;
