@@ -25,6 +25,7 @@
 @property (nonatomic) NSDate *derniereDate;
 @property (nonatomic) int dernierX;
 @property (nonatomic) int dernierY;
+@property (nonatomic) NSString *pisteProche;
 
 +(GeolocalisationManager*)sharedInstance;
 -(BOOL)beginTrack;

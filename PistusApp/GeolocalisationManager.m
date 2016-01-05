@@ -47,7 +47,6 @@ static GeolocalisationManager* sharedInstance=nil;
         locationManager.pausesLocationUpdatesAutomatically = true;
         locationManager.activityType = CLActivityTypeAutomotiveNavigation;
         [locationManager startUpdatingLocation];
-        //timerPosition = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(boucle) userInfo:nil repeats:YES];
         return true;
     }
     else
@@ -59,8 +58,10 @@ static GeolocalisationManager* sharedInstance=nil;
 -(void)endTrack
 {
     _trackAccept = false;
-    [timerPosition invalidate];
     [locationManager stopUpdatingLocation];
+    self.dbManager=[[DBManager alloc]initWithDatabaseFilename:@"bddPistes.db"];
+    NSString *query = @"DELETE FROM maPosition";
+    [self.dbManager executeQuery:query];
 }
 
 -(void)boucle
@@ -99,12 +100,6 @@ static GeolocalisationManager* sharedInstance=nil;
             locationManager.activityType = CLActivityTypeFitness;
         }
         
-        // On stocke les 10 dernières positions dans la table maPosition de la bdd
-        NSDate *date = lastLocation.timestamp;
-        NSDateFormatter* df = [[NSDateFormatter alloc]init];
-        [df setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-        NSString *dateString = [df stringFromDate:date];
-        
         // Si aucune position récente n'a été gardée, on cherche dans toute la bdd
         self.dbManager=[[DBManager alloc]initWithDatabaseFilename:@"bddPistes.db"];
         NSString *query = @"SELECT count(*) from maPosition;";
@@ -112,38 +107,61 @@ static GeolocalisationManager* sharedInstance=nil;
         if(nbPositionsStockees == 0)
         {
             query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(latitude-%f) as ecartLat, abs(longitude-%f) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where ecartLat < 0.0009 and ecartLong < 0.0009);",latitude,longitude];
+            // 1er cas : utilisateur à plus de 100m de n'importe quelle piste
             if([self.dbManager loadDataFromDB:query].count==0)
             {
                 NSLog(@"Impossible de vous localiser sur le domaine skiable");
                 _distanceStation = -1;
+                _pisteProche = nil;
+                NSString *newQuery = @"DELETE FROM maPosition";
+                [self.dbManager executeQuery:newQuery];
             }
             else
             {
-                _distanceStation=0;
+                // On mémorise la date à laquelle la position a été atteinte.
+                NSDate *date = lastLocation.timestamp;
+                NSDateFormatter* df = [[NSDateFormatter alloc]init];
+                [df setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+                NSString *dateString = [df stringFromDate:date];
+                
                 NSArray *array = [[NSArray alloc]initWithArray:[self.dbManager loadDataFromDB:query]];
                 CLLocation *pointPiste = [[CLLocation alloc]initWithLatitude:[array[0][5] doubleValue] longitude:[array[0][6] doubleValue]];
                 double distance = [lastLocation distanceFromLocation:pointPiste];
                 
-                // Si l'utilisateur est à moins de 20m d'un point référencé
+                // 2eme cas : si l'utilisateur est à moins de 20m d'un point référencé, on stocke les 15 dernières positions
                 if(distance <= 20)
                 {
                     // On met à jour les coordonnées à afficher sur la carte
                     _dernierX = [array[0][3] integerValue];
                     _dernierY = [array[0][4] integerValue];
+                    _pisteProche=nil;
+                    _distanceStation=0;
                     
                     // On ajoute finalement la position trouvée à la table
                     query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES ('%@',%f,%f,%f,'%@',%@,%f);",dateString,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
                     [self.dbManager executeQuery:query];
                 }
+                // 3eme cas : l'utilisateur est entre 20m et 100m d'un point référencé
                 else
                 {
+                    // Dans ce cas, on ne permet pas de statistiquer mais on garde une trace de la piste la plus proche et de la distance à cette piste, sans changer le repère de place sur la carte
                     NSLog(@"Un peu trop loin des pistes");
+                    _pisteProche = array[0][1];
+                    _distanceStation = distance;
                 }
             }
         }
         else
         {
+            // Cas où la table maPosition contient déjà des entrées récentes
             NSLog(@"Table modifiée nombre d'entrées : %d",nbPositionsStockees);
+            
+            // Si la table était déjà pleine (15 positions), on retire la plus ancienne
+            if(nbPositionsStockees==15)
+            {
+                query = [NSString stringWithFormat:@"DELETE FROM maPosition where date in (select min(date) from maPosition)"];
+                [self.dbManager executeQuery:query];
+            }
         }
     }
     else
