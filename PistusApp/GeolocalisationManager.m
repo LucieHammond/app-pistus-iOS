@@ -89,7 +89,6 @@ static GeolocalisationManager* sharedInstance=nil;
     if(latitude > 44.21 && latitude < 44.37 && longitude > 6.53 && longitude < 6.63)
     {
         NSLog(@"Potentiellement localisable sur la carte");
-        _distanceStation=0;
         
         // On change les réglages par défauts pour les rendre plus précis
         if(locationManager.desiredAccuracy!=kCLLocationAccuracyBest)
@@ -115,14 +114,17 @@ static GeolocalisationManager* sharedInstance=nil;
             query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(latitude-%f) as ecartLat, abs(longitude-%f) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where ecartLat < 0.0009 and ecartLong < 0.0009);",latitude,longitude];
             if([self.dbManager loadDataFromDB:query].count==0)
             {
-                NSLog(@"Beaucoup trop loin des pistes");
+                NSLog(@"Impossible de vous localiser sur le domaine skiable");
+                _distanceStation = -1;
             }
             else
             {
+                _distanceStation=0;
                 NSArray *array = [[NSArray alloc]initWithArray:[self.dbManager loadDataFromDB:query]];
                 CLLocation *pointPiste = [[CLLocation alloc]initWithLatitude:[array[0][5] doubleValue] longitude:[array[0][6] doubleValue]];
                 double distance = [lastLocation distanceFromLocation:pointPiste];
                 
+                // Si l'utilisateur est à moins de 20m d'un point référencé
                 if(distance <= 20)
                 {
                     // On met à jour les coordonnées à afficher sur la carte
@@ -130,8 +132,8 @@ static GeolocalisationManager* sharedInstance=nil;
                     _dernierY = [array[0][4] integerValue];
                     
                     // On ajoute finalement la position trouvée à la table
-                    query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES (%@,%f,%f,%f,%@,%@,%f);",dateString,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
-                    //[self.dbManager executeQuery:query];
+                    query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES ('%@',%f,%f,%f,'%@',%@,%f);",dateString,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
+                    [self.dbManager executeQuery:query];
                 }
                 else
                 {

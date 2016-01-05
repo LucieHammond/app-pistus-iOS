@@ -27,10 +27,15 @@
     
     if([[GeolocalisationManager sharedInstance] trackAccept])
     {
-        if([GeolocalisationManager sharedInstance].distanceStation!=0)
+        if([GeolocalisationManager sharedInstance].distanceStation>=0)
         {
             double distance = [GeolocalisationManager sharedInstance].distanceStation/1000;
             _texteDistance.text=[NSString stringWithFormat:@"%@%.2f%@",@"Impossible de vous localiser sur la carte. Vous vous trouvez à ",distance,@" km de la station Val d'Allos"];
+            _fondTexteDistance.hidden=false;
+        }
+        else if([GeolocalisationManager sharedInstance].distanceStation==-1)
+        {
+            _texteDistance.text=[NSString stringWithFormat:@"Impossible de vous localiser sur le domaine skiable. Vous vous trouvez à plus de 100m des pistes"];
             _fondTexteDistance.hidden=false;
         }
     }
