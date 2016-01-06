@@ -181,7 +181,7 @@ static GeolocalisationManager* sharedInstance=nil;
                 if(estRemontee==false)
                 {
                     // On cherche la position parmi les points de la derniere piste et des suivantes possibles
-                    query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(longitude-6.565) as ecartLat, abs(latitude-44.292) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where ((id_piste = '%@' and numero >=%d) or id_piste in (select suivante from proximite where precedente='%@')) and (numero<5 or id_piste not in (select id from pistes where est_remontee=1)) and ecartLat < 0.0009 and ecartLong < 0.0009)",_dernierePiste,_dernierNumero,_dernierePiste];
+                    query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(latitude-%f) as ecartLat, abs(longitude-%f) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where ((id_piste = '%@' and numero >=%d) or id_piste in (select suivante from proximite where precedente='%@')) and (numero<5 or id_piste not in (select id from pistes where est_remontee=1)) and ecartLat < 0.0009 and ecartLong < 0.0009)",latitude,longitude,_dernierePiste,_dernierNumero,_dernierePiste];
                     if([self.dbManager loadDataFromDB:query].count==0)
                         distance = 100;
                     else
@@ -200,7 +200,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     else if(distance <=7 && array[0][1]!=_dernierePiste)
                     {
                         // On cherche le point le plus proche uniquement sur la piste
-                        query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(longitude-6.565) as ecartLat, abs(latitude-44.292) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where id_piste = '%@' and numero >=%d and ecartLat < 0.0009 and ecartLong < 0.0009)",_dernierePiste,_dernierNumero];
+                        query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(latitude-%f) as ecartLat, abs(longitude-%f) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where id_piste = '%@' and numero >=%d and ecartLat < 0.0009 and ecartLong < 0.0009)",latitude,longitude,_dernierePiste,_dernierNumero];
                         if([self.dbManager loadDataFromDB:query].count==0)
                         {
                             // On ne fait rien, on garde array comme il est
@@ -226,7 +226,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     else
                     {
                         // On cherche le point dans toutes les pistes proches (les precedentes des suivantes et les suivantes des precedentes)
-                        query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(longitude-6.565) as ecartLat, abs(latitude-44.292) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where (id_piste in (select precedente from proximite where suivante in(select suivante from proximite where precedente='%@')) or id_piste in (select suivante from proximite where precedente in (select precedente from proximite where suivante = '%@'))) and ecartLat < 0.0009 and ecartLong < 0.0009)",_dernierePiste, _dernierePiste];
+                        query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(latitude-%f) as ecartLat, abs(longitude-%f) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where (id_piste in (select precedente from proximite where suivante in(select suivante from proximite where precedente='%@')) or id_piste in (select suivante from proximite where precedente in (select precedente from proximite where suivante = '%@'))) and ecartLat < 0.0009 and ecartLong < 0.0009)",latitude,longitude,_dernierePiste, _dernierePiste];
                         double newDistance=0;
                         double differencePosition=0;
                         NSArray *newArray;
@@ -265,7 +265,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     int longueur = [[self.dbManager loadDataFromDB:query][0][0] intValue];
                     if(_dernierNumero < longueur -5)
                     {
-                        query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(longitude-6.565) as ecartLat, abs(latitude-44.292) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where id_piste = '%@' and numero >=%d and ecartLat < 0.0009 and ecartLong < 0.0009)",_dernierePiste,_dernierNumero];
+                        query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(latitude-%f) as ecartLat, abs(longitude-%f) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where id_piste = '%@' and numero >=%d and ecartLat < 0.0009 and ecartLong < 0.0009)",latitude,longitude,_dernierePiste,_dernierNumero];
                         if([self.dbManager loadDataFromDB:query].count==0)
                             distance = 100; // 100 est une valeur grande qui tient lieu de l'infini
                         else
@@ -278,7 +278,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     }
                     else
                     {
-                        query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(longitude-6.565) as ecartLat, abs(latitude-44.292) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where ((id_piste = '%@' and numero >=%d) or id_piste in (select suivante from proximite where precedente='%@')) and ecartLat < 0.0009 and ecartLong < 0.0009)",_dernierePiste,_dernierNumero,_dernierePiste];
+                        query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(latitude-%f) as ecartLat, abs(longitude-%f) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where ((id_piste = '%@' and numero >=%d) or id_piste in (select suivante from proximite where precedente='%@')) and ecartLat < 0.0009 and ecartLong < 0.0009)",latitude,longitude,_dernierePiste,_dernierNumero,_dernierePiste];
                         if([self.dbManager loadDataFromDB:query].count==0)
                             distance = 100;
                         else
@@ -362,7 +362,8 @@ static GeolocalisationManager* sharedInstance=nil;
             /*Enfin, dans le cas où on ne peut pas être sûr de se trouver sur une piste (moins de 5 positions récentes sur cette piste, utilisateur à plus de 20m de celle ci ...), on utilise quand même l'indication sur la derniere piste pour optimiser la recherche mais sans trop de conditions*/
             else
             {
-                //On cherche le point parmi les pistes proches 
+                //On cherche le point parmi les pistes proches
+                query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(latitude-%f) as ecartLat, abs(longitude-%f) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where (id_piste = '%@' or id_piste in (select suivante from proximite where precedente='%@') or id_piste in (select precedente from proximite where suivante in(select suivante from proximite where precedente='%@')) or id_piste in (select suivante from proximite where precedente in (select precedente from proximite where suivante = '%@'))) and ecartLat < 0.0009 and ecartLong < 0.0009);",latitude,longitude,_dernierePiste,_dernierePiste,_dernierePiste,_dernierePiste];
             }
         }
     }
