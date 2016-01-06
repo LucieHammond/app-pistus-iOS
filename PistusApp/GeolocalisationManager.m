@@ -169,9 +169,10 @@ static GeolocalisationManager* sharedInstance=nil;
             if(nbPositionsPiste == 5 && _pisteProche == nil)
             {
                 double distance = 0;
-                NSArray *array;
+                NSArray *array = nil;
                 CLLocation *pointPiste;
                 BOOL defaultRecherche = false;
+                BOOL localisable;
                 
                 // On sépare deux cas : remontee et non remontee
                 query = [NSString stringWithFormat:@"select est_remontee from pistes where id = '%@'",_dernierePiste];
@@ -307,6 +308,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     {
                         _distanceStation = -1;
                         _pisteProche = nil;
+                        localisable=false;
                         NSString *newQuery = @"DELETE FROM maPosition";
                         [self.dbManager executeQuery:newQuery];
                     }
@@ -330,11 +332,12 @@ static GeolocalisationManager* sharedInstance=nil;
                             _pisteProche = [self.dbManager loadDataFromDB:query][0][0];
                             _dernierePiste = array[0][1];
                             _distanceStation = distance;
+                            localisable=false;
                         }
                     }
                 }
                 
-                if(distance==0)
+                if(localisable)
                 {
                     // A ce stade, on a obtenu un array qui représente le point de localisation voulu, quelle que soit le parcours réalisé dans le code ci-dessus. On met à jour la position avec l'array
                     _dernierX = [array[0][3] integerValue];
@@ -362,8 +365,89 @@ static GeolocalisationManager* sharedInstance=nil;
             /*Enfin, dans le cas où on ne peut pas être sûr de se trouver sur une piste (moins de 5 positions récentes sur cette piste, utilisateur à plus de 20m de celle ci ...), on utilise quand même l'indication sur la derniere piste pour optimiser la recherche mais sans trop de conditions*/
             else
             {
+                BOOL localisable=true;
+                double distance=0;
+                NSArray *array = nil;
+                
                 //On cherche le point parmi les pistes proches
                 query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(latitude-%f) as ecartLat, abs(longitude-%f) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where (id_piste = '%@' or id_piste in (select suivante from proximite where precedente='%@') or id_piste in (select precedente from proximite where suivante in(select suivante from proximite where precedente='%@')) or id_piste in (select suivante from proximite where precedente in (select precedente from proximite where suivante = '%@'))) and ecartLat < 0.0009 and ecartLong < 0.0009);",latitude,longitude,_dernierePiste,_dernierePiste,_dernierePiste,_dernierePiste];
+                
+                if([self.dbManager loadDataFromDB:query].count==0)
+                    distance = 100;
+                else
+                {
+                    // array prend ici aussi les caractéristiques du point trouvé
+                    array = [[NSArray alloc]initWithArray:[self.dbManager loadDataFromDB:query]];
+                    CLLocation *pointPiste = [[CLLocation alloc]initWithLatitude:[array[0][5] doubleValue] longitude:[array[0][6] doubleValue]];
+                    distance = [lastLocation distanceFromLocation:pointPiste];
+                }
+                if(distance<=20)
+                {
+                    // Si la distance est inférieure à 20m, c'est bon on garde le point trouvé
+                }
+                else
+                {
+                    //Cette section correspond à une recherche par défault
+                    // On recherche partout le point le plus proche
+                    query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(latitude-%f) as ecartLat, abs(longitude-%f) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where ecartLat < 0.0009 and ecartLong < 0.0009);",latitude,longitude];
+                    
+                    // 1er cas : utilisateur à plus de 100m de n'importe quelle piste
+                    if([self.dbManager loadDataFromDB:query].count==0)
+                    {
+                        _distanceStation = -1;
+                        _pisteProche = nil;
+                        localisable=false;
+                        NSString *newQuery = @"DELETE FROM maPosition";
+                        [self.dbManager executeQuery:newQuery];
+                    }
+                    else
+                    {
+                        // On réinitialise array quel que soit le point trouvé
+                        array = [[NSArray alloc]initWithArray:[self.dbManager loadDataFromDB:query]];
+                        CLLocation *pointPiste = [[CLLocation alloc]initWithLatitude:[array[0][5] doubleValue] longitude:[array[0][6] doubleValue]];
+                        distance = [lastLocation distanceFromLocation:pointPiste];
+                        
+                        // 2eme cas : si l'utilisateur est à moins de 20m d'un point référencé, on stocke ses positions
+                        if(distance <= 20)
+                        {
+                            // On laisse array comme il est redéfini
+                        }
+                        // 3eme cas : l'utilisateur est entre 20m et 100m d'un point référencé
+                        else
+                        {
+                            // Dans ce cas, on ne permet pas de statistiquer mais on garde une trace de la piste la plus proche et de la distance à cette piste, sans changer le repère de place sur la carte
+                            query = [NSString stringWithFormat:@"select nom from pistes where id = '%@'",array[0][1]];
+                            _pisteProche = [self.dbManager loadDataFromDB:query][0][0];
+                            _dernierePiste = array[0][1];
+                            _distanceStation = distance;
+                            localisable=false;
+                        }
+                    }
+                }
+                if(localisable)
+                {
+                    // A ce stade, on a obtenu un array qui représente le point de localisation voulu, quelle que soit le parcours réalisé dans le code ci-dessus. On met à jour la position avec l'array
+                    _dernierX = [array[0][3] integerValue];
+                    _dernierY = [array[0][4] integerValue];
+                    _pisteProche=nil;
+                    _distanceStation=0;
+                    _dernierePiste = array[0][1];
+                    _dernierNumero = [array[0][2] integerValue];
+                    
+                    // On mémorise la date à laquelle la position a été atteinte.
+                    NSDate *date = lastLocation.timestamp;
+                    NSDateFormatter* df = [[NSDateFormatter alloc]init];
+                    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+                    NSString *dateString = [df stringFromDate:date];
+                    
+                    // On ajoute finalement la position trouvée à la table maPosition
+                    query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES ('%@',%f,%f,%f,'%@',%@,%f);",dateString,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
+                    [self.dbManager executeQuery:query];
+                    
+                    // Comme la table est déjà pleine (5 positions), on retire la plus ancienne
+                    query = [NSString stringWithFormat:@"DELETE FROM maPosition where date in (select min(date) from maPosition)"];
+                    [self.dbManager executeQuery:query];
+                }
             }
         }
     }
