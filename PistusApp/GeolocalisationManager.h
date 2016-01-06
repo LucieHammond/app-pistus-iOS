@@ -26,6 +26,8 @@
 @property (nonatomic) int dernierX;
 @property (nonatomic) int dernierY;
 @property (nonatomic) NSString *pisteProche;
+@property (nonatomic) NSString *dernierePiste;
+@property (nonatomic) int dernierNumero;
 
 +(GeolocalisationManager*)sharedInstance;
 -(BOOL)beginTrack;

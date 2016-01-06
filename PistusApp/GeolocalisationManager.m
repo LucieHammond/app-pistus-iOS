@@ -106,7 +106,9 @@ static GeolocalisationManager* sharedInstance=nil;
         int nbPositionsStockees = [[[[self.dbManager loadDataFromDB:query] objectAtIndex:0] objectAtIndex:0]intValue];
         if(nbPositionsStockees == 0)
         {
+            // On cherche dans toute la bdd
             query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(latitude-%f) as ecartLat, abs(longitude-%f) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where ecartLat < 0.0009 and ecartLong < 0.0009);",latitude,longitude];
+            
             // 1er cas : utilisateur à plus de 100m de n'importe quelle piste
             if([self.dbManager loadDataFromDB:query].count==0)
             {
@@ -118,17 +120,12 @@ static GeolocalisationManager* sharedInstance=nil;
             }
             else
             {
-                // On mémorise la date à laquelle la position a été atteinte.
-                NSDate *date = lastLocation.timestamp;
-                NSDateFormatter* df = [[NSDateFormatter alloc]init];
-                [df setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-                NSString *dateString = [df stringFromDate:date];
-                
+                // On prend les infos sur le point le plus proche et on calcule la distance à ce point
                 NSArray *array = [[NSArray alloc]initWithArray:[self.dbManager loadDataFromDB:query]];
                 CLLocation *pointPiste = [[CLLocation alloc]initWithLatitude:[array[0][5] doubleValue] longitude:[array[0][6] doubleValue]];
                 double distance = [lastLocation distanceFromLocation:pointPiste];
                 
-                // 2eme cas : si l'utilisateur est à moins de 20m d'un point référencé, on stocke les 15 dernières positions
+                // 2eme cas : si l'utilisateur est à moins de 20m d'un point référencé, on stocke les 5 dernières positions
                 if(distance <= 20)
                 {
                     // On met à jour les coordonnées à afficher sur la carte
@@ -136,6 +133,14 @@ static GeolocalisationManager* sharedInstance=nil;
                     _dernierY = [array[0][4] integerValue];
                     _pisteProche=nil;
                     _distanceStation=0;
+                    _dernierePiste = array[0][1];
+                    _dernierNumero = [array[0][2] integerValue];
+                    
+                    // On mémorise la date à laquelle la position a été atteinte.
+                    NSDate *date = lastLocation.timestamp;
+                    NSDateFormatter* df = [[NSDateFormatter alloc]init];
+                    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+                    NSString *dateString = [df stringFromDate:date];
                     
                     // On ajoute finalement la position trouvée à la table
                     query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES ('%@',%f,%f,%f,'%@',%@,%f);",dateString,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
@@ -148,6 +153,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     NSLog(@"Un peu trop loin des pistes");
                     query = [NSString stringWithFormat:@"select nom from pistes where id = '%@'",array[0][1]];
                     _pisteProche = [self.dbManager loadDataFromDB:query][0][0];
+                    _dernierePiste = array[0][1];
                     _distanceStation = distance;
                 }
             }
@@ -157,18 +163,169 @@ static GeolocalisationManager* sharedInstance=nil;
             // Cas où la table maPosition contient déjà des entrées récentes
             NSLog(@"Table modifiée nombre d'entrées : %d",nbPositionsStockees);
             
-            // Si la table était déjà pleine (15 positions), on retire la plus ancienne
-            if(nbPositionsStockees==15)
+            // Si la table maPosition contient 5 entrées recentes qui correspondent à la même piste
+            NSString *query = [NSString stringWithFormat:@"select count(*) from maPosition where id_piste = '%@'",_dernierePiste];
+            int nbPositionsPiste = [[[[self.dbManager loadDataFromDB:query] objectAtIndex:0] objectAtIndex:0]intValue];
+            if(nbPositionsPiste == 5 && _pisteProche == nil)
             {
-                query = [NSString stringWithFormat:@"DELETE FROM maPosition where date in (select min(date) from maPosition)"];
-                [self.dbManager executeQuery:query];
+                // On sépare deux cas : remontee et non remontee
+                query = [NSString stringWithFormat:@"select est_remontee from pistes where id = '%@'",_dernierePiste];
+                BOOL estRemontee = [[self.dbManager loadDataFromDB:query][0][0] boolValue];
+                
+                // Cas d'une piste quelconque
+                if(estRemontee==false)
+                {
+                    // On cherche la position parmi les points de la derniere piste et des suivantes possibles
+                    query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(longitude-6.565) as ecartLat, abs(latitude-44.292) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where ((id_piste = '%@' and numero >=%d) or id_piste in (select suivante from proximite where precedente='%@')) and ecartLat < 0.0009 and ecartLong < 0.0009)",_dernierePiste,_dernierNumero,_dernierePiste];
+                    double distance = 0;
+                    NSArray *array;
+                    CLLocation *pointPiste;
+                    if([self.dbManager loadDataFromDB:query].count==0)
+                        distance = 100;
+                    else
+                    {
+                        // Ici array prend les caractéristiques du point trouvé
+                        array = [[NSArray alloc]initWithArray:[self.dbManager loadDataFromDB:query]];
+                        pointPiste = [[CLLocation alloc]initWithLatitude:[array[0][5] doubleValue] longitude:[array[0][6] doubleValue]];
+                        distance = [lastLocation distanceFromLocation:pointPiste];
+                    }
+                    // Si le point le plus proche est sur la même piste qu'avant et que la distance à ce point est <=7m
+                    if(distance <=7 && array[0][1]==_dernierePiste)
+                    {
+                        // On ne fait rien, on garde array comme il est
+                    }
+                    // Si le point le plus proche est sur l'une des pistes suivantes et que la distance à ce point est <=7m
+                    else if(distance <=7 && array[0][1]!=_dernierePiste)
+                    {
+                        // On cherche le point le plus proche uniquement sur la piste
+                        query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(longitude-6.565) as ecartLat, abs(latitude-44.292) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where id_piste = '%@' and numero >=%d and ecartLat < 0.0009 and ecartLong < 0.0009)",_dernierePiste,_dernierNumero];
+                        if([self.dbManager loadDataFromDB:query].count==0)
+                        {
+                            // On ne fait rien, on garde array comme il est
+                        }
+                        else
+                        {
+                            // Ici on définit un nouvel array qui prend les caractéristiques du nouveau point trouvé
+                            NSArray *newArray = [[NSArray alloc]initWithArray:[self.dbManager loadDataFromDB:query]];
+                            CLLocation *newPointPiste = [[CLLocation alloc]initWithLatitude:[newArray[0][5] doubleValue] longitude:[newArray[0][6] doubleValue]];
+                            double newDistance = [lastLocation distanceFromLocation:newPointPiste];
+                            double differencePosition = [newPointPiste distanceFromLocation:pointPiste];
+                            
+                            // Si la différence entre les position des deux points trouvés est <=2,5m on privilégie la piste à condition que la distance totale avec le nouveau point sur la piste reste <=7m
+                            if(newDistance <=7 && differencePosition<=2.5)
+                            {
+                                // On redéfinit array
+                                array = newArray;
+                            }
+                            // Sinon on ne fait rien et on laisse array comme il est
+                        }
+                    }
+                    // Si le point le plus proche trouvé est à plus de 7m
+                    else
+                    {
+                        // On cherche le point dans toutes les pistes proches (les precedentes des suivantes et les suivantes des precedentes)
+                        query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(longitude-6.565) as ecartLat, abs(latitude-44.292) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where (id_piste in (select precedente from proximite where suivante in(select suivante from proximite where precedente='%@')) or id_piste in (select suivante from proximite where precedente in (select precedente from proximite where suivante = '%@'))) and ecartLat < 0.0009 and ecartLong < 0.0009)",_dernierePiste, _dernierePiste];
+                        double newDistance=0;
+                        double differencePosition=0;
+                        NSArray *newArray;
+                        if([self.dbManager loadDataFromDB:query].count==0)
+                            newDistance = 100;
+                        else
+                        {
+                            // Ici on crée un nouvel array qui prend les caractéristiques du nouveau point trouvé
+                            newArray = [[NSArray alloc]initWithArray:[self.dbManager loadDataFromDB:query]];
+                            CLLocation *newPointPiste = [[CLLocation alloc]initWithLatitude:[newArray[0][5] doubleValue] longitude:[newArray[0][6] doubleValue]];
+                            newDistance = [lastLocation distanceFromLocation:newPointPiste];
+                            differencePosition = [pointPiste distanceFromLocation:newPointPiste];
+                        }
+                        // Si la nouvelle distance est plus plus petite que la distance précédemment trouvée avec un écart supérieur à 2,5m et est aussi <=20m
+                        if(newDistance<distance && differencePosition>=2.5 && newDistance <=20)
+                        {
+                            // On met à jour l'array
+                            array = newArray;
+                        }
+                        else if(((newDistance<distance && differencePosition<=2.5) || (newDistance>=distance)) && distance <=20)
+                        {
+                            // A voir, à priori on ne fait rien et on garde l'array comme il est au départ
+                        }
+                        // Si les deux distances sont supérieures à 20m ou si elles sont rapprochées autour de 20m avec nd<20<d
+                        else
+                        {
+                            // On recherche partout le point le plus proche
+                            query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(latitude-%f) as ecartLat, abs(longitude-%f) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where ecartLat < 0.0009 and ecartLong < 0.0009);",latitude,longitude];
+                            
+                            // 1er cas : utilisateur à plus de 100m de n'importe quelle piste
+                            if([self.dbManager loadDataFromDB:query].count==0)
+                            {
+                                _distanceStation = -1;
+                                _pisteProche = nil;
+                                NSString *newQuery = @"DELETE FROM maPosition";
+                                [self.dbManager executeQuery:newQuery];
+                            }
+                            else
+                            {
+                                // On réinitialise array quel que soit le point trouvé
+                                array = [[NSArray alloc]initWithArray:[self.dbManager loadDataFromDB:query]];
+                                pointPiste = [[CLLocation alloc]initWithLatitude:[array[0][5] doubleValue] longitude:[array[0][6] doubleValue]];
+                                distance = [lastLocation distanceFromLocation:pointPiste];
+                                
+                                // 2eme cas : si l'utilisateur est à moins de 20m d'un point référencé, on stocke ses positions
+                                if(distance <= 20)
+                                {
+                                    // On laisse array comme il est redéfini
+                                }
+                                // 3eme cas : l'utilisateur est entre 20m et 100m d'un point référencé
+                                else
+                                {
+                                    // Dans ce cas, on ne permet pas de statistiquer mais on garde une trace de la piste la plus proche et de la distance à cette piste, sans changer le repère de place sur la carte
+                                    query = [NSString stringWithFormat:@"select nom from pistes where id = '%@'",array[0][1]];
+                                    _pisteProche = [self.dbManager loadDataFromDB:query][0][0];
+                                    _dernierePiste = array[0][1];
+                                    _distanceStation = distance;
+                                }
+                            }
+                        }
+                    }
+                    // On met à jour la position avec l'array
+                    _dernierX = [array[0][3] integerValue];
+                    _dernierY = [array[0][4] integerValue];
+                    _pisteProche=nil;
+                    _distanceStation=0;
+                    _dernierePiste = array[0][1];
+                    _dernierNumero = [array[0][2] integerValue];
+                    
+                    // On mémorise la date à laquelle la position a été atteinte.
+                    NSDate *date = lastLocation.timestamp;
+                    NSDateFormatter* df = [[NSDateFormatter alloc]init];
+                    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+                    NSString *dateString = [df stringFromDate:date];
+                    
+                    // On ajoute finalement la position trouvée à la table maPosition
+                    query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES ('%@',%f,%f,%f,'%@',%@,%f);",dateString,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
+                    [self.dbManager executeQuery:query];
+                    
+                    // Comme la table est déjà pleine (5 positions), on retire la plus ancienne
+                    query = [NSString stringWithFormat:@"DELETE FROM maPosition where date in (select min(date) from maPosition)"];
+                    [self.dbManager executeQuery:query];
+                    
+                }
+                // Dans le cas d'une remontee mecanique
+                else if(estRemontee==true)
+                {
+                    
+                }
             }
+            
+            // On cherche d'abord sur la dernière piste et sur ses voisines (suivantes puis même zone)
+            // Si il y a une faible différence, on priviliégie la piste si au moins 4 points avant déjà sur cette piste et on privilégie une suivante possible à une équivalente
+            //Si c'est une remontée, on ne peut pas en sortir tant qu'on est pas arrivé au bout, on ne peut pas y rentrer à mi-chemin
+            
         }
     }
     else
     {
         /* Dans le cas où l'utilisateur ne se trouve pas sur la station, on affiche la distance
-         que le sépare de la résidence */
+         qui le sépare de la résidence */
         CLLocation *residence = [[CLLocation alloc]initWithLatitude:44.292 longitude:6.565];
         _distanceStation = [lastLocation distanceFromLocation:residence];
         NSLog(@"%f",_distanceStation);
