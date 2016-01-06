@@ -146,7 +146,8 @@ static GeolocalisationManager* sharedInstance=nil;
                 {
                     // Dans ce cas, on ne permet pas de statistiquer mais on garde une trace de la piste la plus proche et de la distance à cette piste, sans changer le repère de place sur la carte
                     NSLog(@"Un peu trop loin des pistes");
-                    _pisteProche = array[0][1];
+                    query = [NSString stringWithFormat:@"select nom from pistes where id = '%@'",array[0][1]];
+                    _pisteProche = [self.dbManager loadDataFromDB:query][0][0];
                     _distanceStation = distance;
                 }
             }

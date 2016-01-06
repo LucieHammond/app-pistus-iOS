@@ -27,16 +27,34 @@
     
     if([[GeolocalisationManager sharedInstance] trackAccept])
     {
-        if([GeolocalisationManager sharedInstance].distanceStation>=0)
+        if([GeolocalisationManager sharedInstance].pisteProche!=nil)
+        {
+            double distance = [GeolocalisationManager sharedInstance].distanceStation;
+            NSString *pisteProche = [GeolocalisationManager sharedInstance].pisteProche;
+            _texteDistance.text=[NSString stringWithFormat:@"%@%.0f%@%@%@",@"Vous vous trouvez à ",distance,@"m de la piste la plus proche : ",pisteProche,@". Attention, la pratique du hors piste est à vos risques et périls"];
+            [_fondTexteDistance setFrame:CGRectMake(0, 0, _texteDistance.frame.size.width+20, _texteDistance.frame.size.height+10)];
+            _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
+            _fondTexteDistance.hidden=false;
+        }
+        else if([GeolocalisationManager sharedInstance].distanceStation>0)
         {
             double distance = [GeolocalisationManager sharedInstance].distanceStation/1000;
-            _texteDistance.text=[NSString stringWithFormat:@"%@%.2f%@",@"Impossible de vous localiser sur la carte. Vous vous trouvez à ",distance,@" km de la station Val d'Allos"];
+            _texteDistance.text=[NSString stringWithFormat:@"%@%.2f%@",@"Impossible de vous localiser sur la carte. \nVous vous trouvez à ",distance,@" km de la station Val d'Allos"];
+            [_fondTexteDistance setFrame:CGRectMake(0, 0, _texteDistance.frame.size.width+15, _texteDistance.frame.size.height-5)];
+            _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
             _fondTexteDistance.hidden=false;
         }
         else if([GeolocalisationManager sharedInstance].distanceStation==-1)
         {
             _texteDistance.text=[NSString stringWithFormat:@"Impossible de vous localiser sur le domaine skiable. Vous vous trouvez à plus de 100m des pistes"];
+            [_fondTexteDistance setFrame:CGRectMake(0, 0, _texteDistance.frame.size.width+20, _texteDistance.frame.size.height-5)];
+            _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
             _fondTexteDistance.hidden=false;
+        }
+        else
+        {
+            _texteDistance.text = @"";
+            _fondTexteDistance.hidden=true;
         }
     }
     // Do any additional setup after loading the view.
