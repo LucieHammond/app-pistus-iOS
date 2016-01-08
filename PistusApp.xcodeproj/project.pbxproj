@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		102CA86144FE7CA442FC03EE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 972F0108189D20F19292CCB6 /* libPods.a */; };
 		C539A78D1BF1F56A00B9E3ED /* iconContact.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7881BF1F56A00B9E3ED /* iconContact.png */; };
 		C539A78E1BF1F56A00B9E3ED /* iconHoraires.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7891BF1F56A00B9E3ED /* iconHoraires.png */; };
 		C539A78F1BF1F56A00B9E3ED /* iconMeteo.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */; };
@@ -149,7 +148,6 @@
 				C570B86C1C30999B003E0E16 /* CoreLocation.framework in Frameworks */,
 				C570B8391C2B440F003E0E16 /* libsqlite3.dylib in Frameworks */,
 				C547AE6D1BDD60E800A0E4A8 /* libOAuth2Client.a in Frameworks */,
-				102CA86144FE7CA442FC03EE /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,7 +648,7 @@
 					"$(PROJECT_DIR)/Pods/Headers/Public/NXOAuth2Client/**",
 				);
 				INFOPLIST_FILE = PistusApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -680,7 +678,7 @@
 					"$(PROJECT_DIR)/Pods/Headers/Public/NXOAuth2Client/**",
 				);
 				INFOPLIST_FILE = PistusApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
