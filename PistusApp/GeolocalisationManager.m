@@ -62,6 +62,7 @@ static GeolocalisationManager* sharedInstance=nil;
     self.dbManager=[[DBManager alloc]initWithDatabaseFilename:@"bddPistes.db"];
     NSString *query = @"DELETE FROM maPosition";
     [self.dbManager executeQuery:query];
+    _pisteProche=nil;
 }
 
 -(void)boucle
@@ -81,7 +82,6 @@ static GeolocalisationManager* sharedInstance=nil;
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    NSLog(@"%d",locations.count);
     CLLocation *lastLocation = locations.lastObject;
     double latitude = lastLocation.coordinate.latitude;
     double longitude = lastLocation.coordinate.longitude;
@@ -89,8 +89,6 @@ static GeolocalisationManager* sharedInstance=nil;
     // On vérifie si l'utilisateur se trouve bien sur le domaine skiable de la station
     if(latitude > 44.21 && latitude < 44.37 && longitude > 6.53 && longitude < 6.63)
     {
-        NSLog(@"Potentiellement localisable sur la carte");
-        
         // On change les réglages par défauts pour les rendre plus précis
         if(locationManager.desiredAccuracy!=kCLLocationAccuracyBest)
         {
@@ -104,19 +102,21 @@ static GeolocalisationManager* sharedInstance=nil;
         self.dbManager=[[DBManager alloc]initWithDatabaseFilename:@"bddPistes.db"];
         NSString *query = @"SELECT count(*) from maPosition;";
         int nbPositionsStockees = [[[[self.dbManager loadDataFromDB:query] objectAtIndex:0] objectAtIndex:0]intValue];
+        
         if(nbPositionsStockees == 0 && _pisteProche==nil)
         {
+            NSLog(@"Pas d'infos de localisation");
             // On cherche dans toute la bdd
             query = [NSString stringWithFormat:@"select min(12363216100*ecartLat*ecartLat+12203620900*ecartLong*ecartLong),id_piste,numero,x,y,latitude,longitude from (select abs(latitude-%f) as ecartLat, abs(longitude-%f) as ecartLong,id_piste,numero,x,y,latitude,longitude from points where ecartLat < 0.0009 and ecartLong < 0.0009);",latitude,longitude];
             
             // 1er cas : utilisateur à plus de 100m de n'importe quelle piste
             if([self.dbManager loadDataFromDB:query].count==0)
             {
-                NSLog(@"Impossible de vous localiser sur le domaine skiable");
                 _distanceStation = -1;
                 _pisteProche = nil;
                 NSString *newQuery = @"DELETE FROM maPosition";
                 [self.dbManager executeQuery:newQuery];
+                NSLog(@"1.1");
             }
             else
             {
@@ -145,23 +145,24 @@ static GeolocalisationManager* sharedInstance=nil;
                     // On ajoute finalement la position trouvée à la table
                     query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES ('%@',%f,%f,%f,'%@',%@,%f);",dateString,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
                     [self.dbManager executeQuery:query];
+                    NSLog(@"1.2");
                 }
                 // 3eme cas : l'utilisateur est entre 20m et 100m d'un point référencé
                 else
                 {
                     // Dans ce cas, on ne permet pas de statistiquer mais on garde une trace de la piste la plus proche et de la distance à cette piste, sans changer le repère de place sur la carte
-                    NSLog(@"Un peu trop loin des pistes");
                     query = [NSString stringWithFormat:@"select nom from pistes where id = '%@'",array[0][1]];
                     _pisteProche = [self.dbManager loadDataFromDB:query][0][0];
                     _dernierePiste = array[0][1];
                     _distanceStation = distance;
+                    NSLog(@"1.3");
                 }
             }
         }
         else
         {
-            // Cas où la table maPosition contient déjà des entrées récentes
-            NSLog(@"Table modifiée nombre d'entrées : %d",nbPositionsStockees);
+            // Cas où on a déjà des infos sur la position précédente
+            NSLog(@"Info sur position et nombre d'entrées : %d",nbPositionsStockees);
             
             // Si la table maPosition contient 5 entrées recentes qui correspondent à la même piste
             NSString *query = [NSString stringWithFormat:@"select count(*) from maPosition where id_piste = '%@'",_dernierePiste];
@@ -311,6 +312,7 @@ static GeolocalisationManager* sharedInstance=nil;
                         localisable=false;
                         NSString *newQuery = @"DELETE FROM maPosition";
                         [self.dbManager executeQuery:newQuery];
+                        NSLog(@"2.1");
                     }
                     else
                     {
@@ -333,6 +335,7 @@ static GeolocalisationManager* sharedInstance=nil;
                             _dernierePiste = array[0][1];
                             _distanceStation = distance;
                             localisable=false;
+                            NSLog(@"2.3");
                         }
                     }
                 }
@@ -360,6 +363,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     // Comme la table est déjà pleine (5 positions), on retire la plus ancienne
                     query = [NSString stringWithFormat:@"DELETE FROM maPosition where date in (select min(date) from maPosition)"];
                     [self.dbManager executeQuery:query];
+                    NSLog(@"2.2");
                 }
             }
             /*Enfin, dans le cas où on ne peut pas être sûr de se trouver sur une piste (moins de 5 positions récentes sur cette piste, utilisateur à plus de 20m de celle ci ...), on utilise quand même l'indication sur la derniere piste pour optimiser la recherche mais sans trop de conditions*/
@@ -399,6 +403,7 @@ static GeolocalisationManager* sharedInstance=nil;
                         localisable=false;
                         NSString *newQuery = @"DELETE FROM maPosition";
                         [self.dbManager executeQuery:newQuery];
+                        NSLog(@"3.1");
                     }
                     else
                     {
@@ -421,6 +426,7 @@ static GeolocalisationManager* sharedInstance=nil;
                             _dernierePiste = array[0][1];
                             _distanceStation = distance;
                             localisable=false;
+                            NSLog(@"3.3");
                         }
                     }
                 }
@@ -444,9 +450,13 @@ static GeolocalisationManager* sharedInstance=nil;
                     query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES ('%@',%f,%f,%f,'%@',%@,%f);",dateString,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
                     [self.dbManager executeQuery:query];
                     
-                    // Comme la table est déjà pleine (5 positions), on retire la plus ancienne
-                    query = [NSString stringWithFormat:@"DELETE FROM maPosition where date in (select min(date) from maPosition)"];
-                    [self.dbManager executeQuery:query];
+                    // Si la table est déjà pleine (5 positions), on retire la plus ancienne
+                    if(nbPositionsStockees==5)
+                    {
+                        query = [NSString stringWithFormat:@"DELETE FROM maPosition where date in (select min(date) from maPosition)"];
+                        [self.dbManager executeQuery:query];
+                    }
+                    NSLog(@"3.2");
                 }
             }
         }
@@ -457,7 +467,7 @@ static GeolocalisationManager* sharedInstance=nil;
          qui le sépare de la résidence */
         CLLocation *residence = [[CLLocation alloc]initWithLatitude:44.292 longitude:6.565];
         _distanceStation = [lastLocation distanceFromLocation:residence];
-        NSLog(@"%f",_distanceStation);
+        NSLog(@"4");
     }
     
     // Si l'utilisateur est sur la carte, on update la vue automatiquement
