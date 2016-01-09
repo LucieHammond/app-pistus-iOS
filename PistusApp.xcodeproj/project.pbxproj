@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B77E891B1C408158005CBD6D /* libNXOAuth2Client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B77E891A1C408158005CBD6D /* libNXOAuth2Client.a */; };
 		C539A78D1BF1F56A00B9E3ED /* iconContact.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7881BF1F56A00B9E3ED /* iconContact.png */; };
 		C539A78E1BF1F56A00B9E3ED /* iconHoraires.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7891BF1F56A00B9E3ED /* iconHoraires.png */; };
 		C539A78F1BF1F56A00B9E3ED /* iconMeteo.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */; };
 		C539A7901BF1F56A00B9E3ED /* iconStats.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78B1BF1F56A00B9E3ED /* iconStats.png */; };
 		C539A7911BF1F56A00B9E3ED /* iconTroc.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78C1BF1F56A00B9E3ED /* iconTroc.png */; };
-		C547AE6D1BDD60E800A0E4A8 /* libOAuth2Client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5AEBCC91BDD605900223811 /* libOAuth2Client.a */; };
 		C54EA3591C3C098700F0BA81 /* bddPistes.db in Resources */ = {isa = PBXBuildFile; fileRef = C54EA3581C3C098700F0BA81 /* bddPistes.db */; };
 		C54F8AC21BD94D5A00CE7B3A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C54F8AC11BD94D5A00CE7B3A /* main.m */; };
 		C54F8AC51BD94D5A00CE7B3A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C54F8AC41BD94D5A00CE7B3A /* AppDelegate.m */; };
@@ -46,20 +46,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C547AE6B1BDD60C700A0E4A8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C5AEBCC01BDD605900223811 /* OAuth2Client.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D;
-			remoteInfo = OAuth2Client;
-		};
-		C547AE6E1BDD63A700A0E4A8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C5AEBCC01BDD605900223811 /* OAuth2Client.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 942FFCD512315E0A00E6C65E;
-			remoteInfo = OAuth2Client.framework;
-		};
 		C54F8AD61BD94D5A00CE7B3A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C54F8AB41BD94D5A00CE7B3A /* Project object */;
@@ -67,31 +53,11 @@
 			remoteGlobalIDString = C54F8ABB1BD94D5A00CE7B3A;
 			remoteInfo = PistusApp;
 		};
-		C5AEBCC61BDD605900223811 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C5AEBCC01BDD605900223811 /* OAuth2Client.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 942FFCD612315E0A00E6C65E;
-			remoteInfo = OAuth2Client.framework;
-		};
-		C5AEBCC81BDD605900223811 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C5AEBCC01BDD605900223811 /* OAuth2Client.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D;
-			remoteInfo = OAuth2Client;
-		};
-		C5AEBCCA1BDD605900223811 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C5AEBCC01BDD605900223811 /* OAuth2Client.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 94B6CE6619C1D0A200AA859B;
-			remoteInfo = OAuth2ClientTests;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		972F0108189D20F19292CCB6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B77E891A1C408158005CBD6D /* libNXOAuth2Client.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNXOAuth2Client.a; path = "Pods/../build/Debug-iphoneos/libNXOAuth2Client.a"; sourceTree = "<group>"; };
 		C1B1D9BD10AC26036BFAEE20 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C539A7881BF1F56A00B9E3ED /* iconContact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconContact.png; sourceTree = "<group>"; };
 		C539A7891BF1F56A00B9E3ED /* iconHoraires.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconHoraires.png; sourceTree = "<group>"; };
@@ -123,7 +89,6 @@
 		C570B8651C2ED85C003E0E16 /* satelliteon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satelliteon.png; sourceTree = "<group>"; };
 		C570B8671C2EDC23003E0E16 /* satelliteoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satelliteoff.png; sourceTree = "<group>"; };
 		C570B86B1C30999B003E0E16 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		C5AEBCC01BDD605900223811 /* OAuth2Client.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2Client.xcodeproj; path = ../OAuth2Client/OAuth2Client.xcodeproj; sourceTree = "<group>"; };
 		C5C05E6F1BEFF6FC007D763E /* accueil_5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_5.jpg; sourceTree = "<group>"; };
 		C5C05E701BEFF6FC007D763E /* accueil_6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_6.jpg; sourceTree = "<group>"; };
 		C5C05E711BEFF6FC007D763E /* accueil_6Plus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_6Plus.jpg; sourceTree = "<group>"; };
@@ -147,9 +112,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B77E891B1C408158005CBD6D /* libNXOAuth2Client.a in Frameworks */,
 				C570B86C1C30999B003E0E16 /* CoreLocation.framework in Frameworks */,
 				C570B8391C2B440F003E0E16 /* libsqlite3.dylib in Frameworks */,
-				C547AE6D1BDD60E800A0E4A8 /* libOAuth2Client.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +131,7 @@
 		8C127E9426FC58CDBA5AF32F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B77E891A1C408158005CBD6D /* libNXOAuth2Client.a */,
 				972F0108189D20F19292CCB6 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -190,7 +156,6 @@
 				C570B8551C2EBE50003E0E16 /* GeolocalisationManager.m */,
 				C54EA3581C3C098700F0BA81 /* bddPistes.db */,
 				C570B8381C2B440F003E0E16 /* libsqlite3.dylib */,
-				C5AEBCC01BDD605900223811 /* OAuth2Client.xcodeproj */,
 				C54F8B1D1BD97E1800CE7B3A /* Ressources */,
 				C54F8ABE1BD94D5A00CE7B3A /* PistusApp */,
 				C54F8AD81BD94D5A00CE7B3A /* PistusAppTests */,
@@ -282,16 +247,6 @@
 			name = Ressources;
 			sourceTree = "<group>";
 		};
-		C5AEBCC11BDD605900223811 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C5AEBCC71BDD605900223811 /* OAuth2Client.framework */,
-				C5AEBCC91BDD605900223811 /* libOAuth2Client.a */,
-				C5AEBCCB1BDD605900223811 /* OAuth2ClientTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -309,8 +264,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				C547AE6F1BDD63A700A0E4A8 /* PBXTargetDependency */,
-				C547AE6C1BDD60C700A0E4A8 /* PBXTargetDependency */,
 			);
 			name = PistusApp;
 			productName = PistusApp;
@@ -364,12 +317,6 @@
 			mainGroup = C54F8AB31BD94D5A00CE7B3A;
 			productRefGroup = C54F8ABD1BD94D5A00CE7B3A /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = C5AEBCC11BDD605900223811 /* Products */;
-					ProjectRef = C5AEBCC01BDD605900223811 /* OAuth2Client.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				C54F8ABB1BD94D5A00CE7B3A /* PistusApp */,
@@ -377,30 +324,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		C5AEBCC71BDD605900223811 /* OAuth2Client.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OAuth2Client.framework;
-			remoteRef = C5AEBCC61BDD605900223811 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C5AEBCC91BDD605900223811 /* libOAuth2Client.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libOAuth2Client.a;
-			remoteRef = C5AEBCC81BDD605900223811 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C5AEBCCB1BDD605900223811 /* OAuth2ClientTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = OAuth2ClientTests.xctest;
-			remoteRef = C5AEBCCA1BDD605900223811 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C54F8ABA1BD94D5A00CE7B3A /* Resources */ = {
@@ -518,16 +441,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C547AE6C1BDD60C700A0E4A8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = OAuth2Client;
-			targetProxy = C547AE6B1BDD60C700A0E4A8 /* PBXContainerItemProxy */;
-		};
-		C547AE6F1BDD63A700A0E4A8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = OAuth2Client.framework;
-			targetProxy = C547AE6E1BDD63A700A0E4A8 /* PBXContainerItemProxy */;
-		};
 		C54F8AD71BD94D5A00CE7B3A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C54F8ABB1BD94D5A00CE7B3A /* PistusApp */;
@@ -658,6 +571,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Pods/Headers/Public/NXOAuth2Client/**",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -688,7 +602,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Pods/Headers/Public/NXOAuth2Client/**",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
