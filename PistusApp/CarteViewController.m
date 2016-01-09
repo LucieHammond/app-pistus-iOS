@@ -55,6 +55,16 @@
         {
             _texteDistance.text = @"";
             _fondTexteDistance.hidden=true;
+            
+            // Affichage du marqueur de position
+            UIImageView *marqueur = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"marker2.png"]];
+            [marqueur setFrame:CGRectMake(0,0,15,15)];
+            int x = [GeolocalisationManager sharedInstance].dernierX;
+            int y = [GeolocalisationManager sharedInstance].dernierY;
+            float X = _scrollView.contentSize.width/7452*x - _scrollView.contentOffset.x;
+            float Y = _scrollView.contentSize.height/3174*y - _scrollView.contentOffset.y;
+            marqueur.center = CGPointMake(X,Y);
+            [_scrollView insertSubview:marqueur aboveSubview:imageView];
         }
     }
     // Do any additional setup after loading the view.

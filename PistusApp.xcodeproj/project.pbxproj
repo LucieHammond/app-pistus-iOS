@@ -42,6 +42,7 @@
 		C5C05E8C1BEFF7A0007D763E /* Login@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E871BEFF7A0007D763E /* Login@2x~iphone.png */; };
 		C5C05E8E1BEFFBA5007D763E /* accueil_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E8D1BEFFBA5007D763E /* accueil_4.jpg */; };
 		C5F3488F1BE8FB98003B94C6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F3488E1BE8FB98003B94C6 /* MainViewController.m */; };
+		C5F7B8AE1C41472E00419A86 /* marker2.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F7B8AD1C41472E00419A86 /* marker2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,7 @@
 		C5C05E8D1BEFFBA5007D763E /* accueil_4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_4.jpg; sourceTree = "<group>"; };
 		C5F3488D1BE8FB98003B94C6 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		C5F3488E1BE8FB98003B94C6 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		C5F7B8AD1C41472E00419A86 /* marker2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker2.png; sourceTree = "<group>"; };
 		D0F8C00AA3DA8C893901048B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -255,6 +257,7 @@
 		C54F8B1D1BD97E1800CE7B3A /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				C5F7B8AD1C41472E00419A86 /* marker2.png */,
 				C570B8671C2EDC23003E0E16 /* satelliteoff.png */,
 				C570B8651C2ED85C003E0E16 /* satelliteon.png */,
 				C570B8521C2DF703003E0E16 /* Plan Val d'Allos Official corrigé.jpg */,
@@ -405,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5C05E891BEFF7A0007D763E /* Login-568h@2x~iphone.png in Resources */,
+				C5F7B8AE1C41472E00419A86 /* marker2.png in Resources */,
 				C570B8531C2DF703003E0E16 /* Plan Val d'Allos Official corrigé.jpg in Resources */,
 				C54EA3591C3C098700F0BA81 /* bddPistes.db in Resources */,
 				C54F8ACB1BD94D5A00CE7B3A /* Main.storyboard in Resources */,
@@ -648,7 +652,7 @@
 					"$(PROJECT_DIR)/Pods/Headers/Public/NXOAuth2Client/**",
 				);
 				INFOPLIST_FILE = PistusApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -678,7 +682,7 @@
 					"$(PROJECT_DIR)/Pods/Headers/Public/NXOAuth2Client/**",
 				);
 				INFOPLIST_FILE = PistusApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
