@@ -114,6 +114,14 @@
     [marqueur setFrame:CGRectMake(0,0,15,15)];
     [self.view insertSubview:marqueur aboveSubview:imageView];
     marqueur.hidden=true;
+    
+    // Ajout du bouton pour recentrer sur la position de l'utilisateur
+    UIButton *ciblage = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-60,[UIScreen mainScreen].bounds.size.height*7/10,47,47)];
+    [ciblage setImage:[UIImage imageNamed:@"ciblage.png"] forState:UIControlStateNormal];
+    ciblage.alpha=0.5;
+    [self.view insertSubview:ciblage aboveSubview:_scrollView];
+    [ciblage addTarget:self action:@selector(ciblerPosition)
+               forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -155,6 +163,20 @@
     [_trackAcceptButton setCustomView:_boutonSatellite];
 }
 
+-(void)ciblerPosition
+{
+    if(marqueur.hidden==false)
+    {
+        int x = [GeolocalisationManager sharedInstance].dernierX;
+        int y = [GeolocalisationManager sharedInstance].dernierY;
+        float X = _scrollView.contentSize.width/7452*x;
+        float Y = _scrollView.contentSize.height/3174*y;
+        float largeur = _scrollView.frame.size.width;
+        float hauteur = _scrollView.frame.size.height;
+        [_scrollView scrollRectToVisible:CGRectMake(X-largeur/2,Y-hauteur/2,largeur,hauteur) animated:true];
+    }
+}
+
 -(void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
     // Repositionnement du marqueur
@@ -166,7 +188,6 @@
         float Y = _scrollView.contentSize.height/3174*y - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         marqueur.center = CGPointMake(X,Y);
     }
-    
 }
 
 /*
