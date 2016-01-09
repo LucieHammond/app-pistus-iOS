@@ -35,6 +35,7 @@
             [_fondTexteDistance setFrame:CGRectMake(0, 0, _texteDistance.frame.size.width+20, _texteDistance.frame.size.height+10)];
             _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
             _fondTexteDistance.hidden=false;
+            marqueur.hidden=true;
         }
         else if([GeolocalisationManager sharedInstance].distanceStation>0)
         {
@@ -43,6 +44,7 @@
             [_fondTexteDistance setFrame:CGRectMake(0, 0, _texteDistance.frame.size.width+15, _texteDistance.frame.size.height-5)];
             _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
             _fondTexteDistance.hidden=false;
+            marqueur.hidden=true;
         }
         else if([GeolocalisationManager sharedInstance].distanceStation==-1)
         {
@@ -50,6 +52,7 @@
             [_fondTexteDistance setFrame:CGRectMake(0, 0, _texteDistance.frame.size.width+20, _texteDistance.frame.size.height-5)];
             _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
             _fondTexteDistance.hidden=false;
+            marqueur.hidden=true;
         }
         else
         {
@@ -57,14 +60,12 @@
             _fondTexteDistance.hidden=true;
             
             // Affichage du marqueur de position
-            UIImageView *marqueur = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"marker2.png"]];
-            [marqueur setFrame:CGRectMake(0,0,15,15)];
             int x = [GeolocalisationManager sharedInstance].dernierX;
             int y = [GeolocalisationManager sharedInstance].dernierY;
-            float X = _scrollView.contentSize.width/7452*x - _scrollView.contentOffset.x;
-            float Y = _scrollView.contentSize.height/3174*y - _scrollView.contentOffset.y;
+            float X = _scrollView.contentSize.width/7452*x - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+            float Y = _scrollView.contentSize.height/3174*y - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
             marqueur.center = CGPointMake(X,Y);
-            [_scrollView insertSubview:marqueur aboveSubview:imageView];
+            marqueur.hidden = false;
         }
     }
     // Do any additional setup after loading the view.
@@ -107,6 +108,12 @@
     [self.view insertSubview:_texteDistance aboveSubview:_fondTexteDistance];
     _texteDistance.text=@"";
     _fondTexteDistance.hidden=true;
+    
+    // Création du marqueur
+    marqueur = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"marker2.png"]];
+    [marqueur setFrame:CGRectMake(0,0,15,15)];
+    [self.view insertSubview:marqueur aboveSubview:imageView];
+    marqueur.hidden=true;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -146,6 +153,20 @@
         [[GeolocalisationManager sharedInstance] endTrack];
     }
     [_trackAcceptButton setCustomView:_boutonSatellite];
+}
+
+-(void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // Repositionnement du marqueur
+    if(marqueur.hidden==false)
+    {
+        int x = [GeolocalisationManager sharedInstance].dernierX;
+        int y = [GeolocalisationManager sharedInstance].dernierY;
+        float X = _scrollView.contentSize.width/7452*x - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        float Y = _scrollView.contentSize.height/3174*y - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        marqueur.center = CGPointMake(X,Y);
+    }
+    
 }
 
 /*
