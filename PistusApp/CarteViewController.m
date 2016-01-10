@@ -35,7 +35,6 @@
             [_fondTexteDistance setFrame:CGRectMake(0, 0, _texteDistance.frame.size.width+20, _texteDistance.frame.size.height+10)];
             _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
             _fondTexteDistance.hidden=false;
-            marqueur.hidden=true;
         }
         else if([GeolocalisationManager sharedInstance].distanceStation>0)
         {
