@@ -13,6 +13,7 @@
 @interface CarteViewController ()
 
 @property (nonatomic,strong) UIButton *boutonSatellite;
+@property (nonatomic,strong) DBManager *dbManager;
 
 @end
 
@@ -109,8 +110,10 @@
     _fondTexteDistance.hidden=true;
     
     // Création du marqueur
-    marqueur = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"marker2.png"]];
-    [marqueur setFrame:CGRectMake(0,0,15,15)];
+    marqueur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,15,15)];
+    [marqueur setImage:[UIImage imageNamed:@"marker2.png"] forState:UIControlStateNormal];
+    [marqueur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+      forControlEvents:UIControlEventTouchUpInside];
     [self.view insertSubview:marqueur aboveSubview:imageView];
     marqueur.hidden=true;
     
@@ -160,6 +163,57 @@
         [[GeolocalisationManager sharedInstance] endTrack];
     }
     [_trackAcceptButton setCustomView:_boutonSatellite];
+}
+
+-(void)afficherDetailsPourMarqueur:(UIButton *)sender
+{
+    // Pate de la bulle
+    UIImageView *pateBulle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pate_bulle.png"]];
+    [pateBulle setFrame: CGRectMake(sender.center.x-11,sender.frame.origin.y-10,22,10)];
+    [self.view insertSubview:pateBulle aboveSubview:_scrollView];
+    
+    // Titre "Vous êtes ici"
+    UILabel *titre = [[UILabel alloc] init];
+    titre.text=@"Vous êtes ici";
+    titre.font=[UIFont boldSystemFontOfSize:16.0];
+    [titre sizeToFit];
+    titre.center=CGPointMake(sender.center.x,sender.frame.origin.y-38);
+    [self.view insertSubview:titre aboveSubview:pateBulle];
+    
+    // Nom de la piste
+    UILabel *nomPiste = [[UILabel alloc] init];
+    self.dbManager=[[DBManager alloc]initWithDatabaseFilename:@"bddPistes.db"];
+    NSString *query = [NSString stringWithFormat:@"select nom from pistes where id='%@'",[GeolocalisationManager sharedInstance].dernierePiste];
+    nomPiste.text=[self.dbManager loadDataFromDB:query][0][0];
+    nomPiste.font=[UIFont systemFontOfSize:11.0];
+    [nomPiste sizeToFit];
+    nomPiste.center=CGPointMake(sender.center.x,sender.frame.origin.y-21);
+    [self.view insertSubview:nomPiste aboveSubview:titre];
+    
+    // Fond de la bulle
+    UIView *bulle = [[UIView alloc] init];
+    [bulle setBackgroundColor:[UIColor whiteColor]];
+    [bulle setFrame: CGRectMake(0,0,MAX(nomPiste.frame.size.width+15,titre.frame.size.width+15),40)];
+    bulle.center = CGPointMake(sender.center.x, sender.frame.origin.y-30);
+    [self.view insertSubview:bulle belowSubview:titre];
+    
+    // Repositionnement du message
+    if(titre.frame.origin.x<nomPiste.frame.origin.x)
+        [nomPiste setFrame:CGRectMake(titre.frame.origin.x,nomPiste.frame.origin.y,nomPiste.frame.size.width,nomPiste.frame.size.height)];
+    else
+        [titre setFrame:CGRectMake(nomPiste.frame.origin.x,titre.frame.origin.y,titre.frame.size.width,titre.frame.size.height)];
+    
+    // Effacement de la bulle
+    [sender addTarget:self action:@selector(effacerBulle) forControlEvents:UIControlEventTouchUpOutside];
+    [bulle removeFromSuperview];
+    [nomPiste removeFromSuperview];
+    [titre removeFromSuperview];
+    [pateBulle removeFromSuperview];
+}
+
+-(void) effacerBulle
+{
+    NSLog(@"Bite");
 }
 
 -(void)ciblerPosition

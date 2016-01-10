@@ -11,7 +11,7 @@
 @interface CarteViewController : UIViewController <UIScrollViewDelegate>
 {
     UIImageView *imageView;
-    UIImageView *marqueur;
+    UIButton *marqueur;
 }
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *barre;

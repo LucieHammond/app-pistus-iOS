@@ -16,7 +16,6 @@
     CLLocationManager* locationManager;
     NSDate *dateDebutSki;
     double derniereAltitude;
-    NSString *dernierePiste;
     int dernierNumero;
 }
 
@@ -29,6 +28,7 @@
 @property (nonatomic) NSDate *derniereDate;
 @property (nonatomic) int dernierX;
 @property (nonatomic) int dernierY;
+@property (nonatomic) NSString *dernierePiste;
 @property (nonatomic) NSString *pisteProche;
 
 +(GeolocalisationManager*)sharedInstance;
