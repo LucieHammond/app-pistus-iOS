@@ -26,6 +26,9 @@ static GeolocalisationManager* sharedInstance=nil;
         sharedInstance = [[[self class] alloc] init];
         sharedInstance.vitesseMax=0;
         sharedInstance.altitudeMax=0;
+        sharedInstance.altitudeMin=5000;
+        sharedInstance.totalPositions=0;
+        sharedInstance.vitesseCumulee=0;
         sharedInstance.deniveleTotal=0;
         sharedInstance.tempsDeSki=0;
     }
@@ -148,12 +151,17 @@ static GeolocalisationManager* sharedInstance=nil;
                     NSString *dateString = [df stringFromDate:date];
                     
                     // On met à jour les statistiques
+                    _vitesseActuelle=lastLocation.speed;
+                    _vitesseCumulee+=_vitesseActuelle;
                     if(lastLocation.speed>_vitesseMax)
                         _vitesseMax=lastLocation.speed;
+                    
                     if(lastLocation.altitude>_altitudeMax)
                         _altitudeMax=lastLocation.altitude;
+                    else if(lastLocation.altitude<_altitudeMin)
+                        _altitudeMin=lastLocation.altitude;
+                    _altitudeActuelle = lastLocation.altitude;
                     dateDebutSki = date;
-                    derniereAltitude = lastLocation.altitude;
                     
                     // On ajoute finalement la position trouvée à la table
                     query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES ('%@',%f,%f,%f,'%@',%@,%f);",dateString,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
@@ -371,13 +379,19 @@ static GeolocalisationManager* sharedInstance=nil;
                     NSString *dateString = [df stringFromDate:date];
                     
                     // On met à jour les statistiques
+                    _vitesseActuelle=lastLocation.speed;
+                    _vitesseCumulee+=_vitesseActuelle;
                     if(lastLocation.speed>_vitesseMax)
                         _vitesseMax=lastLocation.speed;
+                    
                     if(lastLocation.altitude>_altitudeMax)
                         _altitudeMax=lastLocation.altitude;
-                    if(lastLocation.altitude<derniereAltitude)
-                        _deniveleTotal+=(derniereAltitude-lastLocation.altitude);
-                    derniereAltitude=lastLocation.altitude;
+                    else if(lastLocation.altitude<_altitudeMin)
+                        _altitudeMin=lastLocation.altitude;
+                    
+                    if(lastLocation.altitude<_altitudeActuelle)
+                        _deniveleTotal+=(_altitudeActuelle-lastLocation.altitude);
+                    _altitudeActuelle=lastLocation.altitude;
                     
                     // On ajoute finalement la position trouvée à la table maPosition
                     query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES ('%@',%f,%f,%f,'%@',%@,%f);",dateString,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
@@ -472,13 +486,19 @@ static GeolocalisationManager* sharedInstance=nil;
                     NSString *dateString = [df stringFromDate:date];
                     
                     // On met à jour les statistiques
+                    _vitesseActuelle=lastLocation.speed;
+                    _vitesseCumulee+=_vitesseActuelle;
                     if(lastLocation.speed>_vitesseMax)
                         _vitesseMax=lastLocation.speed;
+                    
                     if(lastLocation.altitude>_altitudeMax)
                         _altitudeMax=lastLocation.altitude;
-                    if(lastLocation.altitude<derniereAltitude)
-                        _deniveleTotal+=(derniereAltitude-lastLocation.altitude);
-                    derniereAltitude=lastLocation.altitude;
+                    else if(lastLocation.altitude<_altitudeMin)
+                        _altitudeMin=lastLocation.altitude;
+                    
+                    if(lastLocation.altitude<_altitudeActuelle)
+                        _deniveleTotal+=(_altitudeActuelle-lastLocation.altitude);
+                    _altitudeActuelle=lastLocation.altitude;
                     if(dateDebutSki==nil)
                         dateDebutSki=date;
                     

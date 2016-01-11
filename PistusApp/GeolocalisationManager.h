@@ -15,16 +15,23 @@
     NSTimer *timerPosition;
     CLLocationManager* locationManager;
     NSDate *dateDebutSki;
-    double derniereAltitude;
     int dernierNumero;
 }
 
-@property (nonatomic) BOOL trackAccept;
+// Statistiques
 @property (nonatomic) double distanceStation;
+@property (nonatomic) double vitesseActuelle;
 @property (nonatomic) double vitesseMax;
+@property (nonatomic) double vitesseCumulee;
+@property (nonatomic) double totalPositions;
+@property (nonatomic) double altitudeActuelle;
+@property (nonatomic) double altitudeMin;
 @property (nonatomic) double altitudeMax;
 @property (nonatomic) double deniveleTotal;
 @property (nonatomic) NSTimeInterval tempsDeSki;
+
+// Carte
+@property (nonatomic) BOOL trackAccept;
 @property (nonatomic) NSDate *derniereDate;
 @property (nonatomic) int dernierX;
 @property (nonatomic) int dernierY;

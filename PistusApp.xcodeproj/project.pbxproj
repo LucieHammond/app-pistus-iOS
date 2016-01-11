@@ -32,6 +32,10 @@
 		C5AED9981C4289240086E570 /* pate_bulle.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED9971C4289240086E570 /* pate_bulle.png */; };
 		C5AED99C1C4289DC0086E570 /* bddPistes.db in Resources */ = {isa = PBXBuildFile; fileRef = C5AED99B1C4289DC0086E570 /* bddPistes.db */; };
 		C5AED99E1C4289F20086E570 /* etoile.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED99D1C4289F20086E570 /* etoile.png */; };
+		C5AED9A01C43B10C0086E570 /* speedometer.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED99F1C43B10C0086E570 /* speedometer.png */; };
+		C5AED9A21C43B1170086E570 /* altitude.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED9A11C43B1170086E570 /* altitude.png */; };
+		C5AED9A41C43B11E0086E570 /* distance.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED9A31C43B11E0086E570 /* distance.png */; };
+		C5AED9A71C43B5490086E570 /* StatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5AED9A61C43B5490086E570 /* StatsViewController.m */; };
 		C5C05E791BEFF6FC007D763E /* accueil_5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E6F1BEFF6FC007D763E /* accueil_5.jpg */; };
 		C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E701BEFF6FC007D763E /* accueil_6.jpg */; };
 		C5C05E7B1BEFF6FC007D763E /* accueil_6Plus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E711BEFF6FC007D763E /* accueil_6Plus.jpg */; };
@@ -95,6 +99,11 @@
 		C5AED9971C4289240086E570 /* pate_bulle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pate_bulle.png; sourceTree = "<group>"; };
 		C5AED99B1C4289DC0086E570 /* bddPistes.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = bddPistes.db; sourceTree = "<group>"; };
 		C5AED99D1C4289F20086E570 /* etoile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = etoile.png; sourceTree = "<group>"; };
+		C5AED99F1C43B10C0086E570 /* speedometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speedometer.png; sourceTree = "<group>"; };
+		C5AED9A11C43B1170086E570 /* altitude.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitude.png; sourceTree = "<group>"; };
+		C5AED9A31C43B11E0086E570 /* distance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = distance.png; sourceTree = "<group>"; };
+		C5AED9A51C43B5490086E570 /* StatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsViewController.h; sourceTree = "<group>"; };
+		C5AED9A61C43B5490086E570 /* StatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsViewController.m; sourceTree = "<group>"; };
 		C5C05E6F1BEFF6FC007D763E /* accueil_5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_5.jpg; sourceTree = "<group>"; };
 		C5C05E701BEFF6FC007D763E /* accueil_6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_6.jpg; sourceTree = "<group>"; };
 		C5C05E711BEFF6FC007D763E /* accueil_6Plus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_6Plus.jpg; sourceTree = "<group>"; };
@@ -191,6 +200,8 @@
 				C5F3488E1BE8FB98003B94C6 /* MainViewController.m */,
 				C570B84F1C2DF46F003E0E16 /* CarteViewController.h */,
 				C570B8501C2DF46F003E0E16 /* CarteViewController.m */,
+				C5AED9A51C43B5490086E570 /* StatsViewController.h */,
+				C5AED9A61C43B5490086E570 /* StatsViewController.m */,
 				C54F8AC91BD94D5A00CE7B3A /* Main.storyboard */,
 				C54F8ACC1BD94D5A00CE7B3A /* Images.xcassets */,
 				C54F8ACE1BD94D5A00CE7B3A /* LaunchScreen.xib */,
@@ -228,6 +239,9 @@
 		C54F8B1D1BD97E1800CE7B3A /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				C5AED9A31C43B11E0086E570 /* distance.png */,
+				C5AED9A11C43B1170086E570 /* altitude.png */,
+				C5AED99F1C43B10C0086E570 /* speedometer.png */,
 				C5AED99D1C4289F20086E570 /* etoile.png */,
 				C5AED9971C4289240086E570 /* pate_bulle.png */,
 				C5AED9951C41B8B30086E570 /* ciblage.png */,
@@ -340,6 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5C05E891BEFF7A0007D763E /* Login-568h@2x~iphone.png in Resources */,
+				C5AED9A01C43B10C0086E570 /* speedometer.png in Resources */,
 				C5F7B8AE1C41472E00419A86 /* marker2.png in Resources */,
 				C5AED9981C4289240086E570 /* pate_bulle.png in Resources */,
 				C570B8531C2DF703003E0E16 /* Plan Val d'Allos Official corrigé.jpg in Resources */,
@@ -365,8 +380,10 @@
 				C5C05E7C1BEFF6FC007D763E /* iconConcours.png in Resources */,
 				C5C05E881BEFF7A0007D763E /* connexion.png in Resources */,
 				C5C05E8C1BEFF7A0007D763E /* Login@2x~iphone.png in Resources */,
+				C5AED9A41C43B11E0086E570 /* distance.png in Resources */,
 				C54F8ACD1BD94D5A00CE7B3A /* Images.xcassets in Resources */,
 				C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */,
+				C5AED9A21C43B1170086E570 /* altitude.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +455,7 @@
 				C570B8511C2DF46F003E0E16 /* CarteViewController.m in Sources */,
 				C54F8AC21BD94D5A00CE7B3A /* main.m in Sources */,
 				C5F3488F1BE8FB98003B94C6 /* MainViewController.m in Sources */,
+				C5AED9A71C43B5490086E570 /* StatsViewController.m in Sources */,
 				C570B83D1C2B44C5003E0E16 /* DBManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
