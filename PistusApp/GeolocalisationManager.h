@@ -16,6 +16,8 @@
     CLLocationManager* locationManager;
     NSDate *dateDebutSki;
     int dernierNumero;
+    NSDate *derniereDate;
+    CLLocation *avantDerniereLoc;
 }
 
 // Statistiques
@@ -27,12 +29,13 @@
 @property (nonatomic) double altitudeActuelle;
 @property (nonatomic) double altitudeMin;
 @property (nonatomic) double altitudeMax;
+@property (nonatomic) double distanceSki;
+@property (nonatomic) double distanceTot;
 @property (nonatomic) double deniveleTotal;
 @property (nonatomic) NSTimeInterval tempsDeSki;
 
 // Carte
 @property (nonatomic) BOOL trackAccept;
-@property (nonatomic) NSDate *derniereDate;
 @property (nonatomic) int dernierX;
 @property (nonatomic) int dernierY;
 @property (nonatomic) NSString *dernierePiste;

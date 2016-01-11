@@ -34,8 +34,9 @@
 		C5AED99E1C4289F20086E570 /* etoile.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED99D1C4289F20086E570 /* etoile.png */; };
 		C5AED9A01C43B10C0086E570 /* speedometer.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED99F1C43B10C0086E570 /* speedometer.png */; };
 		C5AED9A21C43B1170086E570 /* altitude.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED9A11C43B1170086E570 /* altitude.png */; };
-		C5AED9A41C43B11E0086E570 /* distance.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED9A31C43B11E0086E570 /* distance.png */; };
 		C5AED9A71C43B5490086E570 /* StatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5AED9A61C43B5490086E570 /* StatsViewController.m */; };
+		C5AED9A91C4423F10086E570 /* distance.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED9A81C4423F10086E570 /* distance.png */; };
+		C5AED9AB1C4423FA0086E570 /* temps.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED9AA1C4423FA0086E570 /* temps.png */; };
 		C5C05E791BEFF6FC007D763E /* accueil_5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E6F1BEFF6FC007D763E /* accueil_5.jpg */; };
 		C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E701BEFF6FC007D763E /* accueil_6.jpg */; };
 		C5C05E7B1BEFF6FC007D763E /* accueil_6Plus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E711BEFF6FC007D763E /* accueil_6Plus.jpg */; };
@@ -101,9 +102,10 @@
 		C5AED99D1C4289F20086E570 /* etoile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = etoile.png; sourceTree = "<group>"; };
 		C5AED99F1C43B10C0086E570 /* speedometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speedometer.png; sourceTree = "<group>"; };
 		C5AED9A11C43B1170086E570 /* altitude.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitude.png; sourceTree = "<group>"; };
-		C5AED9A31C43B11E0086E570 /* distance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = distance.png; sourceTree = "<group>"; };
 		C5AED9A51C43B5490086E570 /* StatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsViewController.h; sourceTree = "<group>"; };
 		C5AED9A61C43B5490086E570 /* StatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsViewController.m; sourceTree = "<group>"; };
+		C5AED9A81C4423F10086E570 /* distance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = distance.png; sourceTree = "<group>"; };
+		C5AED9AA1C4423FA0086E570 /* temps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temps.png; sourceTree = "<group>"; };
 		C5C05E6F1BEFF6FC007D763E /* accueil_5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_5.jpg; sourceTree = "<group>"; };
 		C5C05E701BEFF6FC007D763E /* accueil_6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_6.jpg; sourceTree = "<group>"; };
 		C5C05E711BEFF6FC007D763E /* accueil_6Plus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_6Plus.jpg; sourceTree = "<group>"; };
@@ -239,7 +241,8 @@
 		C54F8B1D1BD97E1800CE7B3A /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
-				C5AED9A31C43B11E0086E570 /* distance.png */,
+				C5AED9AA1C4423FA0086E570 /* temps.png */,
+				C5AED9A81C4423F10086E570 /* distance.png */,
 				C5AED9A11C43B1170086E570 /* altitude.png */,
 				C5AED99F1C43B10C0086E570 /* speedometer.png */,
 				C5AED99D1C4289F20086E570 /* etoile.png */,
@@ -358,6 +361,7 @@
 				C5F7B8AE1C41472E00419A86 /* marker2.png in Resources */,
 				C5AED9981C4289240086E570 /* pate_bulle.png in Resources */,
 				C570B8531C2DF703003E0E16 /* Plan Val d'Allos Official corrigé.jpg in Resources */,
+				C5AED9AB1C4423FA0086E570 /* temps.png in Resources */,
 				C54F8ACB1BD94D5A00CE7B3A /* Main.storyboard in Resources */,
 				C5AED99C1C4289DC0086E570 /* bddPistes.db in Resources */,
 				C5C05E7B1BEFF6FC007D763E /* accueil_6Plus.jpg in Resources */,
@@ -380,7 +384,7 @@
 				C5C05E7C1BEFF6FC007D763E /* iconConcours.png in Resources */,
 				C5C05E881BEFF7A0007D763E /* connexion.png in Resources */,
 				C5C05E8C1BEFF7A0007D763E /* Login@2x~iphone.png in Resources */,
-				C5AED9A41C43B11E0086E570 /* distance.png in Resources */,
+				C5AED9A91C4423F10086E570 /* distance.png in Resources */,
 				C54F8ACD1BD94D5A00CE7B3A /* Images.xcassets in Resources */,
 				C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */,
 				C5AED9A21C43B1170086E570 /* altitude.png in Resources */,

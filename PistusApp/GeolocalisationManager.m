@@ -24,11 +24,15 @@ static GeolocalisationManager* sharedInstance=nil;
 {
     if (sharedInstance == nil) {
         sharedInstance = [[[self class] alloc] init];
+        sharedInstance.vitesseActuelle=-1;
+        sharedInstance.altitudeActuelle=-1;
         sharedInstance.vitesseMax=0;
         sharedInstance.altitudeMax=0;
         sharedInstance.altitudeMin=5000;
         sharedInstance.totalPositions=0;
         sharedInstance.vitesseCumulee=0;
+        sharedInstance.distanceSki=0;
+        sharedInstance.distanceTot=0;
         sharedInstance.deniveleTotal=0;
         sharedInstance.tempsDeSki=0;
     }
@@ -64,11 +68,14 @@ static GeolocalisationManager* sharedInstance=nil;
 -(void)endTrack
 {
     _trackAccept = false;
+    _altitudeActuelle=-1;
+    _vitesseActuelle=-1;
     [locationManager stopUpdatingLocation];
     self.dbManager=[[DBManager alloc]initWithDatabaseFilename:@"bddPistes.db"];
     NSString *query = @"DELETE FROM maPosition";
     [self.dbManager executeQuery:query];
     _pisteProche=nil;
+    avantDerniereLoc = nil;
     if(dateDebutSki!=nil)
         _tempsDeSki+=[[NSDate date] timeIntervalSinceDate:dateDebutSki];
 }
@@ -163,7 +170,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     _altitudeActuelle = lastLocation.altitude;
                     dateDebutSki = date;
                     
-                    // On ajoute finalement la position trouvée à la table
+                    // On ajoute finalement la position trouvée à la table et on retient la position
                     query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES ('%@',%f,%f,%f,'%@',%@,%f);",dateString,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
                     [self.dbManager executeQuery:query];
                     NSLog(@"1.2");
@@ -178,6 +185,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     _distanceStation = distance;
                     NSLog(@"1.3");
                 }
+                avantDerniereLoc = lastLocation;
             }
         }
         else
@@ -331,8 +339,13 @@ static GeolocalisationManager* sharedInstance=nil;
                         _distanceStation = -1;
                         _pisteProche = nil;
                         localisable=false;
+                        _altitudeActuelle=-1;
+                        _vitesseActuelle=-1;
+                        _tempsDeSki+=[lastLocation.timestamp timeIntervalSinceDate:dateDebutSki];
+                        dateDebutSki=nil;
                         NSString *newQuery = @"DELETE FROM maPosition";
                         [self.dbManager executeQuery:newQuery];
+                        avantDerniereLoc=nil;
                         NSLog(@"2.1");
                     }
                     else
@@ -350,13 +363,19 @@ static GeolocalisationManager* sharedInstance=nil;
                         // 3eme cas : l'utilisateur est entre 20m et 100m d'un point référencé
                         else
                         {
-                            // Dans ce cas, on ne permet pas de statistiquer mais on garde une trace de la piste la plus proche et de la distance à cette piste, sans changer le repère de place sur la carte
+                            // Dans ce cas, on ne permet pas de localiser precidement la personner mais on garde une trace de la piste la plus proche et de la distance à cette piste, sans changer le repère de place sur la carte
                             query = [NSString stringWithFormat:@"select nom from pistes where id = '%@'",array[0][1]];
                             _pisteProche = [self.dbManager loadDataFromDB:query][0][0];
                             _dernierePiste = array[0][1];
                             _distanceStation = distance;
                             _tempsDeSki+=[lastLocation.timestamp timeIntervalSinceDate:dateDebutSki];
+                            dateDebutSki=nil;
                             localisable=false;
+                            _altitudeActuelle=-1;
+                            _vitesseActuelle=-1;
+                            
+                            _distanceTot+=[lastLocation distanceFromLocation:avantDerniereLoc];
+                            avantDerniereLoc = lastLocation;
                             NSLog(@"2.3");
                         }
                     }
@@ -396,6 +415,9 @@ static GeolocalisationManager* sharedInstance=nil;
                     // On ajoute finalement la position trouvée à la table maPosition
                     query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES ('%@',%f,%f,%f,'%@',%@,%f);",dateString,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
                     [self.dbManager executeQuery:query];
+                    _distanceTot+=[lastLocation distanceFromLocation:avantDerniereLoc];
+                    _distanceSki+=[lastLocation distanceFromLocation:avantDerniereLoc];
+                    avantDerniereLoc = lastLocation;
                     
                     // Comme la table est déjà pleine (5 positions), on retire la plus ancienne
                     query = [NSString stringWithFormat:@"DELETE FROM maPosition where date in (select min(date) from maPosition)"];
@@ -438,8 +460,14 @@ static GeolocalisationManager* sharedInstance=nil;
                         _distanceStation = -1;
                         _pisteProche = nil;
                         localisable=false;
+                        _altitudeActuelle=-1;
+                        _vitesseActuelle=-1;
+                        if(dateDebutSki!=nil)
+                            _tempsDeSki+=[lastLocation.timestamp timeIntervalSinceDate:dateDebutSki];
+                        dateDebutSki=nil;
                         NSString *newQuery = @"DELETE FROM maPosition";
                         [self.dbManager executeQuery:newQuery];
+                        avantDerniereLoc = nil;
                         NSLog(@"3.1");
                     }
                     else
@@ -463,15 +491,25 @@ static GeolocalisationManager* sharedInstance=nil;
                             _dernierePiste = array[0][1];
                             _distanceStation = distance;
                             localisable=false;
-                            NSLog(@"3.3");
+                            _altitudeActuelle=-1;
+                            _vitesseActuelle=-1;
                             if(dateDebutSki!=nil)
                                 _tempsDeSki+=[lastLocation.timestamp timeIntervalSinceDate:dateDebutSki];
+                            dateDebutSki=nil;
+                            
+                            _distanceTot+=[lastLocation distanceFromLocation:avantDerniereLoc];
+                            avantDerniereLoc = lastLocation;
+                            NSLog(@"3.3");
                         }
                     }
                 }
                 if(localisable)
                 {
                     // A ce stade, on a obtenu un array qui représente le point de localisation voulu, quelle que soit le parcours réalisé dans le code ci-dessus. On met à jour la position avec l'array
+                    _distanceTot+=[lastLocation distanceFromLocation:avantDerniereLoc];
+                    if(_pisteProche==nil)
+                        _distanceSki+=[lastLocation distanceFromLocation:avantDerniereLoc];
+                    avantDerniereLoc = lastLocation;
                     _dernierX = [array[0][3] integerValue];
                     _dernierY = [array[0][4] integerValue];
                     _pisteProche=nil;
@@ -535,12 +573,18 @@ static GeolocalisationManager* sharedInstance=nil;
         }
     }
     
-    // Si l'utilisateur est sur la carte, on update la vue automatiquement
+    // Si l'utilisateur est sur la carte ou sur les statistiques on update la vue automatiquement
     AppDelegate *tmpDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     UINavigationController *nav= (UINavigationController*)tmpDelegate.window.rootViewController;
     if ([nav.visibleViewController.title isEqual:@"Carte View Controller"])
     {
         [nav.visibleViewController viewDidLoad];
+    }
+    else if([nav.visibleViewController.title isEqual:@"Statistiques"])
+    {
+        UITabBarController *tb = (UITabBarController *) nav.visibleViewController;
+        if([tb.selectedViewController.title isEqual:@"Mes statistiques"])
+            [tb.selectedViewController viewDidLoad];
     }
 }
 

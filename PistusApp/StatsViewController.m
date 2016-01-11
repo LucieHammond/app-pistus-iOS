@@ -20,14 +20,44 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
-    
     GeolocalisationManager *gm = [GeolocalisationManager sharedInstance];
     
     // Affichage des valeurs des statistiques
-    if(_vitesseActuelle!=nil)
-        _vitesseActuelle.text = [NSString stringWithFormat:@"Vitesse actuelle : %f",gm.vitesseActuelle];
+        // Vitesse
+    if(gm.vitesseActuelle!=-1)
+        _vitesseActuelle.text = [NSString stringWithFormat:@"Vitesse actuelle : %.2f km/h",gm.vitesseActuelle*3.6];
+    else
+        _vitesseActuelle.text = [NSString stringWithFormat:@"Vitesse actuelle : --"];
+    _vitesseMax.text = [NSString stringWithFormat:@"Vitesse maximale : %.2f km/h",gm.vitesseMax*3.6];
+    if(gm.totalPositions==0)
+        _vitesseMoy.text = [NSString stringWithFormat:@"Vitesse moyenne : 0.00 km/h"];
+    else
+        _vitesseMoy.text = [NSString stringWithFormat:@"Vitesse moyenne : %.2f km/h",gm.vitesseCumulee*3.6/gm.totalPositions];
     
-    // Do any additional setup after loading the view.
+        // Altitude
+    if(gm.altitudeActuelle!=-1)
+        _altitudeActuelle.text = [NSString stringWithFormat:@"Altitude actuelle : %.f m",gm.altitudeActuelle];
+    else
+        _altitudeActuelle.text = [NSString stringWithFormat:@"Altitude actuelle : --"];
+    if(gm.altitudeMin==5000)
+        _altitudeMin.text = [NSString stringWithFormat:@"Altitude minimale : --"];
+    else
+        _altitudeMin.text = [NSString stringWithFormat:@"Altitude minimale : %.f m",gm.altitudeMin];
+    if(gm.altitudeMax==0)
+        _altitudeMax.text = [NSString stringWithFormat:@"Altitude maximale : --"];
+    else
+        _altitudeMax.text = [NSString stringWithFormat:@"Altitude maximale : %.f m",gm.altitudeMax];
+    
+        // Distance
+    _distanceSki.text = [NSString stringWithFormat:@"Distance à ski : %.f m",gm.distanceSki];
+    _distanceTot.text = [NSString stringWithFormat:@"Distance totale : %.f m",gm.distanceTot];
+    _denivele.text = [NSString stringWithFormat:@"Dénivelé de descente : %.f m",gm.deniveleTotal];
+    
+        // Temps à ski
+    int heure = floor(gm.tempsDeSki/3600);
+    int minute = floor((gm.tempsDeSki-heure*3600)/60);
+    float seconde = gm.tempsDeSki-heure*3600-minute*60;
+    _tempsSki.text = [NSString stringWithFormat:@"Temps de ski : %d h %d min %.f s",heure,minute,seconde];
 }
 
 -(void) viewDidLayoutSubviews
@@ -47,6 +77,16 @@
     [_trackAcceptButton setCustomView:_boutonSatellite];
     [_boutonSatellite addTarget:self action:@selector(trackChange)
                forControlEvents:UIControlEventTouchUpInside];
+    
+    // Ajustement du scrollView
+    [_scrollView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
+    _scrollView.contentSize= CGSizeMake([UIScreen mainScreen].bounds.size.width, 680);
+    [_scrollView setScrollEnabled:YES];
+    
+    // Repositionnement de l'affichage des statistiques de temps (pas la place dans IB)
+    [_iconeTemps setFrame:CGRectMake(32, 555, 66, 66)];
+    [_titreTemps setFrame:CGRectMake(117, 576, 115, 34)];
+    [_tempsSki setFrame:CGRectMake(47, 634, 230, 21)];
 }
 
 - (void)didReceiveMemoryWarning {
