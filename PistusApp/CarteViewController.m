@@ -25,6 +25,7 @@
     _scrollView.delegate=self;
     self.scrollView.minimumZoomScale=1.0;
     self.scrollView.maximumZoomScale=8.0;
+    apresClic = false;
     
     if([[GeolocalisationManager sharedInstance] trackAccept])
     {
@@ -72,76 +73,105 @@
 }
 
 -(void) viewDidLayoutSubviews{
-    
-    //Ajustement de la barre de navigation en haut et configuration des icones
-    [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
-    [_topBande setFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, 20)];
-    _boutonSatellite = [[UIButton alloc] initWithFrame:CGRectMake(0,0,32,33)];
-    if(![[GeolocalisationManager sharedInstance] trackAccept])
+    if(apresClic!=true)
     {
-        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
-    }
-    else if([[GeolocalisationManager sharedInstance] trackAccept])
-    {
-        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
-    }
-    [_trackAcceptButton setCustomView:_boutonSatellite];
-    [_boutonSatellite addTarget:self action:@selector(trackChange)
+        //Ajustement de la barre de navigation en haut et configuration des icones
+        [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
+        [_topBande setFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, 20)];
+        _boutonSatellite = [[UIButton alloc] initWithFrame:CGRectMake(0,0,32,33)];
+        if(![[GeolocalisationManager sharedInstance] trackAccept])
+        {
+            [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
+        }
+        else if([[GeolocalisationManager sharedInstance] trackAccept])
+        {
+            [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:    UIControlStateNormal];
+        }
+        [_trackAcceptButton setCustomView:_boutonSatellite];
+        [_boutonSatellite addTarget:self action:@selector(trackChange)
          forControlEvents:UIControlEventTouchUpInside];
 
-    // Configuration du scrollView pour pouvoir se déplacer sur le plan
-    [_scrollView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 65)];
-    imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Plan Val d'Allos Official corrigé.jpg"]];
-    [imageView setFrame:CGRectMake(0,0,_scrollView.frame.size.height*imageView.frame.size.width/imageView.frame.size.height,_scrollView.frame.size.height)];
-    [_scrollView addSubview:imageView];
-    [_scrollView setContentOffset:CGPointMake((imageView.frame.size.width-_scrollView.frame.size.width)/2,0)];
-    [_scrollView setContentSize:CGSizeMake(imageView.frame.size.width, imageView.frame.size.height)];
-    [_scrollView setScrollEnabled:YES];
+        // Configuration du scrollView pour pouvoir se déplacer sur le plan
+        [_scrollView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 65)];
+        imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Plan Val d'Allos Official corrigé.jpg"]];
+        [imageView setFrame:CGRectMake(0,0,_scrollView.frame.size.height*imageView.frame.size.width/imageView.frame.size.height,_scrollView.frame.size.height)];
+        [_scrollView addSubview:imageView];
+        [_scrollView setContentOffset:CGPointMake((imageView.frame.size.width-_scrollView.frame.size.width)/2,0)];
+        [_scrollView setContentSize:CGSizeMake(imageView.frame.size.width, imageView.frame.size.height)];
+        [_scrollView setScrollEnabled:YES];
     
-    // Configuration du scrollView pour pouvoir zoomer sur le plan
-    [_scrollView addGestureRecognizer:_pinchGesture];
+        // Configuration du scrollView pour pouvoir zoomer sur le plan
+        [_scrollView addGestureRecognizer:[[UIPinchGestureRecognizer alloc]init]];
     
-    // Ajustement du texte qui s'affiche en cas de localisation hors de la station
-    _texteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
-    _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
-    [self.view insertSubview:_fondTexteDistance aboveSubview:_scrollView];
-    [self.view insertSubview:_texteDistance aboveSubview:_fondTexteDistance];
-    _texteDistance.text=@"";
-    _fondTexteDistance.hidden=true;
+        // Ajustement du texte qui s'affiche en cas de localisation hors de la station
+        _texteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
+        _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
+        [self.view insertSubview:_fondTexteDistance aboveSubview:_scrollView];
+        [self.view insertSubview:_texteDistance aboveSubview:_fondTexteDistance];
+        _texteDistance.text=@"";
+        _fondTexteDistance.hidden=true;
     
-    // Création du marqueur
-    marqueur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,16,16)];
-    [marqueur setImage:[UIImage imageNamed:@"marker2.png"] forState:UIControlStateNormal];
-    [marqueur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
-      forControlEvents:UIControlEventTouchUpInside];
-    [self.view insertSubview:marqueur aboveSubview:imageView];
-    marqueur.hidden=true;
+        // Création du marqueur
+        marqueur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,16,16)];
+        [marqueur setImage:[UIImage imageNamed:@"marker2.png"] forState:UIControlStateNormal];
+        [marqueur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+           forControlEvents:UIControlEventTouchUpInside];
+        [self.view insertSubview:marqueur aboveSubview:imageView];
+        marqueur.hidden=true;
     
-    // Ajout du bouton pour recentrer sur la position de l'utilisateur
-    UIButton *ciblage = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-60,[UIScreen mainScreen].bounds.size.height*7/10,47,47)];
-    [ciblage setImage:[UIImage imageNamed:@"ciblage.png"] forState:UIControlStateNormal];
-    ciblage.alpha=0.5;
-    [self.view insertSubview:ciblage aboveSubview:_scrollView];
-    [ciblage addTarget:self action:@selector(ciblerPosition)
+        // Ajout du bouton pour recentrer sur la position de l'utilisateur
+        UIButton *ciblage = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-60,[UIScreen mainScreen].bounds.size.height*7/10,47,47)];
+        [ciblage setImage:[UIImage imageNamed:@"ciblage.png"] forState:UIControlStateNormal];
+        ciblage.alpha=0.5;
+        [self.view insertSubview:ciblage aboveSubview:_scrollView];
+        [ciblage addTarget:self action:@selector(ciblerPosition)
                forControlEvents:UIControlEventTouchUpInside];
     
-    // Ajout de marqueurs pour les lieux importants
-    float X = _scrollView.contentSize.width/7452*3424 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-    float Y = _scrollView.contentSize.height/3174*1710 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-    _etoile_Rez.center = CGPointMake(X,Y);
-    X = _scrollView.contentSize.width/7452*3195 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-    Y = _scrollView.contentSize.height/3174*2115 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-    _etoile_Pat.center = CGPointMake(X,Y);
-    X = _scrollView.contentSize.width/7452*3742 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-    Y = _scrollView.contentSize.height/3174*1820 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-    _etoile_Luge.center = CGPointMake(X,Y);
+        // Ajout de marqueurs pour les lieux importants
+        float X = _scrollView.contentSize.width/7452*3424 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        float Y = _scrollView.contentSize.height/3174*1710 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        _etoile_Rez.center = CGPointMake(X,Y);
+        X = _scrollView.contentSize.width/7452*3195 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        Y = _scrollView.contentSize.height/3174*2115 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        _etoile_Pat.center = CGPointMake(X,Y);
+        X = _scrollView.contentSize.width/7452*3742 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        Y = _scrollView.contentSize.height/3174*1820 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        _etoile_Luge.center = CGPointMake(X,Y);
     
-    [_etoile_Rez addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+        [_etoile_Rez addTarget:self action:@selector(afficherDetailsPourMarqueur:)
          forControlEvents:UIControlEventTouchUpInside];
-    [_etoile_Pat addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+        [_etoile_Pat addTarget:self action:@selector(afficherDetailsPourMarqueur:)
           forControlEvents:UIControlEventTouchUpInside];
-    [_etoile_Luge addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+        [_etoile_Luge addTarget:self action:@selector(afficherDetailsPourMarqueur:)
           forControlEvents:UIControlEventTouchUpInside];
+        
+        // Initialisation de la bulle sans l'afficher
+        _pateBulle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pate_bulle.png"]];
+        [self.view insertSubview:_pateBulle aboveSubview:imageView];
+        _pateBulle.hidden=true;
+        
+        _titre = [[UILabel alloc] init];
+        _titre.font=[UIFont boldSystemFontOfSize:16.0];;
+        [self.view insertSubview:_titre aboveSubview:_pateBulle];
+        _titre.hidden=true;
+        
+        _nomPiste = [[UILabel alloc] init];
+        _nomPiste.font=[UIFont systemFontOfSize:11.0];
+        [self.view insertSubview:_nomPiste aboveSubview:_titre];
+        _nomPiste.hidden=true;
+        
+        _derniereDate = [[UILabel alloc]init];
+        _derniereDate.font=[UIFont systemFontOfSize:9.0 weight:UIFontWeightLight];
+        [self.view insertSubview:_derniereDate aboveSubview:_nomPiste];
+        _derniereDate.hidden=true;
+        
+        _bulle = [[UIView alloc] init];
+        [_bulle setBackgroundColor:[UIColor whiteColor]];
+        [self.view insertSubview:_bulle belowSubview:_titre];
+        _bulle.hidden=true;
+    }
+    else
+        apresClic=false;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -185,55 +215,75 @@
 
 -(void)afficherDetailsPourMarqueur:(UIButton *)sender
 {
+    apresClic = true;
+    
     // Pate de la bulle
-    UIImageView *pateBulle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pate_bulle.png"]];
-    [pateBulle setFrame: CGRectMake(sender.center.x-11,sender.frame.origin.y-10,22,10)];
-    [self.view insertSubview:pateBulle aboveSubview:imageView];
-    
-    // Titre "Vous êtes ici"
-    UILabel *titre = [[UILabel alloc] init];
-    titre.text=@"Vous êtes ici";
-    titre.font=[UIFont boldSystemFontOfSize:16.0];
-    [titre sizeToFit];
-    titre.center=CGPointMake(sender.center.x,sender.frame.origin.y-38);
-    [self.view insertSubview:titre aboveSubview:pateBulle];
-    
-    // Nom de la piste
-    UILabel *nomPiste = [[UILabel alloc] init];
-    self.dbManager=[[DBManager alloc]initWithDatabaseFilename:@"bddPistes.db"];
-    NSString *query = [NSString stringWithFormat:@"select nom from pistes where id='%@'",[GeolocalisationManager sharedInstance].dernierePiste];
-    nomPiste.text=[self.dbManager loadDataFromDB:query][0][0];
-    nomPiste.font=[UIFont systemFontOfSize:11.0];
-    [nomPiste sizeToFit];
-    nomPiste.center=CGPointMake(sender.center.x,sender.frame.origin.y-21);
-    [self.view insertSubview:nomPiste aboveSubview:titre];
-    
-    // Fond de la bulle
-    UIView *bulle = [[UIView alloc] init];
-    [bulle setBackgroundColor:[UIColor whiteColor]];
-    [bulle setFrame: CGRectMake(0,0,MAX(nomPiste.frame.size.width+15,titre.frame.size.width+15),40)];
-    bulle.center = CGPointMake(sender.center.x, sender.frame.origin.y-30);
-    [self.view insertSubview:bulle belowSubview:titre];
-    
-    // Repositionnement du message
-    if(titre.frame.origin.x<nomPiste.frame.origin.x)
-        [nomPiste setFrame:CGRectMake(titre.frame.origin.x,nomPiste.frame.origin.y,nomPiste.frame.size.width,nomPiste.frame.size.height)];
+    [_pateBulle setFrame: CGRectMake(sender.center.x-11,sender.frame.origin.y-10,22,10)];
+    _pateBulle.hidden=false;
+    if(sender==marqueur)
+    {
+        //Titre
+        _titre.text=@"Vous êtes ici";
+        [_titre sizeToFit];
+        _titre.center=CGPointMake(sender.center.x,sender.frame.origin.y-38);
+        _titre.hidden=false;
+        
+        // Nom de la piste
+        self.dbManager=[[DBManager alloc]initWithDatabaseFilename:@"bddPistes.db"];
+        NSString *query = [NSString stringWithFormat:@"select nom from pistes where id='%@'",[GeolocalisationManager sharedInstance].dernierePiste];
+        _nomPiste.text=[self.dbManager loadDataFromDB:query][0][0];
+        [_nomPiste sizeToFit];
+        _nomPiste.center=CGPointMake(sender.center.x,sender.frame.origin.y-21);
+        _nomPiste.hidden=false;
+        
+        // Fond de la bulle
+        [_bulle setFrame: CGRectMake(0,0,MAX(_nomPiste.frame.size.width+15,_titre.frame.size.width+15),40)];
+        _bulle.center = CGPointMake(sender.center.x, sender.frame.origin.y-30);
+        
+        // Repositionnement du message
+        if(_titre.frame.origin.x<_nomPiste.frame.origin.x)
+            [_nomPiste setFrame:CGRectMake(_titre.frame.origin.x,_nomPiste.frame.origin.y,_nomPiste.frame.size.width,_nomPiste.frame.size.height)];
+        else
+            [_titre setFrame:CGRectMake(_nomPiste.frame.origin.x,_titre.frame.origin.y,_titre.frame.size.width,_titre.frame.size.height)];
+    }
     else
-        [titre setFrame:CGRectMake(nomPiste.frame.origin.x,titre.frame.origin.y,titre.frame.size.width,titre.frame.size.height)];
+    {
+        // Titre
+        if(sender==_etoile_Rez)
+            _titre.text=@"Résidence Plein Sud";
+        else if(sender==_etoile_Pat)
+            _titre.text=@"Patinoire";
+        else if(sender==_etoile_Luge)
+            _titre.text=@"Luge sur rails";
+        [_titre sizeToFit];
+        _titre.center=CGPointMake(sender.center.x,sender.frame.origin.y-20);
+        _titre.hidden=false;
+        
+        // Fond de la bulle
+        [_bulle setFrame: CGRectMake(0,0,_titre.frame.size.width+13,23)];
+        _bulle.center = CGPointMake(sender.center.x, sender.frame.origin.y-20);
+    }
+    _bulle.hidden=false;
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]init];
+    [tapGesture addTarget:self action:@selector(effacerBulle)];
+    [_scrollView addGestureRecognizer:tapGesture];
     
     // Effacement de la bulle
-    [sender addTarget:self action:@selector(effacerBulle) forControlEvents:UIControlEventTouchUpOutside];
-    [bulle removeFromSuperview];
+    //[sender addTarget:self action:@selector(effacerBulle) forControlEvents:UIControlEventTouchUpOutside];
+    /*[bulle removeFromSuperview];
     [nomPiste removeFromSuperview];
     [titre removeFromSuperview];
-    [pateBulle removeFromSuperview];
-    
-    //NSArray *lieuxImportants = [NSArray arrayWithObjects: @"Résidence Plein Sud", @"Patinoire",@"Verdon Express /nLuge sur rails",nil];
+    [pateBulle removeFromSuperview];*/
 }
 
 -(void) effacerBulle
 {
-    NSLog(@"Bite");
+    _pateBulle.hidden=true;
+    _titre.hidden=true;
+    _nomPiste.hidden=true;
+    _derniereDate.hidden=true;
+    _bulle.hidden=true;
 }
 
 -(void)ciblerPosition

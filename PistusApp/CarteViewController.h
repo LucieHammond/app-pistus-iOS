@@ -12,6 +12,7 @@
 {
     UIImageView *imageView;
     UIButton *marqueur;
+    BOOL apresClic;
 }
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *barre;
@@ -25,6 +26,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *etoile_Rez;
 @property (weak, nonatomic) IBOutlet UIButton *etoile_Pat;
 @property (weak, nonatomic) IBOutlet UIButton *etoile_Luge;
+@property (strong, nonatomic) IBOutlet UIImageView *pateBulle;
+@property (strong, nonatomic) IBOutlet UILabel *titre;
+@property (strong, nonatomic) IBOutlet UILabel *nomPiste;
+@property (strong, nonatomic) IBOutlet UILabel *derniereDate;
+@property (strong, nonatomic) IBOutlet UIView *bulle;
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;
 
