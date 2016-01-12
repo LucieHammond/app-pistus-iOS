@@ -26,6 +26,7 @@
     self.scrollView.minimumZoomScale=1.0;
     self.scrollView.maximumZoomScale=8.0;
     apresClic = false;
+    _bulle.hidden=true;
     
     if([[GeolocalisationManager sharedInstance] trackAccept])
     {
@@ -264,6 +265,7 @@
         _bulle.center = CGPointMake(sender.center.x, sender.frame.origin.y-20);
     }
     _bulle.hidden=false;
+    marqueurBulle=sender;
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]init];
     [tapGesture addTarget:self action:@selector(effacerBulle)];
@@ -311,6 +313,7 @@
         float Y = _scrollView.contentSize.height/3174*y - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         marqueur.center = CGPointMake(X,Y);
     }
+    
     float X = _scrollView.contentSize.width/7452*3424 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
     float Y = _scrollView.contentSize.height/3174*1710 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
     _etoile_Rez.center = CGPointMake(X,Y);
@@ -320,6 +323,29 @@
     X = _scrollView.contentSize.width/7452*3742 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
     Y = _scrollView.contentSize.height/3174*1820 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
     _etoile_Luge.center = CGPointMake(X,Y);
+
+    if(_bulle.hidden==false && marqueurBulle!=nil)
+    {
+        // Pate de la bulle
+        [_pateBulle setFrame: CGRectMake(marqueurBulle.center.x-11,marqueurBulle.frame.origin.y-10,22,10)];
+        if(marqueurBulle==marqueur)
+        {
+            _titre.center=CGPointMake(marqueurBulle.center.x,marqueurBulle.frame.origin.y-38);
+            _nomPiste.center=CGPointMake(marqueurBulle.center.x,marqueurBulle.frame.origin.y-21);
+            _bulle.center = CGPointMake(marqueurBulle.center.x, marqueurBulle.frame.origin.y-30);
+            
+            // Repositionnement du message
+            if(_titre.frame.origin.x<_nomPiste.frame.origin.x)
+                [_nomPiste setFrame:CGRectMake(_titre.frame.origin.x,_nomPiste.frame.origin.y,_nomPiste.frame.size.width,_nomPiste.frame.size.height)];
+            else
+                [_titre setFrame:CGRectMake(_nomPiste.frame.origin.x,_titre.frame.origin.y,_titre.frame.size.width,_titre.frame.size.height)];
+        }
+        else
+        {
+            _titre.center=CGPointMake(marqueurBulle.center.x,marqueurBulle.frame.origin.y-20);
+            _bulle.center = CGPointMake(marqueurBulle.center.x, marqueurBulle.frame.origin.y-20);
+        }
+    }
 }
 
 /*
