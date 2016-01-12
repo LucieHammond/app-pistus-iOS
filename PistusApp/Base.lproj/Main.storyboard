@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="M25-bk-U8u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="M25-bk-U8u">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--Carte View Controller-->
@@ -48,7 +48,7 @@
                                     <navigationItem title="Carte" id="QDK-oF-UJe">
                                         <barButtonItem key="rightBarButtonItem" id="nxL-JU-RIz">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gJx-DN-dbF">
-                                                <rect key="frame" x="57" y="55" width="32" height="33"/>
+                                                <rect key="frame" x="272" y="5" width="32" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button" image="satelliteoff.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -73,6 +73,21 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.68348914380000003" green="0.82675462960000001" blue="0.96088445190000005" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QBf-tf-lWj">
+                                <rect key="frame" x="293" y="80" width="17" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="etoile.png"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tCx-dx-Mgy">
+                                <rect key="frame" x="293" y="127" width="17" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="etoile.png"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6LY-zC-U2a">
+                                <rect key="frame" x="293" y="103" width="17" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="etoile.png"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -81,6 +96,9 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="barre" destination="c2J-Fv-7vs" id="1zQ-ug-125"/>
+                        <outlet property="etoile_Luge" destination="tCx-dx-Mgy" id="BSF-0U-LMJ"/>
+                        <outlet property="etoile_Pat" destination="6LY-zC-U2a" id="z2e-7S-onb"/>
+                        <outlet property="etoile_Rez" destination="QBf-tf-lWj" id="Bq4-ZW-NWW"/>
                         <outlet property="fondTexteDistance" destination="lGN-gA-AFZ" id="MdX-1v-UaY"/>
                         <outlet property="pinchGesture" destination="H6q-3p-j7c" id="f4G-b9-dWG"/>
                         <outlet property="scrollView" destination="R7k-Nv-Qz0" id="AjG-Ef-pK5"/>
@@ -149,7 +167,7 @@
                                     <navigationItem title="Statistiques" id="CXt-d8-9TQ">
                                         <barButtonItem key="rightBarButtonItem" id="xmz-Gm-Sx9">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="f1x-il-Qhc">
-                                                <rect key="frame" x="57" y="55" width="32" height="33"/>
+                                                <rect key="frame" x="272" y="5" width="32" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button" image="satelliteoff.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -193,7 +211,7 @@
                                     <navigationItem title="Statistiques" id="ICM-R1-icY">
                                         <barButtonItem key="rightBarButtonItem" id="ExX-E5-ys9">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cDl-Oz-T36">
-                                                <rect key="frame" x="57" y="55" width="32" height="33"/>
+                                                <rect key="frame" x="272" y="5" width="32" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button" image="satelliteoff.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -364,7 +382,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WaY-da-PgS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1192.5" y="-1033.5"/>
+            <point key="canvasLocation" x="1192.5" y="-1047.5"/>
         </scene>
         <!--Statistiques-->
         <scene sceneID="8pj-JG-Jxv">
@@ -751,7 +769,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="G7b-tI-sjH" kind="relationship" relationship="rootViewController" id="w9c-8G-b6J"/>
+                        <segue destination="t2j-nU-UHC" kind="relationship" relationship="rootViewController" id="XzK-em-tU4"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y5E-X2-OxX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -764,6 +782,7 @@
         <image name="altitude.png" width="567" height="567"/>
         <image name="connexion.png" width="332" height="108"/>
         <image name="distance.png" width="567" height="567"/>
+        <image name="etoile.png" width="128" height="128"/>
         <image name="iconConcours.png" width="450" height="342"/>
         <image name="iconContact.png" width="1192" height="1200"/>
         <image name="iconHoraires.png" width="515" height="437"/>
@@ -776,12 +795,7 @@
         <image name="speedometer.png" width="550" height="550"/>
         <image name="temps.png" width="567" height="567"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="15F-1e-nd1"/>
+        <segue reference="XzK-em-tU4"/>
     </inferredMetricsTieBreakers>
 </document>

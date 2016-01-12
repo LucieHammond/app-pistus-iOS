@@ -22,6 +22,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *texteDistance;
 @property (weak, nonatomic) IBOutlet UIView *fondTexteDistance;
 
+@property (weak, nonatomic) IBOutlet UIButton *etoile_Rez;
+@property (weak, nonatomic) IBOutlet UIButton *etoile_Pat;
+@property (weak, nonatomic) IBOutlet UIButton *etoile_Luge;
+
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;
 
 @end

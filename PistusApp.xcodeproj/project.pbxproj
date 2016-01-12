@@ -28,10 +28,10 @@
 		C570B8661C2ED85C003E0E16 /* satelliteon.png in Resources */ = {isa = PBXBuildFile; fileRef = C570B8651C2ED85C003E0E16 /* satelliteon.png */; };
 		C570B8681C2EDC23003E0E16 /* satelliteoff.png in Resources */ = {isa = PBXBuildFile; fileRef = C570B8671C2EDC23003E0E16 /* satelliteoff.png */; };
 		C570B86C1C30999B003E0E16 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C570B86B1C30999B003E0E16 /* CoreLocation.framework */; };
+		C593B4E81C458397009F5896 /* etoile.png in Resources */ = {isa = PBXBuildFile; fileRef = C593B4E71C458397009F5896 /* etoile.png */; };
 		C5AED9961C41B8B30086E570 /* ciblage.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED9951C41B8B30086E570 /* ciblage.png */; };
 		C5AED9981C4289240086E570 /* pate_bulle.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED9971C4289240086E570 /* pate_bulle.png */; };
 		C5AED99C1C4289DC0086E570 /* bddPistes.db in Resources */ = {isa = PBXBuildFile; fileRef = C5AED99B1C4289DC0086E570 /* bddPistes.db */; };
-		C5AED99E1C4289F20086E570 /* etoile.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED99D1C4289F20086E570 /* etoile.png */; };
 		C5AED9A01C43B10C0086E570 /* speedometer.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED99F1C43B10C0086E570 /* speedometer.png */; };
 		C5AED9A21C43B1170086E570 /* altitude.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED9A11C43B1170086E570 /* altitude.png */; };
 		C5AED9A71C43B5490086E570 /* StatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5AED9A61C43B5490086E570 /* StatsViewController.m */; };
@@ -96,10 +96,10 @@
 		C570B8651C2ED85C003E0E16 /* satelliteon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satelliteon.png; sourceTree = "<group>"; };
 		C570B8671C2EDC23003E0E16 /* satelliteoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satelliteoff.png; sourceTree = "<group>"; };
 		C570B86B1C30999B003E0E16 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C593B4E71C458397009F5896 /* etoile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = etoile.png; sourceTree = "<group>"; };
 		C5AED9951C41B8B30086E570 /* ciblage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ciblage.png; sourceTree = "<group>"; };
 		C5AED9971C4289240086E570 /* pate_bulle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pate_bulle.png; sourceTree = "<group>"; };
 		C5AED99B1C4289DC0086E570 /* bddPistes.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = bddPistes.db; sourceTree = "<group>"; };
-		C5AED99D1C4289F20086E570 /* etoile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = etoile.png; sourceTree = "<group>"; };
 		C5AED99F1C43B10C0086E570 /* speedometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speedometer.png; sourceTree = "<group>"; };
 		C5AED9A11C43B1170086E570 /* altitude.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitude.png; sourceTree = "<group>"; };
 		C5AED9A51C43B5490086E570 /* StatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsViewController.h; sourceTree = "<group>"; };
@@ -241,11 +241,11 @@
 		C54F8B1D1BD97E1800CE7B3A /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				C593B4E71C458397009F5896 /* etoile.png */,
 				C5AED9AA1C4423FA0086E570 /* temps.png */,
 				C5AED9A81C4423F10086E570 /* distance.png */,
 				C5AED9A11C43B1170086E570 /* altitude.png */,
 				C5AED99F1C43B10C0086E570 /* speedometer.png */,
-				C5AED99D1C4289F20086E570 /* etoile.png */,
 				C5AED9971C4289240086E570 /* pate_bulle.png */,
 				C5AED9951C41B8B30086E570 /* ciblage.png */,
 				C5F7B8AD1C41472E00419A86 /* marker2.png */,
@@ -373,7 +373,6 @@
 				C5AED9961C41B8B30086E570 /* ciblage.png in Resources */,
 				C5C05E8E1BEFFBA5007D763E /* accueil_4.jpg in Resources */,
 				C539A78D1BF1F56A00B9E3ED /* iconContact.png in Resources */,
-				C5AED99E1C4289F20086E570 /* etoile.png in Resources */,
 				C5C05E8A1BEFF7A0007D763E /* Login-667h@2x~iphone.png in Resources */,
 				C539A78F1BF1F56A00B9E3ED /* iconMeteo.png in Resources */,
 				C54F8AD01BD94D5A00CE7B3A /* LaunchScreen.xib in Resources */,
@@ -388,6 +387,7 @@
 				C54F8ACD1BD94D5A00CE7B3A /* Images.xcassets in Resources */,
 				C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */,
 				C5AED9A21C43B1170086E570 /* altitude.png in Resources */,
+				C593B4E81C458397009F5896 /* etoile.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -110,7 +110,7 @@
     _fondTexteDistance.hidden=true;
     
     // Création du marqueur
-    marqueur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,15,15)];
+    marqueur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,16,16)];
     [marqueur setImage:[UIImage imageNamed:@"marker2.png"] forState:UIControlStateNormal];
     [marqueur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
       forControlEvents:UIControlEventTouchUpInside];
@@ -124,6 +124,24 @@
     [self.view insertSubview:ciblage aboveSubview:_scrollView];
     [ciblage addTarget:self action:@selector(ciblerPosition)
                forControlEvents:UIControlEventTouchUpInside];
+    
+    // Ajout de marqueurs pour les lieux importants
+    float X = _scrollView.contentSize.width/7452*3424 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    float Y = _scrollView.contentSize.height/3174*1710 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    _etoile_Rez.center = CGPointMake(X,Y);
+    X = _scrollView.contentSize.width/7452*3195 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    Y = _scrollView.contentSize.height/3174*2115 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    _etoile_Pat.center = CGPointMake(X,Y);
+    X = _scrollView.contentSize.width/7452*3742 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    Y = _scrollView.contentSize.height/3174*1820 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    _etoile_Luge.center = CGPointMake(X,Y);
+    
+    [_etoile_Rez addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+         forControlEvents:UIControlEventTouchUpInside];
+    [_etoile_Pat addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+          forControlEvents:UIControlEventTouchUpInside];
+    [_etoile_Luge addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+          forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -170,7 +188,7 @@
     // Pate de la bulle
     UIImageView *pateBulle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pate_bulle.png"]];
     [pateBulle setFrame: CGRectMake(sender.center.x-11,sender.frame.origin.y-10,22,10)];
-    [self.view insertSubview:pateBulle aboveSubview:_scrollView];
+    [self.view insertSubview:pateBulle aboveSubview:imageView];
     
     // Titre "Vous êtes ici"
     UILabel *titre = [[UILabel alloc] init];
@@ -209,6 +227,8 @@
     [nomPiste removeFromSuperview];
     [titre removeFromSuperview];
     [pateBulle removeFromSuperview];
+    
+    //NSArray *lieuxImportants = [NSArray arrayWithObjects: @"Résidence Plein Sud", @"Patinoire",@"Verdon Express /nLuge sur rails",nil];
 }
 
 -(void) effacerBulle
@@ -241,6 +261,15 @@
         float Y = _scrollView.contentSize.height/3174*y - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         marqueur.center = CGPointMake(X,Y);
     }
+    float X = _scrollView.contentSize.width/7452*3424 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    float Y = _scrollView.contentSize.height/3174*1710 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    _etoile_Rez.center = CGPointMake(X,Y);
+    X = _scrollView.contentSize.width/7452*3195 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    Y = _scrollView.contentSize.height/3174*2115 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    _etoile_Pat.center = CGPointMake(X,Y);
+    X = _scrollView.contentSize.width/7452*3742 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    Y = _scrollView.contentSize.height/3174*1820 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    _etoile_Luge.center = CGPointMake(X,Y);
 }
 
 /*
