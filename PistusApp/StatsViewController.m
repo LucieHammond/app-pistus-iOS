@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
+    
     GeolocalisationManager *gm = [GeolocalisationManager sharedInstance];
     
     // Affichage des valeurs des statistiques
@@ -77,6 +78,9 @@
     [_trackAcceptButton setCustomView:_boutonSatellite];
     [_boutonSatellite addTarget:self action:@selector(trackChange)
                forControlEvents:UIControlEventTouchUpInside];
+    
+    // Redimensionnement du bouton de la barre d'onglets
+    [_barItem setImageInsets:UIEdgeInsetsMake(122,118,118,118)];
     
     // Ajustement du scrollView
     [_scrollView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];

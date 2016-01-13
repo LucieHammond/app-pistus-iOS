@@ -29,6 +29,11 @@
 		C570B8681C2EDC23003E0E16 /* satelliteoff.png in Resources */ = {isa = PBXBuildFile; fileRef = C570B8671C2EDC23003E0E16 /* satelliteoff.png */; };
 		C570B86C1C30999B003E0E16 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C570B86B1C30999B003E0E16 /* CoreLocation.framework */; };
 		C593B4E81C458397009F5896 /* etoile.png in Resources */ = {isa = PBXBuildFile; fileRef = C593B4E71C458397009F5896 /* etoile.png */; };
+		C593B4EB1C45D730009F5896 /* ClassementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C593B4EA1C45D730009F5896 /* ClassementViewController.m */; };
+		C593B4ED1C45E0A5009F5896 /* mesStats.png in Resources */ = {isa = PBXBuildFile; fileRef = C593B4EC1C45E0A5009F5896 /* mesStats.png */; };
+		C593B4EF1C45E0AB009F5896 /* maSemaine.png in Resources */ = {isa = PBXBuildFile; fileRef = C593B4EE1C45E0AB009F5896 /* maSemaine.png */; };
+		C593B4F11C45E0B1009F5896 /* classement.png in Resources */ = {isa = PBXBuildFile; fileRef = C593B4F01C45E0B1009F5896 /* classement.png */; };
+		C593B4F41C45E198009F5896 /* GraphsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C593B4F31C45E198009F5896 /* GraphsViewController.m */; };
 		C5AED9961C41B8B30086E570 /* ciblage.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED9951C41B8B30086E570 /* ciblage.png */; };
 		C5AED9981C4289240086E570 /* pate_bulle.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED9971C4289240086E570 /* pate_bulle.png */; };
 		C5AED99C1C4289DC0086E570 /* bddPistes.db in Resources */ = {isa = PBXBuildFile; fileRef = C5AED99B1C4289DC0086E570 /* bddPistes.db */; };
@@ -97,6 +102,13 @@
 		C570B8671C2EDC23003E0E16 /* satelliteoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satelliteoff.png; sourceTree = "<group>"; };
 		C570B86B1C30999B003E0E16 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C593B4E71C458397009F5896 /* etoile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = etoile.png; sourceTree = "<group>"; };
+		C593B4E91C45D730009F5896 /* ClassementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassementViewController.h; sourceTree = "<group>"; };
+		C593B4EA1C45D730009F5896 /* ClassementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassementViewController.m; sourceTree = "<group>"; };
+		C593B4EC1C45E0A5009F5896 /* mesStats.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mesStats.png; sourceTree = "<group>"; };
+		C593B4EE1C45E0AB009F5896 /* maSemaine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maSemaine.png; sourceTree = "<group>"; };
+		C593B4F01C45E0B1009F5896 /* classement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classement.png; sourceTree = "<group>"; };
+		C593B4F21C45E198009F5896 /* GraphsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphsViewController.h; sourceTree = "<group>"; };
+		C593B4F31C45E198009F5896 /* GraphsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphsViewController.m; sourceTree = "<group>"; };
 		C5AED9951C41B8B30086E570 /* ciblage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ciblage.png; sourceTree = "<group>"; };
 		C5AED9971C4289240086E570 /* pate_bulle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pate_bulle.png; sourceTree = "<group>"; };
 		C5AED99B1C4289DC0086E570 /* bddPistes.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = bddPistes.db; sourceTree = "<group>"; };
@@ -204,6 +216,10 @@
 				C570B8501C2DF46F003E0E16 /* CarteViewController.m */,
 				C5AED9A51C43B5490086E570 /* StatsViewController.h */,
 				C5AED9A61C43B5490086E570 /* StatsViewController.m */,
+				C593B4E91C45D730009F5896 /* ClassementViewController.h */,
+				C593B4EA1C45D730009F5896 /* ClassementViewController.m */,
+				C593B4F21C45E198009F5896 /* GraphsViewController.h */,
+				C593B4F31C45E198009F5896 /* GraphsViewController.m */,
 				C54F8AC91BD94D5A00CE7B3A /* Main.storyboard */,
 				C54F8ACC1BD94D5A00CE7B3A /* Images.xcassets */,
 				C54F8ACE1BD94D5A00CE7B3A /* LaunchScreen.xib */,
@@ -241,6 +257,9 @@
 		C54F8B1D1BD97E1800CE7B3A /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				C593B4F01C45E0B1009F5896 /* classement.png */,
+				C593B4EE1C45E0AB009F5896 /* maSemaine.png */,
+				C593B4EC1C45E0A5009F5896 /* mesStats.png */,
 				C593B4E71C458397009F5896 /* etoile.png */,
 				C5AED9AA1C4423FA0086E570 /* temps.png */,
 				C5AED9A81C4423F10086E570 /* distance.png */,
@@ -364,7 +383,9 @@
 				C5AED9AB1C4423FA0086E570 /* temps.png in Resources */,
 				C54F8ACB1BD94D5A00CE7B3A /* Main.storyboard in Resources */,
 				C5AED99C1C4289DC0086E570 /* bddPistes.db in Resources */,
+				C593B4ED1C45E0A5009F5896 /* mesStats.png in Resources */,
 				C5C05E7B1BEFF6FC007D763E /* accueil_6Plus.jpg in Resources */,
+				C593B4F11C45E0B1009F5896 /* classement.png in Resources */,
 				C570B8661C2ED85C003E0E16 /* satelliteon.png in Resources */,
 				C5C05E8B1BEFF7A0007D763E /* Login-736h@3x~iphone.png in Resources */,
 				C539A7911BF1F56A00B9E3ED /* iconTroc.png in Resources */,
@@ -383,6 +404,7 @@
 				C5C05E7C1BEFF6FC007D763E /* iconConcours.png in Resources */,
 				C5C05E881BEFF7A0007D763E /* connexion.png in Resources */,
 				C5C05E8C1BEFF7A0007D763E /* Login@2x~iphone.png in Resources */,
+				C593B4EF1C45E0AB009F5896 /* maSemaine.png in Resources */,
 				C5AED9A91C4423F10086E570 /* distance.png in Resources */,
 				C54F8ACD1BD94D5A00CE7B3A /* Images.xcassets in Resources */,
 				C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */,
@@ -454,6 +476,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C54F8AC81BD94D5A00CE7B3A /* ViewController.m in Sources */,
+				C593B4F41C45E198009F5896 /* GraphsViewController.m in Sources */,
+				C593B4EB1C45D730009F5896 /* ClassementViewController.m in Sources */,
 				C570B8561C2EBE50003E0E16 /* GeolocalisationManager.m in Sources */,
 				C54F8AC51BD94D5A00CE7B3A /* AppDelegate.m in Sources */,
 				C570B8511C2DF46F003E0E16 /* CarteViewController.m in Sources */,

@@ -30,7 +30,7 @@
                                 </items>
                             </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" maximumZoomScale="8" id="R7k-Nv-Qz0">
-                                <rect key="frame" x="0.0" y="227" width="320" height="253"/>
+                                <rect key="frame" x="0.0" y="163" width="320" height="317"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -144,18 +144,11 @@
         <!--Classement général-->
         <scene sceneID="spd-6R-UEM">
             <objects>
-                <viewController title="Classement général" id="ue6-fM-7MU" sceneMemberID="viewController">
+                <viewController title="Classement général" id="ue6-fM-7MU" customClass="ClassementViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sA7-6b-XiV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Page 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GaT-pH-ojb">
-                                <rect key="frame" x="118" y="213" width="67" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <navigationBar contentMode="scaleToFill" translucent="NO" id="tE8-yk-1lU">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -182,15 +175,107 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speedometer.png" id="VZ6-R0-VAk">
+                                <rect key="frame" x="32" y="82" width="63" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="temps.png" id="Xdz-Yg-5u9">
+                                <rect key="frame" x="32" y="521" width="63" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="distance.png" id="nkX-qs-b53">
+                                <rect key="frame" x="32" y="434" width="63" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vitesse maximale" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3ti-N5-ZgF">
+                                <rect key="frame" x="116" y="105" width="226" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance à ski" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O7x-tw-SGX">
+                                <rect key="frame" x="116" y="455" width="226" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temps de ski" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xrX-4C-Sev">
+                                <rect key="frame" x="116" y="536" width="195" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Votre classement :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7KT-lE-fgu">
+                                <rect key="frame" x="43" y="156" width="165" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 - Enguerran Henniart :     54 km/h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BJB-x6-l82">
+                                <rect key="frame" x="58" y="187" width="272" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 - Enguerran Henniart :     54 km/h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hWm-wD-LH6">
+                                <rect key="frame" x="58" y="300" width="272" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4 - Enguerran Henniart :     54 km/h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aPl-MP-gIY">
+                                <rect key="frame" x="58" y="271" width="272" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 - Niels Venverloo :           36 km/h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vEx-5B-Y7u">
+                                <rect key="frame" x="58" y="215" width="272" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 - Baptiste Aubert :           28 km/h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JzF-AJ-XIC">
+                                <rect key="frame" x="58" y="243" width="272" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="altitude.png" id="q0w-n4-QhK">
+                                <rect key="frame" x="32" y="343" width="63" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Altitude maximale" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9gL-Wh-Ggg">
+                                <rect key="frame" x="116" y="358" width="237" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.85882352941176465" green="0.90588235294117647" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="SeG-Ww-Bix"/>
+                    <tabBarItem key="tabBarItem" title="Classement général" image="classement.png" id="SeG-Ww-Bix">
+                        <inset key="imageInsets" minX="174" minY="182" maxX="174" maxY="178"/>
+                    </tabBarItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="barItem" destination="SeG-Ww-Bix" id="vFx-jS-Dv0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xuw-XX-QjQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1611" y="-1033"/>
+            <point key="canvasLocation" x="1610.5" y="-1033.5"/>
         </scene>
         <!--Mes statistiques-->
         <scene sceneID="hjo-03-Swq">
@@ -358,13 +443,16 @@
                         </subviews>
                         <color key="backgroundColor" red="0.92620158195495605" green="0.95729553699493408" blue="0.9880669116973877" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="BeI-l3-XsV"/>
+                    <tabBarItem key="tabBarItem" title="Mes statistiques" image="mesStats.png" id="BeI-l3-XsV">
+                        <inset key="imageInsets" minX="118" minY="122" maxX="118" maxY="118"/>
+                    </tabBarItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="altitudeActuelle" destination="oRf-fo-gAC" id="hEB-3n-Z1p"/>
                         <outlet property="altitudeMax" destination="RJ8-BL-TIG" id="gVC-zh-Svy"/>
                         <outlet property="altitudeMin" destination="bWZ-PI-E1i" id="eWV-uJ-3iC"/>
+                        <outlet property="barItem" destination="BeI-l3-XsV" id="a6L-aw-3R9"/>
                         <outlet property="barre" destination="hUb-PT-8Yl" id="f5A-ak-PKZ"/>
                         <outlet property="denivele" destination="qpS-kI-VU3" id="Ci6-8d-tli"/>
                         <outlet property="distanceSki" destination="0zu-4I-yZ9" id="Q3G-L9-8hV"/>
@@ -407,17 +495,22 @@
             </objects>
             <point key="canvasLocation" x="1400" y="-418"/>
         </scene>
-        <!--Item-->
+        <!--Ma semaine-->
         <scene sceneID="FUE-YQ-2Dt">
             <objects>
-                <viewController id="ZWL-8a-hZJ" sceneMemberID="viewController">
+                <viewController id="ZWL-8a-hZJ" customClass="GraphsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f4H-ea-e0d">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.85882352939999995" green="0.90588235289999997" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="C65-4x-PUj"/>
+                    <tabBarItem key="tabBarItem" title="Ma semaine" image="maSemaine.png" id="C65-4x-PUj">
+                        <inset key="imageInsets" minX="170" minY="168" maxX="170" maxY="164"/>
+                    </tabBarItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="barItem" destination="C65-4x-PUj" id="eef-Hh-ilh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aTm-As-R3X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -769,7 +862,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="t2j-nU-UHC" kind="relationship" relationship="rootViewController" id="XzK-em-tU4"/>
+                        <segue destination="G7b-tI-sjH" kind="relationship" relationship="rootViewController" id="KgK-4D-fLt"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y5E-X2-OxX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -780,6 +873,7 @@
     <resources>
         <image name="accueil_4.jpg" width="640" height="960"/>
         <image name="altitude.png" width="567" height="567"/>
+        <image name="classement.png" width="758" height="758"/>
         <image name="connexion.png" width="332" height="108"/>
         <image name="distance.png" width="567" height="567"/>
         <image name="etoile.png" width="128" height="128"/>
@@ -791,11 +885,13 @@
         <image name="iconMeteo.png" width="256" height="272"/>
         <image name="iconStats.png" width="256" height="270"/>
         <image name="iconTroc.png" width="256" height="256"/>
+        <image name="maSemaine.png" width="626" height="626"/>
+        <image name="mesStats.png" width="512" height="512"/>
         <image name="satelliteoff.png" width="512" height="512"/>
         <image name="speedometer.png" width="550" height="550"/>
         <image name="temps.png" width="567" height="567"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XzK-em-tU4"/>
+        <segue reference="KgK-4D-fLt"/>
     </inferredMetricsTieBreakers>
 </document>

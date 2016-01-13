@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *iconeTemps;
 @property (weak, nonatomic) IBOutlet UILabel *titreTemps;
+@property (weak, nonatomic) IBOutlet UITabBarItem *barItem;
 
 // Statistiques
 @property (weak, nonatomic) IBOutlet UILabel *vitesseActuelle;
