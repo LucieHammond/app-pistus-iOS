@@ -64,6 +64,7 @@
 // Temps
 @property (weak, nonatomic) IBOutlet UIImageView *iconeTemps;
 @property (weak, nonatomic) IBOutlet UILabel *titreTemps;
+@property (weak, nonatomic) IBOutlet UILabel *classementTemps;
 @property (weak, nonatomic) IBOutlet UILabel *g1Temps;
 @property (weak, nonatomic) IBOutlet UILabel *g2Temps;
 @property (weak, nonatomic) IBOutlet UILabel *g3Temps;

@@ -42,17 +42,53 @@
     
     // Ajustement du scrollView
     [_scrollView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
-    _scrollView.contentSize= CGSizeMake([UIScreen mainScreen].bounds.size.width, 680);
+    _scrollView.contentSize= CGSizeMake([UIScreen mainScreen].bounds.size.width, 1040);
     [_scrollView setScrollEnabled:YES];
     
-    // Redimensionnement du bouton de la barre d'onglets
-    /*UIImage *image = [UIImage imageNamed:@"classement.png"];
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(57,38),NO,3);
-    [image drawInRect:CGRectMake(0,0,57,38)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    [_barItem setImage:newImage];
-    [_barItem setImageInsets:UIEdgeInsetsMake(0,0,0,0)];*/
+    // Repositionnement des éléments sur la vue en fonction de la taille de l'écran
+    float hauteur = [UIScreen mainScreen].bounds.size.height;
+    if(hauteur<500)
+    {
+        
+    }
+    else if(hauteur<600)
+    {
+        
+    }
+    else if(hauteur<700)
+    {
+        [_iconeDistance setFrame:CGRectMake(32, 529, 63, 63)];
+        [_titreDistance setFrame:CGRectMake(116,552,226,21)];
+        [_classementDistance setFrame:CGRectMake(41, 603, 165, 21)];
+        [_g1Distance setFrame:CGRectMake(56, 635, 214, 21)];
+        [_g2Distance setFrame:CGRectMake(56, 661, 214, 21)];
+        [_g3Distance setFrame:CGRectMake(56, 687, 214, 21)];
+        [_g4Distance setFrame:CGRectMake(56, 713, 214, 21)];
+        [_g5Distance setFrame:CGRectMake(56, 739, 214, 21)];
+        [_v1Distance setFrame:CGRectMake(278, 635, 75, 21)];
+        [_v2Distance setFrame:CGRectMake(278, 661, 75, 21)];
+        [_v3Distance setFrame:CGRectMake(278, 687, 75, 21)];
+        [_v4Distance setFrame:CGRectMake(278, 713, 75, 21)];
+        [_v5Distance setFrame:CGRectMake(278, 739, 75, 21)];
+        
+        [_iconeTemps setFrame:CGRectMake(32, 785, 63, 63)];
+        [_titreTemps setFrame:CGRectMake(116,808,226,21)];
+        [_classementTemps setFrame:CGRectMake(41, 859, 165, 21)];
+        [_g1Temps setFrame:CGRectMake(56, 891, 214, 21)];
+        [_g2Temps setFrame:CGRectMake(56, 917, 214, 21)];
+        [_g3Temps setFrame:CGRectMake(56, 943, 214, 21)];
+        [_g4Temps setFrame:CGRectMake(56, 969, 214, 21)];
+        [_g5Temps setFrame:CGRectMake(56, 995, 214, 21)];
+        [_v1Temps setFrame:CGRectMake(278, 891, 75, 21)];
+        [_v2Temps setFrame:CGRectMake(278, 917, 75, 21)];
+        [_v3Temps setFrame:CGRectMake(278, 943, 75, 21)];
+        [_v4Temps setFrame:CGRectMake(278, 969, 75, 21)];
+        [_v5Temps setFrame:CGRectMake(278, 995, 75, 21)];
+    }
+    else
+    {
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {

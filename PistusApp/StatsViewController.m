@@ -105,7 +105,6 @@
     [[[self.tabBarController.viewControllers objectAtIndex:2] tabBarItem] setImage:newImage3];
     [[[self.tabBarController.viewControllers objectAtIndex:2] tabBarItem]  setImageInsets:UIEdgeInsetsMake(-1,0,1,0)];
     
-    
     // Ajustement du scrollView
     [_scrollView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
     _scrollView.contentSize= CGSizeMake([UIScreen mainScreen].bounds.size.width, 680);
