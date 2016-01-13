@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "NXOAuth2.h"
 #import "GeolocalisationManager.h"
+#import "StatsViewController.h"
+#import "ClassementViewController.h"
+#import "GraphsViewController.h"
 
 @interface AppDelegate ()
 

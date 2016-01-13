@@ -16,7 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [_barItem setImageInsets:UIEdgeInsetsMake(168,164,170,170)];
     // Do any additional setup after loading the view.
 }
 

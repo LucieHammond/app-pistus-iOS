@@ -8,6 +8,7 @@
 
 #import "StatsViewController.h"
 #import "GeolocalisationManager.h"
+#import "AppDelegate.h"
 
 @interface StatsViewController ()
 
@@ -80,7 +81,30 @@
                forControlEvents:UIControlEventTouchUpInside];
     
     // Redimensionnement du bouton de la barre d'onglets
-    [_barItem setImageInsets:UIEdgeInsetsMake(122,118,118,118)];
+    UIImage *image = [UIImage imageNamed:@"mesStats.png"];
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(45,35),NO,3);
+    [image drawInRect:CGRectMake(0,0,45,35)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [_barItem setImage:newImage];
+    [_barItem setImageInsets:UIEdgeInsetsMake(0,0,0,0)];
+    
+    // Redimensionnement des autres boutons de la barre d'onglets
+    UIImage *image2 = [UIImage imageNamed:@"classement.png"];
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(57,38),NO,3);
+    [image2 drawInRect:CGRectMake(0,0,57,38)];
+    UIImage *newImage2 = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem] setImage:newImage2];
+    [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem]  setImageInsets:UIEdgeInsetsMake(0,0,0,0)];
+    UIImage *image3 = [UIImage imageNamed:@"maSemaine.png"];
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(49,36),NO,3);
+    [image3 drawInRect:CGRectMake(0,0,51,38)];
+    UIImage *newImage3 = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [[[self.tabBarController.viewControllers objectAtIndex:2] tabBarItem] setImage:newImage3];
+    [[[self.tabBarController.viewControllers objectAtIndex:2] tabBarItem]  setImageInsets:UIEdgeInsetsMake(-1,0,1,0)];
+    
     
     // Ajustement du scrollView
     [_scrollView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
