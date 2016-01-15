@@ -151,7 +151,6 @@
     
     // Ajustement du scrollView
     [_scrollView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
-    _scrollView.contentSize= CGSizeMake([UIScreen mainScreen].bounds.size.width, 1040);
     [_scrollView setScrollEnabled:YES];
     
     // Repositionnement des éléments sur la vue en fonction de la taille de l'écran

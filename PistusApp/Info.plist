@@ -2,10 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Location is required to find out where you are</string>
+	<string>La géolocalisation est nécéssaire pour vous situer sur le plan et réaliser les statistiques</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Location is required to find out where you are</string>
+	<string>La géolocalisation est nécéssaire pour vous situer sur le plan et réaliser les statistiques</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

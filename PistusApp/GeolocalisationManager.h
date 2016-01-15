@@ -16,7 +16,6 @@
     CLLocationManager* locationManager;
     NSDate *dateDebutSki;
     int dernierNumero;
-    NSString *derniereDate;
     CLLocation *avantDerniereLoc;
 }
 
@@ -34,16 +33,27 @@
 @property (nonatomic) double deniveleTotal;
 @property (nonatomic) NSTimeInterval tempsDeSki;
 
+// Statistiques sur la semaine
+@property (nonatomic) NSMutableArray *joursFinis;
+@property (nonatomic) NSMutableArray *tabVitesseCumulee;
+@property (nonatomic) NSMutableArray *tabNbPositions;
+@property (nonatomic) NSMutableArray *tabDistance;
+@property (nonatomic) NSMutableArray *tabTemps;
+
 // Carte
 @property (nonatomic) BOOL trackAccept;
 @property (nonatomic) int dernierX;
 @property (nonatomic) int dernierY;
 @property (nonatomic) NSString *dernierePiste;
 @property (nonatomic) NSString *pisteProche;
+@property (nonatomic) NSDate *derniereDate;
 
 +(GeolocalisationManager*)sharedInstance;
++(void)setSharedInstance:(GeolocalisationManager*)gm;
 -(BOOL)beginTrack;
 -(void)endTrack;
 -(BOOL)trackAccept;
+-(void)sauvegarderDonnéesJour:(int)jour :(bool)definitivement;
+-(void)sauvegardeParTimer:(NSTimer*)timer;
 
 @end

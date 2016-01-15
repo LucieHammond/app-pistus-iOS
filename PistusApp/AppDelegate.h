@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+{
+    NSTimer *timer1;
+    NSTimer *timer2;
+    NSTimer *timer3;
+    NSTimer *timer4;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 
