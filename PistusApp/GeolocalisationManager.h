@@ -16,7 +16,7 @@
     CLLocationManager* locationManager;
     NSDate *dateDebutSki;
     int dernierNumero;
-    NSDate *derniereDate;
+    NSString *derniereDate;
     CLLocation *avantDerniereLoc;
 }
 

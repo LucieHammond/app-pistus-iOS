@@ -28,6 +28,7 @@
 		C570B8661C2ED85C003E0E16 /* satelliteon.png in Resources */ = {isa = PBXBuildFile; fileRef = C570B8651C2ED85C003E0E16 /* satelliteon.png */; };
 		C570B8681C2EDC23003E0E16 /* satelliteoff.png in Resources */ = {isa = PBXBuildFile; fileRef = C570B8671C2EDC23003E0E16 /* satelliteoff.png */; };
 		C570B86C1C30999B003E0E16 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C570B86B1C30999B003E0E16 /* CoreLocation.framework */; };
+		C58EA0751C4881FF0022F6B1 /* actualiser.png in Resources */ = {isa = PBXBuildFile; fileRef = C58EA0741C4881FF0022F6B1 /* actualiser.png */; };
 		C593B4E81C458397009F5896 /* etoile.png in Resources */ = {isa = PBXBuildFile; fileRef = C593B4E71C458397009F5896 /* etoile.png */; };
 		C593B4EB1C45D730009F5896 /* ClassementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C593B4EA1C45D730009F5896 /* ClassementViewController.m */; };
 		C593B4ED1C45E0A5009F5896 /* mesStats.png in Resources */ = {isa = PBXBuildFile; fileRef = C593B4EC1C45E0A5009F5896 /* mesStats.png */; };
@@ -101,6 +102,7 @@
 		C570B8651C2ED85C003E0E16 /* satelliteon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satelliteon.png; sourceTree = "<group>"; };
 		C570B8671C2EDC23003E0E16 /* satelliteoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satelliteoff.png; sourceTree = "<group>"; };
 		C570B86B1C30999B003E0E16 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C58EA0741C4881FF0022F6B1 /* actualiser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = actualiser.png; sourceTree = "<group>"; };
 		C593B4E71C458397009F5896 /* etoile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = etoile.png; sourceTree = "<group>"; };
 		C593B4E91C45D730009F5896 /* ClassementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassementViewController.h; sourceTree = "<group>"; };
 		C593B4EA1C45D730009F5896 /* ClassementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassementViewController.m; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 		C54F8B1D1BD97E1800CE7B3A /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				C58EA0741C4881FF0022F6B1 /* actualiser.png */,
 				C593B4F01C45E0B1009F5896 /* classement.png */,
 				C593B4EE1C45E0AB009F5896 /* maSemaine.png */,
 				C593B4EC1C45E0A5009F5896 /* mesStats.png */,
@@ -377,6 +380,7 @@
 			files = (
 				C5C05E891BEFF7A0007D763E /* Login-568h@2x~iphone.png in Resources */,
 				C5AED9A01C43B10C0086E570 /* speedometer.png in Resources */,
+				C58EA0751C4881FF0022F6B1 /* actualiser.png in Resources */,
 				C5F7B8AE1C41472E00419A86 /* marker2.png in Resources */,
 				C5AED9981C4289240086E570 /* pate_bulle.png in Resources */,
 				C570B8531C2DF703003E0E16 /* Plan Val d'Allos Official corrigé.jpg in Resources */,

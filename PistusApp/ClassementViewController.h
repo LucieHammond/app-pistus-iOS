@@ -9,12 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @interface ClassementViewController : UIViewController
+{
+    NSString *prenom;
+    NSString *nom;
+    double performance;
+    int classement;
+}
 
 @property (weak, nonatomic) IBOutlet UITabBarItem *barItem;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *trackAcceptButton;
 @property (weak, nonatomic) IBOutlet UIView *topBande;
 @property (weak, nonatomic) IBOutlet UINavigationBar *barre;
+- (IBAction)actualiser:(id)sender;
 
 // Vitesse
 @property (weak, nonatomic) IBOutlet UIImageView *iconeVitesse;

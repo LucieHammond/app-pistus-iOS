@@ -57,6 +57,10 @@ static GeolocalisationManager* sharedInstance=nil;
         locationManager.pausesLocationUpdatesAutomatically = true;
         locationManager.activityType = CLActivityTypeAutomotiveNavigation;
         [locationManager startUpdatingLocation];
+        
+        // Toutes les 30 secondes, on envoie sa position au serveur
+        timerPosition = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(envoyerInfos) userInfo:nil repeats:YES];
+        
         return true;
     }
     else
@@ -80,9 +84,22 @@ static GeolocalisationManager* sharedInstance=nil;
         _tempsDeSki+=[[NSDate date] timeIntervalSinceDate:dateDebutSki];
 }
 
--(void)boucle
+-(void)envoyerInfos
 {
-    NSLog(@"1");
+    if(dateDebutSki!=nil)
+    {
+        _tempsDeSki+=[[NSDate date] timeIntervalSinceDate:dateDebutSki];
+        dateDebutSki=[NSDate date];
+    }
+    // On envoie les infos au serveur dans la table AppUser
+    /*id, eleves_id et auth_key sont probablement obtenus avec Auth, surnom est donné dans "profil"
+     last_seen = derniereDate
+     maxSpeed = _vitesseMax
+     altMax = _altitudeMax
+     Map_pointX = _dernierX
+     Map_pointY = _dernierY
+     kmSki = _distanceSki
+     skiTime = _tempsDeSki*/
 }
 
 -(BOOL)trackAccept
@@ -155,7 +172,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     NSDate *date = lastLocation.timestamp;
                     NSDateFormatter* df = [[NSDateFormatter alloc]init];
                     [df setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-                    NSString *dateString = [df stringFromDate:date];
+                    derniereDate = [df stringFromDate:date];
                     
                     // On met à jour les statistiques
                     _vitesseActuelle=lastLocation.speed;
@@ -171,7 +188,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     dateDebutSki = date;
                     
                     // On ajoute finalement la position trouvée à la table et on retient la position
-                    query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES ('%@',%f,%f,%f,'%@',%@,%f);",dateString,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
+                    query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES ('%@',%f,%f,%f,'%@',%@,%f);",derniereDate,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
                     [self.dbManager executeQuery:query];
                     NSLog(@"1.2");
                 }
@@ -395,7 +412,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     NSDate *date = lastLocation.timestamp;
                     NSDateFormatter* df = [[NSDateFormatter alloc]init];
                     [df setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-                    NSString *dateString = [df stringFromDate:date];
+                    derniereDate = [df stringFromDate:date];
                     
                     // On met à jour les statistiques
                     _vitesseActuelle=lastLocation.speed;
@@ -413,7 +430,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     _altitudeActuelle=lastLocation.altitude;
                     
                     // On ajoute finalement la position trouvée à la table maPosition
-                    query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES ('%@',%f,%f,%f,'%@',%@,%f);",dateString,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
+                    query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES ('%@',%f,%f,%f,'%@',%@,%f);",derniereDate,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
                     [self.dbManager executeQuery:query];
                     _distanceTot+=[lastLocation distanceFromLocation:avantDerniereLoc];
                     _distanceSki+=[lastLocation distanceFromLocation:avantDerniereLoc];
@@ -521,7 +538,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     NSDate *date = lastLocation.timestamp;
                     NSDateFormatter* df = [[NSDateFormatter alloc]init];
                     [df setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-                    NSString *dateString = [df stringFromDate:date];
+                    derniereDate = [df stringFromDate:date];
                     
                     // On met à jour les statistiques
                     _vitesseActuelle=lastLocation.speed;
@@ -541,7 +558,7 @@ static GeolocalisationManager* sharedInstance=nil;
                         dateDebutSki=date;
                     
                     // On ajoute finalement la position trouvée à la table maPosition
-                    query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES ('%@',%f,%f,%f,'%@',%@,%f);",dateString,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
+                    query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES ('%@',%f,%f,%f,'%@',%@,%f);",derniereDate,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
                     [self.dbManager executeQuery:query];
                     
                     // Si la table est déjà pleine (5 positions), on retire la plus ancienne
