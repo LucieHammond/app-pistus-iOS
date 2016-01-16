@@ -53,35 +53,40 @@
         {
             [gm sauvegarderDonnéesJour:j :true];
         }
-
     }
-    
-    // On met en place le timer pour actualiser les statistiques de la semaine trois fois par jour même quand le GPS est désactivé
-    [composants setYear:2016];
-    [composants setMonth:mois];
-    [composants setDay:jour];
-    [composants setHour:12];
-    [composants setMinute:30];
-    NSDate *dateTimer1 = [[NSCalendar currentCalendar] dateFromComponents:composants];
-    timer1 = [[NSTimer alloc] initWithFireDate:dateTimer1 interval:86400 target:[GeolocalisationManager sharedInstance] selector:@selector(sauvegardeParTimer:) userInfo:nil repeats:YES];
-    
-    [composants setHour:17];
-    [composants setMinute:30];
-    NSDate *dateTimer2 = [[NSCalendar currentCalendar] dateFromComponents:composants];
-    timer2 = [[NSTimer alloc] initWithFireDate:dateTimer2 interval:86400 target:[GeolocalisationManager sharedInstance] selector:@selector(sauvegardeParTimer:) userInfo:nil repeats:YES];
-    
-    [composants setHour:0];
-    [composants setMinute:0];
-    NSDate *dateTimer3 = [[NSCalendar currentCalendar] dateFromComponents:composants];
-    timer3 = [[NSTimer alloc] initWithFireDate:dateTimer3 interval:86400 target:[GeolocalisationManager sharedInstance] selector:@selector(sauvegardeParTimer:) userInfo:nil repeats:YES];
-    
-    // Le timer 4 permet d'invalider les trois premiers quand le Pistus est fini.
-    [composants setMonth:3];
-    [composants setDay:14];
-    [composants setHour:0];
-    [composants setMinute:0];
-    NSDate *dateTimer4 = [[NSCalendar currentCalendar] dateFromComponents:composants];
-    timer4 = [[NSTimer alloc] initWithFireDate:dateTimer4 interval:3600 target:self selector:@selector(stopTimers:) userInfo:nil repeats:NO];
+    if(mois ==3 && jour>=5 && jour<12)
+    {
+        // On met en place le timer pour actualiser les statistiques de la semaine trois fois par jour même quand le GPS est désactivé
+        [composants setYear:2016];
+        [composants setMonth:mois];
+        [composants setDay:jour];
+        [composants setHour:12];
+        [composants setMinute:30];
+        NSDate *dateTimer1 = [[NSCalendar currentCalendar] dateFromComponents:composants];
+        timer1 = [[NSTimer alloc] initWithFireDate:dateTimer1 interval:86400 target:[GeolocalisationManager sharedInstance] selector:@selector(sauvegardeParTimer:) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer1 forMode:NSDefaultRunLoopMode];
+        
+        [composants setHour:17];
+        [composants setMinute:30];
+        NSDate *dateTimer2 = [[NSCalendar currentCalendar] dateFromComponents:composants];
+        timer2 = [[NSTimer alloc] initWithFireDate:dateTimer2 interval:86400 target:[GeolocalisationManager sharedInstance] selector:@selector(sauvegardeParTimer:) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer2 forMode:NSDefaultRunLoopMode];
+        
+        [composants setHour:0];
+        [composants setMinute:0];
+        NSDate *dateTimer3 = [[NSCalendar currentCalendar] dateFromComponents:composants];
+        timer3 = [[NSTimer alloc] initWithFireDate:dateTimer3 interval:86400 target:[GeolocalisationManager sharedInstance] selector:@selector(sauvegardeParTimer:) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer3 forMode:NSDefaultRunLoopMode];
+        
+        // Le timer 4 permet d'invalider les trois premiers quand le Pistus est fini.
+        [composants setMonth:3];
+        [composants setDay:14];
+        [composants setHour:0];
+        [composants setMinute:0];
+        NSDate *dateTimer4 = [[NSCalendar currentCalendar] dateFromComponents:composants];
+        timer4 = [[NSTimer alloc] initWithFireDate:dateTimer4 interval:3600 target:self selector:@selector(stopTimers:) userInfo:nil repeats:NO];
+        [[NSRunLoop currentRunLoop] addTimer:timer4 forMode:NSDefaultRunLoopMode];
+    }
     
     // Override point for customization after application launch.
     return YES;
