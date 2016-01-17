@@ -39,7 +39,7 @@
     [_boutonSatellite addTarget:self action:@selector(trackChange)
                forControlEvents:UIControlEventTouchUpInside];
     
-    // Ajustement du scrollView
+    // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

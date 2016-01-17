@@ -16,6 +16,12 @@
 		C52D72E21C4ACC46005C05D1 /* UUChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72DA1C4ACC46005C05D1 /* UUChartLabel.m */; };
 		C52D72E31C4ACC46005C05D1 /* UUColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72DC1C4ACC46005C05D1 /* UUColor.m */; };
 		C52D72E41C4ACC46005C05D1 /* UULineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72DE1C4ACC46005C05D1 /* UULineChart.m */; };
+		C52D72E81C4BB073005C05D1 /* infoGenerales.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D72E51C4BB073005C05D1 /* infoGenerales.png */; };
+		C52D72E91C4BB073005C05D1 /* mesInfos.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D72E61C4BB073005C05D1 /* mesInfos.png */; };
+		C52D72ED1C4BB0E3005C05D1 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72EC1C4BB0E3005C05D1 /* NewsViewController.m */; };
+		C52D72F01C4BB12D005C05D1 /* MesInfosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72EF1C4BB12D005C05D1 /* MesInfosViewController.m */; };
+		C52D72F31C4BB173005C05D1 /* InfosGlobalesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72F21C4BB173005C05D1 /* InfosGlobalesViewController.m */; };
+		C52D72F51C4BB5F4005C05D1 /* news.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D72F41C4BB5F3005C05D1 /* news.png */; };
 		C539A78D1BF1F56A00B9E3ED /* iconContact.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7881BF1F56A00B9E3ED /* iconContact.png */; };
 		C539A78E1BF1F56A00B9E3ED /* iconHoraires.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7891BF1F56A00B9E3ED /* iconHoraires.png */; };
 		C539A78F1BF1F56A00B9E3ED /* iconMeteo.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */; };
@@ -96,6 +102,15 @@
 		C52D72DC1C4ACC46005C05D1 /* UUColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUColor.m; sourceTree = "<group>"; };
 		C52D72DD1C4ACC46005C05D1 /* UULineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UULineChart.h; sourceTree = "<group>"; };
 		C52D72DE1C4ACC46005C05D1 /* UULineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UULineChart.m; sourceTree = "<group>"; };
+		C52D72E51C4BB073005C05D1 /* infoGenerales.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoGenerales.png; sourceTree = "<group>"; };
+		C52D72E61C4BB073005C05D1 /* mesInfos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mesInfos.png; sourceTree = "<group>"; };
+		C52D72EB1C4BB0E3005C05D1 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		C52D72EC1C4BB0E3005C05D1 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		C52D72EE1C4BB12D005C05D1 /* MesInfosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MesInfosViewController.h; sourceTree = "<group>"; };
+		C52D72EF1C4BB12D005C05D1 /* MesInfosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MesInfosViewController.m; sourceTree = "<group>"; };
+		C52D72F11C4BB173005C05D1 /* InfosGlobalesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfosGlobalesViewController.h; sourceTree = "<group>"; };
+		C52D72F21C4BB173005C05D1 /* InfosGlobalesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfosGlobalesViewController.m; sourceTree = "<group>"; };
+		C52D72F41C4BB5F3005C05D1 /* news.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = news.png; sourceTree = "<group>"; };
 		C539A7881BF1F56A00B9E3ED /* iconContact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconContact.png; sourceTree = "<group>"; };
 		C539A7891BF1F56A00B9E3ED /* iconHoraires.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconHoraires.png; sourceTree = "<group>"; };
 		C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconMeteo.png; sourceTree = "<group>"; };
@@ -269,6 +284,12 @@
 				C593B4F31C45E198009F5896 /* GraphsViewController.m */,
 				C52D72CF1C4ACBDD005C05D1 /* GraphTableViewCell.h */,
 				C52D72D01C4ACBDD005C05D1 /* GraphTableViewCell.m */,
+				C52D72EB1C4BB0E3005C05D1 /* NewsViewController.h */,
+				C52D72EC1C4BB0E3005C05D1 /* NewsViewController.m */,
+				C52D72EE1C4BB12D005C05D1 /* MesInfosViewController.h */,
+				C52D72EF1C4BB12D005C05D1 /* MesInfosViewController.m */,
+				C52D72F11C4BB173005C05D1 /* InfosGlobalesViewController.h */,
+				C52D72F21C4BB173005C05D1 /* InfosGlobalesViewController.m */,
 				C54F8AC91BD94D5A00CE7B3A /* Main.storyboard */,
 				C54F8ACC1BD94D5A00CE7B3A /* Images.xcassets */,
 				C54F8ACE1BD94D5A00CE7B3A /* LaunchScreen.xib */,
@@ -306,6 +327,9 @@
 		C54F8B1D1BD97E1800CE7B3A /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				C52D72E51C4BB073005C05D1 /* infoGenerales.png */,
+				C52D72E61C4BB073005C05D1 /* mesInfos.png */,
+				C52D72F41C4BB5F3005C05D1 /* news.png */,
 				C58EA0741C4881FF0022F6B1 /* actualiser.png */,
 				C593B4F01C45E0B1009F5896 /* classement.png */,
 				C593B4EE1C45E0AB009F5896 /* maSemaine.png */,
@@ -441,6 +465,7 @@
 				C5C05E8B1BEFF7A0007D763E /* Login-736h@3x~iphone.png in Resources */,
 				C539A7911BF1F56A00B9E3ED /* iconTroc.png in Resources */,
 				C5C05E7F1BEFF6FC007D763E /* iconMap.png in Resources */,
+				C52D72F51C4BB5F4005C05D1 /* news.png in Resources */,
 				C5C05E7E1BEFF6FC007D763E /* iconInfo.png in Resources */,
 				C5AED9961C41B8B30086E570 /* ciblage.png in Resources */,
 				C5C05E8E1BEFFBA5007D763E /* accueil_4.jpg in Resources */,
@@ -448,6 +473,7 @@
 				C5C05E8A1BEFF7A0007D763E /* Login-667h@2x~iphone.png in Resources */,
 				C539A78F1BF1F56A00B9E3ED /* iconMeteo.png in Resources */,
 				C54F8AD01BD94D5A00CE7B3A /* LaunchScreen.xib in Resources */,
+				C52D72E81C4BB073005C05D1 /* infoGenerales.png in Resources */,
 				C539A78E1BF1F56A00B9E3ED /* iconHoraires.png in Resources */,
 				C539A7901BF1F56A00B9E3ED /* iconStats.png in Resources */,
 				C570B8681C2EDC23003E0E16 /* satelliteoff.png in Resources */,
@@ -459,6 +485,7 @@
 				C5AED9A91C4423F10086E570 /* distance.png in Resources */,
 				C54F8ACD1BD94D5A00CE7B3A /* Images.xcassets in Resources */,
 				C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */,
+				C52D72E91C4BB073005C05D1 /* mesInfos.png in Resources */,
 				C5AED9A21C43B1170086E570 /* altitude.png in Resources */,
 				C593B4E81C458397009F5896 /* etoile.png in Resources */,
 			);
@@ -533,6 +560,7 @@
 				C570B8561C2EBE50003E0E16 /* GeolocalisationManager.m in Sources */,
 				C54F8AC51BD94D5A00CE7B3A /* AppDelegate.m in Sources */,
 				C52D72E21C4ACC46005C05D1 /* UUChartLabel.m in Sources */,
+				C52D72F01C4BB12D005C05D1 /* MesInfosViewController.m in Sources */,
 				C52D72E41C4ACC46005C05D1 /* UULineChart.m in Sources */,
 				C570B8511C2DF46F003E0E16 /* CarteViewController.m in Sources */,
 				C54F8AC21BD94D5A00CE7B3A /* main.m in Sources */,
@@ -541,8 +569,10 @@
 				C52D72DF1C4ACC46005C05D1 /* UUBar.m in Sources */,
 				C5AED9A71C43B5490086E570 /* StatsViewController.m in Sources */,
 				C52D72E31C4ACC46005C05D1 /* UUColor.m in Sources */,
+				C52D72ED1C4BB0E3005C05D1 /* NewsViewController.m in Sources */,
 				C52D72E11C4ACC46005C05D1 /* UUChart.m in Sources */,
 				C570B83D1C2B44C5003E0E16 /* DBManager.m in Sources */,
+				C52D72F31C4BB173005C05D1 /* InfosGlobalesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

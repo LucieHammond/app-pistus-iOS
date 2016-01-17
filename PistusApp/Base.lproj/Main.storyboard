@@ -101,7 +101,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="J31-Z7-hMt"/>
+                    <navigationItem key="navigationItem" title="Title" id="F9z-0f-E4N"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
@@ -120,22 +120,201 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P5N-Pe-qJ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <pinchGestureRecognizer id="H6q-3p-j7c"/>
             </objects>
-            <point key="canvasLocation" x="603" y="-457"/>
+            <point key="canvasLocation" x="552" y="-378"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="3Jn-ep-mko">
+        <!--Mes Infos-->
+        <scene sceneID="ss9-CQ-IpP">
             <objects>
-                <viewController id="em1-vh-C6d" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8Ts-0J-vie">
+                <viewController title="Mes Infos" id="fT5-Tb-ybX" customClass="MesInfosViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SgL-dX-yeh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="k7P-CR-a50">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" id="P1L-KN-8TC">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Informations" id="3VT-fp-ecX">
+                                        <rightBarButtonItems>
+                                            <barButtonItem id="xrQ-c0-2Aq">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gyf-7r-yiT">
+                                                    <rect key="frame" x="272" y="5" width="32" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="satelliteoff.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" id="5bm-0X-Up1">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hsA-B5-NLr">
+                                                    <rect key="frame" x="229" y="4" width="35" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="actualiser.png"/>
+                                                </button>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <tabBarItem key="tabBarItem" title="Mes Infos" id="0CH-Ne-vcd"/>
+                    <connections>
+                        <outlet property="barre" destination="P1L-KN-8TC" id="hzK-48-QtZ"/>
+                        <outlet property="topBande" destination="k7P-CR-a50" id="qCN-RV-jMD"/>
+                        <outlet property="trackAcceptButton" destination="xrQ-c0-2Aq" id="hhQ-qV-I5t"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rOF-0Q-gC2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="urY-Dl-hpI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1012" y="-418"/>
+            <point key="canvasLocation" x="808" y="-1043"/>
+        </scene>
+        <!--Informations générales-->
+        <scene sceneID="N1C-4C-60f">
+            <objects>
+                <viewController title="Informations générales" id="cdV-88-mC3" customClass="InfosGlobalesViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="l1W-bZ-o63">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="qgx-df-iwy">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" id="vvM-a7-oE1">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Informations" id="wP2-mE-nkf">
+                                        <rightBarButtonItems>
+                                            <barButtonItem id="CR8-xp-y9P">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gDX-W4-IQ2">
+                                                    <rect key="frame" x="272" y="5" width="32" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="satelliteoff.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" id="mLL-vr-TRK">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gRv-mL-XW8">
+                                                    <rect key="frame" x="229" y="4" width="35" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="actualiser.png"/>
+                                                </button>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Infos Générales" id="vgG-R8-DAD"/>
+                    <connections>
+                        <outlet property="barre" destination="vvM-a7-oE1" id="6C4-WS-JUy"/>
+                        <outlet property="topBande" destination="qgx-df-iwy" id="XYI-6S-Fuc"/>
+                        <outlet property="trackAcceptButton" destination="CR8-xp-y9P" id="eud-QF-qII"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ow5-UR-KEP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1221" y="-1054"/>
+        </scene>
+        <!--Flash news-->
+        <scene sceneID="Av8-1Y-CEc">
+            <objects>
+                <viewController title="Flash news" id="trH-vZ-ket" customClass="NewsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kge-ot-bD7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="uF2-Cz-O4H">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" backIndicatorImage="actualiser.png" id="iKc-Nz-EkV">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Informations" id="gxd-jE-Pzn">
+                                        <rightBarButtonItems>
+                                            <barButtonItem id="Sn9-9a-prt">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KqN-qk-yN2">
+                                                    <rect key="frame" x="272" y="5" width="32" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="satelliteoff.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" id="EE7-Sf-h9A">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WR2-DF-0dP">
+                                                    <rect key="frame" x="229" y="4" width="35" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="actualiser.png"/>
+                                                </button>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Flash News" id="HPR-cx-w9E"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="NPm-mk-8wi"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="barre" destination="iKc-Nz-EkV" id="F9z-yD-3nR"/>
+                        <outlet property="topBande" destination="uF2-Cz-O4H" id="Wdx-qM-nZj"/>
+                        <outlet property="trackAcceptButton" destination="Sn9-9a-prt" id="1wG-az-A5E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bHW-JD-72I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="414" y="-975"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="pKQ-jF-szT">
+            <objects>
+                <tabBarController id="iiv-ZI-ahq" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Ciw-ke-CHk"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="P8y-GF-TdT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="trH-vZ-ket" kind="relationship" relationship="viewControllers" id="NTl-B1-Ze8"/>
+                        <segue destination="fT5-Tb-ybX" kind="relationship" relationship="viewControllers" id="5iO-Te-Vis"/>
+                        <segue destination="cdV-88-mC3" kind="relationship" relationship="viewControllers" id="7tZ-ZN-SmC"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oee-jU-S6E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1037" y="-401"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Hgs-Ib-0M8">
@@ -149,7 +328,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YqW-wy-sKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1583" y="142"/>
+            <point key="canvasLocation" x="1525" y="206"/>
         </scene>
         <!--Classement général-->
         <scene sceneID="spd-6R-UEM">
@@ -558,7 +737,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.90206098556518555" green="0.94327819347381592" blue="0.98716646432876587" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="z89-lW-RwW"/>
+                    <tabBarItem key="tabBarItem" title="Classement général" id="z89-lW-RwW"/>
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -624,7 +803,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xuw-XX-QjQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1610.5" y="-1047.5"/>
+            <point key="canvasLocation" x="2086.5" y="-733.5"/>
         </scene>
         <!--Mes statistiques-->
         <scene sceneID="hjo-03-Swq">
@@ -799,7 +978,6 @@
                         <outlet property="altitudeActuelle" destination="oRf-fo-gAC" id="hEB-3n-Z1p"/>
                         <outlet property="altitudeMax" destination="RJ8-BL-TIG" id="gVC-zh-Svy"/>
                         <outlet property="altitudeMin" destination="bWZ-PI-E1i" id="eWV-uJ-3iC"/>
-                        <outlet property="barItem" destination="BeI-l3-XsV" id="a6L-aw-3R9"/>
                         <outlet property="barre" destination="hUb-PT-8Yl" id="f5A-ak-PKZ"/>
                         <outlet property="denivele" destination="qpS-kI-VU3" id="Ci6-8d-tli"/>
                         <outlet property="distanceSki" destination="0zu-4I-yZ9" id="Q3G-L9-8hV"/>
@@ -817,7 +995,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WaY-da-PgS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1192.5" y="-1047.5"/>
+            <point key="canvasLocation" x="1662.5" y="-1109.5"/>
         </scene>
         <!--Statistiques-->
         <scene sceneID="8pj-JG-Jxv">
@@ -840,7 +1018,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uyv-jC-l1N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1423" y="-413"/>
+            <point key="canvasLocation" x="1517" y="-409"/>
         </scene>
         <!--Ma semaine-->
         <scene sceneID="FUE-YQ-2Dt">
@@ -908,7 +1086,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aTm-As-R3X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1869" y="-418"/>
+            <point key="canvasLocation" x="1981" y="-70"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Wz6-Qr-GaQ">
@@ -922,7 +1100,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ski-B1-fEs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1657" y="771"/>
+            <point key="canvasLocation" x="1662" y="819"/>
         </scene>
         <!--Page d'identification-->
         <scene sceneID="ufC-wZ-h7g">
@@ -1001,7 +1179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="642.13333333333333" y="186.49333333333334"/>
+            <point key="canvasLocation" x="588" y="186"/>
         </scene>
         <!--Page principale-->
         <scene sceneID="Huu-NC-dsU">
@@ -1052,7 +1230,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" image="iconMap.png"/>
                                 <connections>
-                                    <segue destination="t2j-nU-UHC" kind="modal" modalTransitionStyle="crossDissolve" id="9tJ-xg-ig5"/>
+                                    <segue destination="t2j-nU-UHC" kind="push" id="9tJ-xg-ig5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Yh6-rN-leN">
@@ -1062,7 +1240,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="em1-vh-C6d" kind="modal" modalTransitionStyle="crossDissolve" id="zt2-Qa-NX8"/>
+                                    <segue destination="iiv-ZI-ahq" kind="push" id="e8L-l3-0WV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lXt-xN-iVq">
@@ -1110,7 +1288,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="G7b-tI-sjH" kind="modal" modalTransitionStyle="crossDissolve" id="15F-1e-nd1"/>
+                                    <segue destination="G7b-tI-sjH" kind="push" id="15F-1e-nd1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FQJ-cU-sXY">
@@ -1256,12 +1434,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="G7b-tI-sjH" kind="relationship" relationship="rootViewController" id="KgK-4D-fLt"/>
+                        <segue destination="iiv-ZI-ahq" kind="relationship" relationship="rootViewController" id="zz3-OO-m92"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y5E-X2-OxX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="144" y="186"/>
+            <point key="canvasLocation" x="175" y="186"/>
         </scene>
     </scenes>
     <resources>
@@ -1284,6 +1462,6 @@
         <image name="temps.png" width="567" height="567"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KgK-4D-fLt"/>
+        <segue reference="e8L-l3-0WV"/>
     </inferredMetricsTieBreakers>
 </document>

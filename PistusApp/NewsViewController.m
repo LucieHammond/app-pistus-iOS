@@ -1,69 +1,26 @@
 //
-//  StatsViewController.m
+//  NewsViewController.m
 //  PistusApp
 //
-//  Created by Lucie on 11/01/2016.
-//  Copyright (c) 2016 Lucie. All rights reserved.
+//  Created by Lucie on 17/01/2016.
+//  Copyright © 2016 Lucie. All rights reserved.
 //
 
-#import "StatsViewController.h"
+#import "NewsViewController.h"
 #import "GeolocalisationManager.h"
-#import "AppDelegate.h"
 
-@interface StatsViewController ()
+@interface NewsViewController ()
 
 @property (nonatomic,strong) UIButton *boutonSatellite;
 
 @end
 
-@implementation StatsViewController
+@implementation NewsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
     
-    GeolocalisationManager *gm = [GeolocalisationManager sharedInstance];
-    
-    // Affichage des valeurs des statistiques
-        // Vitesse
-    if(gm.vitesseActuelle!=-1)
-        _vitesseActuelle.text = [NSString stringWithFormat:@"Vitesse actuelle : %.2f km/h",gm.vitesseActuelle*3.6];
-    else
-        _vitesseActuelle.text = [NSString stringWithFormat:@"Vitesse actuelle : --"];
-    _vitesseMax.text = [NSString stringWithFormat:@"Vitesse maximale : %.2f km/h",gm.vitesseMax*3.6];
-    if(gm.totalPositions==0)
-        _vitesseMoy.text = [NSString stringWithFormat:@"Vitesse moyenne : 0.00 km/h"];
-    else
-        _vitesseMoy.text = [NSString stringWithFormat:@"Vitesse moyenne : %.2f km/h",gm.vitesseCumulee*3.6/gm.totalPositions];
-    
-        // Altitude
-    if(gm.altitudeActuelle!=-1)
-        _altitudeActuelle.text = [NSString stringWithFormat:@"Altitude actuelle : %.f m",gm.altitudeActuelle];
-    else
-        _altitudeActuelle.text = [NSString stringWithFormat:@"Altitude actuelle : --"];
-    if(gm.altitudeMin==5000)
-        _altitudeMin.text = [NSString stringWithFormat:@"Altitude minimale : --"];
-    else
-        _altitudeMin.text = [NSString stringWithFormat:@"Altitude minimale : %.f m",gm.altitudeMin];
-    if(gm.altitudeMax==0)
-        _altitudeMax.text = [NSString stringWithFormat:@"Altitude maximale : --"];
-    else
-        _altitudeMax.text = [NSString stringWithFormat:@"Altitude maximale : %.f m",gm.altitudeMax];
-    
-        // Distance
-    _distanceSki.text = [NSString stringWithFormat:@"Distance à ski : %.f m",gm.distanceSki];
-    _distanceTot.text = [NSString stringWithFormat:@"Distance totale : %.f m",gm.distanceTot];
-    _denivele.text = [NSString stringWithFormat:@"Dénivelé de descente : %.f m",gm.deniveleTotal];
-    
-        // Temps à ski
-    int heure = floor(gm.tempsDeSki/3600);
-    int minute = floor((gm.tempsDeSki-heure*3600)/60);
-    float seconde = gm.tempsDeSki-heure*3600-minute*60;
-    _tempsSki.text = [NSString stringWithFormat:@"Temps de ski : %d h %d min %.f s",heure,minute,seconde];
-}
-
--(void) viewDidLayoutSubviews
-{
     //Ajustement de la barre de navigation en haut et configuration des icones
     [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
     [_topBande setFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, 20)];
@@ -81,39 +38,29 @@
                forControlEvents:UIControlEventTouchUpInside];
     
     // Redimensionnement du bouton de la barre d'onglets
-    UIImage *image = [UIImage imageNamed:@"mesStats.png"];
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(45,35),NO,3);
-    [image drawInRect:CGRectMake(0,0,45,35)];
+    UIImage *image = [UIImage imageNamed:@"news.png"];
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(46,38),NO,3);
+    [image drawInRect:CGRectMake(0,0,46,38)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [[[self.tabBarController.viewControllers objectAtIndex:0] tabBarItem] setImage:newImage];
     [[[self.tabBarController.viewControllers objectAtIndex:0] tabBarItem] setImageInsets:UIEdgeInsetsMake(0,0,0,0)];
     
     // Redimensionnement des autres boutons de la barre d'onglets
-    UIImage *image2 = [UIImage imageNamed:@"classement.png"];
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(57,38),NO,3);
-    [image2 drawInRect:CGRectMake(0,0,57,38)];
+    UIImage *image2 = [UIImage imageNamed:@"mesInfos.png"];
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(47,33),NO,3);
+    [image2 drawInRect:CGRectMake(0,0,47,33)];
     UIImage *newImage2 = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem] setImage:newImage2];
     [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem]  setImageInsets:UIEdgeInsetsMake(0,0,0,0)];
-    UIImage *image3 = [UIImage imageNamed:@"maSemaine.png"];
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(49,36),NO,3);
-    [image3 drawInRect:CGRectMake(0,0,51,38)];
+    UIImage *image3 = [UIImage imageNamed:@"infoGenerales.png"];
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(35,34),NO,3);
+    [image3 drawInRect:CGRectMake(0,0,35,34)];
     UIImage *newImage3 = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [[[self.tabBarController.viewControllers objectAtIndex:2] tabBarItem] setImage:newImage3];
-    [[[self.tabBarController.viewControllers objectAtIndex:2] tabBarItem]  setImageInsets:UIEdgeInsetsMake(-1,0,1,0)];
-    
-    // Ajustement du scrollView
-    [_scrollView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
-    _scrollView.contentSize= CGSizeMake([UIScreen mainScreen].bounds.size.width, 680);
-    [_scrollView setScrollEnabled:YES];
-    
-    // Repositionnement de l'affichage des statistiques de temps (pas la place dans IB)
-    [_iconeTemps setFrame:CGRectMake(32, 555, 66, 66)];
-    [_titreTemps setFrame:CGRectMake(117, 576, 115, 34)];
-    [_tempsSki setFrame:CGRectMake(47, 634, 230, 21)];
+    [[[self.tabBarController.viewControllers objectAtIndex:2] tabBarItem]  setImageInsets:UIEdgeInsetsMake(0,0,0,0)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -149,6 +96,7 @@
     }
     [_trackAcceptButton setCustomView:_boutonSatellite];
 }
+
 
 /*
 #pragma mark - Navigation
