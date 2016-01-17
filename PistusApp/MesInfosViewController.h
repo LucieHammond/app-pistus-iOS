@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MesInfosViewController : UIViewController
+@interface MesInfosViewController : UIViewController //<UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *topBande;
 @property (weak, nonatomic) IBOutlet UINavigationBar *barre;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *trackAcceptButton;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

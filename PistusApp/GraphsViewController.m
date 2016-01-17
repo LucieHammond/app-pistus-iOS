@@ -128,16 +128,15 @@
         label = [[UILabel alloc]initWithFrame:CGRectMake(112, 23, [UIScreen mainScreen].bounds.size.width -100, 25)];
     }
     label.font = [UIFont boldSystemFontOfSize:25];
-    label.backgroundColor = [UIColor colorWithRed:224 green:237 blue:252 alpha:0];
     switch(section){
         case 0:
-            label.text = @"Vitesse moyenne";
+            label.text = @"Vitesse moyenne (en km/h)";
             break;
         case 1:
-            label.text = @"Distance à ski";
+            label.text = @"Distance à ski (en km)";
             break;
         case 2:
-            label.text = @"Temps de ski";
+            label.text = @"Temps de ski (en h)";
             break;
     }
     label.textAlignment = NSTextAlignmentLeft;

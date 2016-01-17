@@ -49,7 +49,7 @@
     // Redimensionnement des autres boutons de la barre d'onglets
     UIImage *image2 = [UIImage imageNamed:@"mesInfos.png"];
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(47,33),NO,3);
-    [image2 drawInRect:CGRectMake(0,0,47,33)];
+    [image2 drawInRect:CGRectMake(0,0,42,33)];
     UIImage *newImage2 = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem] setImage:newImage2];
@@ -61,6 +61,12 @@
     UIGraphicsEndImageContext();
     [[[self.tabBarController.viewControllers objectAtIndex:2] tabBarItem] setImage:newImage3];
     [[[self.tabBarController.viewControllers objectAtIndex:2] tabBarItem]  setImageInsets:UIEdgeInsetsMake(0,0,0,0)];
+    
+    // Ajustement de la tableView
+    [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
+    //self.tableView.delegate = self;
+    //self.tableView.dataSource = self;
+    //[_tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

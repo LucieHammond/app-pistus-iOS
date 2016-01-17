@@ -22,6 +22,9 @@
 		C52D72F01C4BB12D005C05D1 /* MesInfosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72EF1C4BB12D005C05D1 /* MesInfosViewController.m */; };
 		C52D72F31C4BB173005C05D1 /* InfosGlobalesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72F21C4BB173005C05D1 /* InfosGlobalesViewController.m */; };
 		C52D72F51C4BB5F4005C05D1 /* news.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D72F41C4BB5F3005C05D1 /* news.png */; };
+		C52D72F81C4BF787005C05D1 /* flecheBas.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D72F61C4BF787005C05D1 /* flecheBas.png */; };
+		C52D72F91C4BF787005C05D1 /* flecheDroite.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D72F71C4BF787005C05D1 /* flecheDroite.png */; };
+		C52D72FC1C4BFD37005C05D1 /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72FB1C4BFD37005C05D1 /* InfoTableViewCell.m */; };
 		C539A78D1BF1F56A00B9E3ED /* iconContact.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7881BF1F56A00B9E3ED /* iconContact.png */; };
 		C539A78E1BF1F56A00B9E3ED /* iconHoraires.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7891BF1F56A00B9E3ED /* iconHoraires.png */; };
 		C539A78F1BF1F56A00B9E3ED /* iconMeteo.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */; };
@@ -111,6 +114,10 @@
 		C52D72F11C4BB173005C05D1 /* InfosGlobalesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfosGlobalesViewController.h; sourceTree = "<group>"; };
 		C52D72F21C4BB173005C05D1 /* InfosGlobalesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfosGlobalesViewController.m; sourceTree = "<group>"; };
 		C52D72F41C4BB5F3005C05D1 /* news.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = news.png; sourceTree = "<group>"; };
+		C52D72F61C4BF787005C05D1 /* flecheBas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flecheBas.png; sourceTree = "<group>"; };
+		C52D72F71C4BF787005C05D1 /* flecheDroite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flecheDroite.png; sourceTree = "<group>"; };
+		C52D72FA1C4BFD37005C05D1 /* InfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewCell.h; sourceTree = "<group>"; };
+		C52D72FB1C4BFD37005C05D1 /* InfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewCell.m; sourceTree = "<group>"; };
 		C539A7881BF1F56A00B9E3ED /* iconContact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconContact.png; sourceTree = "<group>"; };
 		C539A7891BF1F56A00B9E3ED /* iconHoraires.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconHoraires.png; sourceTree = "<group>"; };
 		C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconMeteo.png; sourceTree = "<group>"; };
@@ -290,6 +297,8 @@
 				C52D72EF1C4BB12D005C05D1 /* MesInfosViewController.m */,
 				C52D72F11C4BB173005C05D1 /* InfosGlobalesViewController.h */,
 				C52D72F21C4BB173005C05D1 /* InfosGlobalesViewController.m */,
+				C52D72FA1C4BFD37005C05D1 /* InfoTableViewCell.h */,
+				C52D72FB1C4BFD37005C05D1 /* InfoTableViewCell.m */,
 				C54F8AC91BD94D5A00CE7B3A /* Main.storyboard */,
 				C54F8ACC1BD94D5A00CE7B3A /* Images.xcassets */,
 				C54F8ACE1BD94D5A00CE7B3A /* LaunchScreen.xib */,
@@ -327,6 +336,8 @@
 		C54F8B1D1BD97E1800CE7B3A /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				C52D72F61C4BF787005C05D1 /* flecheBas.png */,
+				C52D72F71C4BF787005C05D1 /* flecheDroite.png */,
 				C52D72E51C4BB073005C05D1 /* infoGenerales.png */,
 				C52D72E61C4BB073005C05D1 /* mesInfos.png */,
 				C52D72F41C4BB5F3005C05D1 /* news.png */,
@@ -452,6 +463,7 @@
 				C5C05E891BEFF7A0007D763E /* Login-568h@2x~iphone.png in Resources */,
 				C5AED9A01C43B10C0086E570 /* speedometer.png in Resources */,
 				C58EA0751C4881FF0022F6B1 /* actualiser.png in Resources */,
+				C52D72F91C4BF787005C05D1 /* flecheDroite.png in Resources */,
 				C5F7B8AE1C41472E00419A86 /* marker2.png in Resources */,
 				C5AED9981C4289240086E570 /* pate_bulle.png in Resources */,
 				C570B8531C2DF703003E0E16 /* Plan Val d'Allos Official corrigé.jpg in Resources */,
@@ -486,6 +498,7 @@
 				C54F8ACD1BD94D5A00CE7B3A /* Images.xcassets in Resources */,
 				C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */,
 				C52D72E91C4BB073005C05D1 /* mesInfos.png in Resources */,
+				C52D72F81C4BF787005C05D1 /* flecheBas.png in Resources */,
 				C5AED9A21C43B1170086E570 /* altitude.png in Resources */,
 				C593B4E81C458397009F5896 /* etoile.png in Resources */,
 			);
@@ -559,6 +572,7 @@
 				C52D72E01C4ACC46005C05D1 /* UUBarChart.m in Sources */,
 				C570B8561C2EBE50003E0E16 /* GeolocalisationManager.m in Sources */,
 				C54F8AC51BD94D5A00CE7B3A /* AppDelegate.m in Sources */,
+				C52D72FC1C4BFD37005C05D1 /* InfoTableViewCell.m in Sources */,
 				C52D72E21C4ACC46005C05D1 /* UUChartLabel.m in Sources */,
 				C52D72F01C4BB12D005C05D1 /* MesInfosViewController.m in Sources */,
 				C52D72E41C4ACC46005C05D1 /* UULineChart.m in Sources */,

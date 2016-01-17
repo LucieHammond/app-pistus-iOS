@@ -8,10 +8,14 @@
 
 #import "InfosGlobalesViewController.h"
 #import "GeolocalisationManager.h"
+#import "InfoTableViewCell.h"
 
 @interface InfosGlobalesViewController ()
 
 @property (nonatomic,strong) UIButton *boutonSatellite;
+@property (nonatomic,strong) NSMutableArray *sectionOpen;
+@property (nonatomic,strong) NSArray *infosHTML;
+@property (nonatomic,strong) NSArray *titreInfos;
 
 @end
 
@@ -36,6 +40,17 @@
     [_trackAcceptButton setCustomView:_boutonSatellite];
     [_boutonSatellite addTarget:self action:@selector(trackChange)
                forControlEvents:UIControlEventTouchUpInside];
+    
+    // Ajustement de la tableView
+    [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [_tableView reloadData];
+    
+    // Initialisation de sectionOpen : au départ aucune section n'est ouverte
+    _sectionOpen = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0",@"0",@"0",nil];
+    
+    [self remplirInfos];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,6 +85,192 @@
         [[GeolocalisationManager sharedInstance] endTrack];
     }
     [_trackAcceptButton setCustomView:_boutonSatellite];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 6;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if([_sectionOpen[section] isEqual:@"1"]){
+        switch (section) {
+            case 0:
+                return 1;
+                break;
+            case 1:
+                return 3;
+                break;
+            case 2:
+                return 6;
+                break;
+            case 3:
+                return 4;
+                break;
+            case 4:
+                return 3;
+                break;
+            case 5:
+                return 2;
+                break;
+            default:
+                return 0;
+        }
+    }
+    else
+        return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"TableViewCell";
+    
+    InfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if(cell == nil) {
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"TableViewCell" owner:nil options:nil] firstObject];
+    }
+    NSString *titre = _titreInfos[indexPath.section][indexPath.row];
+    NSString *html = _infosHTML[indexPath.section][indexPath.row];
+    [cell configUIWithTitle:titre date:nil HTML:html];
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 170;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+        return 52;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    CGRect frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width , 52);
+    UIView *header = [[UIView alloc] initWithFrame:frame];
+    header.backgroundColor = [UIColor colorWithRed:222.0/255.0 green:222.0/255.0 blue:222.0/255.0 alpha:1];
+    
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(16, 0, [UIScreen mainScreen].bounds.size.width -40, 50)];
+    label.font = [UIFont systemFontOfSize:17];
+    switch(section){
+        case 0:
+            label.text = @"Programme de la semaine";
+            break;
+        case 1:
+            label.text = @"Infos pratiques";
+            break;
+        case 2:
+            label.text = @"Présentation des activités";
+            break;
+        case 3:
+            label.text = @"Procédure en cas d'accident";
+            break;
+        case 4:
+            label.text = @"Conseils, avertissements, risques";
+            break;
+        case 5:
+            label.text = @"Quelques règles à respecter";
+            break;
+    }
+    [header addSubview:label];
+    
+    NSString *nomImage;
+    if([_sectionOpen[section] isEqualToString:@"0"]) {
+        nomImage = @"flecheDroite.png";
+    }
+    else{
+        nomImage = @"flecheBas.png";
+    }
+    UIButton *fleche = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-33,15,20,20)];
+    [fleche setImage:[UIImage imageNamed:nomImage] forState:UIControlStateNormal];
+    if([_sectionOpen[section] isEqualToString:@"0"]) {
+        [fleche addTarget:self action:@selector(deployer:)
+         forControlEvents:UIControlEventTouchUpInside];
+    }
+    else{
+        [fleche addTarget:self action:@selector(reduire:)
+         forControlEvents:UIControlEventTouchUpInside];
+    }
+    switch (section) {
+        case 0:
+            fleche1=fleche;
+            break;
+        case 1:
+            fleche2=fleche;
+            break;
+        case 2:
+            fleche3=fleche;
+            break;
+        case 3:
+            fleche4=fleche;
+            break;
+        case 4:
+            fleche5=fleche;
+            break;
+        case 5:
+            fleche6=fleche;
+            break;
+    }
+    [header addSubview:fleche];
+    
+    UIView *delimiteur = [[UIView alloc] initWithFrame:CGRectMake(0, 50, [UIScreen mainScreen].bounds.size.width , 2)];
+    delimiteur.backgroundColor = [UIColor grayColor];
+    [header addSubview:delimiteur];
+    
+    return header;
+}
+
+-(void) deployer:(UIButton*)fleche{
+    if(fleche==fleche1)
+        _sectionOpen[0]=@"1";
+    else if(fleche==fleche2)
+        _sectionOpen[1]=@"1";
+    else if(fleche==fleche3)
+        _sectionOpen[2]=@"1";
+    else if(fleche==fleche4)
+        _sectionOpen[3]=@"1";
+    else if(fleche==fleche5)
+        _sectionOpen[4]=@"1";
+    else if(fleche==fleche6)
+        _sectionOpen[5]=@"1";
+    [_tableView reloadData];
+}
+
+-(void) reduire:(UIButton*)fleche{
+    if(fleche==fleche1)
+        _sectionOpen[0]=@"0";
+    else if(fleche==fleche2)
+        _sectionOpen[1]=@"0";
+    else if(fleche==fleche3)
+        _sectionOpen[2]=@"0";
+    else if(fleche==fleche4)
+        _sectionOpen[3]=@"0";
+    else if(fleche==fleche5)
+        _sectionOpen[4]=@"0";
+    else if(fleche==fleche6)
+        _sectionOpen[5]=@"0";
+    [_tableView reloadData];
+}
+
+-(void) remplirInfos{
+    _titreInfos = @[@[@"Planning du 5 au 12 mars 2016"],@[@"Domaine skiable",@"Alimentation",@"Hébergement"],@[@"Bar de Glace",@"Yooner",@"Big Air Bag",@"Slalom",@"Luge sur rails",@"Patinoire"],@[@"Accident sur les pistes",@"Accident en hors piste",@"Premiers soins médicaux",@"Tarifs des secours"],@[@"Conseils et astuces de skieurs",@"Les risques en montagne",@"Consommation d'alcool"],@[@"Règles de bonne conduite sur les pistes",@"Respect des biens et des personnes"]];
+    NSString *planning = @"";
+    NSString *skier = @"";
+    NSString *manger = @"";
+    NSString *dormir= @"";
+    NSString *barDeGlace = @"";
+    NSString *yooner = @"";
+    NSString *bigAirBag = @"";
+    NSString *slalom = @"";
+    NSString *lugeSurRail = @"";
+    NSString *patinoire = @"";
+    NSString *accidentsPistes = @"";
+    NSString *accidentsHP = @"";
+    NSString *soinsMedicaux = @"";
+    NSString *tarifsSecours = @"";
+    NSString *conseils = @"";
+    NSString *risques = @"";
+    NSString *alcool = @"";
+    NSString *reglesPistes= @"";
+    NSString *reglesRez = @"";
+    _infosHTML = @[@[planning],@[skier,manger,dormir],@[barDeGlace,yooner,bigAirBag,slalom,lugeSurRail,patinoire],@[accidentsPistes,accidentsHP,soinsMedicaux,tarifsSecours],@[conseils,risques,alcool],@[reglesPistes,reglesRez]];
 }
 
 /*
