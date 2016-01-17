@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		B77E891B1C408158005CBD6D /* libNXOAuth2Client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B77E891A1C408158005CBD6D /* libNXOAuth2Client.a */; };
+		C52D72CC1C4ACA09005C05D1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52D72CB1C4ACA09005C05D1 /* Foundation.framework */; };
+		C52D72D11C4ACBDD005C05D1 /* GraphTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72D01C4ACBDD005C05D1 /* GraphTableViewCell.m */; };
+		C52D72DF1C4ACC46005C05D1 /* UUBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72D41C4ACC46005C05D1 /* UUBar.m */; };
+		C52D72E01C4ACC46005C05D1 /* UUBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72D61C4ACC46005C05D1 /* UUBarChart.m */; };
+		C52D72E11C4ACC46005C05D1 /* UUChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72D81C4ACC46005C05D1 /* UUChart.m */; };
+		C52D72E21C4ACC46005C05D1 /* UUChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72DA1C4ACC46005C05D1 /* UUChartLabel.m */; };
+		C52D72E31C4ACC46005C05D1 /* UUColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72DC1C4ACC46005C05D1 /* UUColor.m */; };
+		C52D72E41C4ACC46005C05D1 /* UULineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72DE1C4ACC46005C05D1 /* UULineChart.m */; };
 		C539A78D1BF1F56A00B9E3ED /* iconContact.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7881BF1F56A00B9E3ED /* iconContact.png */; };
 		C539A78E1BF1F56A00B9E3ED /* iconHoraires.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7891BF1F56A00B9E3ED /* iconHoraires.png */; };
 		C539A78F1BF1F56A00B9E3ED /* iconMeteo.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */; };
@@ -73,6 +81,21 @@
 		972F0108189D20F19292CCB6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B77E891A1C408158005CBD6D /* libNXOAuth2Client.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNXOAuth2Client.a; path = "Pods/../build/Debug-iphoneos/libNXOAuth2Client.a"; sourceTree = "<group>"; };
 		C1B1D9BD10AC26036BFAEE20 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C52D72CB1C4ACA09005C05D1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C52D72CF1C4ACBDD005C05D1 /* GraphTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphTableViewCell.h; sourceTree = "<group>"; };
+		C52D72D01C4ACBDD005C05D1 /* GraphTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphTableViewCell.m; sourceTree = "<group>"; };
+		C52D72D31C4ACC46005C05D1 /* UUBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBar.h; sourceTree = "<group>"; };
+		C52D72D41C4ACC46005C05D1 /* UUBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBar.m; sourceTree = "<group>"; };
+		C52D72D51C4ACC46005C05D1 /* UUBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBarChart.h; sourceTree = "<group>"; };
+		C52D72D61C4ACC46005C05D1 /* UUBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBarChart.m; sourceTree = "<group>"; };
+		C52D72D71C4ACC46005C05D1 /* UUChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChart.h; sourceTree = "<group>"; };
+		C52D72D81C4ACC46005C05D1 /* UUChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChart.m; sourceTree = "<group>"; };
+		C52D72D91C4ACC46005C05D1 /* UUChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChartLabel.h; sourceTree = "<group>"; };
+		C52D72DA1C4ACC46005C05D1 /* UUChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChartLabel.m; sourceTree = "<group>"; };
+		C52D72DB1C4ACC46005C05D1 /* UUColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUColor.h; sourceTree = "<group>"; };
+		C52D72DC1C4ACC46005C05D1 /* UUColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUColor.m; sourceTree = "<group>"; };
+		C52D72DD1C4ACC46005C05D1 /* UULineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UULineChart.h; sourceTree = "<group>"; };
+		C52D72DE1C4ACC46005C05D1 /* UULineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UULineChart.m; sourceTree = "<group>"; };
 		C539A7881BF1F56A00B9E3ED /* iconContact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconContact.png; sourceTree = "<group>"; };
 		C539A7891BF1F56A00B9E3ED /* iconHoraires.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconHoraires.png; sourceTree = "<group>"; };
 		C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconMeteo.png; sourceTree = "<group>"; };
@@ -143,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C52D72CC1C4ACA09005C05D1 /* Foundation.framework in Frameworks */,
 				B77E891B1C408158005CBD6D /* libNXOAuth2Client.a in Frameworks */,
 				C570B86C1C30999B003E0E16 /* CoreLocation.framework in Frameworks */,
 				C570B8391C2B440F003E0E16 /* libsqlite3.dylib in Frameworks */,
@@ -162,6 +186,8 @@
 		8C127E9426FC58CDBA5AF32F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C570B86B1C30999B003E0E16 /* CoreLocation.framework */,
+				C52D72CB1C4ACA09005C05D1 /* Foundation.framework */,
 				B77E891A1C408158005CBD6D /* libNXOAuth2Client.a */,
 				972F0108189D20F19292CCB6 /* libPods.a */,
 			);
@@ -177,16 +203,35 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C52D72D21C4ACC25005C05D1 /* UUChart */ = {
+			isa = PBXGroup;
+			children = (
+				C52D72D31C4ACC46005C05D1 /* UUBar.h */,
+				C52D72D41C4ACC46005C05D1 /* UUBar.m */,
+				C52D72D51C4ACC46005C05D1 /* UUBarChart.h */,
+				C52D72D61C4ACC46005C05D1 /* UUBarChart.m */,
+				C52D72D71C4ACC46005C05D1 /* UUChart.h */,
+				C52D72D81C4ACC46005C05D1 /* UUChart.m */,
+				C52D72D91C4ACC46005C05D1 /* UUChartLabel.h */,
+				C52D72DA1C4ACC46005C05D1 /* UUChartLabel.m */,
+				C52D72DB1C4ACC46005C05D1 /* UUColor.h */,
+				C52D72DC1C4ACC46005C05D1 /* UUColor.m */,
+				C52D72DD1C4ACC46005C05D1 /* UULineChart.h */,
+				C52D72DE1C4ACC46005C05D1 /* UULineChart.m */,
+			);
+			name = UUChart;
+			sourceTree = "<group>";
+		};
 		C54F8AB31BD94D5A00CE7B3A = {
 			isa = PBXGroup;
 			children = (
-				C570B86B1C30999B003E0E16 /* CoreLocation.framework */,
 				C570B83B1C2B44C5003E0E16 /* DBManager.h */,
 				C570B83C1C2B44C5003E0E16 /* DBManager.m */,
 				C570B8541C2EBE50003E0E16 /* GeolocalisationManager.h */,
 				C570B8551C2EBE50003E0E16 /* GeolocalisationManager.m */,
 				C5AED99B1C4289DC0086E570 /* bddPistes.db */,
 				C570B8381C2B440F003E0E16 /* libsqlite3.dylib */,
+				C52D72D21C4ACC25005C05D1 /* UUChart */,
 				C54F8B1D1BD97E1800CE7B3A /* Ressources */,
 				C54F8ABE1BD94D5A00CE7B3A /* PistusApp */,
 				C54F8AD81BD94D5A00CE7B3A /* PistusAppTests */,
@@ -222,6 +267,8 @@
 				C593B4EA1C45D730009F5896 /* ClassementViewController.m */,
 				C593B4F21C45E198009F5896 /* GraphsViewController.h */,
 				C593B4F31C45E198009F5896 /* GraphsViewController.m */,
+				C52D72CF1C4ACBDD005C05D1 /* GraphTableViewCell.h */,
+				C52D72D01C4ACBDD005C05D1 /* GraphTableViewCell.m */,
 				C54F8AC91BD94D5A00CE7B3A /* Main.storyboard */,
 				C54F8ACC1BD94D5A00CE7B3A /* Images.xcassets */,
 				C54F8ACE1BD94D5A00CE7B3A /* LaunchScreen.xib */,
@@ -482,12 +529,19 @@
 				C54F8AC81BD94D5A00CE7B3A /* ViewController.m in Sources */,
 				C593B4F41C45E198009F5896 /* GraphsViewController.m in Sources */,
 				C593B4EB1C45D730009F5896 /* ClassementViewController.m in Sources */,
+				C52D72E01C4ACC46005C05D1 /* UUBarChart.m in Sources */,
 				C570B8561C2EBE50003E0E16 /* GeolocalisationManager.m in Sources */,
 				C54F8AC51BD94D5A00CE7B3A /* AppDelegate.m in Sources */,
+				C52D72E21C4ACC46005C05D1 /* UUChartLabel.m in Sources */,
+				C52D72E41C4ACC46005C05D1 /* UULineChart.m in Sources */,
 				C570B8511C2DF46F003E0E16 /* CarteViewController.m in Sources */,
 				C54F8AC21BD94D5A00CE7B3A /* main.m in Sources */,
+				C52D72D11C4ACBDD005C05D1 /* GraphTableViewCell.m in Sources */,
 				C5F3488F1BE8FB98003B94C6 /* MainViewController.m in Sources */,
+				C52D72DF1C4ACC46005C05D1 /* UUBar.m in Sources */,
 				C5AED9A71C43B5490086E570 /* StatsViewController.m in Sources */,
+				C52D72E31C4ACC46005C05D1 /* UUColor.m in Sources */,
+				C52D72E11C4ACC46005C05D1 /* UUChart.m in Sources */,
 				C570B83D1C2B44C5003E0E16 /* DBManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

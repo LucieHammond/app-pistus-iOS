@@ -77,13 +77,12 @@ static GeolocalisationManager* sharedInstance=nil;
         locationManager.pausesLocationUpdatesAutomatically = true;
         locationManager.activityType = CLActivityTypeAutomotiveNavigation;
         if ([locationManager respondsToSelector:@selector(setAllowsBackgroundLocationUpdates:)]) {
-            NSLog(@"C'est Bon");
             [locationManager setAllowsBackgroundLocationUpdates:YES];
         }
         [locationManager startUpdatingLocation];
         
-        // Toutes les 30 secondes, on envoie sa position au serveur (le timer continue même quand l'appli est en background)
-        timerPosition = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(envoyerInfos) userInfo:nil repeats:YES];
+        // Toutes les minutes, on envoie sa position au serveur (le timer continue même quand l'appli est en background)
+        timerPosition = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(envoyerInfos) userInfo:nil repeats:YES];
         
         return true;
     }

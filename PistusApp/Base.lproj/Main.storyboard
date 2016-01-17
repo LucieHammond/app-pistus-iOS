@@ -558,21 +558,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.90206098556518555" green="0.94327819347381592" blue="0.98716646432876587" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Classement général" id="SeG-Ww-Bix"/>
-                    <toolbarItems>
-                        <barButtonItem style="plain" id="FxE-3O-dgT">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Fdc-cd-mvA">
-                                <rect key="frame" x="16" y="7" width="71" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                        </barButtonItem>
-                    </toolbarItems>
+                    <tabBarItem key="tabBarItem" title="Item" id="z89-lW-RwW"/>
+                    <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="barItem" destination="SeG-Ww-Bix" id="vFx-jS-Dv0"/>
                         <outlet property="barre" destination="tE8-yk-1lU" id="Ugh-dk-ulA"/>
                         <outlet property="classementAltitude" destination="Azb-3A-v0F" id="ebN-o8-tHH"/>
                         <outlet property="classementDistance" destination="OsY-I9-ixI" id="HFv-fc-UpJ"/>
@@ -687,7 +678,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vitesse" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cZt-AZ-MII">
-                                        <rect key="frame" x="117" y="48" width="99" height="21"/>
+                                        <rect key="frame" x="117" y="48" width="96" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -885,10 +876,23 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="8UO-hy-Oya">
-                                <rect key="frame" x="0.0" y="64" width="320" height="370"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="qsP-cb-yi4">
+                                <rect key="frame" x="0.0" y="64" width="320" height="365"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </scrollView>
+                                <color key="backgroundColor" red="0.8780483603" green="0.93075567479999999" blue="0.98711043600000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.8780483603477478" green="0.93075567483901978" blue="0.987110435962677" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell" id="isd-yT-BVL" customClass="GraphTableViewCell">
+                                        <rect key="frame" x="0.0" y="49.5" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="isd-yT-BVL" id="rjb-bJ-pte">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.8780483603" green="0.93075567479999999" blue="0.98711043600000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.90206098556518555" green="0.94327819347381592" blue="0.98716646432876587" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -897,7 +901,7 @@
                     <connections>
                         <outlet property="barItem" destination="C65-4x-PUj" id="eef-Hh-ilh"/>
                         <outlet property="barre" destination="sE8-je-8F7" id="3oU-DN-6jE"/>
-                        <outlet property="scrollView" destination="8UO-hy-Oya" id="7WP-Sf-TkU"/>
+                        <outlet property="tableView" destination="qsP-cb-yi4" id="jnt-kn-qb9"/>
                         <outlet property="topBande" destination="XSz-bV-Ca4" id="QQh-u2-5LJ"/>
                         <outlet property="trackAcceptButton" destination="U0s-W1-FG2" id="nLJ-KA-CxY"/>
                     </connections>
