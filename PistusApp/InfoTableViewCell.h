@@ -9,7 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface InfoTableViewCell : UITableViewCell
+{
+    UILabel *texte;
+    UILabel *titreLabel;
+    UIView *delimiteur;
+    UILabel *dateLabel;
+}
 
-- (void) configUIWithTitle:(NSString*)titre date:(NSDate*)date HTML:(NSString*)html;
+- (int) configUIWithTitle:(NSString*)titre date:(NSString *)date HTML:(NSString*)html;
 
 @end

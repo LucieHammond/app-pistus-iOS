@@ -16,6 +16,7 @@
     UIButton *fleche4;
     UIButton *fleche5;
     UIButton *fleche6;
+    int hauteurSection;
 }
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *trackAcceptButton;

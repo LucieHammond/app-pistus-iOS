@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
+    hauteurSection = 0;
     
     //Ajustement de la barre de navigation en haut et configuration des icones
     [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
@@ -130,16 +131,17 @@
     }
     NSString *titre = _titreInfos[indexPath.section][indexPath.row];
     NSString *html = _infosHTML[indexPath.section][indexPath.row];
-    [cell configUIWithTitle:titre date:nil HTML:html];
+    hauteurSection = [cell configUIWithTitle:titre date:nil HTML:html];
+    [self tableView:tableView heightForRowAtIndexPath:indexPath];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 170;
+    return hauteurSection;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-        return 52;
+    return 52;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -250,9 +252,20 @@
 }
 
 -(void) remplirInfos{
-    _titreInfos = @[@[@"Planning du 5 au 12 mars 2016"],@[@"Domaine skiable",@"Alimentation",@"Hébergement"],@[@"Bar de Glace",@"Yooner",@"Big Air Bag",@"Slalom",@"Luge sur rails",@"Patinoire"],@[@"Accident sur les pistes",@"Accident en hors piste",@"Premiers soins médicaux",@"Tarifs des secours"],@[@"Conseils et astuces de skieurs",@"Les risques en montagne",@"Consommation d'alcool"],@[@"Règles de bonne conduite sur les pistes",@"Respect des biens et des personnes"]];
+    _titreInfos = @[@[@"Planning du 5 au 12 mars 2016"],@[@"Domaine skiable",@"Alimentation",@"Hébergement"],@[@"Bar de Glace",@"Yooner",@"Big Air Bag",@"Slalom",@"Luge sur rails",@"Patinoire"],@[@"Accident sur les pistes",@"Accident en hors piste",@"Premiers soins médicaux",@"Tarifs des secours"],@[@"Conseils et astuces de skieurs",@"Les risques en montagne",@"Consommation d'alcool"],@[@"Bonne conduite sur les pistes",@"Respect des biens et des personnes"]];
     NSString *planning = @"";
-    NSString *skier = @"";
+    NSString *skier =
+    @"<body style = \"font-size:13px\">"
+    "   <b>Skier :</b> <br  />"
+    "Sache que ton forfait couvre le domaine des Sybelles en entier, pas seulement St‐Sorlin ! Donc n’hésite pas à en profiter, ça fait beaucoup de pistes ! <br  />"
+    "<br  />"
+    "    <b>Manger :</b> <br  />"
+    "Tous les matins, le Piston Ski organise une livraison de baguettes, pains au chocolat et croissants à l’accueil entre 7h45 et 8h30 précises ! Ne manque pas ton petit déjeuner ! Ta commande sera reconduite d’un jour sur l’autre si tu ne précises rien. Si tu veux changer, signale-le un matin au staff lors de la distribution, cela prendra effet le lendemain. <br  />"
+    "La baguette, le croissant et le pain au chocolat sont tous facturés 0,95€. Nous te demanderons de régler la boulangerie de toute la semaine le vendredi soir 13 mars, par chèque. <br  />"
+    "Si le contenu des packs bouffe ne te suffit pas, il y a un Sherpa en bas de la résidence, en face de l’office de tourisme. <br  />"
+    "Réductions sur présentation du bracelet Odyssée: -10% sur les cartes du Self du Chalet du moulin, du Barock et du Choucas, entre autres. <br  />"
+    "<br />"
+    "<body />";
     NSString *manger = @"";
     NSString *dormir= @"";
     NSString *barDeGlace = @"";
