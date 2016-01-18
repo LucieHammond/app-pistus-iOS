@@ -1,14 +1,19 @@
 //
-//  MesInfosViewController.h
+//  RemonteesViewController.h
 //  PistusApp
 //
-//  Created by Lucie on 17/01/2016.
+//  Created by Lucie on 18/01/2016.
 //  Copyright © 2016 Lucie. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface MesInfosViewController : UIViewController //<UITableViewDataSource,UITableViewDelegate>
+@interface RemonteesViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+{
+    NSArray *remonteesLaFoux;
+    NSArray *remonteesPraLoup;
+    NSArray *remonteesLeSeignus;
+}
 
 @property (weak, nonatomic) IBOutlet UIView *topBande;
 @property (weak, nonatomic) IBOutlet UINavigationBar *barre;

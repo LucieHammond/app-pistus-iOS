@@ -43,6 +43,7 @@
     //Ajustement et ajout de la barre de navigation en haut
     [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
     [_topBande setFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, 20)];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     
     //Préparation pour repositionnement des icones (qui sont des boutons)
     [_carte setTranslatesAutoresizingMaskIntoConstraints:YES];

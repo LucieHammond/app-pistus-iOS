@@ -16,7 +16,6 @@
     int classement;
 }
 
-@property (weak, nonatomic) IBOutlet UITabBarItem *barItem;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *trackAcceptButton;
 @property (weak, nonatomic) IBOutlet UIView *topBande;

@@ -49,7 +49,7 @@
     // Redimensionnement des autres boutons de la barre d'onglets
     UIImage *image2 = [UIImage imageNamed:@"mesInfos.png"];
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(47,33),NO,3);
-    [image2 drawInRect:CGRectMake(0,0,42,33)];
+    [image2 drawInRect:CGRectMake(0,0,47,33)];
     UIImage *newImage2 = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem] setImage:newImage2];
@@ -114,4 +114,6 @@
 }
 */
 
+- (IBAction)actualiser:(id)sender {
+}
 @end

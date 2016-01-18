@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIView *topBande;
 @property (weak, nonatomic) IBOutlet UINavigationBar *barre;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)actualiser:(id)sender;
 
 @end

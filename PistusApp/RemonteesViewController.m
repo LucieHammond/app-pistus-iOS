@@ -1,23 +1,21 @@
 //
-//  GraphsViewController.m
+//  RemonteesViewController.m
 //  PistusApp
 //
-//  Created by Lucie on 13/01/2016.
+//  Created by Lucie on 18/01/2016.
 //  Copyright © 2016 Lucie. All rights reserved.
 //
 
-#import "GraphsViewController.h"
+#import "RemonteesViewController.h"
 #import "GeolocalisationManager.h"
-#import "GraphTableViewCell.h"
 
-@interface GraphsViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface RemonteesViewController ()
 
 @property (nonatomic,strong) UIButton *boutonSatellite;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
-@implementation GraphsViewController
+@implementation RemonteesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,6 +37,29 @@
     [_boutonSatellite addTarget:self action:@selector(trackChange)
                forControlEvents:UIControlEventTouchUpInside];
     
+    // Redimensionnement du bouton de la barre d'onglets
+    UIImage *image = [UIImage imageNamed:@"remontee.png"];
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(42,35),NO,3);
+    [image drawInRect:CGRectMake(0,0,42,35)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [[[self.tabBarController.viewControllers objectAtIndex:0] tabBarItem] setImage:newImage];
+    [[[self.tabBarController.viewControllers objectAtIndex:0] tabBarItem] setImageInsets:UIEdgeInsetsMake(0,0,0,0)];
+    
+    // Redimensionnement des autres boutons de la barre d'onglets
+    UIImage *image2 = [UIImage imageNamed:@"pistes.png"];
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(39,39),NO,3);
+    [image2 drawInRect:CGRectMake(0,0,39,39)];
+    UIImage *newImage2 = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem] setImage:newImage2];
+    [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem]  setImageInsets:UIEdgeInsetsMake(0,-2,0,2)];
+    
+    // On initialise les tableaux avec tous les noms de pistes
+    remonteesLaFoux = @[@"TS AIGUILLE",@"TS CHAUVETS",@"TK CROUS I",@"TK CROUS II",@"TC LA CHAUP",@"TSD LA CHAUP",@"TK LA TARDEE",@"TS MARIN PASCAL",@"TS OBSERVATOIRE",@"TK PLAINES",@"TK PLATEAU I",@"TK PLATEAU II",@"TS PONT DE L'ABRAU",@"TS POURET",@"TK SIGNAL",@"TK UBAC",@"TS UBAGUETS",@"TELECORDE VERDON",@"TS VESCAL"];
+    remonteesPraLoup = @[@"TS AGNELIERS",@"TK BABY",@"TK BELIERE",@"TSD BERGERIES",@"TAPIS-NEIGE CLAPIERS",@"TELEMIX CLAPPE", @"TC COSTEBELLE",@"TK COURTIL I",@"TK COURTIL II",@"TK GIMETTE",@"TK LAC I",@"TK LAC II",@"TC MOLANES",@"TSD6 PEGUIEOU",@"TS QUARTIERS",@"TAPIS-NEIGE SERRE",@"TK SESTRIERES",@"TAPIS-NEIGE SORBIERS",@"TK STADE"];
+    remonteesLeSeignus = @[@"TK AUTAPIE I",@"TK AUTAPIE II",@"TSD6 CLOS BERTRAND",@"TS FONT FREDE",@"TS GROS TAPY",@"TC GUINAND",@"TK HONORE CAIRE",@"TK PRE DE LA PORTE"];
+    
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
     self.tableView.delegate = self;
@@ -46,14 +67,11 @@
     [_tableView reloadData];
 }
 
--(void) viewDidLayoutSubviews {
-    // Redimensionnement du bouton de la barre d'onglets
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
@@ -83,121 +101,80 @@
     }
     [_trackAcceptButton setCustomView:_boutonSatellite];
 }
+- (IBAction)actualiser:(id)sender {
+    [self viewDidLoad];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    switch (section) {
+        case 0:
+            return 19;
+            break;
+        case 1:
+            return 19;
+            break;
+        case 2:
+            return 8;
+            break;
+        default:
+            return 0;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"TableViewCell";
+    static NSString *cellIdentifier = @"idCellRemontee";
     
-    GraphTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if(cell == nil) {
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"TableViewCell" owner:nil options:nil] firstObject];
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"idCellRemontee" owner:nil options:nil] firstObject];
     }
-    [cell configUI:indexPath];
-    
+    switch (indexPath.section) {
+        case 0:
+            cell.textLabel.text = remonteesLaFoux[indexPath.row];
+            break;
+        case 1:
+            cell.textLabel.text = remonteesPraLoup[indexPath.row];
+            break;
+        case 2:
+            cell.textLabel.text = remonteesLeSeignus[indexPath.row];
+            break;
+    }
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 170;
+    return 50;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if([UIScreen mainScreen].bounds.size.height<600){
-        if(section==0)
-            return 85;
-        else
-            return 70;
-    }
-    else{
-        if(section==0)
-            return 80;
-        else
-            return 65;
-    }
+    return 30;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    CGRect frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width , 60);
-    UIView *header = [[UIView alloc] initWithFrame:frame];
     
-    UILabel *label;
-    if([UIScreen mainScreen].bounds.size.height<600){
-        if(section==0){
-            label = [[UILabel alloc]initWithFrame:CGRectMake(105, 35, [UIScreen mainScreen].bounds.size.width -100, 25)];
-        }
-        else{
-            label = [[UILabel alloc]initWithFrame:CGRectMake(105, 20, [UIScreen mainScreen].bounds.size.width -100, 25)];
-        }
-        label.font = [UIFont boldSystemFontOfSize:22];
-    }
-    else{
-        if(section==0){
-            label = [[UILabel alloc]initWithFrame:CGRectMake(112, 38, [UIScreen mainScreen].bounds.size.width -100, 25)];
-        }
-        else{
-            label = [[UILabel alloc]initWithFrame:CGRectMake(112, 23, [UIScreen mainScreen].bounds.size.width -100, 25)];
-        }
-        label.font = [UIFont boldSystemFontOfSize:25];
-    }
-    
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 32)];
+    label.backgroundColor = [UIColor colorWithRed:222.0/255.0 green:222.0/255.0 blue:222.0/255.0 alpha:1];
+    label.font = [UIFont systemFontOfSize:23];
+    label.textColor = [UIColor colorWithRed:50.0/255.0 green:93.0/255.0 blue:171.0/255.0 alpha:1];
     switch(section){
         case 0:
-            label.text = @"Vitesse moyenne";
+            label.text = @"Val d'Allos La Foux";
             break;
         case 1:
-            label.text = @"Distance à ski";
+            label.text = @"Pra Loup";
             break;
         case 2:
-            label.text = @"Temps de ski";
+            label.text = @"Val d'Allos Le Seignus";
             break;
     }
-    label.textAlignment = NSTextAlignmentLeft;
-    [header addSubview:label];
-    
-    NSString *nomImage;
-    switch (section) {
-        case 0:
-            nomImage = @"speedometer.png";
-            break;
-        case 1:
-            nomImage = @"distance.png";
-            break;
-        case 2:
-            nomImage = @"temps.png";
-            break;
-    }
-    UIImageView *icone = [[UIImageView alloc] initWithImage:[UIImage imageNamed:nomImage]];
-    if([UIScreen mainScreen].bounds.size.height<600){
-        if(section==0){
-            [icone setFrame:CGRectMake(28,20,55,55)];
-        }
-        else{
-            [icone setFrame:CGRectMake(28,5,55,55)];
-        }
-    }
-    else{
-        if(section==0){
-            [icone setFrame:CGRectMake(32,20,60,60)];
-        }
-        else{
-            [icone setFrame:CGRectMake(32,5,60,60)];
-        }
-    }
-    
-
-    [header addSubview:icone];
-
-    return header;
+    label.textAlignment = NSTextAlignmentCenter;
+    return label;
 }
-
 
 /*
 #pragma mark - Navigation

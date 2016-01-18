@@ -25,6 +25,11 @@
 		C52D72F81C4BF787005C05D1 /* flecheBas.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D72F61C4BF787005C05D1 /* flecheBas.png */; };
 		C52D72F91C4BF787005C05D1 /* flecheDroite.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D72F71C4BF787005C05D1 /* flecheDroite.png */; };
 		C52D72FC1C4BFD37005C05D1 /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72FB1C4BFD37005C05D1 /* InfoTableViewCell.m */; };
+		C52D73001C4C65E0005C05D1 /* flecheGauche.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D72FF1C4C65E0005C05D1 /* flecheGauche.png */; };
+		C52D73031C4CF075005C05D1 /* RemonteesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D73021C4CF075005C05D1 /* RemonteesViewController.m */; };
+		C52D73061C4CF093005C05D1 /* PistesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D73051C4CF093005C05D1 /* PistesViewController.m */; };
+		C52D73091C4D1D64005C05D1 /* pistes.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D73071C4D1D64005C05D1 /* pistes.png */; };
+		C52D730A1C4D1D64005C05D1 /* remontee.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D73081C4D1D64005C05D1 /* remontee.png */; };
 		C539A78D1BF1F56A00B9E3ED /* iconContact.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7881BF1F56A00B9E3ED /* iconContact.png */; };
 		C539A78E1BF1F56A00B9E3ED /* iconHoraires.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7891BF1F56A00B9E3ED /* iconHoraires.png */; };
 		C539A78F1BF1F56A00B9E3ED /* iconMeteo.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */; };
@@ -118,6 +123,13 @@
 		C52D72F71C4BF787005C05D1 /* flecheDroite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flecheDroite.png; sourceTree = "<group>"; };
 		C52D72FA1C4BFD37005C05D1 /* InfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewCell.h; sourceTree = "<group>"; };
 		C52D72FB1C4BFD37005C05D1 /* InfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewCell.m; sourceTree = "<group>"; };
+		C52D72FF1C4C65E0005C05D1 /* flecheGauche.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flecheGauche.png; sourceTree = "<group>"; };
+		C52D73011C4CF075005C05D1 /* RemonteesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemonteesViewController.h; sourceTree = "<group>"; };
+		C52D73021C4CF075005C05D1 /* RemonteesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemonteesViewController.m; sourceTree = "<group>"; };
+		C52D73041C4CF093005C05D1 /* PistesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PistesViewController.h; sourceTree = "<group>"; };
+		C52D73051C4CF093005C05D1 /* PistesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PistesViewController.m; sourceTree = "<group>"; };
+		C52D73071C4D1D64005C05D1 /* pistes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pistes.png; sourceTree = "<group>"; };
+		C52D73081C4D1D64005C05D1 /* remontee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remontee.png; sourceTree = "<group>"; };
 		C539A7881BF1F56A00B9E3ED /* iconContact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconContact.png; sourceTree = "<group>"; };
 		C539A7891BF1F56A00B9E3ED /* iconHoraires.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconHoraires.png; sourceTree = "<group>"; };
 		C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconMeteo.png; sourceTree = "<group>"; };
@@ -299,6 +311,10 @@
 				C52D72F21C4BB173005C05D1 /* InfosGlobalesViewController.m */,
 				C52D72FA1C4BFD37005C05D1 /* InfoTableViewCell.h */,
 				C52D72FB1C4BFD37005C05D1 /* InfoTableViewCell.m */,
+				C52D73011C4CF075005C05D1 /* RemonteesViewController.h */,
+				C52D73021C4CF075005C05D1 /* RemonteesViewController.m */,
+				C52D73041C4CF093005C05D1 /* PistesViewController.h */,
+				C52D73051C4CF093005C05D1 /* PistesViewController.m */,
 				C54F8AC91BD94D5A00CE7B3A /* Main.storyboard */,
 				C54F8ACC1BD94D5A00CE7B3A /* Images.xcassets */,
 				C54F8ACE1BD94D5A00CE7B3A /* LaunchScreen.xib */,
@@ -336,7 +352,10 @@
 		C54F8B1D1BD97E1800CE7B3A /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				C52D73071C4D1D64005C05D1 /* pistes.png */,
+				C52D73081C4D1D64005C05D1 /* remontee.png */,
 				C52D72F61C4BF787005C05D1 /* flecheBas.png */,
+				C52D72FF1C4C65E0005C05D1 /* flecheGauche.png */,
 				C52D72F71C4BF787005C05D1 /* flecheDroite.png */,
 				C52D72E51C4BB073005C05D1 /* infoGenerales.png */,
 				C52D72E61C4BB073005C05D1 /* mesInfos.png */,
@@ -463,7 +482,9 @@
 				C5C05E891BEFF7A0007D763E /* Login-568h@2x~iphone.png in Resources */,
 				C5AED9A01C43B10C0086E570 /* speedometer.png in Resources */,
 				C58EA0751C4881FF0022F6B1 /* actualiser.png in Resources */,
+				C52D73001C4C65E0005C05D1 /* flecheGauche.png in Resources */,
 				C52D72F91C4BF787005C05D1 /* flecheDroite.png in Resources */,
+				C52D73091C4D1D64005C05D1 /* pistes.png in Resources */,
 				C5F7B8AE1C41472E00419A86 /* marker2.png in Resources */,
 				C5AED9981C4289240086E570 /* pate_bulle.png in Resources */,
 				C570B8531C2DF703003E0E16 /* Plan Val d'Allos Official corrigé.jpg in Resources */,
@@ -492,6 +513,7 @@
 				C5C05E791BEFF6FC007D763E /* accueil_5.jpg in Resources */,
 				C5C05E7C1BEFF6FC007D763E /* iconConcours.png in Resources */,
 				C5C05E881BEFF7A0007D763E /* connexion.png in Resources */,
+				C52D730A1C4D1D64005C05D1 /* remontee.png in Resources */,
 				C5C05E8C1BEFF7A0007D763E /* Login@2x~iphone.png in Resources */,
 				C593B4EF1C45E0AB009F5896 /* maSemaine.png in Resources */,
 				C5AED9A91C4423F10086E570 /* distance.png in Resources */,
@@ -567,6 +589,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C54F8AC81BD94D5A00CE7B3A /* ViewController.m in Sources */,
+				C52D73031C4CF075005C05D1 /* RemonteesViewController.m in Sources */,
 				C593B4F41C45E198009F5896 /* GraphsViewController.m in Sources */,
 				C593B4EB1C45D730009F5896 /* ClassementViewController.m in Sources */,
 				C52D72E01C4ACC46005C05D1 /* UUBarChart.m in Sources */,
@@ -586,6 +609,7 @@
 				C52D72ED1C4BB0E3005C05D1 /* NewsViewController.m in Sources */,
 				C52D72E11C4ACC46005C05D1 /* UUChart.m in Sources */,
 				C570B83D1C2B44C5003E0E16 /* DBManager.m in Sources */,
+				C52D73061C4CF093005C05D1 /* PistesViewController.m in Sources */,
 				C52D72F31C4BB173005C05D1 /* InfosGlobalesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

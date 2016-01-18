@@ -1,21 +1,21 @@
 //
-//  MesInfosViewController.m
+//  PistesViewController.m
 //  PistusApp
 //
-//  Created by Lucie on 17/01/2016.
+//  Created by Lucie on 18/01/2016.
 //  Copyright © 2016 Lucie. All rights reserved.
 //
 
-#import "MesInfosViewController.h"
+#import "PistesViewController.h"
 #import "GeolocalisationManager.h"
 
-@interface MesInfosViewController ()
+@interface PistesViewController ()
 
 @property (nonatomic,strong) UIButton *boutonSatellite;
 
 @end
 
-@implementation MesInfosViewController
+@implementation PistesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,6 +48,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
