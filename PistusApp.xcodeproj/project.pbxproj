@@ -24,12 +24,29 @@
 		C52D72F51C4BB5F4005C05D1 /* news.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D72F41C4BB5F3005C05D1 /* news.png */; };
 		C52D72F81C4BF787005C05D1 /* flecheBas.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D72F61C4BF787005C05D1 /* flecheBas.png */; };
 		C52D72F91C4BF787005C05D1 /* flecheDroite.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D72F71C4BF787005C05D1 /* flecheDroite.png */; };
-		C52D72FC1C4BFD37005C05D1 /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72FB1C4BFD37005C05D1 /* InfoTableViewCell.m */; };
 		C52D73001C4C65E0005C05D1 /* flecheGauche.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D72FF1C4C65E0005C05D1 /* flecheGauche.png */; };
 		C52D73031C4CF075005C05D1 /* RemonteesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D73021C4CF075005C05D1 /* RemonteesViewController.m */; };
 		C52D73061C4CF093005C05D1 /* PistesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D73051C4CF093005C05D1 /* PistesViewController.m */; };
 		C52D73091C4D1D64005C05D1 /* pistes.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D73071C4D1D64005C05D1 /* pistes.png */; };
 		C52D730A1C4D1D64005C05D1 /* remontee.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D73081C4D1D64005C05D1 /* remontee.png */; };
+		C52D731C1C4D8630005C05D1 /* boardercrossBleu.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D730B1C4D8630005C05D1 /* boardercrossBleu.png */; };
+		C52D731D1C4D8630005C05D1 /* boardercrossRouge.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D730C1C4D8630005C05D1 /* boardercrossRouge.png */; };
+		C52D731E1C4D8630005C05D1 /* boardercrossVert.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D730D1C4D8630005C05D1 /* boardercrossVert.png */; };
+		C52D731F1C4D8630005C05D1 /* feuRouge.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D730E1C4D8630005C05D1 /* feuRouge.png */; };
+		C52D73201C4D8630005C05D1 /* feuVert.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D730F1C4D8630005C05D1 /* feuVert.png */; };
+		C52D73211C4D8630005C05D1 /* luge.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D73101C4D8630005C05D1 /* luge.png */; };
+		C52D73221C4D8630005C05D1 /* pisteBleue.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D73111C4D8630005C05D1 /* pisteBleue.png */; };
+		C52D73231C4D8630005C05D1 /* pisteNoire.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D73121C4D8630005C05D1 /* pisteNoire.png */; };
+		C52D73241C4D8630005C05D1 /* pisteRouge.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D73131C4D8630005C05D1 /* pisteRouge.png */; };
+		C52D73251C4D8630005C05D1 /* pisteVerte.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D73141C4D8630005C05D1 /* pisteVerte.png */; };
+		C52D73261C4D8630005C05D1 /* snowpark.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D73151C4D8630005C05D1 /* snowpark.png */; };
+		C52D73271C4D8630005C05D1 /* TB.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D73161C4D8630005C05D1 /* TB.png */; };
+		C52D73281C4D8630005C05D1 /* TC.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D73171C4D8630005C05D1 /* TC.png */; };
+		C52D73291C4D8630005C05D1 /* TK.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D73181C4D8630005C05D1 /* TK.png */; };
+		C52D732A1C4D8630005C05D1 /* TN.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D73191C4D8630005C05D1 /* TN.png */; };
+		C52D732B1C4D8630005C05D1 /* TS.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D731A1C4D8630005C05D1 /* TS.png */; };
+		C52D732C1C4D8630005C05D1 /* TSD.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D731B1C4D8630005C05D1 /* TSD.png */; };
+		C52D732F1C4D98FF005C05D1 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D732E1C4D98FF005C05D1 /* CustomTableViewCell.m */; };
 		C539A78D1BF1F56A00B9E3ED /* iconContact.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7881BF1F56A00B9E3ED /* iconContact.png */; };
 		C539A78E1BF1F56A00B9E3ED /* iconHoraires.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7891BF1F56A00B9E3ED /* iconHoraires.png */; };
 		C539A78F1BF1F56A00B9E3ED /* iconMeteo.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */; };
@@ -121,8 +138,6 @@
 		C52D72F41C4BB5F3005C05D1 /* news.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = news.png; sourceTree = "<group>"; };
 		C52D72F61C4BF787005C05D1 /* flecheBas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flecheBas.png; sourceTree = "<group>"; };
 		C52D72F71C4BF787005C05D1 /* flecheDroite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flecheDroite.png; sourceTree = "<group>"; };
-		C52D72FA1C4BFD37005C05D1 /* InfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewCell.h; sourceTree = "<group>"; };
-		C52D72FB1C4BFD37005C05D1 /* InfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewCell.m; sourceTree = "<group>"; };
 		C52D72FF1C4C65E0005C05D1 /* flecheGauche.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flecheGauche.png; sourceTree = "<group>"; };
 		C52D73011C4CF075005C05D1 /* RemonteesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemonteesViewController.h; sourceTree = "<group>"; };
 		C52D73021C4CF075005C05D1 /* RemonteesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemonteesViewController.m; sourceTree = "<group>"; };
@@ -130,6 +145,25 @@
 		C52D73051C4CF093005C05D1 /* PistesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PistesViewController.m; sourceTree = "<group>"; };
 		C52D73071C4D1D64005C05D1 /* pistes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pistes.png; sourceTree = "<group>"; };
 		C52D73081C4D1D64005C05D1 /* remontee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remontee.png; sourceTree = "<group>"; };
+		C52D730B1C4D8630005C05D1 /* boardercrossBleu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boardercrossBleu.png; sourceTree = "<group>"; };
+		C52D730C1C4D8630005C05D1 /* boardercrossRouge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boardercrossRouge.png; sourceTree = "<group>"; };
+		C52D730D1C4D8630005C05D1 /* boardercrossVert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boardercrossVert.png; sourceTree = "<group>"; };
+		C52D730E1C4D8630005C05D1 /* feuRouge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feuRouge.png; sourceTree = "<group>"; };
+		C52D730F1C4D8630005C05D1 /* feuVert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feuVert.png; sourceTree = "<group>"; };
+		C52D73101C4D8630005C05D1 /* luge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luge.png; sourceTree = "<group>"; };
+		C52D73111C4D8630005C05D1 /* pisteBleue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pisteBleue.png; sourceTree = "<group>"; };
+		C52D73121C4D8630005C05D1 /* pisteNoire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pisteNoire.png; sourceTree = "<group>"; };
+		C52D73131C4D8630005C05D1 /* pisteRouge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pisteRouge.png; sourceTree = "<group>"; };
+		C52D73141C4D8630005C05D1 /* pisteVerte.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pisteVerte.png; sourceTree = "<group>"; };
+		C52D73151C4D8630005C05D1 /* snowpark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snowpark.png; sourceTree = "<group>"; };
+		C52D73161C4D8630005C05D1 /* TB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TB.png; sourceTree = "<group>"; };
+		C52D73171C4D8630005C05D1 /* TC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TC.png; sourceTree = "<group>"; };
+		C52D73181C4D8630005C05D1 /* TK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TK.png; sourceTree = "<group>"; };
+		C52D73191C4D8630005C05D1 /* TN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TN.png; sourceTree = "<group>"; };
+		C52D731A1C4D8630005C05D1 /* TS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TS.png; sourceTree = "<group>"; };
+		C52D731B1C4D8630005C05D1 /* TSD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSD.png; sourceTree = "<group>"; };
+		C52D732D1C4D98FF005C05D1 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
+		C52D732E1C4D98FF005C05D1 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 		C539A7881BF1F56A00B9E3ED /* iconContact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconContact.png; sourceTree = "<group>"; };
 		C539A7891BF1F56A00B9E3ED /* iconHoraires.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconHoraires.png; sourceTree = "<group>"; };
 		C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconMeteo.png; sourceTree = "<group>"; };
@@ -309,8 +343,8 @@
 				C52D72EF1C4BB12D005C05D1 /* MesInfosViewController.m */,
 				C52D72F11C4BB173005C05D1 /* InfosGlobalesViewController.h */,
 				C52D72F21C4BB173005C05D1 /* InfosGlobalesViewController.m */,
-				C52D72FA1C4BFD37005C05D1 /* InfoTableViewCell.h */,
-				C52D72FB1C4BFD37005C05D1 /* InfoTableViewCell.m */,
+				C52D732D1C4D98FF005C05D1 /* CustomTableViewCell.h */,
+				C52D732E1C4D98FF005C05D1 /* CustomTableViewCell.m */,
 				C52D73011C4CF075005C05D1 /* RemonteesViewController.h */,
 				C52D73021C4CF075005C05D1 /* RemonteesViewController.m */,
 				C52D73041C4CF093005C05D1 /* PistesViewController.h */,
@@ -352,6 +386,23 @@
 		C54F8B1D1BD97E1800CE7B3A /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				C52D730B1C4D8630005C05D1 /* boardercrossBleu.png */,
+				C52D730C1C4D8630005C05D1 /* boardercrossRouge.png */,
+				C52D730D1C4D8630005C05D1 /* boardercrossVert.png */,
+				C52D730E1C4D8630005C05D1 /* feuRouge.png */,
+				C52D730F1C4D8630005C05D1 /* feuVert.png */,
+				C52D73101C4D8630005C05D1 /* luge.png */,
+				C52D73111C4D8630005C05D1 /* pisteBleue.png */,
+				C52D73121C4D8630005C05D1 /* pisteNoire.png */,
+				C52D73131C4D8630005C05D1 /* pisteRouge.png */,
+				C52D73141C4D8630005C05D1 /* pisteVerte.png */,
+				C52D73151C4D8630005C05D1 /* snowpark.png */,
+				C52D73161C4D8630005C05D1 /* TB.png */,
+				C52D73171C4D8630005C05D1 /* TC.png */,
+				C52D73181C4D8630005C05D1 /* TK.png */,
+				C52D73191C4D8630005C05D1 /* TN.png */,
+				C52D731A1C4D8630005C05D1 /* TS.png */,
+				C52D731B1C4D8630005C05D1 /* TSD.png */,
 				C52D73071C4D1D64005C05D1 /* pistes.png */,
 				C52D73081C4D1D64005C05D1 /* remontee.png */,
 				C52D72F61C4BF787005C05D1 /* flecheBas.png */,
@@ -480,42 +531,59 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5C05E891BEFF7A0007D763E /* Login-568h@2x~iphone.png in Resources */,
+				C52D731F1C4D8630005C05D1 /* feuRouge.png in Resources */,
 				C5AED9A01C43B10C0086E570 /* speedometer.png in Resources */,
 				C58EA0751C4881FF0022F6B1 /* actualiser.png in Resources */,
 				C52D73001C4C65E0005C05D1 /* flecheGauche.png in Resources */,
 				C52D72F91C4BF787005C05D1 /* flecheDroite.png in Resources */,
+				C52D73211C4D8630005C05D1 /* luge.png in Resources */,
 				C52D73091C4D1D64005C05D1 /* pistes.png in Resources */,
 				C5F7B8AE1C41472E00419A86 /* marker2.png in Resources */,
+				C52D731D1C4D8630005C05D1 /* boardercrossRouge.png in Resources */,
 				C5AED9981C4289240086E570 /* pate_bulle.png in Resources */,
 				C570B8531C2DF703003E0E16 /* Plan Val d'Allos Official corrigé.jpg in Resources */,
 				C5AED9AB1C4423FA0086E570 /* temps.png in Resources */,
 				C54F8ACB1BD94D5A00CE7B3A /* Main.storyboard in Resources */,
+				C52D73261C4D8630005C05D1 /* snowpark.png in Resources */,
+				C52D73241C4D8630005C05D1 /* pisteRouge.png in Resources */,
 				C5AED99C1C4289DC0086E570 /* bddPistes.db in Resources */,
 				C593B4ED1C45E0A5009F5896 /* mesStats.png in Resources */,
 				C5C05E7B1BEFF6FC007D763E /* accueil_6Plus.jpg in Resources */,
+				C52D73201C4D8630005C05D1 /* feuVert.png in Resources */,
+				C52D732B1C4D8630005C05D1 /* TS.png in Resources */,
 				C593B4F11C45E0B1009F5896 /* classement.png in Resources */,
+				C52D73281C4D8630005C05D1 /* TC.png in Resources */,
 				C570B8661C2ED85C003E0E16 /* satelliteon.png in Resources */,
 				C5C05E8B1BEFF7A0007D763E /* Login-736h@3x~iphone.png in Resources */,
 				C539A7911BF1F56A00B9E3ED /* iconTroc.png in Resources */,
 				C5C05E7F1BEFF6FC007D763E /* iconMap.png in Resources */,
 				C52D72F51C4BB5F4005C05D1 /* news.png in Resources */,
 				C5C05E7E1BEFF6FC007D763E /* iconInfo.png in Resources */,
+				C52D73291C4D8630005C05D1 /* TK.png in Resources */,
 				C5AED9961C41B8B30086E570 /* ciblage.png in Resources */,
 				C5C05E8E1BEFFBA5007D763E /* accueil_4.jpg in Resources */,
 				C539A78D1BF1F56A00B9E3ED /* iconContact.png in Resources */,
+				C52D732A1C4D8630005C05D1 /* TN.png in Resources */,
 				C5C05E8A1BEFF7A0007D763E /* Login-667h@2x~iphone.png in Resources */,
+				C52D73271C4D8630005C05D1 /* TB.png in Resources */,
 				C539A78F1BF1F56A00B9E3ED /* iconMeteo.png in Resources */,
 				C54F8AD01BD94D5A00CE7B3A /* LaunchScreen.xib in Resources */,
 				C52D72E81C4BB073005C05D1 /* infoGenerales.png in Resources */,
+				C52D731C1C4D8630005C05D1 /* boardercrossBleu.png in Resources */,
+				C52D732C1C4D8630005C05D1 /* TSD.png in Resources */,
 				C539A78E1BF1F56A00B9E3ED /* iconHoraires.png in Resources */,
 				C539A7901BF1F56A00B9E3ED /* iconStats.png in Resources */,
 				C570B8681C2EDC23003E0E16 /* satelliteoff.png in Resources */,
 				C5C05E791BEFF6FC007D763E /* accueil_5.jpg in Resources */,
 				C5C05E7C1BEFF6FC007D763E /* iconConcours.png in Resources */,
 				C5C05E881BEFF7A0007D763E /* connexion.png in Resources */,
+				C52D73231C4D8630005C05D1 /* pisteNoire.png in Resources */,
 				C52D730A1C4D1D64005C05D1 /* remontee.png in Resources */,
 				C5C05E8C1BEFF7A0007D763E /* Login@2x~iphone.png in Resources */,
+				C52D731E1C4D8630005C05D1 /* boardercrossVert.png in Resources */,
+				C52D73221C4D8630005C05D1 /* pisteBleue.png in Resources */,
 				C593B4EF1C45E0AB009F5896 /* maSemaine.png in Resources */,
+				C52D73251C4D8630005C05D1 /* pisteVerte.png in Resources */,
 				C5AED9A91C4423F10086E570 /* distance.png in Resources */,
 				C54F8ACD1BD94D5A00CE7B3A /* Images.xcassets in Resources */,
 				C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */,
@@ -595,13 +663,13 @@
 				C52D72E01C4ACC46005C05D1 /* UUBarChart.m in Sources */,
 				C570B8561C2EBE50003E0E16 /* GeolocalisationManager.m in Sources */,
 				C54F8AC51BD94D5A00CE7B3A /* AppDelegate.m in Sources */,
-				C52D72FC1C4BFD37005C05D1 /* InfoTableViewCell.m in Sources */,
 				C52D72E21C4ACC46005C05D1 /* UUChartLabel.m in Sources */,
 				C52D72F01C4BB12D005C05D1 /* MesInfosViewController.m in Sources */,
 				C52D72E41C4ACC46005C05D1 /* UULineChart.m in Sources */,
 				C570B8511C2DF46F003E0E16 /* CarteViewController.m in Sources */,
 				C54F8AC21BD94D5A00CE7B3A /* main.m in Sources */,
 				C52D72D11C4ACBDD005C05D1 /* GraphTableViewCell.m in Sources */,
+				C52D732F1C4D98FF005C05D1 /* CustomTableViewCell.m in Sources */,
 				C5F3488F1BE8FB98003B94C6 /* MainViewController.m in Sources */,
 				C52D72DF1C4ACC46005C05D1 /* UUBar.m in Sources */,
 				C5AED9A71C43B5490086E570 /* StatsViewController.m in Sources */,

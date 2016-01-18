@@ -8,7 +8,7 @@
 
 #import "InfosGlobalesViewController.h"
 #import "GeolocalisationManager.h"
-#import "InfoTableViewCell.h"
+#import "CustomTableViewCell.h"
 
 @interface InfosGlobalesViewController ()
 
@@ -124,7 +124,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"TableViewCell";
     
-    InfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if(cell == nil) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"TableViewCell" owner:nil options:nil] firstObject];

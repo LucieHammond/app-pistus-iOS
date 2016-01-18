@@ -91,6 +91,7 @@
         [_trackAcceptButton setCustomView:_boutonSatellite];
         [_boutonSatellite addTarget:self action:@selector(trackChange)
          forControlEvents:UIControlEventTouchUpInside];
+        
         // Configuration du scrollView pour pouvoir se déplacer sur le plan
         [_scrollView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 65)];
         imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Plan Val d'Allos Official corrigé.jpg"]];

@@ -13,6 +13,7 @@
     NSArray *pistesLaFoux;
     NSArray *pistesPraLoup;
     NSArray *pistesLeSeignus;
+    NSArray *couleurs;
 }
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *barre;

@@ -8,6 +8,7 @@
 
 #import "PistesViewController.h"
 #import "GeolocalisationManager.h"
+#import "CustomTableViewCell.h"
 
 @interface PistesViewController ()
 
@@ -37,9 +38,10 @@
     [_boutonSatellite addTarget:self action:@selector(trackChange)
                forControlEvents:UIControlEventTouchUpInside];
     
-    pistesLaFoux = @[@"Crocus",@"Escargot",@"Gentianes",@"Séolane (la Foux)",@"Alpages",@"Bleuets",@"Chardons",@"Chemin de l'abrau",@"Chemin de plaines",@"Coucous",@"Eterlou",@"Forêt",@"Grand duc",@"Lièvre blanc",@"Myrtilles", @"Quartz",@"Renard", @"Roche aux fées",@"Trans-amazonnienne",@"Agneaux",@"Aigle",@"Arnica",@"Boardercross rouge (la Foux)",@"Chamois", @"Coqs", @"Digitale", @"Ecureuils", @"Edelweiss", @"Fouines",@"Jonquilles",@"Lagopèdes",@"Marmottes (la Foux)",@"Perdrix",@"Serge Gousseault",@"Sources du Verdon",@"Tétras",@"3 Evéchés",@"Buse",@"Couloir",@"Génépy",@"Snow Park (Aiguille)",@"Snow Park (la Chaup)",@"Verdon Express"];
-    pistesPraLoup = @[@"Baby",@"Bélière",@"Boardercross vert",@"Clapiers",@"Le Y",@"Sestrières (verte)",@"Sorbiers",@"Bergeries", @"Boardercross bleu",@"Cabane du berger",@"Chemin du Bull",@"Clappe",@"Clots",@"Garcine",@"Liaison Costebelle",@"Liaison Lac",@"Liaison Péguieou",@"Marmottes (Pra Loup)",@"Péguieou",@"Sestières (bleue)",@"Boardercross rouge (Pra Loup)", @"Bois", @"Bretelle", @"Chemin des agneliers", @"Colinot",@"Combe air France",@"Costebelle",@"Dalle", @"Fau", @"Fraises", @"Gimette", @"Grande rouge", @"Honoré Bonnet", @"Lac", @"Langail",@"Loups", @"Quartiers", @"Serre de l'homme",@"Stade C.Pascal",@"La Noire", @"Séolane (Pra Loup)", @"Surf",@"Snow Park (Pra Loup)"];
-    pistesLeSeignus = @[@"L'Adret",@"Stade de neige",@"Champons",@"Crêtes",@"Dahut",@"Font Frede",@"Granges",@"Lys",@"Mélèzes",@"Valdemars",@"Boardercross rouge (le Seignus)",@"Gros tapy",@"La Serre",@"Les Vallons",@"Pré long",@"Stade",@"Valcibière",@"Combe Lacroix",@"Goulet",@"La Clappe",@"L'Abreuvoir",@"Thune"];
+    pistesLaFoux = @[@"Crocus",@"Escargot",@"Gentianes",@"Séolane",@"Alpages",@"Bleuets",@"Chardons",@"Chemin de l'abrau",@"Chemin de plaines",@"Coucous",@"Eterlou",@"Forêt",@"Grand duc",@"Lièvre blanc",@"Myrtilles", @"Quartz",@"Renard", @"Roche aux fées",@"Trans-amazonnienne",@"Agneaux",@"Aigle",@"Arnica",@"Boardercross rouge",@"Chamois", @"Coqs", @"Digitale", @"Ecureuils", @"Edelweiss", @"Fouines",@"Jonquilles",@"Lagopèdes",@"Marmottes",@"Perdrix",@"Serge Gousseault",@"Sources du Verdon",@"Tétras",@"3 Evéchés",@"Buse",@"Couloir",@"Génépy",@"Snow Park (Aiguille)",@"Snow Park (la Chaup)",@"Verdon Express"];
+    pistesPraLoup = @[@"Baby",@"Bélière",@"Boardercross vert",@"Clapiers",@"Le Y",@"Sestrières",@"Sorbiers",@"Bergeries", @"Boardercross bleu",@"Cabane du berger",@"Chemin du Bull",@"Clappe",@"Clots",@"Garcine",@"Liaison Costebelle",@"Liaison Lac",@"Liaison Péguieou",@"Marmottes",@"Péguieou",@"Sestières",@"Boardercross rouge", @"Bois", @"Bretelle", @"Chemin des agneliers", @"Colinot",@"Combe air France",@"Costebelle",@"Dalle", @"Fau", @"Fraises", @"Gimette", @"Grande rouge", @"Honoré Bonnet", @"Lac", @"Langail",@"Loups", @"Quartiers", @"Serre de l'homme",@"Stade C.Pascal",@"La Noire", @"Séolane", @"Surf",@"Snow Park"];
+    pistesLeSeignus = @[@"L'Adret",@"Stade de neige",@"Champons",@"Crêtes",@"Dahut",@"Font Frede",@"Granges",@"Lys",@"Mélèzes",@"Valdemars",@"Boardercross rouge",@"Gros tapy",@"La Serre",@"Les Vallons",@"Pré long",@"Stade",@"Valcibière",@"Combe Lacroix",@"Goulet",@"La Clappe",@"L'Abreuvoir",@"Thune"];
+    couleurs = @[@[@"v",@"v",@"v",@"v",@"b",@"b",@"b",@"b",@"b",@"b",@"b",@"b",@"b",@"b",@"b",@"b",@"b",@"b",@"b",@"r",@"r",@"r",@"br",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"n",@"n",@"n",@"n",@"s",@"s",@"l"],@[@"v",@"v",@"bv",@"v",@"v",@"v",@"v",@"b",@"bb",@"b",@"b",@"b",@"b",@"b",@"b",@"b",@"b",@"b",@"b",@"b",@"br",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"r",@"n",@"n",@"n",@"s"],@[@"v",@"v",@"b",@"b",@"b",@"b",@"b",@"b",@"b",@"b",@"br",@"r",@"r",@"r",@"r",@"r",@"r",@"n",@"n",@"n",@"n",@"n"]];
     
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
@@ -109,22 +111,55 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"idCellPiste";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if(cell == nil) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"idCellPiste" owner:nil options:nil] firstObject];
     }
+    NSString *nomPiste;
     switch (indexPath.section) {
         case 0:
-            cell.textLabel.text = pistesLaFoux[indexPath.row];
+            nomPiste = pistesLaFoux[indexPath.row];
             break;
         case 1:
-            cell.textLabel.text = pistesPraLoup[indexPath.row];
+            nomPiste = pistesPraLoup[indexPath.row];
             break;
         case 2:
-            cell.textLabel.text = pistesLeSeignus[indexPath.row];
+            nomPiste = pistesLeSeignus[indexPath.row];
             break;
     }
+    
+    NSString *nomImage;
+    NSString *idImage = couleurs[indexPath.section][indexPath.row];
+    if([idImage isEqual:@"v"]){
+        nomImage = @"pisteVerte.png";
+    }
+    else if([idImage isEqual:@"b"]){
+        nomImage = @"pisteBleue.png";
+    }
+    else if([idImage isEqual:@"r"]){
+        nomImage = @"pisteRouge.png";
+    }
+    else if([idImage isEqual:@"n"]){
+        nomImage = @"pisteNoire.png";
+    }
+    else if([idImage isEqual:@"bv"]){
+        nomImage = @"boardercrossVert.png";
+    }
+    else if([idImage isEqual:@"bb"]){
+        nomImage = @"boardercrossBleu.png";
+    }
+    else if([idImage isEqual:@"br"]){
+        nomImage = @"boardercrossRouge.png";
+    }
+    else if([idImage isEqual:@"s"]){
+        nomImage = @"snowpark.png";
+    }
+    else if([idImage isEqual:@"l"]){
+        nomImage = @"luge.png";
+    }
+    
+    [cell configUIWithTexte:nomPiste image:nomImage etat:1];
     return cell;
 }
 
