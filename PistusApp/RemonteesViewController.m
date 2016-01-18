@@ -56,7 +56,7 @@
     [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem]  setImageInsets:UIEdgeInsetsMake(0,-2,0,2)];
     
     // On initialise les tableaux avec tous les noms de pistes
-    remonteesLaFoux = @[@"TS AIGUILLE",@"TS CHAUVETS",@"TK CROUS I",@"TK CROUS II",@"TC LA CHAUP",@"TSD LA CHAUP",@"TK LA TARDEE",@"TS MARIN PASCAL",@"TS OBSERVATOIRE",@"TK PLAINES",@"TK PLATEAU I",@"TK PLATEAU II",@"TS PONT DE L'ABRAU",@"TS POURET",@"TK SIGNAL",@"TK UBAC",@"TS UBAGUETS",@"TELECORDE VERDON",@"TS VESCAL"];
+    remonteesLaFoux = @[@"TS AIGUILLE",@"TS CHAUVETS",@"TK CROUS I",@"TK CROUS II",@"TELEBENNE LA CHAUP",@"TSD LA CHAUP",@"TK LA TARDEE",@"TS MARIN PASCAL",@"TS OBSERVATOIRE",@"TK PLAINES",@"TK PLATEAU I",@"TK PLATEAU II",@"TS PONT DE L'ABRAU",@"TS POURET",@"TK SIGNAL",@"TK UBAC",@"TS UBAGUETS",@"TELECORDE VERDON",@"TS VESCAL"];
     remonteesPraLoup = @[@"TS AGNELIERS",@"TK BABY",@"TK BELIERE",@"TSD BERGERIES",@"TAPIS-NEIGE CLAPIERS",@"TELEMIX CLAPPE", @"TC COSTEBELLE",@"TK COURTIL I",@"TK COURTIL II",@"TK GIMETTE",@"TK LAC I",@"TK LAC II",@"TC MOLANES",@"TSD6 PEGUIEOU",@"TS QUARTIERS",@"TAPIS-NEIGE SERRE",@"TK SESTRIERES",@"TAPIS-NEIGE SORBIERS",@"TK STADE"];
     remonteesLeSeignus = @[@"TK AUTAPIE I",@"TK AUTAPIE II",@"TSD6 CLOS BERTRAND",@"TS FONT FREDE",@"TS GROS TAPY",@"TC GUINAND",@"TK HONORE CAIRE",@"TK PRE DE LA PORTE"];
     
@@ -148,7 +148,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
+    return 48;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -157,7 +157,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 32)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 30)];
     label.backgroundColor = [UIColor colorWithRed:222.0/255.0 green:222.0/255.0 blue:222.0/255.0 alpha:1];
     label.font = [UIFont systemFontOfSize:23];
     label.textColor = [UIColor colorWithRed:50.0/255.0 green:93.0/255.0 blue:171.0/255.0 alpha:1];

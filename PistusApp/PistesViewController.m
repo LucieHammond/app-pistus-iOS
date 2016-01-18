@@ -37,11 +37,15 @@
     [_boutonSatellite addTarget:self action:@selector(trackChange)
                forControlEvents:UIControlEventTouchUpInside];
     
+    pistesLaFoux = @[@"Crocus",@"Escargot",@"Gentianes",@"Séolane (la Foux)",@"Alpages",@"Bleuets",@"Chardons",@"Chemin de l'abrau",@"Chemin de plaines",@"Coucous",@"Eterlou",@"Forêt",@"Grand duc",@"Lièvre blanc",@"Myrtilles", @"Quartz",@"Renard", @"Roche aux fées",@"Trans-amazonnienne",@"Agneaux",@"Aigle",@"Arnica",@"Boardercross rouge (la Foux)",@"Chamois", @"Coqs", @"Digitale", @"Ecureuils", @"Edelweiss", @"Fouines",@"Jonquilles",@"Lagopèdes",@"Marmottes (la Foux)",@"Perdrix",@"Serge Gousseault",@"Sources du Verdon",@"Tétras",@"3 Evéchés",@"Buse",@"Couloir",@"Génépy",@"Snow Park (Aiguille)",@"Snow Park (la Chaup)",@"Verdon Express"];
+    pistesPraLoup = @[@"Baby",@"Bélière",@"Boardercross vert",@"Clapiers",@"Le Y",@"Sestrières (verte)",@"Sorbiers",@"Bergeries", @"Boardercross bleu",@"Cabane du berger",@"Chemin du Bull",@"Clappe",@"Clots",@"Garcine",@"Liaison Costebelle",@"Liaison Lac",@"Liaison Péguieou",@"Marmottes (Pra Loup)",@"Péguieou",@"Sestières (bleue)",@"Boardercross rouge (Pra Loup)", @"Bois", @"Bretelle", @"Chemin des agneliers", @"Colinot",@"Combe air France",@"Costebelle",@"Dalle", @"Fau", @"Fraises", @"Gimette", @"Grande rouge", @"Honoré Bonnet", @"Lac", @"Langail",@"Loups", @"Quartiers", @"Serre de l'homme",@"Stade C.Pascal",@"La Noire", @"Séolane (Pra Loup)", @"Surf",@"Snow Park (Pra Loup)"];
+    pistesLeSeignus = @[@"L'Adret",@"Stade de neige",@"Champons",@"Crêtes",@"Dahut",@"Font Frede",@"Granges",@"Lys",@"Mélèzes",@"Valdemars",@"Boardercross rouge (le Seignus)",@"Gros tapy",@"La Serre",@"Les Vallons",@"Pré long",@"Stade",@"Valcibière",@"Combe Lacroix",@"Goulet",@"La Clappe",@"L'Abreuvoir",@"Thune"];
+    
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
-    //self.tableView.delegate = self;
-    //self.tableView.dataSource = self;
-    //[_tableView reloadData];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [_tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,6 +84,77 @@
 }
 - (IBAction)actualiser:(id)sender {
     [self viewDidLoad];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 3;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            return 43;
+            break;
+        case 1:
+            return 43;
+            break;
+        case 2:
+            return 22;
+            break;
+        default:
+            return 0;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"idCellPiste";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if(cell == nil) {
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"idCellPiste" owner:nil options:nil] firstObject];
+    }
+    switch (indexPath.section) {
+        case 0:
+            cell.textLabel.text = pistesLaFoux[indexPath.row];
+            break;
+        case 1:
+            cell.textLabel.text = pistesPraLoup[indexPath.row];
+            break;
+        case 2:
+            cell.textLabel.text = pistesLeSeignus[indexPath.row];
+            break;
+    }
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 43;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 30;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 30)];
+    label.backgroundColor = [UIColor colorWithRed:222.0/255.0 green:222.0/255.0 blue:222.0/255.0 alpha:1];
+    label.font = [UIFont systemFontOfSize:23];
+    label.textColor = [UIColor colorWithRed:50.0/255.0 green:93.0/255.0 blue:171.0/255.0 alpha:1];
+    switch(section){
+        case 0:
+            label.text = @"Val d'Allos La Foux";
+            break;
+        case 1:
+            label.text = @"Pra Loup";
+            break;
+        case 2:
+            label.text = @"Val d'Allos Le Seignus";
+            break;
+    }
+    label.textAlignment = NSTextAlignmentCenter;
+    return label;
 }
 
 /*
