@@ -47,6 +47,7 @@
 		C52D732B1C4D8630005C05D1 /* TS.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D731A1C4D8630005C05D1 /* TS.png */; };
 		C52D732C1C4D8630005C05D1 /* TSD.png in Resources */ = {isa = PBXBuildFile; fileRef = C52D731B1C4D8630005C05D1 /* TSD.png */; };
 		C52D732F1C4D98FF005C05D1 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D732E1C4D98FF005C05D1 /* CustomTableViewCell.m */; };
+		C52D73321C4DB6FB005C05D1 /* HorairesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D73311C4DB6FB005C05D1 /* HorairesViewController.m */; };
 		C539A78D1BF1F56A00B9E3ED /* iconContact.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7881BF1F56A00B9E3ED /* iconContact.png */; };
 		C539A78E1BF1F56A00B9E3ED /* iconHoraires.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7891BF1F56A00B9E3ED /* iconHoraires.png */; };
 		C539A78F1BF1F56A00B9E3ED /* iconMeteo.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */; };
@@ -164,6 +165,8 @@
 		C52D731B1C4D8630005C05D1 /* TSD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSD.png; sourceTree = "<group>"; };
 		C52D732D1C4D98FF005C05D1 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
 		C52D732E1C4D98FF005C05D1 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
+		C52D73301C4DB6FB005C05D1 /* HorairesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorairesViewController.h; sourceTree = "<group>"; };
+		C52D73311C4DB6FB005C05D1 /* HorairesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorairesViewController.m; sourceTree = "<group>"; };
 		C539A7881BF1F56A00B9E3ED /* iconContact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconContact.png; sourceTree = "<group>"; };
 		C539A7891BF1F56A00B9E3ED /* iconHoraires.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconHoraires.png; sourceTree = "<group>"; };
 		C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconMeteo.png; sourceTree = "<group>"; };
@@ -347,6 +350,8 @@
 				C52D732E1C4D98FF005C05D1 /* CustomTableViewCell.m */,
 				C52D73011C4CF075005C05D1 /* RemonteesViewController.h */,
 				C52D73021C4CF075005C05D1 /* RemonteesViewController.m */,
+				C52D73301C4DB6FB005C05D1 /* HorairesViewController.h */,
+				C52D73311C4DB6FB005C05D1 /* HorairesViewController.m */,
 				C52D73041C4CF093005C05D1 /* PistesViewController.h */,
 				C52D73051C4CF093005C05D1 /* PistesViewController.m */,
 				C54F8AC91BD94D5A00CE7B3A /* Main.storyboard */,
@@ -671,6 +676,7 @@
 				C52D72D11C4ACBDD005C05D1 /* GraphTableViewCell.m in Sources */,
 				C52D732F1C4D98FF005C05D1 /* CustomTableViewCell.m in Sources */,
 				C5F3488F1BE8FB98003B94C6 /* MainViewController.m in Sources */,
+				C52D73321C4DB6FB005C05D1 /* HorairesViewController.m in Sources */,
 				C52D72DF1C4ACC46005C05D1 /* UUBar.m in Sources */,
 				C5AED9A71C43B5490086E570 /* StatsViewController.m in Sources */,
 				C52D72E31C4ACC46005C05D1 /* UUColor.m in Sources */,

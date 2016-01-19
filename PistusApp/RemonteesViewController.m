@@ -65,6 +65,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [_tableView reloadData];
+    
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -144,11 +146,17 @@
             cell.textLabel.text = remonteesLeSeignus[indexPath.row];
             break;
     }
+    BOOL ouvert = 0;
+    NSString *feu = ouvert?@"feuVert.png":@"feuRouge.png";
+    UIImageView *ouverture = [[UIImageView alloc] initWithImage:[UIImage imageNamed:feu]];
+    [ouverture setFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-55,16,15,15)];
+    [cell addSubview:ouverture];
+    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 48;
+    return 47;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

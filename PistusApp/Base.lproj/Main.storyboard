@@ -1479,13 +1479,22 @@
             </objects>
             <point key="canvasLocation" x="1047" y="186"/>
         </scene>
-        <!--View Controller-->
+        <!--Horaires View Controller-->
         <scene sceneID="CdM-pB-Yoc">
             <objects>
-                <viewController id="BGQ-dC-mCu" sceneMemberID="viewController">
+                <viewController id="BGQ-dC-mCu" customClass="HorairesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LfK-pN-uue">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vue en cours de construction" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3sg-Hb-8QJ">
+                                <rect key="frame" x="78" y="201" width="164" height="183"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="R79-50-uzE"/>
@@ -1587,8 +1596,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Horaires des remontées" id="cOU-qU-MXY"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Wjg-af-oUe"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -1601,7 +1610,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbH-8Y-lrY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="580" y="1531"/>
+            <point key="canvasLocation" x="536" y="1541"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="jhl-Vo-dqQ">
@@ -1703,19 +1712,20 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s84-Ge-gqE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1011" y="1531"/>
+            <point key="canvasLocation" x="1322" y="1531"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="3Uo-RY-BFa">
             <objects>
                 <tabBarController id="Gt0-2T-xTm" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="4wG-tx-uWA"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="rao-Ya-Ffz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="yrl-kZ-yLj" kind="relationship" relationship="viewControllers" id="f5t-ea-I0W"/>
+                        <segue destination="LZI-x5-3QT" kind="relationship" relationship="viewControllers" id="f5t-ea-I0W"/>
                         <segue destination="Xzf-dc-QoG" kind="relationship" relationship="viewControllers" id="ubc-SZ-F1d"/>
                     </connections>
                 </tabBarController>
@@ -1750,12 +1760,31 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="rTf-Kw-dH5" kind="relationship" relationship="rootViewController" id="llb-Dv-tXE"/>
+                        <segue destination="rTf-Kw-dH5" kind="relationship" relationship="rootViewController" id="vXf-WP-iyC"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y5E-X2-OxX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="175" y="186"/>
+        </scene>
+        <!--Horaires des remontées-->
+        <scene sceneID="9p9-0e-mGA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LZI-x5-3QT" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Horaires des remontées" id="cOU-qU-MXY"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kax-jR-fsF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yrl-kZ-yLj" kind="relationship" relationship="rootViewController" id="GfH-GM-ohi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BUt-bW-gwO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="939" y="1531"/>
         </scene>
     </scenes>
     <resources>

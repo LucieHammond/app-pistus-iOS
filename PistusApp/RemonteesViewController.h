@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RemonteesViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@interface RemonteesViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UINavigationControllerDelegate>
 {
     NSArray *remonteesLaFoux;
     NSArray *remonteesPraLoup;
