@@ -657,27 +657,25 @@ static GeolocalisationManager* sharedInstance=nil;
 
 - (void)sauvegarderDonnéesJour:(int)jour :(bool)definitivement
 {
-    _tabVitesseCumulee[jour-5] = [NSNumber numberWithFloat: _vitesseCumulee];
-    _tabNbPositions[jour-5] = [NSNumber numberWithFloat:_totalPositions];
-    _tabDistance[jour-5] = [NSNumber numberWithFloat:_distanceSki];
-    _tabTemps[jour-5] = [NSNumber numberWithFloat:_tempsDeSki];
+    _tabVitesseCumulee[jour] = [NSNumber numberWithFloat: _vitesseCumulee];
+    _tabNbPositions[jour] = [NSNumber numberWithFloat:_totalPositions];
+    _tabDistance[jour] = [NSNumber numberWithFloat:_distanceSki];
+    _tabTemps[jour] = [NSNumber numberWithFloat:_tempsDeSki];
     if(definitivement==true)
-        _joursFinis[jour-5]=[NSNumber numberWithBool:true];
+        _joursFinis[jour]=[NSNumber numberWithBool:true];
 }
 -(void)sauvegardeParTimer:(NSTimer*)timer
 {
-    NSLog(@"htrdj");
     NSDate *date = timer.fireDate;
     NSCalendar *calendrier = [NSCalendar currentCalendar];
     NSDateComponents *composants = [calendrier components:(NSHourCalendarUnit|NSDayCalendarUnit) fromDate:date];
     if([composants hour]==12 || [composants hour] ==17)
     {
-        [self sauvegarderDonnéesJour:(int)[composants day] :false];
+        [self sauvegarderDonnéesJour:(int)[composants day]-23 :false];// A changer pour le Pistus (remplacer 23 par 5)
     }
     else
     {
-        NSLog(@"Coucoou");
-        [self sauvegarderDonnéesJour:(int)[composants day]-1 :true];
+        [self sauvegarderDonnéesJour:(int)[composants day]-23-1 :true];// A changer pour le Pistis
     }
 }
 

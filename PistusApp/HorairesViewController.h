@@ -10,4 +10,7 @@
 
 @interface HorairesViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UINavigationBar *barre;
+@property (weak, nonatomic) IBOutlet UIView *topBande;
+
 @end
