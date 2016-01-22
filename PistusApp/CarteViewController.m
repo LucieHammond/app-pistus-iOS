@@ -27,6 +27,32 @@
     self.scrollView.maximumZoomScale=8.0;
     apresClic = false;
     _bulle.hidden=true;
+    NSLog(@"View did load");
+    
+    // Ajustement du texte qui s'affiche en cas de localisation hors de la station
+    _texteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
+    _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
+    [self.view insertSubview:_fondTexteDistance aboveSubview:_scrollView];
+    [self.view insertSubview:_texteDistance aboveSubview:_fondTexteDistance];
+    _texteDistance.text=@"";
+    _fondTexteDistance.hidden=true;
+    
+    // Création du marqueur
+    if(_marqueur!=nil)
+    {
+        [_marqueur removeFromSuperview];
+        _marqueur = nil;
+    }
+    _marqueur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,16,16)];
+    [_marqueur setImage:[UIImage imageNamed:@"marker2.png"] forState:UIControlStateNormal];
+    [_marqueur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+       forControlEvents:UIControlEventTouchUpInside];
+    [self.view insertSubview:_marqueur aboveSubview:imageView];
+    _marqueur.hidden=true;
+    
+    // Afficher la barre de recherche
+    _searchButton.target = self;
+    _searchButton.action = @selector(afficherBarRecherche);
     
     if([[GeolocalisationManager sharedInstance] trackAccept])
     {
@@ -38,6 +64,7 @@
             [_fondTexteDistance setFrame:CGRectMake(0, 0, _texteDistance.frame.size.width+20, _texteDistance.frame.size.height+10)];
             _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
             _fondTexteDistance.hidden=false;
+            NSLog(@"piste proche");
         }
         else if([GeolocalisationManager sharedInstance].distanceStation>0)
         {
@@ -46,7 +73,7 @@
             [_fondTexteDistance setFrame:CGRectMake(0, 0, _texteDistance.frame.size.width+15, _texteDistance.frame.size.height-5)];
             _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
             _fondTexteDistance.hidden=false;
-            marqueur.hidden=true;
+            NSLog(@"très loin");
         }
         else if([GeolocalisationManager sharedInstance].distanceStation==-1)
         {
@@ -54,26 +81,29 @@
             [_fondTexteDistance setFrame:CGRectMake(0, 0, _texteDistance.frame.size.width+20, _texteDistance.frame.size.height-5)];
             _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
             _fondTexteDistance.hidden=false;
-            marqueur.hidden=true;
+            NSLog(@"plus de 100 m");
         }
         else
         {
-            _texteDistance.text = @"";
-            _fondTexteDistance.hidden=true;
-            
             // Affichage du marqueur de position
             int x = [GeolocalisationManager sharedInstance].dernierX;
             int y = [GeolocalisationManager sharedInstance].dernierY;
             float X = _scrollView.contentSize.width/7452*x - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
             float Y = _scrollView.contentSize.height/3174*y - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-            marqueur.center = CGPointMake(X,Y);
-            marqueur.hidden = false;
+            _marqueur.center = CGPointMake(X,Y);
+            _marqueur.hidden = false;
+            NSLog(@"touché");
         }
     }
     // Do any additional setup after loading the view.
+    if(_fondTexteDistance.hidden == false)
+    {
+        NSLog(@"sbra ta gueule");
+    }
 }
 
 -(void) viewDidLayoutSubviews{
+    NSLog(@"View did layout subviews");
     if(apresClic!=true)
     {
         //Ajustement de la barre de navigation en haut et configuration des icones
@@ -99,26 +129,7 @@
         [_scrollView addSubview:imageView];
         [_scrollView setContentOffset:CGPointMake((imageView.frame.size.width-_scrollView.frame.size.width)/2,0)];
         [_scrollView setContentSize:CGSizeMake(imageView.frame.size.width, imageView.frame.size.height)];
-        [_scrollView setScrollEnabled:YES];
-    
-        // Configuration du scrollView pour pouvoir zoomer sur le plan
-        [_scrollView addGestureRecognizer:[[UIPinchGestureRecognizer alloc]init]];
-    
-        // Ajustement du texte qui s'affiche en cas de localisation hors de la station
-        _texteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
-        _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
-        [self.view insertSubview:_fondTexteDistance aboveSubview:_scrollView];
-        [self.view insertSubview:_texteDistance aboveSubview:_fondTexteDistance];
-        _texteDistance.text=@"";
-        _fondTexteDistance.hidden=true;
-    
-        // Création du marqueur
-        marqueur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,16,16)];
-        [marqueur setImage:[UIImage imageNamed:@"marker2.png"] forState:UIControlStateNormal];
-        [marqueur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
-           forControlEvents:UIControlEventTouchUpInside];
-        [self.view insertSubview:marqueur aboveSubview:imageView];
-        marqueur.hidden=true;
+        [_scrollView setBouncesZoom:NO];
     
         // Ajout du bouton pour recentrer sur la position de l'utilisateur
         UIButton *ciblage = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-60,[UIScreen mainScreen].bounds.size.height*7/10,47,47)];
@@ -127,6 +138,9 @@
         [self.view insertSubview:ciblage aboveSubview:_scrollView];
         [ciblage addTarget:self action:@selector(ciblerPosition)
                forControlEvents:UIControlEventTouchUpInside];
+        
+        // Cacher la barre de recherche
+        _searchBar.hidden = true;
     
         // Ajout de marqueurs pour les lieux importants
         float X = _scrollView.contentSize.width/7452*3424 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
@@ -189,6 +203,29 @@
 {
     return self->imageView;
 }
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
+    // The scroll view has zoomed, so you need to re-center the contents
+    [self centerScrollViewContents];
+}
+
+- (void)centerScrollViewContents {
+    CGSize boundsSize = self.scrollView.bounds.size;
+    CGRect contentsFrame = self->imageView.frame;
+    
+    if (contentsFrame.size.width < boundsSize.width) {
+        contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0f;
+    } else {
+        contentsFrame.origin.x = 0.0f;
+    }
+    
+    if (contentsFrame.size.height < boundsSize.height) {
+        contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0f;
+    } else {
+        contentsFrame.origin.y = 0.0f;
+    }
+    
+    self->imageView.frame = contentsFrame;
+}
 
 - (void)trackChange
 {
@@ -221,7 +258,7 @@
     // Pate de la bulle
     [_pateBulle setFrame: CGRectMake(sender.center.x-11,sender.frame.origin.y-10,22,10)];
     _pateBulle.hidden=false;
-    if(sender==marqueur)
+    if(sender==_marqueur)
     {
         //Titre
         _titre.text=@"Vous êtes ici";
@@ -270,13 +307,6 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]init];
     [tapGesture addTarget:self action:@selector(effacerBulle)];
     [_scrollView addGestureRecognizer:tapGesture];
-    
-    // Effacement de la bulle
-    //[sender addTarget:self action:@selector(effacerBulle) forControlEvents:UIControlEventTouchUpOutside];
-    /*[bulle removeFromSuperview];
-    [nomPiste removeFromSuperview];
-    [titre removeFromSuperview];
-    [pateBulle removeFromSuperview];*/
 }
 
 -(void) effacerBulle
@@ -288,9 +318,14 @@
     _bulle.hidden=true;
 }
 
+-(void) afficherBarRecherche{
+    /*if(_searchBar.hidden == true)
+        _searchBar.hidden = false;*/
+}
+
 -(void)ciblerPosition
 {
-    if(marqueur.hidden==false)
+    if(_marqueur.hidden==false)
     {
         int x = [GeolocalisationManager sharedInstance].dernierX;
         int y = [GeolocalisationManager sharedInstance].dernierY;
@@ -305,13 +340,13 @@
 -(void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
     // Repositionnement du marqueur
-    if(marqueur.hidden==false)
+    if(_marqueur.hidden==false)
     {
         int x = [GeolocalisationManager sharedInstance].dernierX;
         int y = [GeolocalisationManager sharedInstance].dernierY;
         float X = _scrollView.contentSize.width/7452*x - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
         float Y = _scrollView.contentSize.height/3174*y - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-        marqueur.center = CGPointMake(X,Y);
+        _marqueur.center = CGPointMake(X,Y);
     }
     
     float X = _scrollView.contentSize.width/7452*3424 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
@@ -328,7 +363,7 @@
     {
         // Pate de la bulle
         [_pateBulle setFrame: CGRectMake(marqueurBulle.center.x-11,marqueurBulle.frame.origin.y-10,22,10)];
-        if(marqueurBulle==marqueur)
+        if(marqueurBulle==_marqueur)
         {
             _titre.center=CGPointMake(marqueurBulle.center.x,marqueurBulle.frame.origin.y-38);
             _nomPiste.center=CGPointMake(marqueurBulle.center.x,marqueurBulle.frame.origin.y-21);

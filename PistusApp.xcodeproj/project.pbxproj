@@ -95,6 +95,8 @@
 		C5C05E8B1BEFF7A0007D763E /* Login-736h@3x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E861BEFF7A0007D763E /* Login-736h@3x~iphone.png */; };
 		C5C05E8C1BEFF7A0007D763E /* Login@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E871BEFF7A0007D763E /* Login@2x~iphone.png */; };
 		C5C05E8E1BEFFBA5007D763E /* accueil_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E8D1BEFFBA5007D763E /* accueil_4.jpg */; };
+		C5DDCC651C4FD12400FA1515 /* 33eb8a02d4d1d838586ebcca3c60c50f.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DDCC641C4FD12400FA1515 /* 33eb8a02d4d1d838586ebcca3c60c50f.png */; };
+		C5DDCCA71C52352000FA1515 /* ConcoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DDCCA61C52352000FA1515 /* ConcoursViewController.m */; };
 		C5F3488F1BE8FB98003B94C6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F3488E1BE8FB98003B94C6 /* MainViewController.m */; };
 		C5F7B8AE1C41472E00419A86 /* marker2.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F7B8AD1C41472E00419A86 /* marker2.png */; };
 /* End PBXBuildFile section */
@@ -226,6 +228,9 @@
 		C5C05E861BEFF7A0007D763E /* Login-736h@3x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-736h@3x~iphone.png"; sourceTree = "<group>"; };
 		C5C05E871BEFF7A0007D763E /* Login@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login@2x~iphone.png"; sourceTree = "<group>"; };
 		C5C05E8D1BEFFBA5007D763E /* accueil_4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_4.jpg; sourceTree = "<group>"; };
+		C5DDCC641C4FD12400FA1515 /* 33eb8a02d4d1d838586ebcca3c60c50f.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 33eb8a02d4d1d838586ebcca3c60c50f.png; sourceTree = "<group>"; };
+		C5DDCCA51C52352000FA1515 /* ConcoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcoursViewController.h; sourceTree = "<group>"; };
+		C5DDCCA61C52352000FA1515 /* ConcoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcoursViewController.m; sourceTree = "<group>"; };
 		C5F3488D1BE8FB98003B94C6 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		C5F3488E1BE8FB98003B94C6 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		C5F7B8AD1C41472E00419A86 /* marker2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker2.png; sourceTree = "<group>"; };
@@ -340,6 +345,7 @@
 				C593B4F31C45E198009F5896 /* GraphsViewController.m */,
 				C52D72CF1C4ACBDD005C05D1 /* GraphTableViewCell.h */,
 				C52D72D01C4ACBDD005C05D1 /* GraphTableViewCell.m */,
+				C54F8AC91BD94D5A00CE7B3A /* Main.storyboard */,
 				C52D72EB1C4BB0E3005C05D1 /* NewsViewController.h */,
 				C52D72EC1C4BB0E3005C05D1 /* NewsViewController.m */,
 				C52D72EE1C4BB12D005C05D1 /* MesInfosViewController.h */,
@@ -354,7 +360,8 @@
 				C52D73311C4DB6FB005C05D1 /* HorairesViewController.m */,
 				C52D73041C4CF093005C05D1 /* PistesViewController.h */,
 				C52D73051C4CF093005C05D1 /* PistesViewController.m */,
-				C54F8AC91BD94D5A00CE7B3A /* Main.storyboard */,
+				C5DDCCA51C52352000FA1515 /* ConcoursViewController.h */,
+				C5DDCCA61C52352000FA1515 /* ConcoursViewController.m */,
 				C54F8ACC1BD94D5A00CE7B3A /* Images.xcassets */,
 				C54F8ACE1BD94D5A00CE7B3A /* LaunchScreen.xib */,
 				C54F8ABF1BD94D5A00CE7B3A /* Supporting Files */,
@@ -391,6 +398,7 @@
 		C54F8B1D1BD97E1800CE7B3A /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				C5DDCC641C4FD12400FA1515 /* 33eb8a02d4d1d838586ebcca3c60c50f.png */,
 				C52D730B1C4D8630005C05D1 /* boardercrossBleu.png */,
 				C52D730C1C4D8630005C05D1 /* boardercrossRouge.png */,
 				C52D730D1C4D8630005C05D1 /* boardercrossVert.png */,
@@ -504,6 +512,7 @@
 				TargetAttributes = {
 					C54F8ABB1BD94D5A00CE7B3A = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = LLQZDA62GD;
 					};
 					C54F8AD41BD94D5A00CE7B3A = {
 						CreatedOnToolsVersion = 6.4;
@@ -593,6 +602,7 @@
 				C54F8ACD1BD94D5A00CE7B3A /* Images.xcassets in Resources */,
 				C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */,
 				C52D72E91C4BB073005C05D1 /* mesInfos.png in Resources */,
+				C5DDCC651C4FD12400FA1515 /* 33eb8a02d4d1d838586ebcca3c60c50f.png in Resources */,
 				C52D72F81C4BF787005C05D1 /* flecheBas.png in Resources */,
 				C5AED9A21C43B1170086E570 /* altitude.png in Resources */,
 				C593B4E81C458397009F5896 /* etoile.png in Resources */,
@@ -676,6 +686,7 @@
 				C52D72D11C4ACBDD005C05D1 /* GraphTableViewCell.m in Sources */,
 				C52D732F1C4D98FF005C05D1 /* CustomTableViewCell.m in Sources */,
 				C5F3488F1BE8FB98003B94C6 /* MainViewController.m in Sources */,
+				C5DDCCA71C52352000FA1515 /* ConcoursViewController.m in Sources */,
 				C52D73321C4DB6FB005C05D1 /* HorairesViewController.m in Sources */,
 				C52D72DF1C4ACC46005C05D1 /* UUBar.m in Sources */,
 				C5AED9A71C43B5490086E570 /* StatsViewController.m in Sources */,
@@ -812,6 +823,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -832,7 +845,9 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "lucie-hammond-hotmail.fr";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				z = "";
 			};
@@ -844,6 +859,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -864,7 +881,9 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "lucie-hammond-hotmail.fr";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				z = "";
 			};

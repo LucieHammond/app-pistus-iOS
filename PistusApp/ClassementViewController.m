@@ -21,8 +21,8 @@
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
     
-    prenom = @"Enguerran";
-    nom = @"Henniart";
+    prenom = @"Jean-Michel";
+    nom = @"Dupont";
     performance = 23.8;
     classement = 23;
     long int userId;

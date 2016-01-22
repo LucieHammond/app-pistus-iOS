@@ -97,12 +97,14 @@ static GeolocalisationManager* sharedInstance=nil;
     _trackAccept = false;
     _altitudeActuelle=-1;
     _vitesseActuelle=-1;
+    _pisteProche=nil;
+    avantDerniereLoc = nil;
+    
     [locationManager stopUpdatingLocation];
     self.dbManager=[[DBManager alloc]initWithDatabaseFilename:@"bddPistes.db"];
     NSString *query = @"DELETE FROM maPosition";
     [self.dbManager executeQuery:query];
-    _pisteProche=nil;
-    avantDerniereLoc = nil;
+    
     if(dateDebutSki!=nil)
         _tempsDeSki+=[[NSDate date] timeIntervalSinceDate:dateDebutSki];
     
@@ -602,6 +604,11 @@ static GeolocalisationManager* sharedInstance=nil;
     {
         /* Dans le cas où l'utilisateur ne se trouve pas sur la station, on affiche la distance
          qui le sépare de la résidence */
+        _pisteProche = nil;
+        avantDerniereLoc=nil;
+        _altitudeActuelle=-1;
+        _vitesseActuelle=-1;
+        
         CLLocation *residence = [[CLLocation alloc]initWithLatitude:44.292 longitude:6.565];
         _distanceStation = [lastLocation distanceFromLocation:residence];
         NSLog(@"4");
@@ -635,6 +642,7 @@ static GeolocalisationManager* sharedInstance=nil;
        didFailWithError:(NSError *)error
 {
     NSLog(@"Erreur de localisation");
+    NSLog(@"%li",(long)error.code);
 }
 
 - (void)locationManagerDidPausedLocationUpdates:(CLLocationManager *)manager

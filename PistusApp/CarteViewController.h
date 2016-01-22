@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CarteViewController : UIViewController <UIScrollViewDelegate>
+@interface CarteViewController : UIViewController <UIScrollViewDelegate,UISearchBarDelegate,UISearchControllerDelegate,UISearchDisplayDelegate>
 {
     UIImageView *imageView;
-    UIButton *marqueur;
     BOOL apresClic;
     UIButton *marqueurBulle;
 }
@@ -23,10 +22,13 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *trackAcceptButton;
 @property (weak, nonatomic) IBOutlet UILabel *texteDistance;
 @property (weak, nonatomic) IBOutlet UIView *fondTexteDistance;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *searchButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *etoile_Rez;
 @property (weak, nonatomic) IBOutlet UIButton *etoile_Pat;
 @property (weak, nonatomic) IBOutlet UIButton *etoile_Luge;
+@property (strong, nonatomic) IBOutlet UIButton *marqueur;
 @property (strong, nonatomic) IBOutlet UIImageView *pateBulle;
 @property (strong, nonatomic) IBOutlet UILabel *titre;
 @property (strong, nonatomic) IBOutlet UILabel *nomPiste;
@@ -34,5 +36,7 @@
 @property (strong, nonatomic) IBOutlet UIView *bulle;
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView;
+- (void)centerScrollViewContents;
 
 @end
