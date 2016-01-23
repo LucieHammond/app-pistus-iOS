@@ -72,8 +72,8 @@
         timer2 = [[NSTimer alloc] initWithFireDate:dateTimer2 interval:86400 target:[GeolocalisationManager sharedInstance] selector:@selector(sauvegardeParTimer:) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:timer2 forMode:NSDefaultRunLoopMode];
         
-        [composants setHour:0];
-        [composants setMinute:0];
+        [composants setHour:23];
+        [composants setMinute:59];
         NSDate *dateTimer3 = [[NSCalendar currentCalendar] dateFromComponents:composants];
         timer3 = [[NSTimer alloc] initWithFireDate:dateTimer3 interval:86400 target:[GeolocalisationManager sharedInstance] selector:@selector(sauvegardeParTimer:) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:timer3 forMode:NSDefaultRunLoopMode];

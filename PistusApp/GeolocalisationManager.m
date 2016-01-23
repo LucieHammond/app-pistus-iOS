@@ -675,7 +675,7 @@ static GeolocalisationManager* sharedInstance=nil;
     }
     else
     {
-        [self sauvegarderDonnéesJour:(int)[composants day]-23-1 :true];// A changer pour le Pistis
+        [self sauvegarderDonnéesJour:(int)[composants day]-23 :true];// A changer pour le Pistis
     }
 }
 

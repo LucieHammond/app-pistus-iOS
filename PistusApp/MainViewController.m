@@ -7,8 +7,11 @@
 //
 
 #import "MainViewController.h"
+#import "GeolocalisationManager.h"
 
 @interface MainViewController ()
+
+@property (nonatomic,strong) UIButton *boutonSatellite;
 
 @end
 
@@ -43,7 +46,18 @@
     //Ajustement et ajout de la barre de navigation en haut
     [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
     [_topBande setFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, 20)];
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    _boutonSatellite = [[UIButton alloc] initWithFrame:CGRectMake(0,0,32,33)];
+    if(![[GeolocalisationManager sharedInstance] trackAccept])
+    {
+        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
+    }
+    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    {
+        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:    UIControlStateNormal];
+    }
+    [_trackAcceptButton setCustomView:_boutonSatellite];
+    [_boutonSatellite addTarget:self action:@selector(trackChange)
+               forControlEvents:UIControlEventTouchUpInside];
     
     //Préparation pour repositionnement des icones (qui sont des boutons)
     [_carte setTranslatesAutoresizingMaskIntoConstraints:YES];
@@ -131,8 +145,32 @@
         [_txtTroc setFrame:CGRectMake(86,684,40,21)];
         [_txtContact setFrame:CGRectMake(266,684,58,21)];
     }
-    
 }
+
+- (void)trackChange
+{
+    if(![[GeolocalisationManager sharedInstance] trackAccept])
+    {
+        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
+        if(![[GeolocalisationManager sharedInstance] beginTrack])
+        {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Permission refusée"
+                                  message:@"L'application ne peut pas accéder à votre localisation car vous ne lui avez pas donné l'autorisation. Si ce n'est pas volontaire, vérifiez vos réglages !" delegate:self
+                                  cancelButtonTitle:@"J'ai compris" otherButtonTitles:nil];
+            [alert show];
+            [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
+            [[GeolocalisationManager sharedInstance] endTrack];
+        }
+    }
+    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    {
+        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
+        [[GeolocalisationManager sharedInstance] endTrack];
+    }
+    [_trackAcceptButton setCustomView:_boutonSatellite];
+}
+
      
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

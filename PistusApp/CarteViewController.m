@@ -37,17 +37,9 @@
     _texteDistance.text=@"";
     _fondTexteDistance.hidden=true;
     
-    // Création du marqueur
-    if(_marqueur!=nil)
-    {
-        [_marqueur removeFromSuperview];
-        _marqueur = nil;
-    }
-    _marqueur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,16,16)];
-    [_marqueur setImage:[UIImage imageNamed:@"marker2.png"] forState:UIControlStateNormal];
+    // Actions sur le marqueur du marqueur
     [_marqueur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
        forControlEvents:UIControlEventTouchUpInside];
-    [self.view insertSubview:_marqueur aboveSubview:imageView];
     _marqueur.hidden=true;
     
     // Afficher la barre de recherche
@@ -135,7 +127,7 @@
         UIButton *ciblage = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-60,[UIScreen mainScreen].bounds.size.height*7/10,47,47)];
         [ciblage setImage:[UIImage imageNamed:@"ciblage.png"] forState:UIControlStateNormal];
         ciblage.alpha=0.5;
-        [self.view insertSubview:ciblage aboveSubview:_scrollView];
+        [self.view insertSubview:ciblage aboveSubview:_marqueur];
         [ciblage addTarget:self action:@selector(ciblerPosition)
                forControlEvents:UIControlEventTouchUpInside];
         

@@ -122,6 +122,11 @@
                                     <outlet property="delegate" destination="t2j-nU-UHC" id="kkp-vP-LJY"/>
                                 </connections>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jAE-zz-FgH">
+                                <rect key="frame" x="123" y="141" width="17" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="marker2.png"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -134,6 +139,7 @@
                         <outlet property="etoile_Pat" destination="6LY-zC-U2a" id="z2e-7S-onb"/>
                         <outlet property="etoile_Rez" destination="QBf-tf-lWj" id="Bq4-ZW-NWW"/>
                         <outlet property="fondTexteDistance" destination="lGN-gA-AFZ" id="MdX-1v-UaY"/>
+                        <outlet property="marqueur" destination="jAE-zz-FgH" id="4gU-W0-7vv"/>
                         <outlet property="pinchGesture" destination="H6q-3p-j7c" id="f4G-b9-dWG"/>
                         <outlet property="scrollView" destination="R7k-Nv-Qz0" id="AjG-Ef-pK5"/>
                         <outlet property="searchBar" destination="bBU-wD-DUH" id="9Hq-Ei-JRa"/>
@@ -1394,7 +1400,15 @@
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Accueil" id="DlN-kc-16B"/>
+                                    <navigationItem title="Accueil" id="DlN-kc-16B">
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="rik-Lu-32I">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wd2-sJ-dyA">
+                                                <rect key="frame" x="272" y="5" width="32" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button" image="satelliteoff.png"/>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" id="NOE-Vv-8za">
@@ -1531,6 +1545,7 @@
                         <outlet property="meteo" destination="FQJ-cU-sXY" id="0kE-qr-Hv5"/>
                         <outlet property="stats" destination="Mxf-Ud-6al" id="Cm3-N2-Kpw"/>
                         <outlet property="topBande" destination="NOE-Vv-8za" id="V5w-WH-bI0"/>
+                        <outlet property="trackAcceptButton" destination="rik-Lu-32I" id="scl-BZ-zBI"/>
                         <outlet property="troc" destination="Pae-2B-TRc" id="v5Q-yR-cFQ"/>
                         <outlet property="txtCarte" destination="OMj-bA-Lc6" id="cWh-Di-xhB"/>
                         <outlet property="txtConcours" destination="6E8-JT-waM" id="szZ-L6-OBF"/>
@@ -1544,7 +1559,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DpD-oY-QP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1043" y="98"/>
+            <point key="canvasLocation" x="1045" y="99"/>
         </scene>
         <!--Horaires View Controller-->
         <scene sceneID="CdM-pB-Yoc">
@@ -1913,12 +1928,13 @@
         <image name="iconMeteo.png" width="256" height="272"/>
         <image name="iconStats.png" width="256" height="270"/>
         <image name="iconTroc.png" width="256" height="256"/>
+        <image name="marker2.png" width="48" height="48"/>
         <image name="satelliteoff.png" width="512" height="512"/>
         <image name="speedometer.png" width="550" height="550"/>
         <image name="temps.png" width="567" height="567"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Yy8-vq-HPu"/>
-        <segue reference="kd7-MD-GbW"/>
+        <segue reference="g8c-47-mah"/>
+        <segue reference="qJ3-ur-bzc"/>
     </inferredMetricsTieBreakers>
 </document>
