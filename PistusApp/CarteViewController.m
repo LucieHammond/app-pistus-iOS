@@ -37,9 +37,17 @@
     _texteDistance.text=@"";
     _fondTexteDistance.hidden=true;
     
-    // Actions sur le marqueur du marqueur
+    // Création du marqueur
+    if(_marqueur!=nil)
+    {
+        [_marqueur removeFromSuperview];
+        _marqueur = nil;
+    }
+    _marqueur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,16,16)];
+    [_marqueur setImage:[UIImage imageNamed:@"marker2.png"] forState:UIControlStateNormal];
     [_marqueur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
        forControlEvents:UIControlEventTouchUpInside];
+    [self.view insertSubview:_marqueur aboveSubview:imageView];
     _marqueur.hidden=true;
     
     // Afficher la barre de recherche
@@ -122,14 +130,6 @@
         [_scrollView setContentOffset:CGPointMake((imageView.frame.size.width-_scrollView.frame.size.width)/2,0)];
         [_scrollView setContentSize:CGSizeMake(imageView.frame.size.width, imageView.frame.size.height)];
         [_scrollView setBouncesZoom:NO];
-    
-        // Ajout du bouton pour recentrer sur la position de l'utilisateur
-        UIButton *ciblage = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-60,[UIScreen mainScreen].bounds.size.height*7/10,47,47)];
-        [ciblage setImage:[UIImage imageNamed:@"ciblage.png"] forState:UIControlStateNormal];
-        ciblage.alpha=0.5;
-        [self.view insertSubview:ciblage aboveSubview:_marqueur];
-        [ciblage addTarget:self action:@selector(ciblerPosition)
-               forControlEvents:UIControlEventTouchUpInside];
         
         // Cacher la barre de recherche
         _searchBar.hidden = true;
@@ -150,6 +150,14 @@
         [_etoile_Pat addTarget:self action:@selector(afficherDetailsPourMarqueur:)
           forControlEvents:UIControlEventTouchUpInside];
         [_etoile_Luge addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+          forControlEvents:UIControlEventTouchUpInside];
+        
+        // Ajout du bouton pour recentrer sur la position de l'utilisateur
+        UIButton *ciblage = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-60,[UIScreen mainScreen].bounds.size.height*7/10,47,47)];
+        [ciblage setImage:[UIImage imageNamed:@"ciblage.png"] forState:UIControlStateNormal];
+        ciblage.alpha=0.5;
+        [self.view insertSubview:ciblage aboveSubview:_etoile_Luge];
+        [ciblage addTarget:self action:@selector(ciblerPosition)
           forControlEvents:UIControlEventTouchUpInside];
         
         // Initialisation de la bulle sans l'afficher
