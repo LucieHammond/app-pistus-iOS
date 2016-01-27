@@ -35,6 +35,14 @@ static GeolocalisationManager* sharedInstance=nil;
         sharedInstance.distanceTot=0;
         sharedInstance.deniveleTotal=0;
         sharedInstance.tempsDeSki=0;
+        
+        NSDateComponents *composants = [[NSDateComponents alloc] init];
+        [composants setYear:2016];
+        [composants setMonth:3];
+        [composants setDay:5];
+        NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:composants];
+        sharedInstance.derniereDate=date;
+        
         sharedInstance.joursFinis=[NSMutableArray arrayWithObjects:[NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO],
                                    [NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO],
                                    [NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO],nil];

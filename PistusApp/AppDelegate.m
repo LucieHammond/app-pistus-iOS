@@ -32,29 +32,29 @@
     NSDateComponents *composants = [calendrier components:(NSDayCalendarUnit|NSMonthCalendarUnit) fromDate:date];
     int jour = (int)[composants day];
     int mois = (int)[composants month];
-    if(mois==1 && jour>23 && jour<=25) //  if(mois==3 && jour>5 && jour<=12)
+    if(mois==3 && jour>5 && jour<=12)
     {
-        if(!gm.joursFinis[jour-24])  // jour - 6
+        if(!gm.joursFinis[jour-6])
         {
             // On sauvegarde les infos sur le dernier jour ou l'appli a été active
             composants = [calendrier components:NSDayCalendarUnit fromDate:gm.derniereDate];
             int dernierJour = (int)[composants day];
             for(int j=dernierJour;j<jour;j++)
             {
-                [gm sauvegarderDonnéesJour:j-23 :true]; // j-5
+                [gm sauvegarderDonnéesJour:j-5 :true];
             }
         }
     }
-    else if((jour>25 && mois==1)||(mois>1)) // else if((jour>12 && mois==3)||(mois>3))
+    else if((jour>12 && mois==3)||(mois>3))
     {
         composants = [calendrier components:NSDayCalendarUnit fromDate:gm.derniereDate];
         int dernierJour = (int)[composants day];
-        for(int j=dernierJour;j<=25;j++) //j<=12
+        for(int j=dernierJour;j<=12;j++)
         {
-            [gm sauvegarderDonnéesJour:j-23 :true]; // j-5
+            [gm sauvegarderDonnéesJour:j-5 :true];
         }
     }
-    if(mois ==1 && jour>=23 && jour<25)  // if(mois ==3 && jour>=5 && jour<12)
+    if(mois ==3 && jour>=5 && jour<12)
     {
         // On met en place le timer pour actualiser les statistiques de la semaine trois fois par jour même quand le GPS est désactivé
         [composants setYear:2016];
