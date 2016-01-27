@@ -28,8 +28,12 @@
     apresClic = false;
     _bulle.hidden=true;
     NSLog(@"View did load");
+
+    // Afficher la barre de recherche
+    _searchButton.target = self;
+    _searchButton.action = @selector(afficherBarRecherche);
     
-    // Ajustement du texte qui s'affiche en cas de localisation hors de la station
+    //Ajustement du texte qui s'affiche en cas de localisation hors de la station
     _texteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
     _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
     [self.view insertSubview:_fondTexteDistance aboveSubview:_scrollView];
@@ -46,13 +50,9 @@
     _marqueur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,16,16)];
     [_marqueur setImage:[UIImage imageNamed:@"marker2.png"] forState:UIControlStateNormal];
     [_marqueur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
-       forControlEvents:UIControlEventTouchUpInside];
+        forControlEvents:UIControlEventTouchUpInside];
     [self.view insertSubview:_marqueur aboveSubview:imageView];
     _marqueur.hidden=true;
-    
-    // Afficher la barre de recherche
-    _searchButton.target = self;
-    _searchButton.action = @selector(afficherBarRecherche);
     
     if([[GeolocalisationManager sharedInstance] trackAccept])
     {
@@ -60,7 +60,7 @@
         {
             double distance = [GeolocalisationManager sharedInstance].distanceStation;
             NSString *pisteProche = [GeolocalisationManager sharedInstance].pisteProche;
-            _texteDistance.text=[NSString stringWithFormat:@"%@%.0f%@%@%@",@"Vous vous trouvez à ",distance,@"m de la piste la plus proche : ",pisteProche,@". Attention, la pratique du hors piste est à vos risques et périls"];
+            _texteDistance.text=[NSString stringWithFormat:@"%@%.0f%@%@%@",@"Vous vous trouvez à ",distance,@"m de ",pisteProche,@". Attention, la pratique du hors piste est à vos risques et périls"];
             [_fondTexteDistance setFrame:CGRectMake(0, 0, _texteDistance.frame.size.width+20, _texteDistance.frame.size.height+10)];
             _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
             _fondTexteDistance.hidden=false;
@@ -96,10 +96,6 @@
         }
     }
     // Do any additional setup after loading the view.
-    if(_fondTexteDistance.hidden == false)
-    {
-        NSLog(@"sbra ta gueule");
-    }
 }
 
 -(void) viewDidLayoutSubviews{
@@ -133,7 +129,7 @@
         
         // Cacher la barre de recherche
         _searchBar.hidden = true;
-    
+        
         // Ajout de marqueurs pour les lieux importants
         float X = _scrollView.contentSize.width/7452*3424 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
         float Y = _scrollView.contentSize.height/3174*1710 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;

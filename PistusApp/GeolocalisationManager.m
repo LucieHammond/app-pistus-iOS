@@ -153,7 +153,7 @@ static GeolocalisationManager* sharedInstance=nil;
         if(locationManager.desiredAccuracy!=kCLLocationAccuracyBest)
         {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-            locationManager.distanceFilter = 2.0f;
+            locationManager.distanceFilter = 5.0f;
             locationManager.pausesLocationUpdatesAutomatically = true;
             locationManager.activityType = CLActivityTypeFitness;
         }
@@ -176,7 +176,7 @@ static GeolocalisationManager* sharedInstance=nil;
                 _pisteProche = nil;
                 NSString *newQuery = @"DELETE FROM maPosition";
                 [self.dbManager executeQuery:newQuery];
-                NSLog(@"1.1");
+                NSLog(@"A.1");
             }
             else
             {
@@ -204,7 +204,11 @@ static GeolocalisationManager* sharedInstance=nil;
                     
                     // On met à jour les statistiques
                     _vitesseActuelle=lastLocation.speed;
-                    _vitesseCumulee+=_vitesseActuelle;
+                    if(_vitesseActuelle!=0)
+                    {
+                        _vitesseCumulee+=_vitesseActuelle;
+                        _totalPositions++;
+                    }
                     if(lastLocation.speed>_vitesseMax)
                         _vitesseMax=lastLocation.speed;
                     
@@ -218,7 +222,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     // On ajoute finalement la position trouvée à la table et on retient la position
                     query = [NSString stringWithFormat:@"INSERT INTO maPosition(date,latitude,longitude,altitude,id_piste,numero,vitesse) VALUES ('%@',%f,%f,%f,'%@',%@,%f);",dateString,latitude,longitude,lastLocation.altitude,array[0][1],array[0][2],lastLocation.speed];
                     [self.dbManager executeQuery:query];
-                    NSLog(@"1.2");
+                    NSLog(@"A.2");
                 }
                 // 3eme cas : l'utilisateur est entre 20m et 100m d'un point référencé
                 else
@@ -228,7 +232,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     _pisteProche = [self.dbManager loadDataFromDB:query][0][0];
                     _dernierePiste = array[0][1];
                     _distanceStation = distance;
-                    NSLog(@"1.3");
+                    NSLog(@"A.3");
                 }
                 avantDerniereLoc = lastLocation;
             }
@@ -391,7 +395,7 @@ static GeolocalisationManager* sharedInstance=nil;
                         NSString *newQuery = @"DELETE FROM maPosition";
                         [self.dbManager executeQuery:newQuery];
                         avantDerniereLoc=nil;
-                        NSLog(@"2.1");
+                        NSLog(@"B.1");
                     }
                     else
                     {
@@ -421,7 +425,7 @@ static GeolocalisationManager* sharedInstance=nil;
                             
                             _distanceTot+=[lastLocation distanceFromLocation:avantDerniereLoc];
                             avantDerniereLoc = lastLocation;
-                            NSLog(@"2.3");
+                            NSLog(@"B.3");
                         }
                     }
                 }
@@ -444,7 +448,11 @@ static GeolocalisationManager* sharedInstance=nil;
                     
                     // On met à jour les statistiques
                     _vitesseActuelle=lastLocation.speed;
-                    _vitesseCumulee+=_vitesseActuelle;
+                    if(_vitesseActuelle!=0)
+                    {
+                        _vitesseCumulee+=_vitesseActuelle;
+                        _totalPositions++;
+                    }
                     if(lastLocation.speed>_vitesseMax)
                         _vitesseMax=lastLocation.speed;
                     
@@ -467,7 +475,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     // Comme la table est déjà pleine (5 positions), on retire la plus ancienne
                     query = [NSString stringWithFormat:@"DELETE FROM maPosition where date in (select min(date) from maPosition)"];
                     [self.dbManager executeQuery:query];
-                    NSLog(@"2.2");
+                    NSLog(@"B.2");
                 }
             }
             /*Enfin, dans le cas où on ne peut pas être sûr de se trouver sur une piste (moins de 5 positions récentes sur cette piste, utilisateur à plus de 20m de celle ci ...), on utilise quand même l'indication sur la derniere piste pour optimiser la recherche mais sans trop de conditions*/
@@ -513,7 +521,7 @@ static GeolocalisationManager* sharedInstance=nil;
                         NSString *newQuery = @"DELETE FROM maPosition";
                         [self.dbManager executeQuery:newQuery];
                         avantDerniereLoc = nil;
-                        NSLog(@"3.1");
+                        NSLog(@"C.1");
                     }
                     else
                     {
@@ -544,7 +552,7 @@ static GeolocalisationManager* sharedInstance=nil;
                             
                             _distanceTot+=[lastLocation distanceFromLocation:avantDerniereLoc];
                             avantDerniereLoc = lastLocation;
-                            NSLog(@"3.3");
+                            NSLog(@"C.3");
                         }
                     }
                 }
@@ -570,7 +578,11 @@ static GeolocalisationManager* sharedInstance=nil;
                     
                     // On met à jour les statistiques
                     _vitesseActuelle=lastLocation.speed;
-                    _vitesseCumulee+=_vitesseActuelle;
+                    if(_vitesseActuelle!=0)
+                    {
+                        _vitesseCumulee+=_vitesseActuelle;
+                        _totalPositions++;
+                    }
                     if(lastLocation.speed>_vitesseMax)
                         _vitesseMax=lastLocation.speed;
                     
@@ -595,7 +607,7 @@ static GeolocalisationManager* sharedInstance=nil;
                         query = [NSString stringWithFormat:@"DELETE FROM maPosition where date in (select min(date) from maPosition)"];
                         [self.dbManager executeQuery:query];
                     }
-                    NSLog(@"3.2");
+                    NSLog(@"C.2");
                 }
             }
         }
