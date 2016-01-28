@@ -162,6 +162,8 @@
             fermeture = fermetureLeSeignus[indexPath.row];
             break;
     }
+    
+    // On s'occupe du feu de couleur et du sous titre
     NSDateFormatter* df = [[NSDateFormatter alloc]init];
     [df setDateFormat:@"yyyy-MM-dd HH:mm"];
     NSDate *dateActuelle = [NSDate date];
@@ -172,14 +174,40 @@
     NSDate *heureOuverture = [df dateFromString:ouverture];
     NSDate *heureFermeture = [df dateFromString:fermeture];
     
+    cell.detailTextLabel.text = @"";
     BOOL ouvert;
-    if([dateActuelle compare: heureOuverture]== NSOrderedAscending || [dateActuelle compare: heureFermeture]==NSOrderedDescending)
+    if([dateActuelle compare: heureOuverture]== NSOrderedAscending)
     {
         ouvert = 0;
+        NSTimeInterval intervalle = [heureOuverture timeIntervalSinceNow];
+        int heure = (int) intervalle/3600;
+        int minute = (int) (intervalle - heure*3600)/60;
+        if(heure!=0)
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Ouverture dans %ih %imin",heure,minute];
+        else
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Ouverture dans %imin",minute];
+    }
+    else if([dateActuelle compare: heureFermeture]==NSOrderedDescending)
+    {
+        ouvert = 0;
+        NSTimeInterval intervalle = [heureOuverture timeIntervalSinceNow]+86400;
+        int heure = (int) intervalle/3600;
+        int minute = (int) (intervalle - heure*3600)/60;
+        if(heure!=0)
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Ouverture dans %ih %imin",heure,minute];
+        else
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Ouverture dans %imin",minute];
     }
     else
     {
         ouvert = 1;
+        NSTimeInterval intervalle = [heureFermeture timeIntervalSinceNow];
+        int heure = (int) intervalle/3600;
+        int minute = (int) (intervalle - heure*3600)/60;
+        if(heure!=0)
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Fermeture dans %ih %imin",heure,minute];
+        else
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Fermeture dans %imin",minute];
     }
     NSString *nomImage = ouvert?@"feuVert.png":@"feuRouge.png";
     UIImageView *feu = [[UIImageView alloc] initWithImage:[UIImage imageNamed:nomImage]];
