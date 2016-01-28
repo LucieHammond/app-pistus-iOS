@@ -13,6 +13,12 @@
     NSArray *remonteesLaFoux;
     NSArray *remonteesPraLoup;
     NSArray *remonteesLeSeignus;
+    NSArray *ouvertureLaFoux;
+    NSArray *ouverturePraLoup;
+    NSArray *ouvertureLeSeignus;
+    NSArray *fermetureLaFoux;
+    NSArray *fermeturePraLoup;
+    NSArray *fermetureLeSeignus;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *topBande;

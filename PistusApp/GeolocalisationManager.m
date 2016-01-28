@@ -155,7 +155,7 @@ static GeolocalisationManager* sharedInstance=nil;
     double longitude = lastLocation.coordinate.longitude;
     
     // On vérifie si l'utilisateur se trouve bien sur le domaine skiable de la station
-    if(latitude > 44.21 && latitude < 44.37 && longitude > 6.53 && longitude < 6.63)
+    if((latitude > 44.21 && latitude < 44.37 && longitude > 6.53 && longitude < 6.63) || (latitude > 48.76 && latitude < 48.77 && longitude > 2.28 && longitude < 2.30))
     {
         // On change les réglages par défauts pour les rendre plus précis
         if(locationManager.desiredAccuracy!=kCLLocationAccuracyBest)

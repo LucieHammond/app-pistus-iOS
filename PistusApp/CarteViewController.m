@@ -42,17 +42,17 @@
     _fondTexteDistance.hidden=true;
     
     // Création du marqueur
-    if(_marqueur!=nil)
+    if(marqueur!=nil)
     {
-        [_marqueur removeFromSuperview];
-        _marqueur = nil;
+        [marqueur removeFromSuperview];
+        marqueur = nil;
     }
-    _marqueur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,16,16)];
-    [_marqueur setImage:[UIImage imageNamed:@"marker2.png"] forState:UIControlStateNormal];
-    [_marqueur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+    marqueur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,16,16)];
+    [marqueur setImage:[UIImage imageNamed:@"marker2.png"] forState:UIControlStateNormal];
+    [marqueur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
         forControlEvents:UIControlEventTouchUpInside];
-    [self.view insertSubview:_marqueur aboveSubview:imageView];
-    _marqueur.hidden=true;
+    [self.view insertSubview:marqueur aboveSubview:imageView];
+    marqueur.hidden=true;
     
     if([[GeolocalisationManager sharedInstance] trackAccept])
     {
@@ -90,8 +90,8 @@
             int y = [GeolocalisationManager sharedInstance].dernierY;
             float X = _scrollView.contentSize.width/7452*x - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
             float Y = _scrollView.contentSize.height/3174*y - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-            _marqueur.center = CGPointMake(X,Y);
-            _marqueur.hidden = false;
+            marqueur.center = CGPointMake(X,Y);
+            marqueur.hidden = false;
             NSLog(@"touché");
         }
     }
@@ -254,7 +254,7 @@
     // Pate de la bulle
     [_pateBulle setFrame: CGRectMake(sender.center.x-11,sender.frame.origin.y-10,22,10)];
     _pateBulle.hidden=false;
-    if(sender==_marqueur)
+    if(sender==marqueur)
     {
         //Titre
         _titre.text=@"Vous êtes ici";
@@ -321,7 +321,7 @@
 
 -(void)ciblerPosition
 {
-    if(_marqueur.hidden==false)
+    if(marqueur.hidden==false)
     {
         int x = [GeolocalisationManager sharedInstance].dernierX;
         int y = [GeolocalisationManager sharedInstance].dernierY;
@@ -336,13 +336,13 @@
 -(void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
     // Repositionnement du marqueur
-    if(_marqueur.hidden==false)
+    if(marqueur.hidden==false)
     {
         int x = [GeolocalisationManager sharedInstance].dernierX;
         int y = [GeolocalisationManager sharedInstance].dernierY;
         float X = _scrollView.contentSize.width/7452*x - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
         float Y = _scrollView.contentSize.height/3174*y - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-        _marqueur.center = CGPointMake(X,Y);
+        marqueur.center = CGPointMake(X,Y);
     }
     
     float X = _scrollView.contentSize.width/7452*3424 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
@@ -359,7 +359,7 @@
     {
         // Pate de la bulle
         [_pateBulle setFrame: CGRectMake(marqueurBulle.center.x-11,marqueurBulle.frame.origin.y-10,22,10)];
-        if(marqueurBulle==_marqueur)
+        if(marqueurBulle==marqueur)
         {
             _titre.center=CGPointMake(marqueurBulle.center.x,marqueurBulle.frame.origin.y-38);
             _nomPiste.center=CGPointMake(marqueurBulle.center.x,marqueurBulle.frame.origin.y-21);

@@ -56,9 +56,17 @@
     [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem]  setImageInsets:UIEdgeInsetsMake(0,-2,0,2)];
     
     // On initialise les tableaux avec tous les noms de pistes
-    remonteesLaFoux = @[@"TS AIGUILLE",@"TS CHAUVETS",@"TK CROUS I",@"TK CROUS II",@"TELEBENNE LA CHAUP",@"TSD LA CHAUP",@"TK LA TARDEE",@"TS MARIN PASCAL",@"TS OBSERVATOIRE",@"TK PLAINES",@"TK PLATEAU I",@"TK PLATEAU II",@"TS PONT DE L'ABRAU",@"TS POURET",@"TK SIGNAL",@"TK UBAC",@"TS UBAGUETS",@"TELECORDE VERDON",@"TS VESCAL"];
+    remonteesLaFoux = @[@"TS AIGUILLE",@"TS CHAUVETS",@"TK CROUS I",@"TK CROUS II",@"TB LA CHAUP",@"TSD LA CHAUP",@"TK TARDEE",@"TS MARIN PASCAL",@"TS OBSERVATOIRE",@"TK PLAINES",@"TK PLATEAU I",@"TK PLATEAU II",@"TS PONT DE L'ABRAU",@"TS POURET",@"TK SIGNAL",@"TK UBAC",@"TS UBAGUETS",@"TELECORDE VERDON",@"TS VESCAL"];
     remonteesPraLoup = @[@"TS AGNELIERS",@"TK BABY",@"TK BELIERE",@"TSD BERGERIES",@"TAPIS-NEIGE CLAPIERS",@"TELEMIX CLAPPE", @"TC COSTEBELLE",@"TK COURTIL I",@"TK COURTIL II",@"TK GIMETTE",@"TK LAC I",@"TK LAC II",@"TC MOLANES",@"TSD6 PEGUIEOU",@"TS QUARTIERS",@"TAPIS-NEIGE SERRE",@"TK SESTRIERES",@"TAPIS-NEIGE SORBIERS",@"TK STADE"];
     remonteesLeSeignus = @[@"TK AUTAPIE I",@"TK AUTAPIE II",@"TSD6 CLOS BERTRAND",@"TS FONT FREDE",@"TS GROS TAPY",@"TC GUINAND",@"TK HONORE CAIRE",@"TK PRE DE LA PORTE"];
+    
+    ouvertureLaFoux = @[@"09:00",@"09:00",@"09:30",@"09:30",@"09:00",@"09:00",@"09:45",@"09:15",@"09:15",@"09:10",@"09:10",@"09:10",@"09:00",@"00:00",@"09:15",@"09:00",@"09:35",@"09:00",@"09:15"];
+    ouvertureLeSeignus = @[@"09:15",@"09:15",@"09:00",@"09:05",@"09:30",@"08:30",@"09:00",@"09:00"];
+    ouverturePraLoup = @[@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00"];
+    
+    fermetureLaFoux = @[@"16:45",@"16:45",@"16:30",@"16:15",@"16:45",@"16:40",@"15:40",@"16:40",@"16:30",@"16:45",@"16:45",@"16:45",@"16:40",@"00:00",@"16:35",@"16:45",@"16:20",@"17:05",@"16:30"];
+    fermetureLeSeignus = @[@"16:30",@"16:30",@"16:45",@"16:35",@"16:30",@"18:00",@"16:50",@"16:50"];
+    fermeturePraLoup = @[@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00"];
     
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
@@ -135,22 +143,48 @@
     if(cell == nil) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"idCellRemontee" owner:nil options:nil] firstObject];
     }
+    NSString *ouverture;
+    NSString *fermeture;
     switch (indexPath.section) {
         case 0:
             cell.textLabel.text = remonteesLaFoux[indexPath.row];
+            ouverture = ouvertureLaFoux[indexPath.row];
+            fermeture = fermetureLaFoux[indexPath.row];
             break;
         case 1:
             cell.textLabel.text = remonteesPraLoup[indexPath.row];
+            ouverture = ouverturePraLoup[indexPath.row];
+            fermeture = fermeturePraLoup[indexPath.row];
             break;
         case 2:
             cell.textLabel.text = remonteesLeSeignus[indexPath.row];
+            ouverture = ouvertureLeSeignus[indexPath.row];
+            fermeture = fermetureLeSeignus[indexPath.row];
             break;
     }
-    BOOL ouvert = 0;
-    NSString *feu = ouvert?@"feuVert.png":@"feuRouge.png";
-    UIImageView *ouverture = [[UIImageView alloc] initWithImage:[UIImage imageNamed:feu]];
-    [ouverture setFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-55,16,15,15)];
-    [cell addSubview:ouverture];
+    NSDateFormatter* df = [[NSDateFormatter alloc]init];
+    [df setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSDate *dateActuelle = [NSDate date];
+    NSCalendar *calendrier = [NSCalendar currentCalendar];
+    NSDateComponents *composants = [calendrier components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:dateActuelle];
+    ouverture = [NSString stringWithFormat:@"%ld-%ld-%ld %@",(long)[composants year],(long)[composants month],(long)[composants day],ouverture];
+    fermeture = [NSString stringWithFormat:@"%ld-%ld-%ld %@",(long)[composants year],(long)[composants month],(long)[composants day],fermeture];
+    NSDate *heureOuverture = [df dateFromString:ouverture];
+    NSDate *heureFermeture = [df dateFromString:fermeture];
+    
+    BOOL ouvert;
+    if([dateActuelle compare: heureOuverture]== NSOrderedAscending || [dateActuelle compare: heureFermeture]==NSOrderedDescending)
+    {
+        ouvert = 0;
+    }
+    else
+    {
+        ouvert = 1;
+    }
+    NSString *nomImage = ouvert?@"feuVert.png":@"feuRouge.png";
+    UIImageView *feu = [[UIImageView alloc] initWithImage:[UIImage imageNamed:nomImage]];
+    [feu setFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-55,16,15,15)];
+    [cell addSubview:feu];
     
     return cell;
 }

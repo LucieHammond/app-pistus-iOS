@@ -122,11 +122,6 @@
                                     <outlet property="delegate" destination="t2j-nU-UHC" id="kkp-vP-LJY"/>
                                 </connections>
                             </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jAE-zz-FgH">
-                                <rect key="frame" x="123" y="141" width="17" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="marker2.png"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -139,7 +134,6 @@
                         <outlet property="etoile_Pat" destination="6LY-zC-U2a" id="z2e-7S-onb"/>
                         <outlet property="etoile_Rez" destination="QBf-tf-lWj" id="Bq4-ZW-NWW"/>
                         <outlet property="fondTexteDistance" destination="lGN-gA-AFZ" id="MdX-1v-UaY"/>
-                        <outlet property="marqueur" destination="jAE-zz-FgH" id="4gU-W0-7vv"/>
                         <outlet property="pinchGesture" destination="H6q-3p-j7c" id="f4G-b9-dWG"/>
                         <outlet property="scrollView" destination="R7k-Nv-Qz0" id="AjG-Ef-pK5"/>
                         <outlet property="searchBar" destination="bBU-wD-DUH" id="9Hq-Ei-JRa"/>
@@ -169,7 +163,7 @@
             <objects>
                 <viewController title="Mes Infos" id="fT5-Tb-ybX" customClass="MesInfosViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SgL-dX-yeh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translucent="NO" id="P1L-KN-8TC">
@@ -245,7 +239,7 @@
             <objects>
                 <viewController title="Informations générales" id="cdV-88-mC3" customClass="InfosGlobalesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l1W-bZ-o63">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="qgx-df-iwy">
@@ -320,7 +314,7 @@
             <objects>
                 <viewController title="Flash news" id="trH-vZ-ket" customClass="NewsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kge-ot-bD7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="uF2-Cz-O4H">
@@ -419,7 +413,7 @@
             <objects>
                 <viewController id="IRz-zR-tQK" customClass="ConcoursViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S7C-cy-jCC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="xkx-FL-fGM">
@@ -1928,7 +1922,6 @@
         <image name="iconMeteo.png" width="256" height="272"/>
         <image name="iconStats.png" width="256" height="270"/>
         <image name="iconTroc.png" width="256" height="256"/>
-        <image name="marker2.png" width="48" height="48"/>
         <image name="satelliteoff.png" width="512" height="512"/>
         <image name="speedometer.png" width="550" height="550"/>
         <image name="temps.png" width="567" height="567"/>
