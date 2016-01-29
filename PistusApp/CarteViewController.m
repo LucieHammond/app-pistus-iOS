@@ -60,8 +60,22 @@
         {
             double distance = [GeolocalisationManager sharedInstance].distanceStation;
             NSString *pisteProche = [GeolocalisationManager sharedInstance].pisteProche;
-            _texteDistance.text=[NSString stringWithFormat:@"%@%.0f%@%@%@",@"Vous vous trouvez à ",distance,@"m de ",pisteProche,@". Attention, la pratique du hors piste est à vos risques et périls"];
-            [_fondTexteDistance setFrame:CGRectMake(0, 0, _texteDistance.frame.size.width+20, _texteDistance.frame.size.height+10)];
+            if([GeolocalisationManager sharedInstance].enStation)
+            {
+                _texteDistance.text=[NSString stringWithFormat:@"%@%.2f%@%@",@"Impossible de vous localiser. \nVous vous trouvez à ",distance,@" m de la station La Foux d'Allos : ", pisteProche];
+                [_fondTexteDistance setFrame:CGRectMake(0, 0, _texteDistance.frame.size.width+15, _texteDistance.frame.size.height-5)];
+            }
+            else
+            {
+                self.dbManager=[[DBManager alloc]initWithDatabaseFilename:@"bddPistes.db"];
+                NSString *query = [NSString stringWithFormat:@"SELECT est_remontee from pistes where id = '%@';",[GeolocalisationManager sharedInstance].dernierePiste];
+                BOOL remontee = [[[[self.dbManager loadDataFromDB:query] objectAtIndex:0] objectAtIndex:0]boolValue];
+                if(!remontee)
+                    _texteDistance.text=[NSString stringWithFormat:@"%@%.0f%@%@%@",@"Vous vous trouvez à ",distance,@"m de la piste la plus proche : ",pisteProche,@". Attention, la pratique du hors piste est à vos risques et périls"];
+                else
+                    _texteDistance.text=[NSString stringWithFormat:@"%@%.0f%@%@%@",@"Vous vous trouvez à ",distance,@"m de la remontee mécanique : ",pisteProche,@". Attention, la pratique du hors piste est à vos risques et périls"];
+                [_fondTexteDistance setFrame:CGRectMake(0, 0, _texteDistance.frame.size.width+20, _texteDistance.frame.size.height+10)];
+            }
             _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
             _fondTexteDistance.hidden=false;
             NSLog(@"piste proche");
