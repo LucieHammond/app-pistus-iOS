@@ -39,6 +39,7 @@
 @property (nonatomic) NSMutableArray *tabNbPositions;
 @property (nonatomic) NSMutableArray *tabDistance;
 @property (nonatomic) NSMutableArray *tabTemps;
+@property (nonatomic) NSArray *station;
 
 // Carte
 @property (nonatomic) BOOL trackAccept;
@@ -47,6 +48,7 @@
 @property (nonatomic) NSString *dernierePiste;
 @property (nonatomic) NSString *pisteProche;
 @property (nonatomic) NSDate *derniereDate;
+@property (nonatomic) BOOL enStation;
 
 +(GeolocalisationManager*)sharedInstance;
 +(void)setSharedInstance:(GeolocalisationManager*)gm;
