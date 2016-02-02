@@ -19,6 +19,7 @@
     NSArray *fermetureLaFoux;
     NSArray *fermeturePraLoup;
     NSArray *fermetureLeSeignus;
+    NSArray *type;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *topBande;

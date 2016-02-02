@@ -8,6 +8,7 @@
 
 #import "RemonteesViewController.h"
 #import "GeolocalisationManager.h"
+#import "HorairesViewController.h"
 
 @interface RemonteesViewController ()
 
@@ -59,6 +60,7 @@
     remonteesLaFoux = @[@"TS AIGUILLE",@"TS CHAUVETS",@"TK CROUS I",@"TK CROUS II",@"TB LA CHAUP",@"TSD LA CHAUP",@"TK TARDEE",@"TS MARIN PASCAL",@"TS OBSERVATOIRE",@"TK PLAINES",@"TK PLATEAU I",@"TK PLATEAU II",@"TS PONT DE L'ABRAU",@"TS POURET",@"TK SIGNAL",@"TK UBAC",@"TS UBAGUETS",@"TELECORDE VERDON",@"TS VESCAL"];
     remonteesPraLoup = @[@"TS AGNELIERS",@"TK BABY",@"TK BELIERE",@"TSD BERGERIES",@"TAPIS-NEIGE CLAPIERS",@"TELEMIX CLAPPE", @"TC COSTEBELLE",@"TK COURTIL I",@"TK COURTIL II",@"TK GIMETTE",@"TK LAC I",@"TK LAC II",@"TC MOLANES",@"TSD6 PEGUIEOU",@"TS QUARTIERS",@"TAPIS-NEIGE SERRE",@"TK SESTRIERES",@"TAPIS-NEIGE SORBIERS",@"TK STADE"];
     remonteesLeSeignus = @[@"TK AUTAPIE I",@"TK AUTAPIE II",@"TSD6 CLOS BERTRAND",@"TS FONT FREDE",@"TS GROS TAPY",@"TC GUINAND",@"TK HONORE CAIRE",@"TK PRE DE LA PORTE"];
+    type = @[@[@"TS",@"TS",@"TK",@"TK",@"TB",@"TSD",@"TK",@"TS",@"TS",@"TK",@"TK",@"TK",@"TS",@"TS",@"TK",@"TK",@"TS",@"TN",@"TS"],@[@"TS",@"TK",@"TK",@"TSD",@"TN",@"TC",@"TC",@"TK",@"TK",@"TK",@"TK",@"TK",@"TC",@"TSD",@"TS",@"TN",@"TK",@"TN",@"TK"],@[@"TK",@"TK",@"TSD",@"TS",@"TS",@"TC",@"TK",@"TK"]];
     
     ouvertureLaFoux = @[@"09:00",@"09:00",@"09:30",@"09:30",@"09:00",@"09:00",@"09:45",@"09:15",@"09:15",@"09:10",@"09:10",@"09:10",@"09:00",@"00:00",@"09:15",@"09:00",@"09:35",@"09:00",@"09:15"];
     ouvertureLeSeignus = @[@"09:15",@"09:15",@"09:00",@"09:05",@"09:30",@"08:30",@"09:00",@"09:00"];
@@ -244,6 +246,32 @@
     }
     label.textAlignment = NSTextAlignmentCenter;
     return label;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"DetailSegue"]) {
+        HorairesViewController *horairesVC = (HorairesViewController*)segue.destinationViewController;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
+        switch(indexPath.section){
+            case 0:
+                horairesVC.titreText = [remonteesLaFoux objectAtIndex:indexPath.row];
+                horairesVC.ouvertureText = [ouvertureLaFoux objectAtIndex:indexPath.row];
+                horairesVC.fermetureText = [fermetureLaFoux objectAtIndex:indexPath.row];
+                break;
+            case 1:
+                horairesVC.titreText = [remonteesPraLoup objectAtIndex:indexPath.row];
+                horairesVC.ouvertureText = [ouverturePraLoup objectAtIndex:indexPath.row];
+                horairesVC.fermetureText = [fermeturePraLoup objectAtIndex:indexPath.row];
+                break;
+            case 2:
+                horairesVC.titreText = [remonteesLeSeignus objectAtIndex:indexPath.row];
+                horairesVC.ouvertureText = [ouvertureLeSeignus objectAtIndex:indexPath.row];
+                horairesVC.fermetureText = [fermetureLeSeignus objectAtIndex:indexPath.row];
+                break;
+        }
+        horairesVC.typeIcone = [[type objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    }
 }
 
 /*

@@ -54,7 +54,6 @@
 		C539A7901BF1F56A00B9E3ED /* iconStats.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78B1BF1F56A00B9E3ED /* iconStats.png */; };
 		C539A7911BF1F56A00B9E3ED /* iconTroc.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78C1BF1F56A00B9E3ED /* iconTroc.png */; };
 		C53D513E1C5A6D7E00829D9F /* Plan Val d'Allos Official corrigé.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C53D513D1C5A6D7E00829D9F /* Plan Val d'Allos Official corrigé.jpg */; };
-		C53D51401C5A6FC100829D9F /* bddPistes.db in Resources */ = {isa = PBXBuildFile; fileRef = C53D513F1C5A6FC100829D9F /* bddPistes.db */; };
 		C54F8AC21BD94D5A00CE7B3A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C54F8AC11BD94D5A00CE7B3A /* main.m */; };
 		C54F8AC51BD94D5A00CE7B3A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C54F8AC41BD94D5A00CE7B3A /* AppDelegate.m */; };
 		C54F8AC81BD94D5A00CE7B3A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C54F8AC71BD94D5A00CE7B3A /* ViewController.m */; };
@@ -69,6 +68,16 @@
 		C570B8661C2ED85C003E0E16 /* satelliteon.png in Resources */ = {isa = PBXBuildFile; fileRef = C570B8651C2ED85C003E0E16 /* satelliteon.png */; };
 		C570B8681C2EDC23003E0E16 /* satelliteoff.png in Resources */ = {isa = PBXBuildFile; fileRef = C570B8671C2EDC23003E0E16 /* satelliteoff.png */; };
 		C570B86C1C30999B003E0E16 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C570B86B1C30999B003E0E16 /* CoreLocation.framework */; };
+		C58083DE1C5BFD3900BE73A3 /* bddPistes.db in Resources */ = {isa = PBXBuildFile; fileRef = C58083DD1C5BFD3900BE73A3 /* bddPistes.db */; };
+		C58083F31C5D171B00BE73A3 /* medaille argent.png in Resources */ = {isa = PBXBuildFile; fileRef = C58083EF1C5D171B00BE73A3 /* medaille argent.png */; };
+		C58083F41C5D171B00BE73A3 /* medaille bronze.png in Resources */ = {isa = PBXBuildFile; fileRef = C58083F01C5D171B00BE73A3 /* medaille bronze.png */; };
+		C58083F51C5D171B00BE73A3 /* medaille or.png in Resources */ = {isa = PBXBuildFile; fileRef = C58083F11C5D171B00BE73A3 /* medaille or.png */; };
+		C58083F61C5D171B00BE73A3 /* medaille vermeil.png in Resources */ = {isa = PBXBuildFile; fileRef = C58083F21C5D171B00BE73A3 /* medaille vermeil.png */; };
+		C58083FB1C5D209100BE73A3 /* fleche-argent.png in Resources */ = {isa = PBXBuildFile; fileRef = C58083F71C5D209100BE73A3 /* fleche-argent.png */; };
+		C58083FC1C5D209100BE73A3 /* fleche-bronze.png in Resources */ = {isa = PBXBuildFile; fileRef = C58083F81C5D209100BE73A3 /* fleche-bronze.png */; };
+		C58083FD1C5D209100BE73A3 /* fleche-or.png in Resources */ = {isa = PBXBuildFile; fileRef = C58083F91C5D209100BE73A3 /* fleche-or.png */; };
+		C58083FE1C5D209100BE73A3 /* fleche-vermeil.png in Resources */ = {isa = PBXBuildFile; fileRef = C58083FA1C5D209100BE73A3 /* fleche-vermeil.png */; };
+		C58084001C5D295100BE73A3 /* flecheGaucheHoraires.png in Resources */ = {isa = PBXBuildFile; fileRef = C58083FF1C5D295100BE73A3 /* flecheGaucheHoraires.png */; };
 		C58EA0751C4881FF0022F6B1 /* actualiser.png in Resources */ = {isa = PBXBuildFile; fileRef = C58EA0741C4881FF0022F6B1 /* actualiser.png */; };
 		C593B4E81C458397009F5896 /* etoile.png in Resources */ = {isa = PBXBuildFile; fileRef = C593B4E71C458397009F5896 /* etoile.png */; };
 		C593B4EB1C45D730009F5896 /* ClassementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C593B4EA1C45D730009F5896 /* ClassementViewController.m */; };
@@ -175,7 +184,6 @@
 		C539A78B1BF1F56A00B9E3ED /* iconStats.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconStats.png; sourceTree = "<group>"; };
 		C539A78C1BF1F56A00B9E3ED /* iconTroc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconTroc.png; sourceTree = "<group>"; };
 		C53D513D1C5A6D7E00829D9F /* Plan Val d'Allos Official corrigé.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Plan Val d'Allos Official corrigé.jpg"; sourceTree = "<group>"; };
-		C53D513F1C5A6FC100829D9F /* bddPistes.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = bddPistes.db; sourceTree = "<group>"; };
 		C54F8ABC1BD94D5A00CE7B3A /* PistusApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PistusApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C54F8AC01BD94D5A00CE7B3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C54F8AC11BD94D5A00CE7B3A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -199,6 +207,16 @@
 		C570B8651C2ED85C003E0E16 /* satelliteon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satelliteon.png; sourceTree = "<group>"; };
 		C570B8671C2EDC23003E0E16 /* satelliteoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satelliteoff.png; sourceTree = "<group>"; };
 		C570B86B1C30999B003E0E16 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C58083DD1C5BFD3900BE73A3 /* bddPistes.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = bddPistes.db; sourceTree = "<group>"; };
+		C58083EF1C5D171B00BE73A3 /* medaille argent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "medaille argent.png"; sourceTree = "<group>"; };
+		C58083F01C5D171B00BE73A3 /* medaille bronze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "medaille bronze.png"; sourceTree = "<group>"; };
+		C58083F11C5D171B00BE73A3 /* medaille or.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "medaille or.png"; sourceTree = "<group>"; };
+		C58083F21C5D171B00BE73A3 /* medaille vermeil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "medaille vermeil.png"; sourceTree = "<group>"; };
+		C58083F71C5D209100BE73A3 /* fleche-argent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fleche-argent.png"; sourceTree = "<group>"; };
+		C58083F81C5D209100BE73A3 /* fleche-bronze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fleche-bronze.png"; sourceTree = "<group>"; };
+		C58083F91C5D209100BE73A3 /* fleche-or.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fleche-or.png"; sourceTree = "<group>"; };
+		C58083FA1C5D209100BE73A3 /* fleche-vermeil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fleche-vermeil.png"; sourceTree = "<group>"; };
+		C58083FF1C5D295100BE73A3 /* flecheGaucheHoraires.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flecheGaucheHoraires.png; sourceTree = "<group>"; };
 		C58EA0741C4881FF0022F6B1 /* actualiser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = actualiser.png; sourceTree = "<group>"; };
 		C593B4E71C458397009F5896 /* etoile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = etoile.png; sourceTree = "<group>"; };
 		C593B4E91C45D730009F5896 /* ClassementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassementViewController.h; sourceTree = "<group>"; };
@@ -305,7 +323,7 @@
 				C570B83C1C2B44C5003E0E16 /* DBManager.m */,
 				C570B8541C2EBE50003E0E16 /* GeolocalisationManager.h */,
 				C570B8551C2EBE50003E0E16 /* GeolocalisationManager.m */,
-				C53D513F1C5A6FC100829D9F /* bddPistes.db */,
+				C58083DD1C5BFD3900BE73A3 /* bddPistes.db */,
 				C570B8381C2B440F003E0E16 /* libsqlite3.dylib */,
 				C52D72D21C4ACC25005C05D1 /* UUChart */,
 				C54F8B1D1BD97E1800CE7B3A /* Ressources */,
@@ -398,6 +416,15 @@
 		C54F8B1D1BD97E1800CE7B3A /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				C58083FF1C5D295100BE73A3 /* flecheGaucheHoraires.png */,
+				C58083F71C5D209100BE73A3 /* fleche-argent.png */,
+				C58083F81C5D209100BE73A3 /* fleche-bronze.png */,
+				C58083F91C5D209100BE73A3 /* fleche-or.png */,
+				C58083FA1C5D209100BE73A3 /* fleche-vermeil.png */,
+				C58083EF1C5D171B00BE73A3 /* medaille argent.png */,
+				C58083F01C5D171B00BE73A3 /* medaille bronze.png */,
+				C58083F11C5D171B00BE73A3 /* medaille or.png */,
+				C58083F21C5D171B00BE73A3 /* medaille vermeil.png */,
 				C5DDCC641C4FD12400FA1515 /* 33eb8a02d4d1d838586ebcca3c60c50f.png */,
 				C52D730B1C4D8630005C05D1 /* boardercrossBleu.png */,
 				C52D730C1C4D8630005C05D1 /* boardercrossRouge.png */,
@@ -557,6 +584,7 @@
 				C5AED9981C4289240086E570 /* pate_bulle.png in Resources */,
 				C5AED9AB1C4423FA0086E570 /* temps.png in Resources */,
 				C54F8ACB1BD94D5A00CE7B3A /* Main.storyboard in Resources */,
+				C58083F41C5D171B00BE73A3 /* medaille bronze.png in Resources */,
 				C52D73261C4D8630005C05D1 /* snowpark.png in Resources */,
 				C52D73241C4D8630005C05D1 /* pisteRouge.png in Resources */,
 				C593B4ED1C45E0A5009F5896 /* mesStats.png in Resources */,
@@ -572,13 +600,15 @@
 				C52D72F51C4BB5F4005C05D1 /* news.png in Resources */,
 				C5C05E7E1BEFF6FC007D763E /* iconInfo.png in Resources */,
 				C52D73291C4D8630005C05D1 /* TK.png in Resources */,
+				C58083F51C5D171B00BE73A3 /* medaille or.png in Resources */,
 				C5AED9961C41B8B30086E570 /* ciblage.png in Resources */,
 				C5C05E8E1BEFFBA5007D763E /* accueil_4.jpg in Resources */,
-				C53D51401C5A6FC100829D9F /* bddPistes.db in Resources */,
+				C58083DE1C5BFD3900BE73A3 /* bddPistes.db in Resources */,
 				C539A78D1BF1F56A00B9E3ED /* iconContact.png in Resources */,
 				C52D732A1C4D8630005C05D1 /* TN.png in Resources */,
 				C5C05E8A1BEFF7A0007D763E /* Login-667h@2x~iphone.png in Resources */,
 				C52D73271C4D8630005C05D1 /* TB.png in Resources */,
+				C58083FB1C5D209100BE73A3 /* fleche-argent.png in Resources */,
 				C539A78F1BF1F56A00B9E3ED /* iconMeteo.png in Resources */,
 				C54F8AD01BD94D5A00CE7B3A /* LaunchScreen.xib in Resources */,
 				C52D72E81C4BB073005C05D1 /* infoGenerales.png in Resources */,
@@ -587,18 +617,24 @@
 				C539A78E1BF1F56A00B9E3ED /* iconHoraires.png in Resources */,
 				C539A7901BF1F56A00B9E3ED /* iconStats.png in Resources */,
 				C570B8681C2EDC23003E0E16 /* satelliteoff.png in Resources */,
+				C58083F61C5D171B00BE73A3 /* medaille vermeil.png in Resources */,
 				C5C05E791BEFF6FC007D763E /* accueil_5.jpg in Resources */,
 				C5C05E7C1BEFF6FC007D763E /* iconConcours.png in Resources */,
 				C5C05E881BEFF7A0007D763E /* connexion.png in Resources */,
 				C52D73231C4D8630005C05D1 /* pisteNoire.png in Resources */,
 				C52D730A1C4D1D64005C05D1 /* remontee.png in Resources */,
+				C58083FD1C5D209100BE73A3 /* fleche-or.png in Resources */,
+				C58083FE1C5D209100BE73A3 /* fleche-vermeil.png in Resources */,
 				C5C05E8C1BEFF7A0007D763E /* Login@2x~iphone.png in Resources */,
+				C58083F31C5D171B00BE73A3 /* medaille argent.png in Resources */,
 				C52D731E1C4D8630005C05D1 /* boardercrossVert.png in Resources */,
 				C53D513E1C5A6D7E00829D9F /* Plan Val d'Allos Official corrigé.jpg in Resources */,
+				C58084001C5D295100BE73A3 /* flecheGaucheHoraires.png in Resources */,
 				C52D73221C4D8630005C05D1 /* pisteBleue.png in Resources */,
 				C593B4EF1C45E0AB009F5896 /* maSemaine.png in Resources */,
 				C52D73251C4D8630005C05D1 /* pisteVerte.png in Resources */,
 				C5AED9A91C4423F10086E570 /* distance.png in Resources */,
+				C58083FC1C5D209100BE73A3 /* fleche-bronze.png in Resources */,
 				C54F8ACD1BD94D5A00CE7B3A /* Images.xcassets in Resources */,
 				C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */,
 				C52D72E91C4BB073005C05D1 /* mesInfos.png in Resources */,

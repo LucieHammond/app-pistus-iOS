@@ -21,6 +21,13 @@
     //Ajustement de la barre de navigation en haut et configuration des icones
     [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
     [_topBande setFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, 20)];
+    
+    _titre.text = _titreText;
+    _ouverture.text = _ouvertureText;
+    _fermeture.text = _fermetureText;
+    
+    // Définition de l'icone
+    [_icone setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",_typeIcone,@".png"]]];
 }
 
 - (void)didReceiveMemoryWarning {
