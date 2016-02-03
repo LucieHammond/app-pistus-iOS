@@ -98,46 +98,68 @@
     if(cell == nil) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"ActisViewCell" owner:nil options:nil] firstObject];
     }
+    
+    // Remise à 0 de la cellule
+    for (UIView *v in [cell subviews])
+    {
+        if(v.class == UILabel.class || v.class == UIImageView.class)
+            [v removeFromSuperview];
+    }
+    
     cell.backgroundColor = [[UIColor alloc] initWithRed:224/225 green:237/225 blue:252/225 alpha:1];
     
-    // Créer et placer les imaes
-    UIImageView *flecheOr = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fleche-or.png"]];
-    [flecheOr setFrame:CGRectMake(30,10,50,50)];
-    [cell addSubview:flecheOr];
-    UIImageView *flecheVermeil = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fleche-vermeil.png"]];
-    [flecheVermeil setFrame:CGRectMake(30,65,50,50)];
-    [cell addSubview:flecheVermeil];
-    UIImageView *flecheArgent = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fleche-argent.png"]];
-    [flecheArgent setFrame:CGRectMake(30,120,50,50)];
-    [cell addSubview:flecheArgent];
-    UIImageView *flecheBronze = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fleche-bronze.png"]];
-    [flecheBronze setFrame:CGRectMake(30,175,50,50)];
-    [cell addSubview:flecheBronze];
-    
-    // Créer et placer les labels
-    NSString *nomGagnant = @"Enguerran Henniart";
-    UILabel *gagnant1 = [[UILabel alloc]initWithFrame:CGRectMake(95, 22, 205, 25)];
-    UILabel *gagnant2 = [[UILabel alloc]initWithFrame:CGRectMake(95, 77, 205, 25)];
-    UILabel *gagnant3 = [[UILabel alloc]initWithFrame:CGRectMake(95, 132, 205, 25)];
-    UILabel *gagnant4 = [[UILabel alloc]initWithFrame:CGRectMake(95, 187, 205, 25)];
-    [gagnant1 setFont:[UIFont systemFontOfSize:20]];
-    [gagnant2 setFont:[UIFont systemFontOfSize:20]];
-    [gagnant3 setFont:[UIFont systemFontOfSize:20]];
-    [gagnant4 setFont:[UIFont systemFontOfSize:20]];
-    gagnant1.text = nomGagnant;
-    gagnant2.text = nomGagnant;
-    gagnant3.text = nomGagnant;
-    gagnant4.text = nomGagnant;
-    [cell addSubview:gagnant1];
-    [cell addSubview:gagnant2];
-    [cell addSubview:gagnant3];
-    [cell addSubview:gagnant4];
-    
+    if(indexPath.section !=7)
+    {
+        // Créer et placer les imaes
+        UIImageView *flecheOr = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fleche-or.png"]];
+        [flecheOr setFrame:CGRectMake(30,15,45,45)];
+        [cell addSubview:flecheOr];
+        UIImageView *flecheVermeil = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fleche-vermeil.png"]];
+        [flecheVermeil setFrame:CGRectMake(30,68,45,45)];
+        [cell addSubview:flecheVermeil];
+        UIImageView *flecheArgent = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fleche-argent.png"]];
+        [flecheArgent setFrame:CGRectMake(30,121,45,45)];
+        [cell addSubview:flecheArgent];
+        UIImageView *flecheBronze = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fleche-bronze.png"]];
+        [flecheBronze setFrame:CGRectMake(30,174,45,45)];
+        [cell addSubview:flecheBronze];
+        
+        // Créer et placer les labels
+        NSString *nomGagnant = @"Enguerran Henniart";
+        UILabel *gagnant1 = [[UILabel alloc]initWithFrame:CGRectMake(95, 25, 205, 25)];
+        UILabel *gagnant2 = [[UILabel alloc]initWithFrame:CGRectMake(95, 78, 205, 25)];
+        UILabel *gagnant3 = [[UILabel alloc]initWithFrame:CGRectMake(95, 131, 205, 25)];
+        UILabel *gagnant4 = [[UILabel alloc]initWithFrame:CGRectMake(95, 185, 205, 25)];
+        [gagnant1 setFont:[UIFont systemFontOfSize:20]];
+        [gagnant2 setFont:[UIFont systemFontOfSize:20]];
+        [gagnant3 setFont:[UIFont systemFontOfSize:20]];
+        [gagnant4 setFont:[UIFont systemFontOfSize:20]];
+        gagnant1.text = nomGagnant;
+        gagnant2.text = nomGagnant;
+        gagnant3.text = nomGagnant;
+        gagnant4.text = nomGagnant;
+        [cell addSubview:gagnant1];
+        [cell addSubview:gagnant2];
+        [cell addSubview:gagnant3];
+        [cell addSubview:gagnant4];
+    }
+    else
+    {
+        UILabel *score = [[UILabel alloc]initWithFrame:CGRectMake(37, 15, 140, 60)];
+        [score setFont:[UIFont boldSystemFontOfSize:18]];
+        score.numberOfLines = 2;
+        score.text = @"Score de votre\nappartement :";
+        score.textAlignment = NSTextAlignmentCenter;
+        [cell addSubview:score];
+    }
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 235;
+    if (indexPath.section!=7)
+        return 235;
+    else
+        return 92;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -145,19 +167,25 @@
         if(section==0)
             return 45;
         else
-            return 30;
+            return 25;
     }
     else{
         if(section==0)
             return 50;
         else
-            return 35;
+            return 30;
     }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    CGRect frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width , 40);
-    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    CGRect frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 30);
+    UIView *view = [[UIView alloc] initWithFrame:frame];
+    UILabel *label;
+    if(section ==0)
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 7, [UIScreen mainScreen].bounds.size.width, 40)];
+    else
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0, -13, [UIScreen mainScreen].bounds.size.width, 40)];
+    label.textColor = [[UIColor alloc] initWithRed:0.2 green:0.4 blue:0.6 alpha:1];
     
     if([UIScreen mainScreen].bounds.size.height<600){
         label.font = [UIFont boldSystemFontOfSize:22];
@@ -194,7 +222,8 @@
     }
     label.textAlignment = NSTextAlignmentCenter;
     
-    return label;
+    [view addSubview:label];
+    return view;
 }
 
 /*
