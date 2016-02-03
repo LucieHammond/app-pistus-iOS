@@ -9,6 +9,7 @@
 #import "GeolocalisationManager.h"
 #import "AppDelegate.h"
 #import "DBManager.h"
+#import "CarteViewController.h"
 
 @interface GeolocalisationManager ()
 
@@ -821,7 +822,9 @@ static GeolocalisationManager* sharedInstance=nil;
     UINavigationController *nav= (UINavigationController*)tmpDelegate.window.rootViewController;
     if ([nav.visibleViewController.title isEqual:@"Carte View Controller"])
     {
-        [nav.visibleViewController viewDidLoad];
+        CarteViewController * CVcontroller = (CarteViewController*) nav.visibleViewController;
+        CVcontroller.apresClic = true;
+        [CVcontroller viewDidLoad];
     }
     else if([nav.visibleViewController.title isEqual:@"Statistiques"])
     {

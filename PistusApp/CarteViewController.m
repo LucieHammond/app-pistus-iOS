@@ -25,7 +25,6 @@
     _scrollView.delegate=self;
     self.scrollView.minimumZoomScale=1.0;
     self.scrollView.maximumZoomScale=8.0;
-    apresClic = false;
     _bulle.hidden=true;
     NSLog(@"View did load");
 
@@ -41,18 +40,17 @@
     _texteDistance.text=@"";
     _fondTexteDistance.hidden=true;
     
-    // Création du marqueur
-    if(marqueur!=nil)
-    {
+    // Ajout du marqueur utilisateur
+    if(marqueur !=nil){
         [marqueur removeFromSuperview];
-        marqueur = nil;
+        marqueur=nil;
     }
     marqueur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,16,16)];
     [marqueur setImage:[UIImage imageNamed:@"marker2.png"] forState:UIControlStateNormal];
     [marqueur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
-        forControlEvents:UIControlEventTouchUpInside];
-    [self.view insertSubview:marqueur aboveSubview:imageView];
-    marqueur.hidden=true;
+       forControlEvents:UIControlEventTouchUpInside];
+    [self.view insertSubview:marqueur aboveSubview:_scrollView];
+    marqueur.hidden = true;
     
     if([[GeolocalisationManager sharedInstance] trackAccept])
     {
@@ -114,7 +112,7 @@
 
 -(void) viewDidLayoutSubviews{
     NSLog(@"View did layout subviews");
-    if(apresClic!=true)
+    if(_apresClic!=true)
     {
         //Ajustement de la barre de navigation en haut et configuration des icones
         [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
@@ -194,9 +192,13 @@
         [_bulle setBackgroundColor:[UIColor whiteColor]];
         [self.view insertSubview:_bulle belowSubview:_titre];
         _bulle.hidden=true;
+
+        NSLog(@"1");
     }
-    else
-        apresClic=false;
+    else{
+        NSLog(@"2");
+        _apresClic=false;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -263,7 +265,7 @@
 
 -(void)afficherDetailsPourMarqueur:(UIButton *)sender
 {
-    apresClic = true;
+    _apresClic = true;
     
     // Pate de la bulle
     [_pateBulle setFrame: CGRectMake(sender.center.x-11,sender.frame.origin.y-10,22,10)];

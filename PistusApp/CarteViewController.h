@@ -11,7 +11,6 @@
 @interface CarteViewController : UIViewController <UIScrollViewDelegate,UISearchBarDelegate,UISearchControllerDelegate,UISearchDisplayDelegate>
 {
     UIImageView *imageView;
-    BOOL apresClic;
     UIButton *marqueurBulle;
     UIButton *marqueur;
 }
@@ -34,6 +33,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *nomPiste;
 @property (strong, nonatomic) IBOutlet UILabel *derniereDate;
 @property (strong, nonatomic) IBOutlet UIView *bulle;
+
+@property BOOL apresClic;
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView;
