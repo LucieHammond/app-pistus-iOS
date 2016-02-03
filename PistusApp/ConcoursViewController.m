@@ -114,6 +114,25 @@
     [flecheBronze setFrame:CGRectMake(30,175,50,50)];
     [cell addSubview:flecheBronze];
     
+    // Créer et placer les labels
+    NSString *nomGagnant = @"Enguerran Henniart";
+    UILabel *gagnant1 = [[UILabel alloc]initWithFrame:CGRectMake(95, 22, 205, 25)];
+    UILabel *gagnant2 = [[UILabel alloc]initWithFrame:CGRectMake(95, 77, 205, 25)];
+    UILabel *gagnant3 = [[UILabel alloc]initWithFrame:CGRectMake(95, 132, 205, 25)];
+    UILabel *gagnant4 = [[UILabel alloc]initWithFrame:CGRectMake(95, 187, 205, 25)];
+    [gagnant1 setFont:[UIFont systemFontOfSize:20]];
+    [gagnant2 setFont:[UIFont systemFontOfSize:20]];
+    [gagnant3 setFont:[UIFont systemFontOfSize:20]];
+    [gagnant4 setFont:[UIFont systemFontOfSize:20]];
+    gagnant1.text = nomGagnant;
+    gagnant2.text = nomGagnant;
+    gagnant3.text = nomGagnant;
+    gagnant4.text = nomGagnant;
+    [cell addSubview:gagnant1];
+    [cell addSubview:gagnant2];
+    [cell addSubview:gagnant3];
+    [cell addSubview:gagnant4];
+    
     return cell;
 }
 
