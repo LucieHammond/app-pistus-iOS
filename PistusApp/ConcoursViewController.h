@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ConcoursViewController : UIViewController
+@interface ConcoursViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *barre;
 @property (weak, nonatomic) IBOutlet UIView *topBande;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *trackAcceptButton;
 - (IBAction)actualiser:(id)sender;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

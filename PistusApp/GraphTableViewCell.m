@@ -29,7 +29,7 @@
     path = indexPath;
     
     chartView = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-20, 150) withSource:self withStyle:UUChartLineStyle];
-    chartView.backgroundColor = [[UIColor alloc] initWithRed:224 green:237 blue:252 alpha:0.5];
+    chartView.backgroundColor = [[UIColor alloc] initWithRed:1 green:1 blue:1 alpha:0.5];
     [chartView showInView:self.contentView];
 }
 

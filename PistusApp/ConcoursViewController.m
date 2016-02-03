@@ -37,6 +37,12 @@
     [_boutonSatellite addTarget:self action:@selector(trackChange)
                forControlEvents:UIControlEventTouchUpInside];
     
+    // Configuration de la TableView
+    [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-65)];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [_tableView reloadData];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,6 +82,101 @@
     [self viewDidLoad];
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 8;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"ActisViewCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if(cell == nil) {
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"ActisViewCell" owner:nil options:nil] firstObject];
+    }
+    cell.backgroundColor = [[UIColor alloc] initWithRed:224/225 green:237/225 blue:252/225 alpha:1];
+    
+    // Créer et placer les imaes
+    UIImageView *flecheOr = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fleche-or.png"]];
+    [flecheOr setFrame:CGRectMake(30,10,50,50)];
+    [cell addSubview:flecheOr];
+    UIImageView *flecheVermeil = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fleche-vermeil.png"]];
+    [flecheVermeil setFrame:CGRectMake(30,65,50,50)];
+    [cell addSubview:flecheVermeil];
+    UIImageView *flecheArgent = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fleche-argent.png"]];
+    [flecheArgent setFrame:CGRectMake(30,120,50,50)];
+    [cell addSubview:flecheArgent];
+    UIImageView *flecheBronze = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fleche-bronze.png"]];
+    [flecheBronze setFrame:CGRectMake(30,175,50,50)];
+    [cell addSubview:flecheBronze];
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 235;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if([UIScreen mainScreen].bounds.size.height<600){
+        if(section==0)
+            return 45;
+        else
+            return 30;
+    }
+    else{
+        if(section==0)
+            return 50;
+        else
+            return 35;
+    }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    CGRect frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width , 40);
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    
+    if([UIScreen mainScreen].bounds.size.height<600){
+        label.font = [UIFont boldSystemFontOfSize:22];
+    }
+    else{
+        label.font = [UIFont boldSystemFontOfSize:25];
+    }
+    
+    switch(section){
+        case 0:
+            label.text = @"Yooner";
+            break;
+        case 1:
+            label.text = @"Big Air Bag";
+            break;
+        case 2:
+            label.text = @"Slalom";
+            break;
+        case 3:
+            label.text = @"Curling Humain";
+            break;
+        case 4:
+            label.text = @"Patinoire";
+            break;
+        case 5:
+            label.text = @"Meilleure gamelle";
+            break;
+        case 6:
+            label.text = @"Jeu de piste";
+            break;
+        case 7:
+            label.text = @"Tours d'appartements";
+            break;
+    }
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    return label;
+}
 
 /*
 #pragma mark - Navigation

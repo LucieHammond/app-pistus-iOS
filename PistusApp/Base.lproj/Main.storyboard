@@ -465,71 +465,28 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="209" sectionHeaderHeight="28" sectionFooterHeight="28" id="lew-1a-TRv">
-                                <rect key="frame" x="0.0" y="64" width="320" height="78"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="235" sectionHeaderHeight="18" sectionFooterHeight="18" id="lew-1a-TRv">
+                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="209" id="UVt-RK-X1q">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="209"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActisViewCell" rowHeight="235" id="UVt-RK-X1q">
+                                        <rect key="frame" x="0.0" y="49.5" width="320" height="235"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UVt-RK-X1q" id="r4h-7g-5WO">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="208.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="234.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" red="0.8780483603" green="0.93075567479999999" blue="0.98711043600000004" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enguerran Henniart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5vc-uT-0ic">
-                                <rect key="frame" x="86" y="170" width="206" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fleche-or.png" id="2zI-yD-HZx">
-                                <rect key="frame" x="20" y="163" width="48" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fleche-vermeil.png" id="2sf-Qd-Qvv">
-                                <rect key="frame" x="20" y="215" width="48" height="52"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fleche-argent.png" id="CdE-zK-ftw">
-                                <rect key="frame" x="20" y="269" width="48" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fleche-bronze.png" id="vXw-4K-xZP">
-                                <rect key="frame" x="20" y="322" width="48" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bob" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Okb-u0-YJ7">
-                                <rect key="frame" x="86" y="226" width="206" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a6v-yn-8WZ">
-                                <rect key="frame" x="86" y="277" width="206" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jean Kevin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L8c-bP-JGd">
-                                <rect key="frame" x="86" y="332" width="206" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.8780483603477478" green="0.93075567483901978" blue="0.987110435962677" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="barre" destination="qbL-wv-Ovu" id="JQy-jo-6YW"/>
+                        <outlet property="tableView" destination="lew-1a-TRv" id="yP2-qs-gFs"/>
                         <outlet property="topBande" destination="xkx-FL-fGM" id="9zJ-2l-sQA"/>
                         <outlet property="trackAcceptButton" destination="4eo-Js-gu3" id="uww-Za-z4S"/>
                     </connections>
@@ -2015,10 +1972,6 @@
         <image name="connexion.png" width="332" height="108"/>
         <image name="distance.png" width="567" height="567"/>
         <image name="etoile.png" width="128" height="128"/>
-        <image name="fleche-argent.png" width="478" height="478"/>
-        <image name="fleche-bronze.png" width="477" height="478"/>
-        <image name="fleche-or.png" width="478" height="478"/>
-        <image name="fleche-vermeil.png" width="478" height="478"/>
         <image name="flecheGauche.png" width="256" height="256"/>
         <image name="flecheGaucheHoraires.png" width="256" height="256"/>
         <image name="iconConcours.png" width="450" height="342"/>
@@ -2034,7 +1987,7 @@
         <image name="temps.png" width="567" height="567"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Yy8-vq-HPu"/>
+        <segue reference="3uO-n3-euh"/>
         <segue reference="kd7-MD-GbW"/>
     </inferredMetricsTieBreakers>
 </document>
