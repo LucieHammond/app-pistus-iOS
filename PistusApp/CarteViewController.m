@@ -192,6 +192,8 @@
         [_bulle setBackgroundColor:[UIColor whiteColor]];
         [self.view insertSubview:_bulle belowSubview:_titre];
         _bulle.hidden=true;
+        
+        [self viewDidLoad];
 
         NSLog(@"1");
     }
