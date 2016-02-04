@@ -166,7 +166,7 @@ static GeolocalisationManager* sharedInstance=nil;
         if(locationManager.desiredAccuracy!=kCLLocationAccuracyBest)
         {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-            locationManager.distanceFilter = 5.0f;
+            locationManager.distanceFilter = 3.0f;
             locationManager.pausesLocationUpdatesAutomatically = true;
             locationManager.activityType = CLActivityTypeFitness;
         }
@@ -838,7 +838,6 @@ static GeolocalisationManager* sharedInstance=nil;
        didFailWithError:(NSError *)error
 {
     NSLog(@"Erreur de localisation");
-    NSLog(@"%li",(long)error.code);
 }
 
 - (void)locationManagerDidPausedLocationUpdates:(CLLocationManager *)manager

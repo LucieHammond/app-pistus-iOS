@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "GeolocalisationManager.h"
+#import "CarteViewController.h"
 
 @interface MainViewController ()
 
@@ -180,6 +181,10 @@
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
 }
 
 /*

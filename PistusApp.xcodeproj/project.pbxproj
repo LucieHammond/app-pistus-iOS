@@ -68,7 +68,6 @@
 		C570B8661C2ED85C003E0E16 /* satelliteon.png in Resources */ = {isa = PBXBuildFile; fileRef = C570B8651C2ED85C003E0E16 /* satelliteon.png */; };
 		C570B8681C2EDC23003E0E16 /* satelliteoff.png in Resources */ = {isa = PBXBuildFile; fileRef = C570B8671C2EDC23003E0E16 /* satelliteoff.png */; };
 		C570B86C1C30999B003E0E16 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C570B86B1C30999B003E0E16 /* CoreLocation.framework */; };
-		C58083DE1C5BFD3900BE73A3 /* bddPistes.db in Resources */ = {isa = PBXBuildFile; fileRef = C58083DD1C5BFD3900BE73A3 /* bddPistes.db */; };
 		C58083F31C5D171B00BE73A3 /* medaille argent.png in Resources */ = {isa = PBXBuildFile; fileRef = C58083EF1C5D171B00BE73A3 /* medaille argent.png */; };
 		C58083F41C5D171B00BE73A3 /* medaille bronze.png in Resources */ = {isa = PBXBuildFile; fileRef = C58083F01C5D171B00BE73A3 /* medaille bronze.png */; };
 		C58083F51C5D171B00BE73A3 /* medaille or.png in Resources */ = {isa = PBXBuildFile; fileRef = C58083F11C5D171B00BE73A3 /* medaille or.png */; };
@@ -85,6 +84,7 @@
 		C593B4EF1C45E0AB009F5896 /* maSemaine.png in Resources */ = {isa = PBXBuildFile; fileRef = C593B4EE1C45E0AB009F5896 /* maSemaine.png */; };
 		C593B4F11C45E0B1009F5896 /* classement.png in Resources */ = {isa = PBXBuildFile; fileRef = C593B4F01C45E0B1009F5896 /* classement.png */; };
 		C593B4F41C45E198009F5896 /* GraphsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C593B4F31C45E198009F5896 /* GraphsViewController.m */; };
+		C5A59B5F1C6401CA0097B81F /* bddPistes.db in Resources */ = {isa = PBXBuildFile; fileRef = C5A59B5E1C6401CA0097B81F /* bddPistes.db */; };
 		C5AED9961C41B8B30086E570 /* ciblage.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED9951C41B8B30086E570 /* ciblage.png */; };
 		C5AED9981C4289240086E570 /* pate_bulle.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED9971C4289240086E570 /* pate_bulle.png */; };
 		C5AED9A01C43B10C0086E570 /* speedometer.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED99F1C43B10C0086E570 /* speedometer.png */; };
@@ -207,7 +207,6 @@
 		C570B8651C2ED85C003E0E16 /* satelliteon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satelliteon.png; sourceTree = "<group>"; };
 		C570B8671C2EDC23003E0E16 /* satelliteoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satelliteoff.png; sourceTree = "<group>"; };
 		C570B86B1C30999B003E0E16 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		C58083DD1C5BFD3900BE73A3 /* bddPistes.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = bddPistes.db; sourceTree = "<group>"; };
 		C58083EF1C5D171B00BE73A3 /* medaille argent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "medaille argent.png"; sourceTree = "<group>"; };
 		C58083F01C5D171B00BE73A3 /* medaille bronze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "medaille bronze.png"; sourceTree = "<group>"; };
 		C58083F11C5D171B00BE73A3 /* medaille or.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "medaille or.png"; sourceTree = "<group>"; };
@@ -226,6 +225,7 @@
 		C593B4F01C45E0B1009F5896 /* classement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classement.png; sourceTree = "<group>"; };
 		C593B4F21C45E198009F5896 /* GraphsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphsViewController.h; sourceTree = "<group>"; };
 		C593B4F31C45E198009F5896 /* GraphsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphsViewController.m; sourceTree = "<group>"; };
+		C5A59B5E1C6401CA0097B81F /* bddPistes.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = bddPistes.db; sourceTree = "<group>"; };
 		C5AED9951C41B8B30086E570 /* ciblage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ciblage.png; sourceTree = "<group>"; };
 		C5AED9971C4289240086E570 /* pate_bulle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pate_bulle.png; sourceTree = "<group>"; };
 		C5AED99F1C43B10C0086E570 /* speedometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speedometer.png; sourceTree = "<group>"; };
@@ -323,7 +323,7 @@
 				C570B83C1C2B44C5003E0E16 /* DBManager.m */,
 				C570B8541C2EBE50003E0E16 /* GeolocalisationManager.h */,
 				C570B8551C2EBE50003E0E16 /* GeolocalisationManager.m */,
-				C58083DD1C5BFD3900BE73A3 /* bddPistes.db */,
+				C5A59B5E1C6401CA0097B81F /* bddPistes.db */,
 				C570B8381C2B440F003E0E16 /* libsqlite3.dylib */,
 				C52D72D21C4ACC25005C05D1 /* UUChart */,
 				C54F8B1D1BD97E1800CE7B3A /* Ressources */,
@@ -602,8 +602,8 @@
 				C52D73291C4D8630005C05D1 /* TK.png in Resources */,
 				C58083F51C5D171B00BE73A3 /* medaille or.png in Resources */,
 				C5AED9961C41B8B30086E570 /* ciblage.png in Resources */,
+				C5A59B5F1C6401CA0097B81F /* bddPistes.db in Resources */,
 				C5C05E8E1BEFFBA5007D763E /* accueil_4.jpg in Resources */,
-				C58083DE1C5BFD3900BE73A3 /* bddPistes.db in Resources */,
 				C539A78D1BF1F56A00B9E3ED /* iconContact.png in Resources */,
 				C52D732A1C4D8630005C05D1 /* TN.png in Resources */,
 				C5C05E8A1BEFF7A0007D763E /* Login-667h@2x~iphone.png in Resources */,
