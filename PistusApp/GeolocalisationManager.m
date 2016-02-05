@@ -874,4 +874,62 @@ static GeolocalisationManager* sharedInstance=nil;
     }
 }
 
+- (void)encodeWithCoder:(NSCoder *) coder
+{
+    [coder encodeDouble:_distanceStation forKey:@"distanceStation"];
+    [coder encodeDouble:_vitesseActuelle forKey:@"vitesseActuelle"];
+    [coder encodeDouble:_vitesseMax forKey: @"vitesseMax"];
+    [coder encodeDouble:_vitesseCumulee forKey:@"vitesseCumulee"];
+    [coder encodeInt:_totalPositions forKey:@"totalPositions"];
+    [coder encodeDouble:_altitudeActuelle forKey:@"altitudeActuelle"];
+    [coder encodeDouble:_altitudeMin forKey:@"altitudeMin"];
+    [coder encodeDouble:_altitudeMax forKey:@"altitudeMax"];
+    [coder encodeDouble:_distanceSki forKey:@"distanceSki"];
+    [coder encodeDouble:_distanceTot forKey:@"distanceTot"];
+    [coder encodeDouble:_deniveleTotal forKey:@"deniveleTotal"];
+    [coder encodeDouble:_tempsDeSki forKey:@"tempsDeSki"];
+    [coder encodeObject:_joursFinis forKey:@"joursFinis"];
+    [coder encodeObject:_tabVitesseCumulee forKey:@"tabVitesseCumulee"];
+    [coder encodeObject:_tabDistance forKey:@"tabDistance"];
+    [coder encodeObject:_tabTemps forKey:@"tabTemps"];
+    [coder encodeObject:_station forKey:@"station"];
+    [coder encodeBool:_trackAccept forKey:@"trackAccept"];
+    [coder encodeInt:_dernierX forKey:@"dernierX"];
+    [coder encodeInt:_dernierY forKey:@"dernierY"];
+    [coder encodeObject:_dernierePiste forKey:@"dernierePiste"];
+    [coder encodeObject:_pisteProche forKey:@"pisteProche"];
+    [coder encodeObject:_derniereDate forKey:@"derniereDate"];
+    [coder encodeBool:_enStation forKey:@"enStation"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if (self = [super init]) {
+        self.distanceStation = [decoder decodeDoubleForKey:@"distanceStation"];
+        self.vitesseActuelle = [decoder decodeDoubleForKey:@"vitesseActuelle"];
+        self.vitesseMax = [decoder decodeDoubleForKey:@"vitesseMax"];
+        self.vitesseCumulee = [decoder decodeDoubleForKey:@"vitesseCumulee"];
+        self.totalPositions = [decoder decodeIntForKey:@"totalPositions"];
+        self.altitudeActuelle = [decoder decodeDoubleForKey:@"altitudeActuelle"];
+        self.altitudeMin = [decoder decodeDoubleForKey:@"altitudeMin"];
+        self.altitudeMax = [decoder decodeDoubleForKey:@"altitudeMax"];
+        self.distanceSki = [decoder decodeDoubleForKey:@"distanceSki"];
+        self.distanceTot = [decoder decodeDoubleForKey:@"distanceTot"];
+        self.deniveleTotal = [decoder decodeDoubleForKey:@"deniveleTotal"];
+        self.tempsDeSki = [decoder decodeDoubleForKey:@"tempsDeSki"];
+        self.joursFinis = [decoder decodeObjectForKey:@"joursFinis"];
+        self.tabVitesseCumulee = [decoder decodeObjectForKey:@"tabVitesseCumulee"];
+        self.tabDistance = [decoder decodeObjectForKey:@"tabDistance"];
+        self.tabTemps = [decoder decodeObjectForKey:@"tabTemps"];
+        self.station = [decoder decodeObjectForKey:@"station"];
+        self.trackAccept = [decoder decodeBoolForKey:@"trackAccept"];
+        self.dernierX = [decoder decodeIntForKey:@"dernierX"];
+        self.dernierY = [decoder decodeIntForKey:@"dernierY"];
+        self.dernierePiste = [decoder decodeObjectForKey:@"dernierePiste"];
+        self.pisteProche = [decoder decodeObjectForKey:@"pisteProche"];
+        self.derniereDate = [decoder decodeObjectForKey:@"derniereDate"];
+        self.enStation = [decoder decodeBoolForKey:@"enStation"];
+    }
+    return self;
+}
+
 @end

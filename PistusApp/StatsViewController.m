@@ -114,6 +114,7 @@
     [_iconeTemps setFrame:CGRectMake(32, 555, 66, 66)];
     [_titreTemps setFrame:CGRectMake(117, 576, 115, 34)];
     [_tempsSki setFrame:CGRectMake(47, 634, 230, 21)];
+    //[self viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -19,12 +19,15 @@
     CLLocation *avantDerniereLoc;
 }
 
+// Tests (à supprimer)
+@property (nonatomic) BOOL testSauvegarde;
+
 // Statistiques
 @property (nonatomic) double distanceStation;
 @property (nonatomic) double vitesseActuelle;
 @property (nonatomic) double vitesseMax;
 @property (nonatomic) double vitesseCumulee;
-@property (nonatomic) double totalPositions;
+@property (nonatomic) int totalPositions;
 @property (nonatomic) double altitudeActuelle;
 @property (nonatomic) double altitudeMin;
 @property (nonatomic) double altitudeMax;

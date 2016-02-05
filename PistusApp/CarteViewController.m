@@ -19,6 +19,18 @@
 
 @implementation CarteViewController
 
+- (instancetype) initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    NSLog(@"sbraaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    return self;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"MainSegue"]) {
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
@@ -209,7 +221,6 @@
     else{
         NSLog(@"2");
         _apresClic=false;
-        _etoile_Luge.hidden=_etoile_Luge.hidden?0:1;
     }
 }
 

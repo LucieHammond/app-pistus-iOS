@@ -21,8 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
-    
-    // Do any additional setup after loading the view.
 }
 
 - (void) viewDidLayoutSubviews {
@@ -185,6 +183,9 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if ([segue.identifier isEqualToString:@"CarteSegue"]) {
+        
+    }
 }
 
 /*
