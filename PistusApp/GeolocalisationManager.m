@@ -405,7 +405,7 @@ static GeolocalisationManager* sharedInstance=nil;
                 NSArray *array = nil;
                 CLLocation *pointPiste;
                 BOOL defaultRecherche = false;
-                BOOL localisable;
+                BOOL localisable = true;
                 
                 // On sépare deux cas : remontee et non remontee
                 query = [NSString stringWithFormat:@"select est_remontee from pistes where id = '%@'",_dernierePiste];
