@@ -13,6 +13,7 @@
     UIImageView *imageView;
     UIButton *marqueurBulle;
     UIButton *marqueur;
+    BOOL rechercheActivee;
 }
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *barre;

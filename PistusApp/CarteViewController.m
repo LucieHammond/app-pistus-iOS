@@ -18,11 +18,9 @@
 @end
 
 @implementation CarteViewController
-
-- (instancetype) initWithCoder:(NSCoder *)aDecoder{
-    self = [super initWithCoder:aDecoder];
-    NSLog(@"sbraaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-    return self;
+{
+    NSArray *participants;
+    NSArray *resultatsRecherche;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -63,6 +61,9 @@
        forControlEvents:UIControlEventTouchUpInside];
     [self.view insertSubview:marqueur aboveSubview:_scrollView];
     marqueur.hidden = true;
+    
+    // Initialisation du tableau Participants (à remplacer par une recherche dans la BDD ?)
+    participants = @[@"Enguerran Henniart",@"Lucie Hammond",@"Tom Brendlé",@"Alexis Filipozzi",@"Martin Ramette",@"Maxime Reiz",@"Joris Mancini",@"Manon Leger",@"Hélène Chambrette",@"Solène Duchamp",@"Martin Guillier",@"Sofia Bonnetaud",@"Alphe Fournier",@"Raphaël Bizmut",@"Nicolas Vo Van",@"Maxime Gardet",@"Olivier Agier",@"Robin Schwob",@"Remi Schneider",@"Roxane Letournel"];
     
     if([[GeolocalisationManager sharedInstance] trackAccept])
     {
@@ -128,6 +129,7 @@
         //Ajustement de la barre de navigation en haut et configuration des icones
         [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
         [_topBande setFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, 20)];
+        self.navigationController.navigationBarHidden=true;
         [self.view insertSubview:_topBande aboveSubview:_barre];
         _boutonSatellite = [[UIButton alloc] initWithFrame:CGRectMake(0,0,32,33)];
         if(![[GeolocalisationManager sharedInstance] trackAccept])
@@ -150,9 +152,6 @@
         [_scrollView setContentOffset:CGPointMake((imageView.frame.size.width-_scrollView.frame.size.width)/2,0)];
         [_scrollView setContentSize:CGSizeMake(imageView.frame.size.width, imageView.frame.size.height)];
         [_scrollView setBouncesZoom:NO];
-        
-        // Cacher la barre de recherche
-        _searchBar.hidden = true;
         
         // Ajout de marqueurs pour les lieux importants
         float X = _scrollView.contentSize.width/7452*3424 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
@@ -189,6 +188,14 @@
         [self.view insertSubview:ciblage aboveSubview:_etoile_Luge];
         [ciblage addTarget:self action:@selector(ciblerPosition)
           forControlEvents:UIControlEventTouchUpInside];
+        
+        // Cacher la barre de recherche
+        if(rechercheActivee!=true)
+            _searchBar.hidden = true;
+        id barButtonAppearanceInSearchBar = [UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil];
+    
+        [barButtonAppearanceInSearchBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateNormal];
+        [barButtonAppearanceInSearchBar setTitle:@"Annuler"];
         
         // Initialisation de la bulle sans l'afficher
         _pateBulle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pate_bulle.png"]];
@@ -358,8 +365,26 @@
 }
 
 -(void) afficherBarRecherche{
-    /*if(_searchBar.hidden == true)
-        _searchBar.hidden = false;*/
+    if(_searchBar.hidden == true)
+    {
+        [UIView transitionWithView:self.searchBar
+                          duration:0.3
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            _searchBar.hidden = false;
+                        } completion:nil];
+        rechercheActivee = true;
+    }
+    else
+    {
+        [UIView transitionWithView:self.searchBar
+                          duration:0.3
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            _searchBar.hidden = true;
+                        } completion:nil];
+        rechercheActivee = false;
+    }
 }
 
 -(void)ciblerPosition
@@ -429,6 +454,57 @@
     }
 }
 
+// Méthodes pour l'affichage de la recherche des participants
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [resultatsRecherche count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"CustomTableCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    // Configure the cell...
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    // Display recipe in the table cell
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        cell.textLabel.text = [resultatsRecherche objectAtIndex:indexPath.row];
+    }
+    
+    return cell;
+    
+}
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"self contains[c] %@", searchText];
+    resultatsRecherche = [participants filteredArrayUsingPredicate:resultPredicate];
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    _apresClic = true;
+    rechercheActivee = false;
+    [UIView transitionWithView:self.searchBar
+                      duration:0.3
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        _searchBar.hidden = true;
+                    } completion:nil];
+}
 /*
 #pragma mark - Navigation
 
