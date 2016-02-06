@@ -12,8 +12,8 @@
 
 @property NSString *baseUrl;
 
-+ (void)getFromApi:(NSString *)url;
-+ (void)postToApi:(NSString *)url :(NSObject *)dict;
++ (NSMutableDictionary*)getFromApi:(NSString *)url;
++ (NSMutableDictionary*)postToApi:(NSString *)url :(NSObject *)dict;
 
 
 @end

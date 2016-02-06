@@ -10,7 +10,7 @@
 
 @implementation APIManager
 
-+(void)getFromApi:(NSString *)url{
++(NSMutableDictionary*)getFromApi:(NSString *)url{
     NSLog(@"get from api");
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:url]];
@@ -18,15 +18,14 @@
     NSError *error = nil;
     NSHTTPURLResponse *responseCode = nil;
     
-    NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
-    NSString *resp = [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
-
-    NSLog(@"%@", resp);
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
+    NSMutableDictionary *responseJson = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil];
     
-
+    return responseJson;
+    
 }
 
-+(void)postToApi:(NSString *)url :(NSObject *)dict{
++(NSMutableDictionary*)postToApi:(NSString *)url :(NSObject *)dict{
     NSLog(@"post to api");
     NSError *error = nil;
     NSHTTPURLResponse *responseCode = nil;
@@ -37,11 +36,15 @@
     [request setHTTPBody:postdata];
     [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postdata length]] forHTTPHeaderField:@"Content-Length"];
     [request setURL:[NSURL URLWithString:url]];
-
-    NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
-    NSString *resp = [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
     
-    NSLog(@"%@", resp);
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
+    NSMutableDictionary *responseJson = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil];
+    
+    return responseJson;
+
+    //NSString *resp = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    
+    //NSLog(@"%@", resp);
 }
 
 

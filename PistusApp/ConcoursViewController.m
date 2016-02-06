@@ -8,10 +8,12 @@
 
 #import "ConcoursViewController.h"
 #import "GeolocalisationManager.h"
+#import "APIManager.h"
 
 @interface ConcoursViewController ()
 
 @property (nonatomic,strong) UIButton *boutonSatellite;
+@property (nonatomic,strong) NSMutableDictionary *contests;
 
 @end
 
@@ -37,12 +39,15 @@
     [_boutonSatellite addTarget:self action:@selector(trackChange)
                forControlEvents:UIControlEventTouchUpInside];
     
+    //Getting data
+    _contests = [APIManager getFromApi:@"http://apistus.via.ecp.fr/contest/56b60925608aa"];
+    
     // Configuration de la TableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-65)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [_tableView reloadData];
-    
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,7 +88,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 8;
+    return [_contests[@"data"] count] + 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -108,7 +113,7 @@
     
     cell.backgroundColor = [[UIColor alloc] initWithRed:224/225 green:237/225 blue:252/225 alpha:1];
     
-    if(indexPath.section !=7)
+    if(indexPath.section < [_contests[@"data"] count])
     {
         // Créer et placer les imaes
         UIImageView *flecheOr = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fleche-or.png"]];
@@ -125,7 +130,7 @@
         [cell addSubview:flecheBronze];
         
         // Créer et placer les labels
-        NSString *nomGagnant = @"Enguerran Henniart";
+        NSArray *podium = _contests[@"data"][indexPath.section][@"podium"];
         UILabel *gagnant1 = [[UILabel alloc]initWithFrame:CGRectMake(95, 25, 205, 25)];
         UILabel *gagnant2 = [[UILabel alloc]initWithFrame:CGRectMake(95, 78, 205, 25)];
         UILabel *gagnant3 = [[UILabel alloc]initWithFrame:CGRectMake(95, 131, 205, 25)];
@@ -134,10 +139,10 @@
         [gagnant2 setFont:[UIFont systemFontOfSize:20]];
         [gagnant3 setFont:[UIFont systemFontOfSize:20]];
         [gagnant4 setFont:[UIFont systemFontOfSize:20]];
-        gagnant1.text = nomGagnant;
-        gagnant2.text = nomGagnant;
-        gagnant3.text = nomGagnant;
-        gagnant4.text = nomGagnant;
+        gagnant1.text = [NSString stringWithFormat:@"%@ %@", podium[0][@"firstName"], podium[0][@"lastName"]];
+        gagnant2.text = [NSString stringWithFormat:@"%@ %@", podium[1][@"firstName"], podium[1][@"lastName"]];
+        gagnant3.text = [NSString stringWithFormat:@"%@ %@", podium[2][@"firstName"], podium[2][@"lastName"]];
+        gagnant4.text = [NSString stringWithFormat:@"%@ %@", podium[3][@"firstName"], podium[3][@"lastName"]];
         [cell addSubview:gagnant1];
         [cell addSubview:gagnant2];
         [cell addSubview:gagnant3];
@@ -156,7 +161,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section!=7)
+    if (indexPath.section  < [_contests[@"data"] count])
         return 235;
     else
         return 92;
@@ -194,32 +199,13 @@
         label.font = [UIFont boldSystemFontOfSize:25];
     }
     
-    switch(section){
-        case 0:
-            label.text = @"Yooner";
-            break;
-        case 1:
-            label.text = @"Big Air Bag";
-            break;
-        case 2:
-            label.text = @"Slalom";
-            break;
-        case 3:
-            label.text = @"Curling Humain";
-            break;
-        case 4:
-            label.text = @"Patinoire";
-            break;
-        case 5:
-            label.text = @"Meilleure gamelle";
-            break;
-        case 6:
-            label.text = @"Jeu de piste";
-            break;
-        case 7:
-            label.text = @"Tours d'appartements";
-            break;
+    if (section  < [_contests[@"data"] count]) {
+        label.text =_contests[@"data"][section][@"name"];
     }
+    else {
+        label.text = @"Tours d'appartements";
+    }
+
     label.textAlignment = NSTextAlignmentCenter;
     
     [view addSubview:label];
