@@ -8,10 +8,12 @@
 
 #import "ClassementViewController.h"
 #import "GeolocalisationManager.h"
+#import "APIManager.h"
 
 @interface ClassementViewController ()
 
 @property (nonatomic,strong) UIButton *boutonSatellite;
+@property (nonatomic,strong) NSMutableDictionary *rankings;
 
 @end
 
@@ -20,114 +22,85 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
+
+    //Getting data
+    _rankings = [APIManager getFromApi:@"http://apistus.via.ecp.fr/ranking/56b60925608aa"];
+    NSLog(@"%@", _rankings);
+
+    // VITESSE
+    _classementVitesse.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"maxSpeed"][@"count"]];
+
+    _g1Vitesse.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][0][@"lastName"]];
+    _v1Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][0][@"maxSpeed"] floatValue] * 3.6];
+
+    _g2Vitesse.text = [NSString stringWithFormat:@"2 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][1][@"lastName"]];
+    _v2Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][1][@"maxSpeed"] floatValue] * 3.6];
+
+    _g3Vitesse.text = [NSString stringWithFormat:@"3 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][2][@"lastName"]];
+    _v3Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][2][@"maxSpeed"] floatValue] * 3.6];
     
-    prenom = @"Jean-Michel";
-    nom = @"Dupont";
-    performance = 23.8;
-    classement = 23;
-    long int userId;
+    _g4Vitesse.text = [NSString stringWithFormat:@"4 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][3][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][3][@"lastName"]];
+    _v4Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][3][@"maxSpeed"] floatValue] * 3.6];
     
-    NSString *query = [NSString stringWithFormat:@"select count(*) from AppUser where maxSpeed > all(select maxSpeed from AppUser where eleve_id = %lu);",userId];
-    // ne pas oulier d'ajouter 1 au résultat de la requête
-    _classementVitesse.text = [NSString stringWithFormat:@"Votre classement : %u",classement];
-    query = @"select E.Nom, E.Prenom, A.maxSpeed, E.id from Eleve E join AppUser A on E.id = A.eleve_id where maxSpeed in (select max(maxSpeed) from AppUser";
-    _g1Vitesse.text = [NSString stringWithFormat:@"1 - %@ %@ :",prenom,nom];
-    _v1Vitesse.text = [NSString stringWithFormat:@"%.1f km/h",performance*3.6];
-    long int id1;
-    query = [NSString stringWithFormat:@"select E.Nom, E.Prenom, A.maxSpeed, E.id from Eleve E join AppUser A on E.id = A.eleve_id where maxSpeed in (select max(maxSpeed) from AppUser where eleve_id!=%lu) and E.id!=%lu);",id1,id1];
-    _g2Vitesse.text = [NSString stringWithFormat:@"2 - %@ %@ :",prenom,nom];
-    _v2Vitesse.text = [NSString stringWithFormat:@"%.1f km/h",performance*3.6];
-    long int id2;
-    query = [NSString stringWithFormat:@"select E.Nom, E.Prenom, A.maxSpeed, E.id from Eleve E join AppUser A on E.id = A.eleve_id where maxSpeed in (select max(maxSpeed) from AppUser where eleve_id!=%lu and eleve_id!=%lu) and E.id!=%lu and E.id !=%lu);",id1,id1,id2,id2];
-    _g3Vitesse.text = [NSString stringWithFormat:@"3 - %@ %@ :",prenom,nom];
-    _v3Vitesse.text = [NSString stringWithFormat:@"%.1f km/h",performance*3.6];
-    long int id3;
-    query = [NSString stringWithFormat:@"select E.Nom, E.Prenom, A.maxSpeed, E.id from Eleve E join AppUser A on E.id = A.eleve_id where maxSpeed in (select max(maxSpeed) from AppUser where eleve_id!=%lu and eleve_id!=%lu and eleve_id!=%lu) and E.id!=%lu and E.id !=%lu and E.id !=%lu);",id1,id1,id2,id2,id3,id3];
-    _g4Vitesse.text = [NSString stringWithFormat:@"4 - %@ %@ :",prenom,nom];
-    _v4Vitesse.text = [NSString stringWithFormat:@"%.1f km/h",performance*3.6];
-    long int id4;
-    query = [NSString stringWithFormat:@"select E.Nom, E.Prenom, A.maxSpeed from Eleve E join AppUser A on E.id = A.eleve_id where maxSpeed in (select max(maxSpeed) from AppUser where eleve_id!=%lu and eleve_id!=%lu and eleve_id!=%lu and E.id!=%lu) and E.id!=%lu and E.id !=%lu and E.id !=%lu and E.id !=%lu);",id1,id1,id2,id2,id3,id3,id4,id4];
-    _g5Vitesse.text = [NSString stringWithFormat:@"5 - %@ %@ :",prenom,nom];
-    _v5Vitesse.text = [NSString stringWithFormat:@"%.1f km/h",performance*3.6];
+    _g5Vitesse.text = [NSString stringWithFormat:@"5 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][4][@"lastName"]];
+    _v5Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][4][@"maxSpeed"] floatValue] * 3.6];
     
-    performance = 2460;
-    query = [NSString stringWithFormat:@"select count(*) from AppUser where altMax > all(select altMax from AppUser where eleve_id = %lu);",userId];
-    _classementAltitude.text = [NSString stringWithFormat:@"Votre classement : %u",classement];
-    query = @"select E.Nom, E.Prenom, A.altMax, E.id from Eleve E join AppUser A on E.id = A.eleve_id where altMax in (select max(altMax) from AppUser";
-    _g1Altitude.text = [NSString stringWithFormat:@"1 - %@ %@ :",prenom,nom];
-    _v1Altitude.text = [NSString stringWithFormat:@"%.f m",performance];
-    id1 = id1;
-    query = [NSString stringWithFormat:@"select E.Nom, E.Prenom, A.altMax, E.id from Eleve E join AppUser A on E.id = A.eleve_id where altMax in (select max(altMax) from AppUser where eleve_id!=%lu) and E.id!=%lu);",id1,id1];
-    _g2Altitude.text = [NSString stringWithFormat:@"2 - %@ %@ :",prenom,nom];
-    _v2Altitude.text = [NSString stringWithFormat:@"%.f m",performance];
-    id2 = id2;
-    query = [NSString stringWithFormat:@"select E.Nom, E.Prenom, A.altMax, E.id from Eleve E join AppUser A on E.id = A.eleve_id where altMax in (select max(altMax) from AppUser where eleve_id!=%lu and eleve_id!=%lu) and E.id!=%lu and E.id !=%lu);",id1,id1,id2,id2];
-    _g3Altitude.text = [NSString stringWithFormat:@"3 - %@ %@ :",prenom,nom];
-    _v3Altitude.text = [NSString stringWithFormat:@"%.f m",performance];
-    id3 = id3;
-    query = [NSString stringWithFormat:@"select E.Nom, E.Prenom, A.altMax, E.id from Eleve E join AppUser A on E.id = A.eleve_id where altMax in (select max(altMax) from AppUser where eleve_id!=%lu and eleve_id!=%lu and eleve_id!=%lu) and E.id!=%lu and E.id !=%lu and E.id !=%lu);",id1,id1,id2,id2,id3,id3];
-    _g4Altitude.text = [NSString stringWithFormat:@"4 - %@ %@ :",prenom,nom];
-    _v4Altitude.text = [NSString stringWithFormat:@"%.f m",performance];
-    id4 = id4;
-    query = [NSString stringWithFormat:@"select E.Nom, E.Prenom, A.altMax from Eleve E join AppUser A on E.id = A.eleve_id where altMax in (select max(altMax) from AppUser where eleve_id!=%lu and eleve_id!=%lu and eleve_id!=%lu and E.id!=%lu) and E.id!=%lu and E.id !=%lu and E.id !=%lu and E.id !=%lu);",id1,id1,id2,id2,id3,id3,id4,id4];
-    _g5Altitude.text = [NSString stringWithFormat:@"5 - %@ %@ :",prenom,nom];
-    _v5Altitude.text = [NSString stringWithFormat:@"%.f m",performance];
+    // ALTITUDE
+    _classementAltitude.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"altMax"][@"count"]];
     
-    performance = 4802;
-    query = [NSString stringWithFormat:@"select count(*) from AppUser where kmSki > all(select kmSki from AppUser where eleve_id = %lu);",userId];
-    _classementDistance.text = [NSString stringWithFormat:@"Votre classement : %u",classement];
-    query = @"select E.Nom, E.Prenom, A.kmSki, E.id from Eleve E join AppUser A on E.id = A.eleve_id where kmSki in (select max(kmSki) from AppUser";
-    _g1Distance.text = [NSString stringWithFormat:@"1 - %@ %@ :",prenom,nom];
-    _v1Distance.text = [NSString stringWithFormat:@"%.1f km",performance];
-    id1 = id1;
-    query = [NSString stringWithFormat:@"select E.Nom, E.Prenom, A.kmSki, E.id from Eleve E join AppUser A on E.id = A.eleve_id where kmSki in (select max(kmSki) from AppUser where eleve_id!=%lu) and E.id!=%lu);",id1,id1];
-    _g2Distance.text = [NSString stringWithFormat:@"2 - %@ %@ :",prenom,nom];
-    _v2Distance.text = [NSString stringWithFormat:@"%.1f km",performance];
-    id2 = id2;
-    query = [NSString stringWithFormat:@"select E.Nom, E.Prenom, A.kmSki, E.id from Eleve E join AppUser A on E.id = A.eleve_id where kmSki in (select max(kmSki) from AppUser where eleve_id!=%lu and eleve_id!=%lu) and E.id!=%lu and E.id !=%lu);",id1,id1,id2,id2];
-    _g3Distance.text = [NSString stringWithFormat:@"3 - %@ %@ :",prenom,nom];
-    _v3Distance.text = [NSString stringWithFormat:@"%.1f km",performance];
-    id3 = id3;
-    query = [NSString stringWithFormat:@"select E.Nom, E.Prenom, A.kmSki, E.id from Eleve E join AppUser A on E.id = A.eleve_id where kmSki in (select max(kmSki) from AppUser where eleve_id!=%lu and eleve_id!=%lu and eleve_id!=%lu) and E.id!=%lu and E.id !=%lu and E.id !=%lu);",id1,id1,id2,id2,id3,id3];
-    _g4Distance.text = [NSString stringWithFormat:@"4 - %@ %@ :",prenom,nom];
-    _v4Distance.text = [NSString stringWithFormat:@"%.1f km",performance];
-    id4 = id4;
-    query = [NSString stringWithFormat:@"select E.Nom, E.Prenom, A.kmSki from Eleve E join AppUser A on E.id = A.eleve_id where kmSki in (select max(kmSki) from AppUser where eleve_id!=%lu and eleve_id!=%lu and eleve_id!=%lu and E.id!=%lu) and E.id!=%lu and E.id !=%lu and E.id !=%lu and E.id !=%lu);",id1,id1,id2,id2,id3,id3,id4,id4];
-    _g5Distance.text = [NSString stringWithFormat:@"5 - %@ %@ :",prenom,nom];
-    _v5Distance.text = [NSString stringWithFormat:@"%.1f km",performance];
+    _g1Altitude.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][0][@"lastName"]];
+    _v1Altitude.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"altMax"][@"ranking"][0][@"altMax"] floatValue] * 3.6];
     
-    performance = 177716;
-    query = [NSString stringWithFormat:@"select count(*) from AppUser where skiTime > all(select skiTime from AppUser where eleve_id = %lu);",userId];
-    _classementTemps.text = [NSString stringWithFormat:@"Votre classement : %u",classement];
-    query = @"select E.Nom, E.Prenom, A.skiTime, E.id from Eleve E join AppUser A on E.id = A.eleve_id where skiTime in (select max(skiTime) from AppUser";
-    _g1Temps.text = [NSString stringWithFormat:@"1 - %@ %@ :",prenom,nom];
-    int heure = floor(performance/3600);
-    float minute = (performance-heure*3600)/60;
-    _v1Temps.text = [NSString stringWithFormat:@"%uh %.fmin",heure,minute];
-    id1 = id1;
-    query = [NSString stringWithFormat:@"select E.Nom, E.Prenom, A.skiTime, E.id from Eleve E join AppUser A on E.id = A.eleve_id where skiTime in (select max(skiTime) from AppUser where eleve_id!=%lu) and E.id!=%lu);",id1,id1];
-    _g2Temps.text = [NSString stringWithFormat:@"2 - %@ %@ :",prenom,nom];
-    heure = floor(performance/3600);
-    minute = (performance-heure*3600)/60;
-    _v2Temps.text = [NSString stringWithFormat:@"%uh %.fmin",heure,minute];
-    id2 = id2;
-    query = [NSString stringWithFormat:@"select E.Nom, E.Prenom, A.skiTime, E.id from Eleve E join AppUser A on E.id = A.eleve_id where skiTime in (select max(skiTime) from AppUser where eleve_id!=%lu and eleve_id!=%lu) and E.id!=%lu and E.id !=%lu);",id1,id1,id2,id2];
-    _g3Temps.text = [NSString stringWithFormat:@"3 - %@ %@ :",prenom,nom];
-    heure = floor(performance/3600);
-    minute = (performance-heure*3600)/60;
-    _v3Temps.text = [NSString stringWithFormat:@"%uh %.fmin",heure,minute];
-    id3 = id3;
-    query = [NSString stringWithFormat:@"select E.Nom, E.Prenom, A.skiTime, E.id from Eleve E join AppUser A on E.id = A.eleve_id where skiTime in (select max(skiTime) from AppUser where eleve_id!=%lu and eleve_id!=%lu and eleve_id!=%lu) and E.id!=%lu and E.id !=%lu and E.id !=%lu);",id1,id1,id2,id2,id3,id3];
-    _g4Temps.text = [NSString stringWithFormat:@"4 - %@ %@ :",prenom,nom];
-    heure = floor(performance/3600);
-    minute = (performance-heure*3600)/60;
-    _v4Temps.text = [NSString stringWithFormat:@"%uh %.fmin",heure,minute];
-    id4 = id4;
-    query = [NSString stringWithFormat:@"select E.Nom, E.Prenom, A.skiTime, E.id from Eleve E join AppUser A on E.id = A.eleve_id where skiTime in (select max(skiTime) from AppUser where eleve_id!=%lu and eleve_id!=%lu and eleve_id!=%lu and E.id!=%lu) and E.id!=%lu and E.id !=%lu and E.id !=%lu and E.id !=%lu);",id1,id1,id2,id2,id3,id3,id4,id4];
-    _g5Temps.text = [NSString stringWithFormat:@"5 - %@ %@ :",prenom,nom];
-    heure = floor(performance/3600);
-    minute = (performance-heure*3600)/60;
-    _v5Temps.text = [NSString stringWithFormat:@"%uh %.fmin",heure,minute];
+    _g2Altitude.text = [NSString stringWithFormat:@"2 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][1][@"lastName"]];
+    _v2Altitude.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"altMax"][@"ranking"][1][@"altMax"] floatValue] * 3.6];
+    
+    _g3Altitude.text = [NSString stringWithFormat:@"3 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][2][@"lastName"]];
+    _v3Altitude.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"altMax"][@"ranking"][2][@"altMax"] floatValue] * 3.6];
+    
+    _g4Altitude.text = [NSString stringWithFormat:@"4 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][3][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][3][@"lastName"]];
+    _v4Altitude.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"altMax"][@"ranking"][3][@"altMax"] floatValue] * 3.6];
+    
+    _g5Altitude.text = [NSString stringWithFormat:@"5 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][4][@"lastName"]];
+    _v5Altitude.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"altMax"][@"ranking"][4][@"altMax"] floatValue] * 3.6];
+    
+    
+    // DISTANCE
+    _classementDistance.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"kmSki"][@"count"]];
+    
+    _g1Distance.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][0][@"lastName"]];
+    _v1Distance.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"kmSki"][@"ranking"][0][@"kmSki"] floatValue] * 3.6];
+    
+    _g2Distance.text = [NSString stringWithFormat:@"2 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][1][@"lastName"]];
+    _v2Distance.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"kmSki"][@"ranking"][1][@"kmSki"] floatValue] * 3.6];
+    
+    _g3Distance.text = [NSString stringWithFormat:@"3 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][2][@"lastName"]];
+    _v3Distance.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"kmSki"][@"ranking"][2][@"kmSki"] floatValue] * 3.6];
+    
+    _g4Distance.text = [NSString stringWithFormat:@"4 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][3][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][3][@"lastName"]];
+    _v4Distance.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"kmSki"][@"ranking"][3][@"kmSki"] floatValue] * 3.6];
+    
+    _g5Distance.text = [NSString stringWithFormat:@"5 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][4][@"lastName"]];
+    _v5Distance.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"kmSki"][@"ranking"][4][@"kmSki"] floatValue] * 3.6];
+    
+    // TEMPS
+    _classementTemps.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"skiTime"][@"count"]];
+    
+    _g1Temps.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][0][@"lastName"]];
+    _v1Temps.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"skiTime"][@"ranking"][0][@"skiTime"] floatValue] * 3.6];
+    
+    _g2Temps.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][1][@"lastName"]];
+    _v2Temps.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"skiTime"][@"ranking"][1][@"skiTime"] floatValue] * 3.6];
+    
+    _g3Temps.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][2][@"lastName"]];
+    _v3Temps.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"skiTime"][@"ranking"][2][@"skiTime"] floatValue] * 3.6];
+    
+    _g4Temps.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][3][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][3][@"lastName"]];
+    _v4Temps.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"skiTime"][@"ranking"][3][@"skiTime"] floatValue] * 3.6];
+    
+    _g5Temps.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][4][@"lastName"]];
+    _v5Temps.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"skiTime"][@"ranking"][4][@"skiTime"] floatValue] * 3.6];
+    
+    
 
 }
 
