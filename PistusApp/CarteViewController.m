@@ -120,6 +120,8 @@
             NSLog(@"touché");
         }
     }
+    if(nbAppels==1)
+        _apresClic = true;
 }
 
 -(void) viewDidLayoutSubviews{
@@ -223,6 +225,7 @@
         _bulle.hidden=true;
         
         NSLog(@"1");
+        nbAppels = 1;
         [self viewDidLoad];
     }
     else{
@@ -479,6 +482,14 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *utilisateur;
+    utilisateur = [resultatsRecherche objectAtIndex:indexPath.row];
+    [self.searchDisplayController setActive:NO];
+    [self searchBarCancelButtonClicked:_searchBar];
+}
+
+
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"self contains[c] %@", searchText];
@@ -496,7 +507,6 @@
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    _apresClic = true;
     rechercheActivee = false;
     [UIView transitionWithView:self.searchBar
                       duration:0.3

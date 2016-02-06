@@ -524,7 +524,7 @@
             <objects>
                 <viewController title="Classement général" id="ue6-fM-7MU" customClass="ClassementViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sA7-6b-XiV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translucent="NO" id="tE8-yk-1lU">
@@ -940,7 +940,7 @@
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="barre" destination="tE8-yk-1lU" id="Ugh-dk-ulA"/>
                         <outlet property="classementAltitude" destination="Azb-3A-v0F" id="ebN-o8-tHH"/>
@@ -2011,7 +2011,7 @@
         <image name="temps.png" width="567" height="567"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="g8c-47-mah"/>
+        <segue reference="wtC-IK-wOy"/>
         <segue reference="qJ3-ur-bzc"/>
     </inferredMetricsTieBreakers>
 </document>

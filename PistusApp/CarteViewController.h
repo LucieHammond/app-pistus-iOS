@@ -14,6 +14,7 @@
     UIButton *marqueurBulle;
     UIButton *marqueur;
     BOOL rechercheActivee;
+    int nbAppels;
 }
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *barre;
