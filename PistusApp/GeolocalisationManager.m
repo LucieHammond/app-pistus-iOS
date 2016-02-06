@@ -166,7 +166,7 @@ static GeolocalisationManager* sharedInstance=nil;
         if(locationManager.desiredAccuracy!=kCLLocationAccuracyBest)
         {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-            locationManager.distanceFilter = 5.0f;
+            locationManager.distanceFilter = 3.0f;
             locationManager.pausesLocationUpdatesAutomatically = true;
             locationManager.activityType = CLActivityTypeFitness;
         }
@@ -405,7 +405,7 @@ static GeolocalisationManager* sharedInstance=nil;
                 NSArray *array = nil;
                 CLLocation *pointPiste;
                 BOOL defaultRecherche = false;
-                BOOL localisable;
+                BOOL localisable = true;
                 
                 // On sépare deux cas : remontee et non remontee
                 query = [NSString stringWithFormat:@"select est_remontee from pistes where id = '%@'",_dernierePiste];
@@ -838,7 +838,6 @@ static GeolocalisationManager* sharedInstance=nil;
        didFailWithError:(NSError *)error
 {
     NSLog(@"Erreur de localisation");
-    NSLog(@"%li",(long)error.code);
 }
 
 - (void)locationManagerDidPausedLocationUpdates:(CLLocationManager *)manager
@@ -873,6 +872,64 @@ static GeolocalisationManager* sharedInstance=nil;
     {
         [self sauvegarderDonnéesJour:(int)[composants day]-23 :true];// A changer pour le Pistis
     }
+}
+
+- (void)encodeWithCoder:(NSCoder *) coder
+{
+    [coder encodeDouble:_distanceStation forKey:@"distanceStation"];
+    [coder encodeDouble:_vitesseActuelle forKey:@"vitesseActuelle"];
+    [coder encodeDouble:_vitesseMax forKey: @"vitesseMax"];
+    [coder encodeDouble:_vitesseCumulee forKey:@"vitesseCumulee"];
+    [coder encodeInt:_totalPositions forKey:@"totalPositions"];
+    [coder encodeDouble:_altitudeActuelle forKey:@"altitudeActuelle"];
+    [coder encodeDouble:_altitudeMin forKey:@"altitudeMin"];
+    [coder encodeDouble:_altitudeMax forKey:@"altitudeMax"];
+    [coder encodeDouble:_distanceSki forKey:@"distanceSki"];
+    [coder encodeDouble:_distanceTot forKey:@"distanceTot"];
+    [coder encodeDouble:_deniveleTotal forKey:@"deniveleTotal"];
+    [coder encodeDouble:_tempsDeSki forKey:@"tempsDeSki"];
+    [coder encodeObject:_joursFinis forKey:@"joursFinis"];
+    [coder encodeObject:_tabVitesseCumulee forKey:@"tabVitesseCumulee"];
+    [coder encodeObject:_tabDistance forKey:@"tabDistance"];
+    [coder encodeObject:_tabTemps forKey:@"tabTemps"];
+    [coder encodeObject:_station forKey:@"station"];
+    [coder encodeBool:_trackAccept forKey:@"trackAccept"];
+    [coder encodeInt:_dernierX forKey:@"dernierX"];
+    [coder encodeInt:_dernierY forKey:@"dernierY"];
+    [coder encodeObject:_dernierePiste forKey:@"dernierePiste"];
+    [coder encodeObject:_pisteProche forKey:@"pisteProche"];
+    [coder encodeObject:_derniereDate forKey:@"derniereDate"];
+    [coder encodeBool:_enStation forKey:@"enStation"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if (self = [super init]) {
+        self.distanceStation = [decoder decodeDoubleForKey:@"distanceStation"];
+        self.vitesseActuelle = [decoder decodeDoubleForKey:@"vitesseActuelle"];
+        self.vitesseMax = [decoder decodeDoubleForKey:@"vitesseMax"];
+        self.vitesseCumulee = [decoder decodeDoubleForKey:@"vitesseCumulee"];
+        self.totalPositions = [decoder decodeIntForKey:@"totalPositions"];
+        self.altitudeActuelle = [decoder decodeDoubleForKey:@"altitudeActuelle"];
+        self.altitudeMin = [decoder decodeDoubleForKey:@"altitudeMin"];
+        self.altitudeMax = [decoder decodeDoubleForKey:@"altitudeMax"];
+        self.distanceSki = [decoder decodeDoubleForKey:@"distanceSki"];
+        self.distanceTot = [decoder decodeDoubleForKey:@"distanceTot"];
+        self.deniveleTotal = [decoder decodeDoubleForKey:@"deniveleTotal"];
+        self.tempsDeSki = [decoder decodeDoubleForKey:@"tempsDeSki"];
+        self.joursFinis = [decoder decodeObjectForKey:@"joursFinis"];
+        self.tabVitesseCumulee = [decoder decodeObjectForKey:@"tabVitesseCumulee"];
+        self.tabDistance = [decoder decodeObjectForKey:@"tabDistance"];
+        self.tabTemps = [decoder decodeObjectForKey:@"tabTemps"];
+        self.station = [decoder decodeObjectForKey:@"station"];
+        self.trackAccept = [decoder decodeBoolForKey:@"trackAccept"];
+        self.dernierX = [decoder decodeIntForKey:@"dernierX"];
+        self.dernierY = [decoder decodeIntForKey:@"dernierY"];
+        self.dernierePiste = [decoder decodeObjectForKey:@"dernierePiste"];
+        self.pisteProche = [decoder decodeObjectForKey:@"pisteProche"];
+        self.derniereDate = [decoder decodeObjectForKey:@"derniereDate"];
+        self.enStation = [decoder decodeBoolForKey:@"enStation"];
+    }
+    return self;
 }
 
 @end

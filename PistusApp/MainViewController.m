@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "GeolocalisationManager.h"
+#import "CarteViewController.h"
 
 @interface MainViewController ()
 
@@ -20,8 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
-    
-    // Do any additional setup after loading the view.
 }
 
 - (void) viewDidLayoutSubviews {
@@ -180,6 +179,13 @@
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"CarteSegue"]) {
+        
+    }
 }
 
 /*

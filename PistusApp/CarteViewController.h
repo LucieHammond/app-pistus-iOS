@@ -28,6 +28,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *etoile_Rez;
 @property (weak, nonatomic) IBOutlet UIButton *etoile_Pat;
 @property (weak, nonatomic) IBOutlet UIButton *etoile_Luge;
+@property (weak, nonatomic) IBOutlet UIButton *etoile_BAB;
+@property (weak, nonatomic) IBOutlet UIButton *etoile_ESF;
 @property (strong, nonatomic) IBOutlet UIImageView *pateBulle;
 @property (strong, nonatomic) IBOutlet UILabel *titre;
 @property (strong, nonatomic) IBOutlet UILabel *nomPiste;

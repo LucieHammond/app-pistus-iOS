@@ -19,6 +19,18 @@
 
 @implementation CarteViewController
 
+- (instancetype) initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    NSLog(@"sbraaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    return self;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"MainSegue"]) {
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
@@ -107,7 +119,6 @@
             NSLog(@"touché");
         }
     }
-    // Do any additional setup after loading the view.
 }
 
 -(void) viewDidLayoutSubviews{
@@ -117,6 +128,7 @@
         //Ajustement de la barre de navigation en haut et configuration des icones
         [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
         [_topBande setFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, 20)];
+        [self.view insertSubview:_topBande aboveSubview:_barre];
         _boutonSatellite = [[UIButton alloc] initWithFrame:CGRectMake(0,0,32,33)];
         if(![[GeolocalisationManager sharedInstance] trackAccept])
         {
@@ -152,6 +164,12 @@
         X = _scrollView.contentSize.width/7452*3742 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
         Y = _scrollView.contentSize.height/3174*1820 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         _etoile_Luge.center = CGPointMake(X,Y);
+        X = _scrollView.contentSize.width/7452*3265 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        Y = _scrollView.contentSize.height/3174*1995 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        _etoile_ESF.center = CGPointMake(X,Y);
+        X = _scrollView.contentSize.width/7452*3010 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        Y = _scrollView.contentSize.height/3174*1650 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        _etoile_BAB.center = CGPointMake(X,Y);
     
         [_etoile_Rez addTarget:self action:@selector(afficherDetailsPourMarqueur:)
          forControlEvents:UIControlEventTouchUpInside];
@@ -159,6 +177,10 @@
           forControlEvents:UIControlEventTouchUpInside];
         [_etoile_Luge addTarget:self action:@selector(afficherDetailsPourMarqueur:)
           forControlEvents:UIControlEventTouchUpInside];
+        [_etoile_ESF addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+               forControlEvents:UIControlEventTouchUpInside];
+        [_etoile_BAB addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+               forControlEvents:UIControlEventTouchUpInside];
         
         // Ajout du bouton pour recentrer sur la position de l'utilisateur
         UIButton *ciblage = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-60,[UIScreen mainScreen].bounds.size.height*7/10,47,47)];
@@ -193,9 +215,8 @@
         [self.view insertSubview:_bulle belowSubview:_titre];
         _bulle.hidden=true;
         
-        [self viewDidLoad];
-
         NSLog(@"1");
+        [self viewDidLoad];
     }
     else{
         NSLog(@"2");
@@ -307,6 +328,10 @@
             _titre.text=@"Patinoire";
         else if(sender==_etoile_Luge)
             _titre.text=@"Luge sur rails";
+        else if(sender==_etoile_ESF)
+            _titre.text=@"Départ cours ESF";
+        else if(sender==_etoile_BAB)
+            _titre.text=@"Big Air Bag";
         [_titre sizeToFit];
         _titre.center=CGPointMake(sender.center.x,sender.frame.origin.y-20);
         _titre.hidden=false;
@@ -372,6 +397,13 @@
     X = _scrollView.contentSize.width/7452*3742 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
     Y = _scrollView.contentSize.height/3174*1820 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
     _etoile_Luge.center = CGPointMake(X,Y);
+    X = _scrollView.contentSize.width/7452*3265 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    Y = _scrollView.contentSize.height/3174*1995 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    _etoile_ESF.center = CGPointMake(X,Y);
+    X = _scrollView.contentSize.width/7452*3010 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    Y = _scrollView.contentSize.height/3174*1650 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    _etoile_BAB.center = CGPointMake(X,Y);
+
 
     if(_bulle.hidden==false && marqueurBulle!=nil)
     {
