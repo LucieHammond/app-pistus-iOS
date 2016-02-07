@@ -10,10 +10,9 @@
 
 @interface PistesViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
-    NSArray *pistesLaFoux;
-    NSArray *pistesPraLoup;
-    NSArray *pistesLeSeignus;
-    NSArray *couleurs;
+    NSArray *pistesLF;
+    NSArray *pistesPL;
+    NSArray *pistesLS;
 }
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *barre;
