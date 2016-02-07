@@ -9,11 +9,13 @@
 #import "PistesViewController.h"
 #import "GeolocalisationManager.h"
 #import "DBManager.h"
+#import "APIManager.h"
 #import "CustomTableViewCell.h"
 
 @interface PistesViewController ()
 
 @property (nonatomic,strong) UIButton *boutonSatellite;
+@property (nonatomic,strong) NSMutableDictionary *apiSlopes;
 @property (nonatomic,strong) DBManager *dbManager;
 
 
@@ -44,15 +46,29 @@
     self.dbManager=[[DBManager alloc]initWithDatabaseFilename:@"bddPistes.db"];
 
     
-    NSString *queryLF = [NSString stringWithFormat:@"SELECT name, type FROM pistesSimple WHERE domain='LF' ORDER BY CASE type WHEN 'verte' THEN 1 WHEN 'bverte' THEN 1 WHEN 'bleue' THEN 2 WHEN 'bbleue' THEN 2 WHEN 'rouge' THEN 3 WHEN 'brouge' THEN 3 WHEN 'noire' THEN 4 WHEN 'bnoire' THEN 4 WHEN 'snowpark' THEN 5 WHEN 'luge' THEN 6 END "];
-    pistesLF = [[self.dbManager loadDataFromDB:queryLF] copy];
+    NSString *queryLF = [NSString stringWithFormat:@"SELECT id, name, type FROM pistesSimple WHERE domain='LF' ORDER BY CASE type WHEN 'verte' THEN 1 WHEN 'bverte' THEN 1 WHEN 'bleue' THEN 2 WHEN 'bbleue' THEN 2 WHEN 'rouge' THEN 3 WHEN 'brouge' THEN 3 WHEN 'noire' THEN 4 WHEN 'bnoire' THEN 4 WHEN 'snowpark' THEN 5 WHEN 'luge' THEN 6 END "];
+    NSArray *pistesLF = [[self.dbManager loadDataFromDB:queryLF] copy];
     
-    NSString *queryPL = [NSString stringWithFormat:@"SELECT name, type FROM pistesSimple WHERE domain='PL' ORDER BY CASE type WHEN 'verte' THEN 1 WHEN 'bverte' THEN 1 WHEN 'bleue' THEN 2 WHEN 'bbleue' THEN 2 WHEN 'rouge' THEN 3 WHEN 'brouge' THEN 3 WHEN 'noire' THEN 4 WHEN 'bnoire' THEN 4 WHEN 'snowpark' THEN 5 WHEN 'luge' THEN 6 END "];
-    pistesPL = [[self.dbManager loadDataFromDB:queryPL] copy];
+    NSString *queryPL = [NSString stringWithFormat:@"SELECT id, name, type FROM pistesSimple WHERE domain='PL' ORDER BY CASE type WHEN 'verte' THEN 1 WHEN 'bverte' THEN 1 WHEN 'bleue' THEN 2 WHEN 'bbleue' THEN 2 WHEN 'rouge' THEN 3 WHEN 'brouge' THEN 3 WHEN 'noire' THEN 4 WHEN 'bnoire' THEN 4 WHEN 'snowpark' THEN 5 WHEN 'luge' THEN 6 END "];
+    NSArray *pistesPL = [[self.dbManager loadDataFromDB:queryPL] copy];
     
-    NSString *queryLS = [NSString stringWithFormat:@"SELECT name, type FROM pistesSimple WHERE domain='LS' ORDER BY CASE type WHEN 'verte' THEN 1 WHEN 'bverte' THEN 1 WHEN 'bleue' THEN 2 WHEN 'bbleue' THEN 2 WHEN 'rouge' THEN 3 WHEN 'brouge' THEN 3 WHEN 'noire' THEN 4 WHEN 'bnoire' THEN 4 WHEN 'snowpark' THEN 5 WHEN 'luge' THEN 6 END "];
-    pistesLS = [[self.dbManager loadDataFromDB:queryLS] copy];
+    NSString *queryLS = [NSString stringWithFormat:@"SELECT id, name, type FROM pistesSimple WHERE domain='LS' ORDER BY CASE type WHEN 'verte' THEN 1 WHEN 'bverte' THEN 1 WHEN 'bleue' THEN 2 WHEN 'bbleue' THEN 2 WHEN 'rouge' THEN 3 WHEN 'brouge' THEN 3 WHEN 'noire' THEN 4 WHEN 'bnoire' THEN 4 WHEN 'snowpark' THEN 5 WHEN 'luge' THEN 6 END "];
+    NSArray *pistesLS = [[self.dbManager loadDataFromDB:queryLS] copy];
 
+    pistes = [NSArray arrayWithObjects:pistesLF, pistesPL, pistesLS, nil];
+    
+    //Getting data
+    _apiSlopes = [APIManager getFromApi:@"http://apistus.via.ecp.fr/slope/56b60925608aa"];
+    
+    closedSlopes = [[NSMutableArray alloc] init];
+    NSInteger i;
+    for (i=0;i < [_apiSlopes[@"data"] count]; i++) {
+        if ([[_apiSlopes[@"data"][i] objectForKey:@"status"]boolValue] == NO) {
+            NSString *name = _apiSlopes[@"data"][i][@"name"];
+            [closedSlopes addObject:name];
+        }
+    }
+    
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
     self.tableView.delegate = self;
@@ -105,13 +121,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return [pistesLF count];
+            return [pistes[0] count];
             break;
         case 1:
-            return [pistesPL count];
+            return [pistes[1] count];
             break;
         case 2:
-            return [pistesLS count];
+            return [pistes[2] count];
             break;
         default:
             return 0;
@@ -126,54 +142,32 @@
     if(cell == nil) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"idCellPiste" owner:nil options:nil] firstObject];
     }
+    NSString *idPiste;
     NSString *nomPiste;
-    NSString *idImage;
     NSString *nomImage;
     
-    switch (indexPath.section) {
-        case 0:
-            nomPiste = pistesLF[indexPath.row][0];
-            idImage = pistesLF[indexPath.row][1];
-            break;
-        case 1:
-            nomPiste = pistesPL[indexPath.row][0];
-            idImage = pistesPL[indexPath.row][1];
-            break;
-        case 2:
-            nomPiste = pistesLS[indexPath.row][0];
-            idImage = pistesLS[indexPath.row][1];
-            break;
+    NSDictionary *imageFiles = @{ @"verte" : @"pisteVerte.png",
+                                  @"bleue" : @"pisteBleue.png",
+                                  @"rouge" : @"pisteRouge.png",
+                                  @"noire" : @"pisteNoire.png",
+                                  @"bverte" : @"boardercrossVert.png",
+                                  @"bbleue" : @"boardercrossBleu.png",
+                                  @"brouge" : @"boardercrossRouge.png",
+                                  @"snowpark" : @"snowpark.png",
+                                  @"luge" : @"luge.png",
+                                  };
+    
+    idPiste =pistes[indexPath.section][indexPath.row][0];
+    nomPiste = pistes[indexPath.section][indexPath.row][1];
+    nomImage = imageFiles[pistes[indexPath.section][indexPath.row][2]];
+    
+    NSInteger etat = 1;
+    
+    if([closedSlopes containsObject:idPiste]) {
+        etat = 0;
     }
     
-    if([idImage isEqual:@"verte"]){
-        nomImage = @"pisteVerte.png";
-    }
-    else if([idImage isEqual:@"bleue"]){
-        nomImage = @"pisteBleue.png";
-    }
-    else if([idImage isEqual:@"rouge"]){
-        nomImage = @"pisteRouge.png";
-    }
-    else if([idImage isEqual:@"noire"]){
-        nomImage = @"pisteNoire.png";
-    }
-    else if([idImage isEqual:@"bverte"]){
-        nomImage = @"boardercrossVert.png";
-    }
-    else if([idImage isEqual:@"bbleue"]){
-        nomImage = @"boardercrossBleu.png";
-    }
-    else if([idImage isEqual:@"brouge"]){
-        nomImage = @"boardercrossRouge.png";
-    }
-    else if([idImage isEqual:@"snowpark"]){
-        nomImage = @"snowpark.png";
-    }
-    else if([idImage isEqual:@"luge"]){
-        nomImage = @"luge.png";
-    }
-    
-    [cell configUIWithTexte:nomPiste image:nomImage etat:1];
+    [cell configUIWithTexte:nomPiste image:nomImage etat:etat];
     return cell;
 }
 
