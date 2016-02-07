@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CarteViewController : UIViewController <UIScrollViewDelegate,UISearchBarDelegate,UISearchControllerDelegate,UISearchDisplayDelegate>
+@interface CarteViewController : UIViewController <UIScrollViewDelegate,UISearchBarDelegate,UISearchControllerDelegate,UISearchDisplayDelegate,UIGestureRecognizerDelegate>
 {
     UIImageView *imageView;
     UIButton *marqueurBulle;
@@ -36,6 +36,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *nomPiste;
 @property (strong, nonatomic) IBOutlet UILabel *derniereDate;
 @property (strong, nonatomic) IBOutlet UIView *bulle;
+@property (strong, nonatomic) IBOutlet UIButton *supprimer;
 
 @property BOOL apresClic;
 
@@ -43,5 +44,7 @@
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView;
 - (void)centerScrollViewContents;
 - (void) updateSelfPosition;
+- (void) updateUsersPositions;
+- (IBAction)supprimerMarqueur:(id)sender;
 
 @end

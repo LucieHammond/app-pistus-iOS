@@ -107,7 +107,6 @@
 		C5DC56DD1C66AC980011A9F1 /* feuRouge.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DC56DA1C66AC980011A9F1 /* feuRouge.png */; };
 		C5DC56DE1C66AC980011A9F1 /* feuVert.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DC56DB1C66AC980011A9F1 /* feuVert.png */; };
 		C5DC56E01C6740780011A9F1 /* marker1.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DC56DF1C6740780011A9F1 /* marker1.png */; };
-		C5DDCC651C4FD12400FA1515 /* 33eb8a02d4d1d838586ebcca3c60c50f.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DDCC641C4FD12400FA1515 /* 33eb8a02d4d1d838586ebcca3c60c50f.png */; };
 		C5DDCCA71C52352000FA1515 /* ConcoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DDCCA61C52352000FA1515 /* ConcoursViewController.m */; };
 		C5F3488F1BE8FB98003B94C6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F3488E1BE8FB98003B94C6 /* MainViewController.m */; };
 		C5F7B8AE1C41472E00419A86 /* marker2.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F7B8AD1C41472E00419A86 /* marker2.png */; };
@@ -253,7 +252,6 @@
 		C5DC56DA1C66AC980011A9F1 /* feuRouge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feuRouge.png; sourceTree = "<group>"; };
 		C5DC56DB1C66AC980011A9F1 /* feuVert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feuVert.png; sourceTree = "<group>"; };
 		C5DC56DF1C6740780011A9F1 /* marker1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker1.png; sourceTree = "<group>"; };
-		C5DDCC641C4FD12400FA1515 /* 33eb8a02d4d1d838586ebcca3c60c50f.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 33eb8a02d4d1d838586ebcca3c60c50f.png; sourceTree = "<group>"; };
 		C5DDCCA51C52352000FA1515 /* ConcoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcoursViewController.h; sourceTree = "<group>"; };
 		C5DDCCA61C52352000FA1515 /* ConcoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcoursViewController.m; sourceTree = "<group>"; };
 		C5F3488D1BE8FB98003B94C6 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -439,7 +437,6 @@
 				C58083F01C5D171B00BE73A3 /* medaille bronze.png */,
 				C58083F11C5D171B00BE73A3 /* medaille or.png */,
 				C58083F21C5D171B00BE73A3 /* medaille vermeil.png */,
-				C5DDCC641C4FD12400FA1515 /* 33eb8a02d4d1d838586ebcca3c60c50f.png */,
 				C52D730B1C4D8630005C05D1 /* boardercrossBleu.png */,
 				C52D730C1C4D8630005C05D1 /* boardercrossRouge.png */,
 				C52D73101C4D8630005C05D1 /* luge.png */,
@@ -651,7 +648,6 @@
 				C54F8ACD1BD94D5A00CE7B3A /* Images.xcassets in Resources */,
 				C5C05E7A1BEFF6FC007D763E /* accueil_6.jpg in Resources */,
 				C52D72E91C4BB073005C05D1 /* mesInfos.png in Resources */,
-				C5DDCC651C4FD12400FA1515 /* 33eb8a02d4d1d838586ebcca3c60c50f.png in Resources */,
 				C52D72F81C4BF787005C05D1 /* flecheBas.png in Resources */,
 				C5AED9A21C43B1170086E570 /* altitude.png in Resources */,
 				C593B4E81C458397009F5896 /* etoile.png in Resources */,
