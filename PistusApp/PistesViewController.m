@@ -115,23 +115,11 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return [pistes count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return [pistes[0] count];
-            break;
-        case 1:
-            return [pistes[1] count];
-            break;
-        case 2:
-            return [pistes[2] count];
-            break;
-        default:
-            return 0;
-    }
+    return [pistes[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

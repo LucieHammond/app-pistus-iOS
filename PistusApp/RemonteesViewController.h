@@ -10,16 +10,9 @@
 
 @interface RemonteesViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UINavigationControllerDelegate>
 {
-    NSArray *remonteesLaFoux;
-    NSArray *remonteesPraLoup;
-    NSArray *remonteesLeSeignus;
-    NSArray *ouvertureLaFoux;
-    NSArray *ouverturePraLoup;
-    NSArray *ouvertureLeSeignus;
-    NSArray *fermetureLaFoux;
-    NSArray *fermeturePraLoup;
-    NSArray *fermetureLeSeignus;
-    NSArray *type;
+    NSArray *remontees;
+    NSMutableArray *closedLifts;
+    NSMutableDictionary *comments;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *topBande;

@@ -8,11 +8,15 @@
 
 #import "RemonteesViewController.h"
 #import "GeolocalisationManager.h"
+#import "DBManager.h"
+#import "APIManager.h"
 #import "HorairesViewController.h"
 
 @interface RemonteesViewController ()
 
 @property (nonatomic,strong) UIButton *boutonSatellite;
+@property (nonatomic,strong) NSMutableDictionary *apiLifts;
+@property (nonatomic,strong) DBManager *dbManager;
 
 @end
 
@@ -56,19 +60,37 @@
     [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem] setImage:newImage2];
     [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem]  setImageInsets:UIEdgeInsetsMake(0,-2,0,2)];
     
-    // On initialise les tableaux avec tous les noms de pistes
-    remonteesLaFoux = @[@"TS AIGUILLE",@"TS CHAUVETS",@"TK CROUS I",@"TK CROUS II",@"TB LA CHAUP",@"TSD LA CHAUP",@"TK TARDEE",@"TS MARIN PASCAL",@"TS OBSERVATOIRE",@"TK PLAINES",@"TK PLATEAU I",@"TK PLATEAU II",@"TS PONT DE L'ABRAU",@"TS POURET",@"TK SIGNAL",@"TK UBAC",@"TS UBAGUETS",@"TELECORDE VERDON",@"TS VESCAL"];
-    remonteesPraLoup = @[@"TS AGNELIERS",@"TK BABY",@"TK BELIERE",@"TSD BERGERIES",@"TAPIS-NEIGE CLAPIERS",@"TELEMIX CLAPPE", @"TC COSTEBELLE",@"TK COURTIL I",@"TK COURTIL II",@"TK GIMETTE",@"TK LAC I",@"TK LAC II",@"TC MOLANES",@"TSD6 PEGUIEOU",@"TS QUARTIERS",@"TAPIS-NEIGE SERRE",@"TK SESTRIERES",@"TAPIS-NEIGE SORBIERS",@"TK STADE"];
-    remonteesLeSeignus = @[@"TK AUTAPIE I",@"TK AUTAPIE II",@"TSD6 CLOS BERTRAND",@"TS FONT FREDE",@"TS GROS TAPY",@"TC GUINAND",@"TK HONORE CAIRE",@"TK PRE DE LA PORTE"];
-    type = @[@[@"TS",@"TS",@"TK",@"TK",@"TB",@"TSD",@"TK",@"TS",@"TS",@"TK",@"TK",@"TK",@"TS",@"TS",@"TK",@"TK",@"TS",@"TN",@"TS"],@[@"TS",@"TK",@"TK",@"TSD",@"TN",@"TC",@"TC",@"TK",@"TK",@"TK",@"TK",@"TK",@"TC",@"TSD",@"TS",@"TN",@"TK",@"TN",@"TK"],@[@"TK",@"TK",@"TSD",@"TS",@"TS",@"TC",@"TK",@"TK"]];
     
-    ouvertureLaFoux = @[@"09:00",@"09:00",@"09:30",@"09:30",@"09:00",@"09:00",@"09:45",@"09:15",@"09:15",@"09:10",@"09:10",@"09:10",@"09:00",@"00:00",@"09:15",@"09:00",@"09:35",@"09:00",@"09:15"];
-    ouvertureLeSeignus = @[@"09:15",@"09:15",@"09:00",@"09:05",@"09:30",@"08:30",@"09:00",@"09:00"];
-    ouverturePraLoup = @[@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00"];
+    self.dbManager=[[DBManager alloc]initWithDatabaseFilename:@"bddPistes.db"];
     
-    fermetureLaFoux = @[@"16:45",@"16:45",@"16:30",@"16:15",@"16:45",@"16:40",@"15:40",@"16:40",@"16:30",@"16:45",@"16:45",@"16:45",@"16:40",@"00:00",@"16:35",@"16:45",@"16:20",@"17:05",@"16:30"];
-    fermetureLeSeignus = @[@"16:30",@"16:30",@"16:45",@"16:35",@"16:30",@"18:00",@"16:50",@"16:50"];
-    fermeturePraLoup = @[@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00",@"00:00"];
+    
+    NSString *queryLF = [NSString stringWithFormat:@"SELECT id, name, type, opening, closing FROM remonteesSimple WHERE domain='LF' ORDER BY name"];
+    NSArray *remonteesLF = [[self.dbManager loadDataFromDB:queryLF] copy];
+    
+    NSString *queryPL = [NSString stringWithFormat:@"SELECT id, name, type, opening, closing FROM remonteesSimple WHERE domain='PL' ORDER BY name"];
+    NSArray *remonteesPL = [[self.dbManager loadDataFromDB:queryPL] copy];
+    
+    NSString *queryLS = [NSString stringWithFormat:@"SELECT id, name, type, opening, closing FROM remonteesSimple WHERE domain='LS' ORDER BY name"];
+    NSArray *remonteesLS = [[self.dbManager loadDataFromDB:queryLS] copy];
+    
+    remontees = [NSArray arrayWithObjects:remonteesLF, remonteesPL, remonteesLS, nil];
+
+    //Getting data
+    _apiLifts = [APIManager getFromApi:@"http://apistus.via.ecp.fr/lift/56b60925608aa"];
+    
+    closedLifts = [[NSMutableArray alloc] init];
+    comments = [[NSMutableDictionary alloc] init];
+    NSInteger i;
+    for (i=0;i < [_apiLifts[@"data"] count]; i++) {
+        if ([[_apiLifts[@"data"][i] objectForKey:@"status"]boolValue] == NO) {
+            NSString *name = _apiLifts[@"data"][i][@"name"];
+            NSString *comment = _apiLifts[@"data"][i][@"comment"];
+            
+            [closedLifts addObject:name];
+            [comments setObject:comment forKey:name];
+            NSLog(@"%@", comments);
+        }
+    }
     
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
@@ -118,23 +140,11 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return [remontees count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return 19;
-            break;
-        case 1:
-            return 19;
-            break;
-        case 2:
-            return 8;
-            break;
-        default:
-            return 0;
-    }
+    return [remontees[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -147,23 +157,14 @@
     }
     NSString *ouverture;
     NSString *fermeture;
-    switch (indexPath.section) {
-        case 0:
-            cell.textLabel.text = remonteesLaFoux[indexPath.row];
-            ouverture = ouvertureLaFoux[indexPath.row];
-            fermeture = fermetureLaFoux[indexPath.row];
-            break;
-        case 1:
-            cell.textLabel.text = remonteesPraLoup[indexPath.row];
-            ouverture = ouverturePraLoup[indexPath.row];
-            fermeture = fermeturePraLoup[indexPath.row];
-            break;
-        case 2:
-            cell.textLabel.text = remonteesLeSeignus[indexPath.row];
-            ouverture = ouvertureLeSeignus[indexPath.row];
-            fermeture = fermetureLeSeignus[indexPath.row];
-            break;
-    }
+    
+    NSString *idLift = remontees[indexPath.section][indexPath.row][0];
+    NSString *type = remontees[indexPath.section][indexPath.row][2];
+    NSString *name = remontees[indexPath.section][indexPath.row][1];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", type, name];
+    ouverture = remontees[indexPath.section][indexPath.row][3];
+    fermeture = remontees[indexPath.section][indexPath.row][4];
     
     // On s'occupe du feu de couleur et du sous titre
     NSDateFormatter* df = [[NSDateFormatter alloc]init];
@@ -176,42 +177,52 @@
     NSDate *heureOuverture = [df dateFromString:ouverture];
     NSDate *heureFermeture = [df dateFromString:fermeture];
     
-    cell.detailTextLabel.text = @"";
-    BOOL ouvert;
-    if([dateActuelle compare: heureOuverture]== NSOrderedAscending)
-    {
-        ouvert = 0;
-        NSTimeInterval intervalle = [heureOuverture timeIntervalSinceNow];
-        int heure = (int) intervalle/3600;
-        int minute = (int) (intervalle - heure*3600)/60;
-        if(heure!=0)
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"Ouverture dans %ih %imin",heure,minute];
-        else
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"Ouverture dans %imin",minute];
+    NSString *nomImage;
+    
+    if([closedLifts containsObject:idLift]) {
+        NSLog(@"%@", comments);
+        cell.detailTextLabel.text = comments[idLift];
+        nomImage = @"feuRouge.png";
     }
-    else if([dateActuelle compare: heureFermeture]==NSOrderedDescending)
-    {
-        ouvert = 0;
-        NSTimeInterval intervalle = [heureOuverture timeIntervalSinceNow]+86400;
-        int heure = (int) intervalle/3600;
-        int minute = (int) (intervalle - heure*3600)/60;
-        if(heure!=0)
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"Ouverture dans %ih %imin",heure,minute];
+    else {
+        BOOL ouvert;
+        if([dateActuelle compare: heureOuverture]== NSOrderedAscending)
+        {
+            ouvert = 0;
+            NSTimeInterval intervalle = [heureOuverture timeIntervalSinceNow];
+            int heure = (int) intervalle/3600;
+            int minute = (int) (intervalle - heure*3600)/60;
+            if(heure!=0)
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"Ouverture dans %ih %imin",heure,minute];
+            else
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"Ouverture dans %imin",minute];
+        }
+        else if([dateActuelle compare: heureFermeture]==NSOrderedDescending)
+        {
+            ouvert = 0;
+            NSTimeInterval intervalle = [heureOuverture timeIntervalSinceNow]+86400;
+            int heure = (int) intervalle/3600;
+            int minute = (int) (intervalle - heure*3600)/60;
+            if(heure!=0)
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"Ouverture dans %ih %imin",heure,minute];
+            else
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"Ouverture dans %imin",minute];
+        }
         else
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"Ouverture dans %imin",minute];
+        {
+            ouvert = 1;
+            NSTimeInterval intervalle = [heureFermeture timeIntervalSinceNow];
+            int heure = (int) intervalle/3600;
+            int minute = (int) (intervalle - heure*3600)/60;
+            if(heure!=0)
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"Fermeture dans %ih %imin",heure,minute];
+            else
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"Fermeture dans %imin",minute];
+        }
+        nomImage = ouvert?@"feuVert.png":@"feuOrange.png";
     }
-    else
-    {
-        ouvert = 1;
-        NSTimeInterval intervalle = [heureFermeture timeIntervalSinceNow];
-        int heure = (int) intervalle/3600;
-        int minute = (int) (intervalle - heure*3600)/60;
-        if(heure!=0)
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"Fermeture dans %ih %imin",heure,minute];
-        else
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"Fermeture dans %imin",minute];
-    }
-    NSString *nomImage = ouvert?@"feuVert.png":@"feuRouge.png";
+
+    
     UIImageView *feu = [[UIImageView alloc] initWithImage:[UIImage imageNamed:nomImage]];
     [feu setFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-55,16,15,15)];
     [cell addSubview:feu];
@@ -253,24 +264,12 @@
     if ([segue.identifier isEqualToString:@"DetailSegue"]) {
         HorairesViewController *horairesVC = (HorairesViewController*)segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
-        switch(indexPath.section){
-            case 0:
-                horairesVC.titreText = [remonteesLaFoux objectAtIndex:indexPath.row];
-                horairesVC.ouvertureText = [ouvertureLaFoux objectAtIndex:indexPath.row];
-                horairesVC.fermetureText = [fermetureLaFoux objectAtIndex:indexPath.row];
-                break;
-            case 1:
-                horairesVC.titreText = [remonteesPraLoup objectAtIndex:indexPath.row];
-                horairesVC.ouvertureText = [ouverturePraLoup objectAtIndex:indexPath.row];
-                horairesVC.fermetureText = [fermeturePraLoup objectAtIndex:indexPath.row];
-                break;
-            case 2:
-                horairesVC.titreText = [remonteesLeSeignus objectAtIndex:indexPath.row];
-                horairesVC.ouvertureText = [ouvertureLeSeignus objectAtIndex:indexPath.row];
-                horairesVC.fermetureText = [fermetureLeSeignus objectAtIndex:indexPath.row];
-                break;
-        }
-        horairesVC.typeIcone = [[type objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        
+        horairesVC.titreText = [remontees[indexPath.section] objectAtIndex:indexPath.row][1];
+        horairesVC.ouvertureText = [remontees[indexPath.section] objectAtIndex:indexPath.row][3];
+        horairesVC.fermetureText = [remontees[indexPath.section] objectAtIndex:indexPath.row][4];
+
+        horairesVC.typeIcone = [remontees[indexPath.section] objectAtIndex:indexPath.row][2];
     }
 }
 
