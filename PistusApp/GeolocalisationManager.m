@@ -824,7 +824,7 @@ static GeolocalisationManager* sharedInstance=nil;
     {
         CarteViewController * CVcontroller = (CarteViewController*) nav.visibleViewController;
         CVcontroller.apresClic = true;
-        [CVcontroller viewDidLoad];
+        [CVcontroller updateSelfPosition];
     }
     else if([nav.visibleViewController.title isEqual:@"Statistiques"])
     {

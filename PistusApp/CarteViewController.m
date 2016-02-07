@@ -31,24 +31,91 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"View did load");
     [self setNeedsStatusBarAppearanceUpdate];
+    
+    // Configuration du bouton satellite
+    _boutonSatellite = [[UIButton alloc] initWithFrame:CGRectMake(0,0,32,33)];
+    if(![[GeolocalisationManager sharedInstance] trackAccept])
+    {
+        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
+    }
+    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    {
+        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:    UIControlStateNormal];
+    }
+    [_trackAcceptButton setCustomView:_boutonSatellite];
+    [_boutonSatellite addTarget:self action:@selector(trackChange)
+               forControlEvents:UIControlEventTouchUpInside];
+    
+    // Configurer le scrollView
+    imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Plan Val d'Allos Official corrigé.jpg"]];
+    [_scrollView addSubview:imageView];
+    [_scrollView setBouncesZoom:NO];
     _scrollView.delegate=self;
     self.scrollView.minimumZoomScale=1.0;
     self.scrollView.maximumZoomScale=8.0;
     _bulle.hidden=true;
-    NSLog(@"View did load");
-
-    // Afficher la barre de recherche
+    
+    // Configurer les marqueurs pour les lieux importants
+    [_etoile_Rez addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+          forControlEvents:UIControlEventTouchUpInside];
+    [_etoile_Pat addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+          forControlEvents:UIControlEventTouchUpInside];
+    [_etoile_Luge addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+           forControlEvents:UIControlEventTouchUpInside];
+    [_etoile_ESF addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+          forControlEvents:UIControlEventTouchUpInside];
+    [_etoile_BAB addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+          forControlEvents:UIControlEventTouchUpInside];
+    
+    // Ajout du bouton pour recentrer sur la position de l'utilisateur
+    UIButton *ciblage = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-60,[UIScreen mainScreen].bounds.size.height*7/10,47,47)];
+    [ciblage setImage:[UIImage imageNamed:@"ciblage.png"] forState:UIControlStateNormal];
+    ciblage.alpha=0.5;
+    [self.view insertSubview:ciblage aboveSubview:_etoile_ESF];
+    [ciblage addTarget:self action:@selector(ciblerPosition)
+      forControlEvents:UIControlEventTouchUpInside];
+    
+    // Apparence et configuration de la barre de recherche
+    if(rechercheActivee!=true)
+        _searchBar.hidden = true;
+    id barButtonAppearanceInSearchBar = [UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil];
+    [barButtonAppearanceInSearchBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateNormal];
+    [barButtonAppearanceInSearchBar setTitle:@"Annuler"];
     _searchButton.target = self;
     _searchButton.action = @selector(afficherBarRecherche);
+    
+    // Initialisation de la bulle sans l'afficher
+    _pateBulle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pate_bulle.png"]];
+    [self.view insertSubview:_pateBulle aboveSubview:_etoile_ESF];
+    _pateBulle.hidden=true;
+    
+    _titre = [[UILabel alloc] init];
+    _titre.font=[UIFont boldSystemFontOfSize:16.0];;
+    [self.view insertSubview:_titre aboveSubview:_pateBulle];
+    _titre.hidden=true;
+    
+    _nomPiste = [[UILabel alloc] init];
+    _nomPiste.font=[UIFont systemFontOfSize:11.0];
+    [self.view insertSubview:_nomPiste aboveSubview:_titre];
+    _nomPiste.hidden=true;
+    
+    _derniereDate = [[UILabel alloc]init];
+    _derniereDate.font=[UIFont systemFontOfSize:9.0 weight:UIFontWeightLight];
+    [self.view insertSubview:_derniereDate aboveSubview:_nomPiste];
+    _derniereDate.hidden=true;
+    
+    _bulle = [[UIView alloc] init];
+    [_bulle setBackgroundColor:[UIColor whiteColor]];
+    [self.view insertSubview:_bulle belowSubview:_titre];
+    _bulle.hidden=true;
     
     //Ajustement du texte qui s'affiche en cas de localisation hors de la station
     _texteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
     _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
-    [self.view insertSubview:_fondTexteDistance aboveSubview:_scrollView];
+    [self.view insertSubview:_fondTexteDistance aboveSubview:ciblage];
     [self.view insertSubview:_texteDistance aboveSubview:_fondTexteDistance];
-    _texteDistance.text=@"";
-    _fondTexteDistance.hidden=true;
     
     // Ajout du marqueur utilisateur
     if(marqueur !=nil){
@@ -60,11 +127,56 @@
     [marqueur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
        forControlEvents:UIControlEventTouchUpInside];
     [self.view insertSubview:marqueur aboveSubview:_scrollView];
-    marqueur.hidden = true;
     
     // Initialisation du tableau Participants (à remplacer par une recherche dans la BDD ?)
     participants = @[@"Enguerran Henniart",@"Lucie Hammond",@"Tom Brendlé",@"Alexis Filipozzi",@"Martin Ramette",@"Maxime Reiz",@"Joris Mancini",@"Manon Leger",@"Hélène Chambrette",@"Solène Duchamp",@"Martin Guillier",@"Sofia Bonnetaud",@"Alphe Fournier",@"Raphaël Bizmut",@"Nicolas Vo Van",@"Maxime Gardet",@"Olivier Agier",@"Robin Schwob",@"Remi Schneider",@"Roxane Letournel"];
     
+    [self updateSelfPosition];
+}
+
+-(void) viewDidLayoutSubviews{
+    NSLog(@"View did layout subviews");
+    if(_apresClic!=true)
+    {
+        //Ajustement de la barre de navigation en haut et configuration des icones
+        [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
+        [_topBande setFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, 20)];
+        
+        // Redimensionnement du scrollView
+        [_scrollView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 65)];
+        [imageView setFrame:CGRectMake(0,0,_scrollView.frame.size.height*imageView.frame.size.width/imageView.frame.size.height,_scrollView.frame.size.height)];
+        [_scrollView setContentOffset:CGPointMake((imageView.frame.size.width-_scrollView.frame.size.width)/2,0)];
+        [_scrollView setContentSize:CGSizeMake(imageView.frame.size.width, imageView.frame.size.height)];
+        
+        // Ajout de marqueurs pour les lieux importants
+        float X = _scrollView.contentSize.width/7452*3424 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        float Y = _scrollView.contentSize.height/3174*1710 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        _etoile_Rez.center = CGPointMake(X,Y);
+        X = _scrollView.contentSize.width/7452*3195 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        Y = _scrollView.contentSize.height/3174*2115 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        _etoile_Pat.center = CGPointMake(X,Y);
+        X = _scrollView.contentSize.width/7452*3742 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        Y = _scrollView.contentSize.height/3174*1820 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        _etoile_Luge.center = CGPointMake(X,Y);
+        X = _scrollView.contentSize.width/7452*3265 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        Y = _scrollView.contentSize.height/3174*1995 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        _etoile_ESF.center = CGPointMake(X,Y);
+        X = _scrollView.contentSize.width/7452*3010 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        Y = _scrollView.contentSize.height/3174*1650 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        _etoile_BAB.center = CGPointMake(X,Y);
+        
+        NSLog(@"1");
+    }
+    else{
+        NSLog(@"2");
+        _apresClic=false;
+    }
+}
+
+- (void) updateSelfPosition{
+    marqueur.hidden = true;
+    _fondTexteDistance.hidden = true;
+    _texteDistance.text= @"";
     if([[GeolocalisationManager sharedInstance] trackAccept])
     {
         if([GeolocalisationManager sharedInstance].pisteProche!=nil)
@@ -119,118 +231,6 @@
             marqueur.hidden = false;
             NSLog(@"touché");
         }
-    }
-    if(nbAppels==1)
-        _apresClic = true;
-}
-
--(void) viewDidLayoutSubviews{
-    NSLog(@"View did layout subviews");
-    if(_apresClic!=true)
-    {
-        //Ajustement de la barre de navigation en haut et configuration des icones
-        [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
-        [_topBande setFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, 20)];
-        self.navigationController.navigationBarHidden=true;
-        [self.view insertSubview:_topBande aboveSubview:_barre];
-        _boutonSatellite = [[UIButton alloc] initWithFrame:CGRectMake(0,0,32,33)];
-        if(![[GeolocalisationManager sharedInstance] trackAccept])
-        {
-            [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
-        }
-        else if([[GeolocalisationManager sharedInstance] trackAccept])
-        {
-            [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:    UIControlStateNormal];
-        }
-        [_trackAcceptButton setCustomView:_boutonSatellite];
-        [_boutonSatellite addTarget:self action:@selector(trackChange)
-         forControlEvents:UIControlEventTouchUpInside];
-        
-        // Configuration du scrollView pour pouvoir se déplacer sur le plan
-        [_scrollView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 65)];
-        imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Plan Val d'Allos Official corrigé.jpg"]];
-        [imageView setFrame:CGRectMake(0,0,_scrollView.frame.size.height*imageView.frame.size.width/imageView.frame.size.height,_scrollView.frame.size.height)];
-        [_scrollView addSubview:imageView];
-        [_scrollView setContentOffset:CGPointMake((imageView.frame.size.width-_scrollView.frame.size.width)/2,0)];
-        [_scrollView setContentSize:CGSizeMake(imageView.frame.size.width, imageView.frame.size.height)];
-        [_scrollView setBouncesZoom:NO];
-        
-        // Ajout de marqueurs pour les lieux importants
-        float X = _scrollView.contentSize.width/7452*3424 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        float Y = _scrollView.contentSize.height/3174*1710 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-        _etoile_Rez.center = CGPointMake(X,Y);
-        X = _scrollView.contentSize.width/7452*3195 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        Y = _scrollView.contentSize.height/3174*2115 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-        _etoile_Pat.center = CGPointMake(X,Y);
-        X = _scrollView.contentSize.width/7452*3742 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        Y = _scrollView.contentSize.height/3174*1820 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-        _etoile_Luge.center = CGPointMake(X,Y);
-        X = _scrollView.contentSize.width/7452*3265 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        Y = _scrollView.contentSize.height/3174*1995 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-        _etoile_ESF.center = CGPointMake(X,Y);
-        X = _scrollView.contentSize.width/7452*3010 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        Y = _scrollView.contentSize.height/3174*1650 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-        _etoile_BAB.center = CGPointMake(X,Y);
-    
-        [_etoile_Rez addTarget:self action:@selector(afficherDetailsPourMarqueur:)
-         forControlEvents:UIControlEventTouchUpInside];
-        [_etoile_Pat addTarget:self action:@selector(afficherDetailsPourMarqueur:)
-          forControlEvents:UIControlEventTouchUpInside];
-        [_etoile_Luge addTarget:self action:@selector(afficherDetailsPourMarqueur:)
-          forControlEvents:UIControlEventTouchUpInside];
-        [_etoile_ESF addTarget:self action:@selector(afficherDetailsPourMarqueur:)
-               forControlEvents:UIControlEventTouchUpInside];
-        [_etoile_BAB addTarget:self action:@selector(afficherDetailsPourMarqueur:)
-               forControlEvents:UIControlEventTouchUpInside];
-        
-        // Ajout du bouton pour recentrer sur la position de l'utilisateur
-        UIButton *ciblage = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-60,[UIScreen mainScreen].bounds.size.height*7/10,47,47)];
-        [ciblage setImage:[UIImage imageNamed:@"ciblage.png"] forState:UIControlStateNormal];
-        ciblage.alpha=0.5;
-        [self.view insertSubview:ciblage aboveSubview:_etoile_Luge];
-        [ciblage addTarget:self action:@selector(ciblerPosition)
-          forControlEvents:UIControlEventTouchUpInside];
-        
-        // Cacher la barre de recherche
-        if(rechercheActivee!=true)
-            _searchBar.hidden = true;
-        id barButtonAppearanceInSearchBar = [UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil];
-    
-        [barButtonAppearanceInSearchBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateNormal];
-        [barButtonAppearanceInSearchBar setTitle:@"Annuler"];
-        
-        // Initialisation de la bulle sans l'afficher
-        _pateBulle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pate_bulle.png"]];
-        [self.view insertSubview:_pateBulle aboveSubview:imageView];
-        _pateBulle.hidden=true;
-        
-        _titre = [[UILabel alloc] init];
-        _titre.font=[UIFont boldSystemFontOfSize:16.0];;
-        [self.view insertSubview:_titre aboveSubview:_pateBulle];
-        _titre.hidden=true;
-        
-        _nomPiste = [[UILabel alloc] init];
-        _nomPiste.font=[UIFont systemFontOfSize:11.0];
-        [self.view insertSubview:_nomPiste aboveSubview:_titre];
-        _nomPiste.hidden=true;
-        
-        _derniereDate = [[UILabel alloc]init];
-        _derniereDate.font=[UIFont systemFontOfSize:9.0 weight:UIFontWeightLight];
-        [self.view insertSubview:_derniereDate aboveSubview:_nomPiste];
-        _derniereDate.hidden=true;
-        
-        _bulle = [[UIView alloc] init];
-        [_bulle setBackgroundColor:[UIColor whiteColor]];
-        [self.view insertSubview:_bulle belowSubview:_titre];
-        _bulle.hidden=true;
-        
-        NSLog(@"1");
-        nbAppels = 1;
-        [self viewDidLoad];
-    }
-    else{
-        NSLog(@"2");
-        _apresClic=false;
     }
 }
 
@@ -514,6 +514,7 @@
                     animations:^{
                         _searchBar.hidden = true;
                     } completion:nil];
+    [self viewDidLoad];
 }
 /*
 #pragma mark - Navigation

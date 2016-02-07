@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="t2j-nU-UHC" kind="relationship" relationship="rootViewController" id="MWP-ig-Cuz"/>
+                        <segue destination="t2j-nU-UHC" kind="relationship" relationship="rootViewController" id="7Fb-do-u0R"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0gz-VI-nea" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -69,11 +69,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="etoile.png"/>
                             </button>
-                            <view contentMode="scaleToFill" id="CR8-ro-caC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <view alpha="0.40000000000000002" contentMode="scaleToFill" id="lGN-gA-AFZ">
                                 <rect key="frame" x="35" y="86" width="250" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -144,6 +139,11 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <view contentMode="scaleToFill" id="CR8-ro-caC">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -2011,7 +2011,7 @@
         <image name="temps.png" width="567" height="567"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wtC-IK-wOy"/>
+        <segue reference="g8c-47-mah"/>
         <segue reference="qJ3-ur-bzc"/>
     </inferredMetricsTieBreakers>
 </document>
