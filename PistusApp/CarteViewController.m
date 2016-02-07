@@ -117,6 +117,14 @@
     [self.view insertSubview:_bulle belowSubview:_titre];
     _bulle.hidden=true;
     
+    // Bouton supprimer
+    _supprimer.hidden = true;
+    
+    // Gesture recocgnizer pour supprimer la bulle
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]init];
+    [tapGesture addTarget:self action:@selector(effacerBulle)];
+    [_scrollView addGestureRecognizer:tapGesture];
+    
     //Ajustement du texte qui s'affiche en cas de localisation hors de la station
     _texteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
     _fondTexteDistance.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, 110);
@@ -150,6 +158,13 @@
             [marqueurUtilisateur setImage:[UIImage imageNamed:@"marker1.png"] forState:UIControlStateNormal];
             [marqueurUtilisateur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
                forControlEvents:UIControlEventTouchUpInside];
+            
+            // Rendre le marqueur réceptif au double clic
+            UITapGestureRecognizer *doubleClick = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleClickMarqueur:)];
+            doubleClick.delegate = self;
+            doubleClick.numberOfTapsRequired = 2;
+            [marqueurUtilisateur addGestureRecognizer:doubleClick];
+            
             marqueursUtilisateurs[i]=marqueurUtilisateur;
             [self.view insertSubview:marqueursUtilisateurs[i] aboveSubview:_scrollView];
         }
@@ -288,6 +303,19 @@
     }
 }
 
+- (IBAction)supprimerMarqueur:(id)sender {
+    // On supprime marqueurBulle
+    int i = [marqueursUtilisateurs indexOfObject:marqueurBulle];
+    [nomsUtilisateurs removeObjectAtIndex:i];
+    [posXUtilisateurs removeObjectAtIndex:i];
+    [posYUtilisateurs removeObjectAtIndex:i];
+    [datesUtilisateurs removeObjectAtIndex:i];
+    [pistesUtilisateurs removeObjectAtIndex:i];
+    [[GeolocalisationManager sharedInstance].utilisateursSuivis removeObjectAtIndex:i];
+    [marqueurBulle removeFromSuperview];
+    [marqueursUtilisateurs removeObject:marqueurBulle];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -353,6 +381,7 @@
 -(void)afficherDetailsPourMarqueur:(UIButton *)sender
 {
     _apresClic = true;
+    _supprimer.hidden = true;
     
     // Pate de la bulle
     [_pateBulle setFrame: CGRectMake(sender.center.x-11,sender.frame.origin.y-10,22,10)];
@@ -458,10 +487,6 @@
     }
     _bulle.hidden=false;
     marqueurBulle=sender;
-    
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]init];
-    [tapGesture addTarget:self action:@selector(effacerBulle)];
-    [_scrollView addGestureRecognizer:tapGesture];
 }
 
 -(void) effacerBulle
@@ -471,6 +496,7 @@
     _nomPiste.hidden=true;
     _derniereDate.hidden=true;
     _bulle.hidden=true;
+    _supprimer.hidden = true;
 }
 
 -(void) afficherBarRecherche{
@@ -566,22 +592,30 @@
         }
         else if([marqueursUtilisateurs containsObject:marqueurBulle])
         {
-            _titre.center=CGPointMake(marqueurBulle.center.x,marqueurBulle.frame.origin.y-47);
-            _nomPiste.center=CGPointMake(marqueurBulle.center.x,marqueurBulle.frame.origin.y-31);
-            _derniereDate.center=CGPointMake(marqueurBulle.center.x,marqueurBulle.frame.origin.y-19);
-            _bulle.center = CGPointMake(marqueurBulle.center.x, marqueurBulle.frame.origin.y-35);
-            // Repositionnement du message
-            if(_titre.frame.size.width == _bulle.frame.size.width-15){
-                [_nomPiste setFrame:CGRectMake(_titre.frame.origin.x,_nomPiste.frame.origin.y,_nomPiste.frame.size.width,_nomPiste.frame.size.height)];
-                [_derniereDate setFrame:CGRectMake(_titre.frame.origin.x+1,_derniereDate.frame.origin.y,_derniereDate.frame.size.width,_derniereDate.frame.size.height)];
+            if(_supprimer.hidden)
+            {
+                _titre.center=CGPointMake(marqueurBulle.center.x,marqueurBulle.frame.origin.y-47);
+                _nomPiste.center=CGPointMake(marqueurBulle.center.x,marqueurBulle.frame.origin.y-31);
+                _derniereDate.center=CGPointMake(marqueurBulle.center.x,marqueurBulle.frame.origin.y-19);
+                _bulle.center = CGPointMake(marqueurBulle.center.x, marqueurBulle.frame.origin.y-35);
+                // Repositionnement du message
+                if(_titre.frame.size.width == _bulle.frame.size.width-15){
+                    [_nomPiste setFrame:CGRectMake(_titre.frame.origin.x,_nomPiste.frame.origin.y,_nomPiste.frame.size.width,_nomPiste.frame.size.height)];
+                    [_derniereDate setFrame:CGRectMake(_titre.frame.origin.x+1,_derniereDate.frame.origin.y,_derniereDate.frame.size.width,_derniereDate.frame.size.height)];
+                }
+                else if(_nomPiste.frame.size.width == _bulle.frame.size.width-15){
+                    [_titre setFrame:CGRectMake(_nomPiste.frame.origin.x,_titre.frame.origin.y,_titre.frame.size.width,_titre.frame.size.height)];
+                    [_derniereDate setFrame:CGRectMake(_nomPiste.frame.origin.x+1,_derniereDate.frame.origin.y,_derniereDate.frame.size.width,_derniereDate.frame.size.height)];
+                }
+                else{
+                    [_titre setFrame:CGRectMake(_derniereDate.frame.origin.x,_titre.frame.origin.y,_titre.frame.size.width,_titre.frame.size.height)];
+                    [_nomPiste setFrame:CGRectMake(_derniereDate.frame.origin.x,_nomPiste.frame.origin.y,_nomPiste.frame.size.width,_nomPiste.frame.size.height)];
+                }
             }
-            else if(_nomPiste.frame.size.width == _bulle.frame.size.width-15){
-                [_titre setFrame:CGRectMake(_nomPiste.frame.origin.x,_titre.frame.origin.y,_titre.frame.size.width,_titre.frame.size.height)];
-                [_derniereDate setFrame:CGRectMake(_nomPiste.frame.origin.x+1,_derniereDate.frame.origin.y,_derniereDate.frame.size.width,_derniereDate.frame.size.height)];
-            }
-            else{
-                [_titre setFrame:CGRectMake(_derniereDate.frame.origin.x,_titre.frame.origin.y,_titre.frame.size.width,_titre.frame.size.height)];
-                [_nomPiste setFrame:CGRectMake(_derniereDate.frame.origin.x,_nomPiste.frame.origin.y,_nomPiste.frame.size.width,_nomPiste.frame.size.height)];
+            else
+            {
+                [_bulle setFrame: CGRectMake(marqueurBulle.center.x-80,marqueurBulle.frame.origin.y-36,160,26)];
+                _supprimer.center = CGPointMake(marqueurBulle.center.x,marqueurBulle.frame.origin.y-23);
             }
         }
         else
@@ -590,6 +624,22 @@
             _bulle.center = CGPointMake(marqueurBulle.center.x, marqueurBulle.frame.origin.y-20);
         }
     }
+}
+
+- (void)doubleClickMarqueur:(UIGestureRecognizer *)gestureRecognizer {
+    UIView *marqueurUtilisateur = gestureRecognizer.view;
+    _titre.hidden = true;
+    _nomPiste.hidden = true;
+    _derniereDate.hidden = true;
+    [_pateBulle setFrame: CGRectMake(marqueurUtilisateur.center.x-11,marqueurUtilisateur.frame.origin.y-10,22,10)];
+    _pateBulle.hidden = false;
+    [_bulle setFrame: CGRectMake(marqueurUtilisateur.center.x-80,marqueurUtilisateur.frame.origin.y-36,160,26)];
+    _bulle.hidden = false;
+    _supprimer.center = CGPointMake(marqueurUtilisateur.center.x,marqueurUtilisateur.frame.origin.y-23);
+    _supprimer.hidden = false;
+    _apresClic = true;
+    
+    marqueurBulle = (UIButton *) marqueurUtilisateur;
 }
 
 // Méthodes pour l'affichage de la recherche des participants
@@ -627,13 +677,21 @@
         // On ajoute l'utilsateur dans la liste des utilisateurs suivis
         [[GeolocalisationManager sharedInstance].utilisateursSuivis addObject:utilisateur];
         
-        // on demande à la bdd la position de l'utilisateur
-        int posX = 3325;
-        int posY = 2427;
+        // Créer marqueur
         UIButton *marqueurUtilisateur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,16,16)];
         [marqueurUtilisateur setImage:[UIImage imageNamed:@"marker1.png"] forState:UIControlStateNormal];
         [marqueurUtilisateur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
            forControlEvents:UIControlEventTouchUpInside];
+        
+        // Rendre le marqueur réceptif au double clic
+        UITapGestureRecognizer *doubleClick = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleClickMarqueur:)];
+        doubleClick.delegate = self;
+        doubleClick.numberOfTapsRequired = 2;
+        [marqueurUtilisateur addGestureRecognizer:doubleClick];
+        
+        // on demande à la bdd la position de l'utilisateur
+        int posX = 3325;
+        int posY = 2427;
         float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
         float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         marqueurUtilisateur.center = CGPointMake(X,Y);
@@ -654,7 +712,6 @@
         NSString *piste = @"Digitales";
         [pistesUtilisateurs addObject:piste];
     }
-    NSLog(@"Rhaaaaa");
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope

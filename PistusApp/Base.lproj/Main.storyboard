@@ -144,6 +144,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SZn-YF-YPF">
+                                <rect key="frame" x="47" y="135" width="160" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Supprimer le marqueur"/>
+                                <connections>
+                                    <action selector="supprimerMarqueur:" destination="t2j-nU-UHC" eventType="touchUpInside" id="M4a-rs-Q26"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -163,6 +172,7 @@
                         <outlet property="searchBar" destination="bBU-wD-DUH" id="9Hq-Ei-JRa"/>
                         <outlet property="searchButton" destination="BVb-kN-hE8" id="KPY-Ug-J5W"/>
                         <outlet property="searchDisplayController" destination="1YR-mG-Gcf" id="slE-CE-Rlm"/>
+                        <outlet property="supprimer" destination="SZn-YF-YPF" id="9tc-aa-KPl"/>
                         <outlet property="texteDistance" destination="Esu-a3-KJL" id="7dS-Lk-wMQ"/>
                         <outlet property="topBande" destination="CR8-ro-caC" id="wbg-ih-1LS"/>
                         <outlet property="trackAcceptButton" destination="nxL-JU-RIz" id="zdb-fI-TaN"/>
