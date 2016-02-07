@@ -62,6 +62,7 @@ static GeolocalisationManager* sharedInstance=nil;
         sharedInstance.tabTemps=[NSMutableArray arrayWithObjects:[NSNumber numberWithFloat:-1],[NSNumber numberWithFloat:-1],
                                           [NSNumber numberWithFloat:-1],[NSNumber numberWithFloat:-1],[NSNumber numberWithFloat:-1],
                                           [NSNumber numberWithFloat:-1],[NSNumber numberWithFloat:-1],nil];
+        sharedInstance.utilisateursSuivis = [[NSMutableArray alloc]init];
     }
     return sharedInstance;
 }
@@ -746,7 +747,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     _derniereDate = lastLocation.timestamp;
                     NSDateFormatter* df = [[NSDateFormatter alloc]init];
                     [df setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-                    NSString *dateString = [df stringFromDate:_derniereDate];
+                    NSString *dateString = [df stringFromDate:_derniereDate];  
                     
                     // On met à jour les statistiques sauf si on est en station
                     if(!_enStation)
@@ -900,6 +901,7 @@ static GeolocalisationManager* sharedInstance=nil;
     [coder encodeObject:_pisteProche forKey:@"pisteProche"];
     [coder encodeObject:_derniereDate forKey:@"derniereDate"];
     [coder encodeBool:_enStation forKey:@"enStation"];
+    [coder encodeObject:_utilisateursSuivis forKey:@"utilisateursSuivis"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
@@ -928,6 +930,7 @@ static GeolocalisationManager* sharedInstance=nil;
         self.pisteProche = [decoder decodeObjectForKey:@"pisteProche"];
         self.derniereDate = [decoder decodeObjectForKey:@"derniereDate"];
         self.enStation = [decoder decodeBoolForKey:@"enStation"];
+        self.utilisateursSuivis = [decoder decodeObjectForKey:@"utilisateursSuivis"];
     }
     return self;
 }

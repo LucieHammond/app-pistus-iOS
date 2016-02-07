@@ -43,5 +43,6 @@
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView;
 - (void)centerScrollViewContents;
 - (void) updateSelfPosition;
+- (void) updateUsersPositions;
 
 @end

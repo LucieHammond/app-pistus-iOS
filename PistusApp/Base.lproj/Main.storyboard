@@ -187,7 +187,7 @@
             <objects>
                 <viewController title="Mes Infos" id="fT5-Tb-ybX" customClass="MesInfosViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SgL-dX-yeh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translucent="NO" id="P1L-KN-8TC">
@@ -263,7 +263,7 @@
             <objects>
                 <viewController title="Informations générales" id="cdV-88-mC3" customClass="InfosGlobalesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l1W-bZ-o63">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="qgx-df-iwy">
@@ -338,7 +338,7 @@
             <objects>
                 <viewController title="Flash news" id="trH-vZ-ket" customClass="NewsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kge-ot-bD7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="uF2-Cz-O4H">
@@ -437,7 +437,7 @@
             <objects>
                 <viewController id="IRz-zR-tQK" customClass="ConcoursViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S7C-cy-jCC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="xkx-FL-fGM">

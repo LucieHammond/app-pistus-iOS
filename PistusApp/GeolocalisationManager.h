@@ -19,9 +19,6 @@
     CLLocation *avantDerniereLoc;
 }
 
-// Tests (à supprimer)
-@property (nonatomic) BOOL testSauvegarde;
-
 // Statistiques
 @property (nonatomic) double distanceStation;
 @property (nonatomic) double vitesseActuelle;
@@ -52,6 +49,7 @@
 @property (nonatomic) NSString *pisteProche;
 @property (nonatomic) NSDate *derniereDate;
 @property (nonatomic) BOOL enStation;
+@property (nonatomic) NSMutableArray *utilisateursSuivis;
 
 +(GeolocalisationManager*)sharedInstance;
 +(void)setSharedInstance:(GeolocalisationManager*)gm;
