@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "NXOAuth2.h"
 
 @interface ViewController ()
 
@@ -184,77 +183,16 @@
     }
     else
     {
-        /* Ici j'envoie le login et le mdp de l'utilisateur au serveur d'authentification de VIA
-        Celui ci me renvoie un token d'autorisation ou un code d'erreur.*/
-        
-        [[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:@"pistonski"
-                                                                  username:login                                                                password:mdp];
-    
-        //En cas de succes, un nouvel account est ajouté à [NXOAuth2AccountStore sharedStore]
-        [[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreAccountsDidChangeNotification
-                    object:[NXOAuth2AccountStore sharedStore]
-                    queue:nil
-                    usingBlock:^(NSNotification *aNotification){
-                        NSInteger s=0;
-                        for (NXOAuth2Account *account in [[NXOAuth2AccountStore sharedStore] accounts]) {
-                            s+=1;
-                        };
-                        NSLog(@"%li",(long)s);
-                        [NXOAuth2Request performMethod:@"GET"
-                                            onResource:[NSURL URLWithString:@"https://my.ecp.fr/api/v1/members/me"]
-                                       usingParameters:nil
-                                           withAccount:[[[NXOAuth2AccountStore sharedStore] accounts] lastObject]
-                                   sendProgressHandler:^(unsigned long long bytesSend, unsigned long long bytesTotal) { // e.g., update a progress indicator
-                                   }
-                                   responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error){
-                                       NSLog(@"Success");
-                                       // Process the response
-                                   }];
-                        
-                        //NSLog([NSString stringWithFormat:@"%@", [aNotification.userInfo objectForKey:NXOAuth2AccountStoreNewAccountUserInfoKey]]);
-                    }];
-        
-        // En cas d'erreur, j'affiche une alerte avec un message correspondant
-        [[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreDidFailToRequestAccessNotification
-                    object:[NXOAuth2AccountStore sharedStore]
-                    queue:nil
-                    usingBlock:^(NSNotification *aNotification){
-                        NSError *error = [aNotification.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
-                        
-                        //Report de l'erreur dans la console
-                        /*for(id key in aNotification.userInfo)
-                            NSLog(@"key=%@ value=%@", key, [aNotification.userInfo objectForKey:key]);*/
-                        
-                        NSString *titre;
-                        NSString *mes;
-                        if(error.code == 400){
-                            titre = @"Mot de passe incorrect"; mes = @"Mauvaise combinaison entre l'identifiant et le mot de passe";}
-                        else if(error.code == -1009){
-                            titre = @"Pas de connection Internet"; mes = @"Il semble que vous ne soyiez pas connecté à Internet";}
-                        else{
-                            titre = @"Erreur non identifiée"; mes = @"Une erreur s'est produite qui n'a pas été identifiée. Vérifiez que vous avez correctement renseigné vos identifiants";}
-                        
-                        UIAlertView *alert = [[UIAlertView alloc]
-                                                initWithTitle:titre
-                                                message:mes delegate:self
-                                                cancelButtonTitle:@"Réessayer" otherButtonTitles:nil];
-                        [alert show];
-                    }];
-    
-        /* Puis je demande au serveur de ressources de VIA de me fournir les infos dont j'ai besoin (nom, prenom, photo...) et je les met dans une variable globale que je transmet à la page main view*/
-        
         // Transition vers la vue principale de l'appli (Main View Controller)
         success = false;
         [self shouldPerformSegueWithIdentifier:@"loginReussi" sender:self];
                 
-        }
+    }
 
 }
 
 - (IBAction)deconnection:(id)sender {
-    for (NXOAuth2Account *account in [[NXOAuth2AccountStore sharedStore] accounts]) {
-        [[NXOAuth2AccountStore sharedStore]  removeAccount:account];
-    }
+    //
 }
 
 

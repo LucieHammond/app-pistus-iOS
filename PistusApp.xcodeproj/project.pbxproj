@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5240FB68FE034B1DA5B994AE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 972F0108189D20F19292CCB6 /* libPods.a */; };
 		B716299B1C66357300675886 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B716299A1C66357300675886 /* APIManager.m */; };
 		B77E891B1C408158005CBD6D /* libNXOAuth2Client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B77E891A1C408158005CBD6D /* libNXOAuth2Client.a */; };
 		C52D72CC1C4ACA09005C05D1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52D72CB1C4ACA09005C05D1 /* Foundation.framework */; };
@@ -269,6 +270,7 @@
 				B77E891B1C408158005CBD6D /* libNXOAuth2Client.a in Frameworks */,
 				C570B86C1C30999B003E0E16 /* CoreLocation.framework in Frameworks */,
 				C570B8391C2B440F003E0E16 /* libsqlite3.dylib in Frameworks */,
+				5240FB68FE034B1DA5B994AE /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

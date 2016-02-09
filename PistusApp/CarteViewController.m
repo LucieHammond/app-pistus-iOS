@@ -170,7 +170,7 @@
         }
         [self updateUsersPositions];
     }
-    NSLog(@"Nombre utilisateurs suivis : %i",marqueursUtilisateurs.count);
+    NSLog(@"Nombre utilisateurs suivis : %lu",(unsigned long)marqueursUtilisateurs.count);
     
     [self updateSelfPosition];
 }
