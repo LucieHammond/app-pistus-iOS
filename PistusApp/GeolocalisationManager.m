@@ -261,7 +261,7 @@ static GeolocalisationManager* sharedInstance=nil;
         else
         {
             // Cas où on a déjà des infos sur la position précédente
-            NSLog(@"Info sur position et nombre d'entrées : %d",nbPositionsStockees);
+            //NSLog(@"Info sur position et nombre d'entrées : %d",nbPositionsStockees);
             
             // Si la table maPosition contient 5 entrées recentes qui correspondent à la même piste
             NSString *query = [NSString stringWithFormat:@"select count(*) from maPosition where id_piste = '%@'",_dernierePiste];
@@ -824,7 +824,6 @@ static GeolocalisationManager* sharedInstance=nil;
     if ([nav.visibleViewController.title isEqual:@"Carte View Controller"])
     {
         CarteViewController * CVcontroller = (CarteViewController*) nav.visibleViewController;
-        CVcontroller.apresClic = true;
         [CVcontroller updateSelfPosition];
     }
     else if([nav.visibleViewController.title isEqual:@"Statistiques"])

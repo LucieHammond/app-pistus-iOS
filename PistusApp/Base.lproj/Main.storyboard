@@ -110,7 +110,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="flecheGauche.png"/>
                                                     <connections>
-                                                        <segue destination="rTf-Kw-dH5" kind="modal" identifier="MainSegue" modalTransitionStyle="crossDissolve" id="g8c-47-mah"/>
+                                                        <segue destination="M25-bk-U8u" kind="modal" identifier="MainSegue" modalTransitionStyle="crossDissolve" id="sW3-MI-bu6"/>
                                                     </connections>
                                                 </button>
                                             </barButtonItem>
@@ -552,7 +552,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="flecheGauche.png"/>
                                                 <connections>
-                                                    <segue destination="rTf-Kw-dH5" kind="modal" modalTransitionStyle="crossDissolve" id="wtC-IK-wOy"/>
+                                                    <segue destination="M25-bk-U8u" kind="modal" modalTransitionStyle="crossDissolve" id="rRc-zV-nkw"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -1037,7 +1037,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="flecheGauche.png"/>
                                                 <connections>
-                                                    <segue destination="rTf-Kw-dH5" kind="modal" modalTransitionStyle="crossDissolve" id="76T-pi-1hO"/>
+                                                    <segue destination="M25-bk-U8u" kind="modal" modalTransitionStyle="crossDissolve" id="e3Z-RT-3uN"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -1214,7 +1214,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WaY-da-PgS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1762" y="-1489"/>
+            <point key="canvasLocation" x="1710" y="-1511"/>
         </scene>
         <!--Statistiques-->
         <scene sceneID="8pj-JG-Jxv">
@@ -1237,7 +1237,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uyv-jC-l1N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2102" y="-945"/>
+            <point key="canvasLocation" x="2120" y="-871"/>
         </scene>
         <!--Ma semaine-->
         <scene sceneID="FUE-YQ-2Dt">
@@ -1262,7 +1262,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="flecheGauche.png"/>
                                                 <connections>
-                                                    <segue destination="rTf-Kw-dH5" kind="modal" modalTransitionStyle="crossDissolve" id="pOL-LN-ldR"/>
+                                                    <segue destination="M25-bk-U8u" kind="modal" modalTransitionStyle="crossDissolve" id="Ab2-EI-oMR"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -1415,7 +1415,7 @@
             <objects>
                 <viewController storyboardIdentifier="MainView" title="Page principale" extendedLayoutIncludesOpaqueBars="YES" modalPresentationStyle="formSheet" id="rTf-Kw-dH5" customClass="MainViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hib-7z-TYh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accueil_4.jpg" id="MIs-8U-WMK">
@@ -1467,7 +1467,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" image="iconMap.png"/>
                                 <connections>
-                                    <segue destination="Q5G-pe-J1x" kind="modal" modalTransitionStyle="crossDissolve" id="3sI-kr-d9b"/>
+                                    <segue destination="Q5G-pe-J1x" kind="modal" identifier="CarteSegue" modalTransitionStyle="crossDissolve" id="3sI-kr-d9b"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Yh6-rN-leN">
@@ -1511,13 +1511,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Météo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jc3-EM-Faq">
-                                <rect key="frame" x="48" y="409" width="78" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mxf-Ud-6al">
                                 <rect key="frame" x="51" y="193" width="73" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1525,15 +1518,8 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="G7b-tI-sjH" kind="modal" modalTransitionStyle="crossDissolve" id="15F-1e-nd1"/>
+                                    <segue destination="G7b-tI-sjH" kind="modal" identifier="StatsSegue" modalTransitionStyle="crossDissolve" id="15F-1e-nd1"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FQJ-cU-sXY">
-                                <rect key="frame" x="44" y="320" width="83" height="87"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="iconMeteo.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6Zx-1Z-fI4">
                                 <rect key="frame" x="182" y="320" width="99" height="86"/>
@@ -1546,28 +1532,17 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Pae-2B-TRc">
-                                <rect key="frame" x="45" y="439" width="84" height="84"/>
+                                <rect key="frame" x="45" y="319" width="84" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="iconTroc.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="BUk-ML-F3U" kind="modal" modalTransitionStyle="crossDissolve" id="OEe-eI-snh"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="y8A-qD-HDi">
-                                <rect key="frame" x="185" y="436" width="92" height="92"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="iconContact.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="32s-4P-y3z">
-                                <rect key="frame" x="206" y="530" width="58" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Troc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iHT-Az-wmC">
-                                <rect key="frame" x="67" y="530" width="40" height="21"/>
+                                <rect key="frame" x="67" y="410" width="40" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1578,26 +1553,22 @@
                     </view>
                     <navigationItem key="navigationItem" id="P5v-7R-NCT"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="barre" destination="aef-ae-JJ4" id="Rxk-XF-a9o"/>
                         <outlet property="carte" destination="jeW-2V-hqq" id="BGJ-Os-FDB"/>
                         <outlet property="concours" destination="lXt-xN-iVq" id="g2T-oa-Odb"/>
-                        <outlet property="contact" destination="y8A-qD-HDi" id="KYx-Qk-IFH"/>
                         <outlet property="fondEcran" destination="MIs-8U-WMK" id="QXP-fy-b9R"/>
                         <outlet property="horaires" destination="6Zx-1Z-fI4" id="eey-Yh-Z5y"/>
                         <outlet property="infos" destination="Yh6-rN-leN" id="U78-qd-yqc"/>
-                        <outlet property="meteo" destination="FQJ-cU-sXY" id="0kE-qr-Hv5"/>
                         <outlet property="stats" destination="Mxf-Ud-6al" id="Cm3-N2-Kpw"/>
                         <outlet property="topBande" destination="NOE-Vv-8za" id="V5w-WH-bI0"/>
                         <outlet property="trackAcceptButton" destination="rik-Lu-32I" id="scl-BZ-zBI"/>
                         <outlet property="troc" destination="Pae-2B-TRc" id="v5Q-yR-cFQ"/>
                         <outlet property="txtCarte" destination="OMj-bA-Lc6" id="cWh-Di-xhB"/>
                         <outlet property="txtConcours" destination="6E8-JT-waM" id="szZ-L6-OBF"/>
-                        <outlet property="txtContact" destination="32s-4P-y3z" id="25H-mF-PAc"/>
                         <outlet property="txtHoraires" destination="4xY-ov-n6q" id="BRw-4c-EGb"/>
                         <outlet property="txtInfos" destination="deS-je-y9g" id="Cfb-hA-MAw"/>
-                        <outlet property="txtMeteo" destination="jc3-EM-Faq" id="qqg-66-nUl"/>
                         <outlet property="txtStats" destination="lBk-2C-Xu8" id="ZMy-iK-Wgu"/>
                         <outlet property="txtTroc" destination="iHT-Az-wmC" id="Tgd-jl-uOE"/>
                     </connections>
@@ -1785,14 +1756,14 @@
                                                     <rect key="frame" x="15" y="10" width="31.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9l1-IJ-8y6">
                                                     <rect key="frame" x="15" y="29.5" width="40.5" height="13.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1975,7 +1946,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y5E-X2-OxX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="171" y="81"/>
+            <point key="canvasLocation" x="1179" y="-731"/>
         </scene>
         <!--Horaires des remontées-->
         <scene sceneID="9p9-0e-mGA">
@@ -2009,11 +1980,9 @@
         <image name="flecheGauche.png" width="256" height="256"/>
         <image name="flecheGaucheHoraires.png" width="256" height="256"/>
         <image name="iconConcours.png" width="450" height="342"/>
-        <image name="iconContact.png" width="1192" height="1200"/>
         <image name="iconHoraires.png" width="515" height="437"/>
         <image name="iconInfo.png" width="640" height="469"/>
         <image name="iconMap.png" width="256" height="256"/>
-        <image name="iconMeteo.png" width="256" height="272"/>
         <image name="iconStats.png" width="256" height="270"/>
         <image name="iconTroc.png" width="256" height="256"/>
         <image name="satelliteoff.png" width="512" height="512"/>
@@ -2021,7 +1990,8 @@
         <image name="temps.png" width="567" height="567"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="g8c-47-mah"/>
+        <segue reference="vXf-WP-iyC"/>
+        <segue reference="Ab2-EI-oMR"/>
         <segue reference="qJ3-ur-bzc"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -29,12 +29,6 @@
     NSMutableArray *pistesUtilisateurs;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"MainSegue"]) {
-    }
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"View did load");
@@ -207,6 +201,7 @@
         _etoile_BAB.center = CGPointMake(X,Y);
         
         NSLog(@"1");
+        [self updateSelfPosition];
     }
     else{
         NSLog(@"2");
@@ -215,6 +210,7 @@
 }
 
 - (void) updateSelfPosition{
+    NSLog(@"Update self position");
     marqueur.hidden = true;
     _fondTexteDistance.hidden = true;
     _texteDistance.text= @"";
@@ -740,14 +736,10 @@
                     } completion:nil];
     [self viewDidLoad];
 }
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
 
 @end
