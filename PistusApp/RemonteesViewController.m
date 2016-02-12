@@ -75,6 +75,9 @@
     
     remontees = [NSArray arrayWithObjects:remonteesLF, remonteesPL, remonteesLS, nil];
 
+    //TEST TO BE REMOVED
+    [APIManager authenticate:@"2013henniarte" :@"hashEngu"];
+    
     //Getting data
     _apiLifts = [APIManager getFromApi:@"http://apistus.via.ecp.fr/lift/56b60925608aa"];
     

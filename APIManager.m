@@ -7,8 +7,41 @@
 //
 
 #import "APIManager.h"
+#include <CommonCrypto/CommonDigest.h>
 
 @implementation APIManager
+
++(NSMutableDictionary*)authenticate:(NSString *)login :(NSString *)password {
+    
+    // Encoding sha1
+    const char *cStr = [password UTF8String];
+    unsigned char result[CC_SHA1_DIGEST_LENGTH];
+    CC_SHA1(cStr, strlen(cStr), result);
+    
+    // Base64 encoding
+    NSData *nsdataPassword = [[NSData alloc] initWithBytes:result length:sizeof(result)];
+    NSString *hash = [nsdataPassword base64EncodedStringWithOptions:0];
+    NSString *finalHash = [@"{SHA}" stringByAppendingString:hash];
+
+    
+    NSMutableDictionary *body = [[NSMutableDictionary alloc]initWithCapacity:1];
+    [body setObject:finalHash forKey:@"pass"];
+    
+    NSString *url = [NSString stringWithFormat:@"http://apistus.via.ecp.fr/auth/%@", login];
+    
+    NSMutableDictionary *responseJson = [self postToApi:url :body];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:responseJson[@"authKey"] forKey:@"authKey"];
+    [defaults setObject:responseJson[@"data"][@"login"] forKey:@"login"];
+    [defaults synchronize];
+    
+    NSUserDefaults *defaults2 = [NSUserDefaults standardUserDefaults];
+    NSLog(@"%@",[defaults2 stringForKey:@"authKey"]);
+
+    return responseJson;
+}
+
 
 +(NSMutableDictionary*)getFromApi:(NSString *)url{
     NSLog(@"get from api");
@@ -40,11 +73,8 @@
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
     NSMutableDictionary *responseJson = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil];
     
+    NSLog(@"%@", responseJson);
     return responseJson;
-
-    //NSString *resp = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-    
-    //NSLog(@"%@", resp);
 }
 
 
