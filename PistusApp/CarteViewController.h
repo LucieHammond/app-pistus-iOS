@@ -46,5 +46,6 @@
 - (void) updateSelfPosition;
 - (void) updateUsersPositions;
 - (IBAction)supprimerMarqueur:(id)sender;
+- (IBAction)actualiser:(id)sender;
 
 @end

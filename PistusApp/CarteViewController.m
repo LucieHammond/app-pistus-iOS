@@ -312,6 +312,10 @@
     [marqueursUtilisateurs removeObject:marqueurBulle];
 }
 
+- (IBAction)actualiser:(id)sender {
+    [self updateUsersPositions];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
