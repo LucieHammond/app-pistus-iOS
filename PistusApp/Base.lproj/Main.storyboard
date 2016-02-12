@@ -152,6 +152,11 @@
                                     <action selector="supprimerMarqueur:" destination="t2j-nU-UHC" eventType="touchUpInside" id="M4a-rs-Q26"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6Bh-sm-hwT">
+                                <rect key="frame" x="208" y="143" width="17" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="etoile.png"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -165,6 +170,7 @@
                         <outlet property="etoile_Luge" destination="tCx-dx-Mgy" id="BSF-0U-LMJ"/>
                         <outlet property="etoile_Pat" destination="6LY-zC-U2a" id="z2e-7S-onb"/>
                         <outlet property="etoile_Rez" destination="QBf-tf-lWj" id="Bq4-ZW-NWW"/>
+                        <outlet property="etoile_Yooner" destination="6Bh-sm-hwT" id="Zrd-B5-TfV"/>
                         <outlet property="fondTexteDistance" destination="lGN-gA-AFZ" id="MdX-1v-UaY"/>
                         <outlet property="pinchGesture" destination="H6q-3p-j7c" id="f4G-b9-dWG"/>
                         <outlet property="scrollView" destination="R7k-Nv-Qz0" id="AjG-Ef-pK5"/>
