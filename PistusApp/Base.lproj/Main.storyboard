@@ -39,10 +39,6 @@
                                 <rect key="frame" x="0.0" y="163" width="320" height="317"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="H6q-3p-j7c" appends="YES" id="Oo8-Qk-8Ap"/>
-                                    <outletCollection property="gestureRecognizers" destination="H6q-3p-j7c" appends="YES" id="g2L-vh-YbL"/>
-                                </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QBf-tf-lWj">
                                 <rect key="frame" x="293" y="80" width="17" height="17"/>
@@ -188,7 +184,11 @@
                         <outlet property="searchResultsDelegate" destination="t2j-nU-UHC" id="ITa-Xf-F6a"/>
                     </connections>
                 </searchDisplayController>
-                <pinchGestureRecognizer id="H6q-3p-j7c"/>
+                <pinchGestureRecognizer id="H6q-3p-j7c">
+                    <connections>
+                        <outlet property="delegate" destination="R7k-Nv-Qz0" id="7ba-Wt-eLu"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="284" y="-582"/>
         </scene>
@@ -1991,7 +1991,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vXf-WP-iyC"/>
-        <segue reference="Ab2-EI-oMR"/>
+        <segue reference="sW3-MI-bu6"/>
         <segue reference="qJ3-ur-bzc"/>
     </inferredMetricsTieBreakers>
 </document>
