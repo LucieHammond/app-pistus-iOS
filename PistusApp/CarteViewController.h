@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *etoile_Luge;
 @property (weak, nonatomic) IBOutlet UIButton *etoile_BAB;
 @property (weak, nonatomic) IBOutlet UIButton *etoile_ESF;
+@property (weak, nonatomic) IBOutlet UIButton *etoile_Yooner;
 @property (strong, nonatomic) IBOutlet UIImageView *pateBulle;
 @property (strong, nonatomic) IBOutlet UILabel *titre;
 @property (strong, nonatomic) IBOutlet UILabel *nomPiste;
@@ -46,5 +47,6 @@
 - (void) updateSelfPosition;
 - (void) updateUsersPositions;
 - (IBAction)supprimerMarqueur:(id)sender;
+- (IBAction)actualiser:(id)sender;
 
 @end

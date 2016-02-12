@@ -29,12 +29,6 @@
     NSMutableArray *pistesUtilisateurs;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"MainSegue"]) {
-    }
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"View did load");
@@ -73,6 +67,8 @@
     [_etoile_ESF addTarget:self action:@selector(afficherDetailsPourMarqueur:)
           forControlEvents:UIControlEventTouchUpInside];
     [_etoile_BAB addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+          forControlEvents:UIControlEventTouchUpInside];
+    [_etoile_Yooner addTarget:self action:@selector(afficherDetailsPourMarqueur:)
           forControlEvents:UIControlEventTouchUpInside];
     
     // Ajout du bouton pour recentrer sur la position de l'utilisateur
@@ -205,8 +201,13 @@
         X = _scrollView.contentSize.width/7452*3010 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
         Y = _scrollView.contentSize.height/3174*1650 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         _etoile_BAB.center = CGPointMake(X,Y);
+        X = _scrollView.contentSize.width/7452*2824 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        Y = _scrollView.contentSize.height/3174*1566 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        _etoile_BAB.center = CGPointMake(X,Y);
+
         
         NSLog(@"1");
+        [self updateSelfPosition];
     }
     else{
         NSLog(@"2");
@@ -215,6 +216,7 @@
 }
 
 - (void) updateSelfPosition{
+    NSLog(@"Update self position");
     marqueur.hidden = true;
     _fondTexteDistance.hidden = true;
     _texteDistance.text= @"";
@@ -314,6 +316,10 @@
     [[GeolocalisationManager sharedInstance].utilisateursSuivis removeObjectAtIndex:i];
     [marqueurBulle removeFromSuperview];
     [marqueursUtilisateurs removeObject:marqueurBulle];
+}
+
+- (IBAction)actualiser:(id)sender {
+    [self updateUsersPositions];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -477,6 +483,8 @@
             _titre.text=@"Départ cours ESF";
         else if(sender==_etoile_BAB)
             _titre.text=@"Big Air Bag";
+        else if(sender==_etoile_Yooner)
+            _titre.text=@"Depart Yooner";
         [_titre sizeToFit];
         _titre.center=CGPointMake(sender.center.x,sender.frame.origin.y-20);
         _titre.hidden=false;
@@ -563,6 +571,9 @@
     X = _scrollView.contentSize.width/7452*3010 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
     Y = _scrollView.contentSize.height/3174*1650 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
     _etoile_BAB.center = CGPointMake(X,Y);
+    X = _scrollView.contentSize.width/7452*2824 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    Y = _scrollView.contentSize.height/3174*1566 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    _etoile_Yooner.center = CGPointMake(X,Y);
     
     for(UIButton *marqueurUtilisateur in marqueursUtilisateurs)
     {
@@ -740,14 +751,10 @@
                     } completion:nil];
     [self viewDidLoad];
 }
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
 
 @end

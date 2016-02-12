@@ -39,8 +39,7 @@
     }
     titreLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, [UIScreen mainScreen].bounds.size.width-35, 26)];
     UIFont *font = [UIFont fontWithName:@"Times New Roman" size:20];
-    UIFontDescriptor * fontD = [font.fontDescriptor fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitBold];
-    [titreLabel setFont:[UIFont fontWithDescriptor:fontD size:0]];
+    [titreLabel setFont:font];
     titreLabel.text = titre;
     titreLabel.adjustsFontSizeToFitWidth = YES;
     titreLabel.minimumScaleFactor = 0.8;
@@ -56,7 +55,7 @@
         [self addSubview:dateLabel];
     }
     
-    texte = [[UILabel alloc] initWithFrame:CGRectMake(20, 48+supplement, [UIScreen mainScreen].bounds.size.width-35, 500)];
+    texte = [[UILabel alloc] initWithFrame:CGRectMake(20, 48+supplement, [UIScreen mainScreen].bounds.size.width-40, 500)];
     texte.numberOfLines = 0;
     NSError *err = nil;
     texte.attributedText =[[NSAttributedString alloc]initWithData: [html dataUsingEncoding:NSUTF16StringEncoding] options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType }

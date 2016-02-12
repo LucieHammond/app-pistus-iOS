@@ -51,6 +51,10 @@
 @property (nonatomic) BOOL enStation;
 @property (nonatomic) NSMutableArray *utilisateursSuivis;
 
+// Controllers
+@property (nonatomic) BOOL carte;
+@property (nonatomic) BOOL stats;
+
 +(GeolocalisationManager*)sharedInstance;
 +(void)setSharedInstance:(GeolocalisationManager*)gm;
 -(BOOL)beginTrack;

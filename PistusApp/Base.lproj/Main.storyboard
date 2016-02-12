@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="M25-bk-U8u">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
@@ -39,10 +39,6 @@
                                 <rect key="frame" x="0.0" y="163" width="320" height="317"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="H6q-3p-j7c" appends="YES" id="Oo8-Qk-8Ap"/>
-                                    <outletCollection property="gestureRecognizers" destination="H6q-3p-j7c" appends="YES" id="g2L-vh-YbL"/>
-                                </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QBf-tf-lWj">
                                 <rect key="frame" x="293" y="80" width="17" height="17"/>
@@ -110,7 +106,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="flecheGauche.png"/>
                                                     <connections>
-                                                        <segue destination="rTf-Kw-dH5" kind="modal" identifier="MainSegue" modalTransitionStyle="crossDissolve" id="g8c-47-mah"/>
+                                                        <segue destination="M25-bk-U8u" kind="modal" identifier="MainSegue" modalTransitionStyle="crossDissolve" id="sW3-MI-bu6"/>
                                                     </connections>
                                                 </button>
                                             </barButtonItem>
@@ -133,6 +129,9 @@
                                                     <rect key="frame" x="229" y="4" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button" image="actualiser.png"/>
+                                                    <connections>
+                                                        <action selector="actualiser:" destination="t2j-nU-UHC" eventType="touchUpInside" id="ywU-Wn-pId"/>
+                                                    </connections>
                                                 </button>
                                             </barButtonItem>
                                         </rightBarButtonItems>
@@ -153,6 +152,11 @@
                                     <action selector="supprimerMarqueur:" destination="t2j-nU-UHC" eventType="touchUpInside" id="M4a-rs-Q26"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6Bh-sm-hwT">
+                                <rect key="frame" x="208" y="143" width="17" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="etoile.png"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -166,6 +170,7 @@
                         <outlet property="etoile_Luge" destination="tCx-dx-Mgy" id="BSF-0U-LMJ"/>
                         <outlet property="etoile_Pat" destination="6LY-zC-U2a" id="z2e-7S-onb"/>
                         <outlet property="etoile_Rez" destination="QBf-tf-lWj" id="Bq4-ZW-NWW"/>
+                        <outlet property="etoile_Yooner" destination="6Bh-sm-hwT" id="Zrd-B5-TfV"/>
                         <outlet property="fondTexteDistance" destination="lGN-gA-AFZ" id="MdX-1v-UaY"/>
                         <outlet property="pinchGesture" destination="H6q-3p-j7c" id="f4G-b9-dWG"/>
                         <outlet property="scrollView" destination="R7k-Nv-Qz0" id="AjG-Ef-pK5"/>
@@ -188,7 +193,11 @@
                         <outlet property="searchResultsDelegate" destination="t2j-nU-UHC" id="ITa-Xf-F6a"/>
                     </connections>
                 </searchDisplayController>
-                <pinchGestureRecognizer id="H6q-3p-j7c"/>
+                <pinchGestureRecognizer id="H6q-3p-j7c">
+                    <connections>
+                        <outlet property="delegate" destination="R7k-Nv-Qz0" id="7ba-Wt-eLu"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="284" y="-582"/>
         </scene>
@@ -197,7 +206,7 @@
             <objects>
                 <viewController title="Mes Infos" id="fT5-Tb-ybX" customClass="MesInfosViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SgL-dX-yeh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translucent="NO" id="P1L-KN-8TC">
@@ -273,7 +282,7 @@
             <objects>
                 <viewController title="Informations générales" id="cdV-88-mC3" customClass="InfosGlobalesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l1W-bZ-o63">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="qgx-df-iwy">
@@ -348,7 +357,7 @@
             <objects>
                 <viewController title="Flash news" id="trH-vZ-ket" customClass="NewsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kge-ot-bD7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="uF2-Cz-O4H">
@@ -447,7 +456,7 @@
             <objects>
                 <viewController id="IRz-zR-tQK" customClass="ConcoursViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S7C-cy-jCC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="xkx-FL-fGM">
@@ -552,7 +561,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="flecheGauche.png"/>
                                                 <connections>
-                                                    <segue destination="rTf-Kw-dH5" kind="modal" modalTransitionStyle="crossDissolve" id="wtC-IK-wOy"/>
+                                                    <segue destination="M25-bk-U8u" kind="modal" modalTransitionStyle="crossDissolve" id="rRc-zV-nkw"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -1037,7 +1046,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="flecheGauche.png"/>
                                                 <connections>
-                                                    <segue destination="rTf-Kw-dH5" kind="modal" modalTransitionStyle="crossDissolve" id="76T-pi-1hO"/>
+                                                    <segue destination="M25-bk-U8u" kind="modal" modalTransitionStyle="crossDissolve" id="e3Z-RT-3uN"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -1214,7 +1223,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WaY-da-PgS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1762" y="-1489"/>
+            <point key="canvasLocation" x="1710" y="-1511"/>
         </scene>
         <!--Statistiques-->
         <scene sceneID="8pj-JG-Jxv">
@@ -1237,7 +1246,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uyv-jC-l1N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2102" y="-945"/>
+            <point key="canvasLocation" x="2120" y="-871"/>
         </scene>
         <!--Ma semaine-->
         <scene sceneID="FUE-YQ-2Dt">
@@ -1262,7 +1271,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="flecheGauche.png"/>
                                                 <connections>
-                                                    <segue destination="rTf-Kw-dH5" kind="modal" modalTransitionStyle="crossDissolve" id="pOL-LN-ldR"/>
+                                                    <segue destination="M25-bk-U8u" kind="modal" modalTransitionStyle="crossDissolve" id="Ab2-EI-oMR"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -1363,6 +1372,17 @@
                                     <action selector="connection:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="8Kn-S1-qOb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KeG-Al-D1u">
+                                <rect key="frame" x="94" y="328" width="133" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="connexion.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="connection:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="QKx-vH-lMo"/>
+                                    <segue destination="rTf-Kw-dH5" kind="modal" identifier="loginReussi" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="lQ6-pM-AE6"/>
+                                </connections>
+                            </button>
                             <textField opaque="NO" clipsSubviews="YES" alpha="0.89999999999999991" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login MyECP" minimumFontSize="17" id="9kG-7y-Na6">
                                 <rect key="frame" x="47" y="156" width="227" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1373,6 +1393,16 @@
                                     <action selector="translationID:" destination="vXZ-lx-hvc" eventType="editingDidBegin" id="Wcc-gx-NsH"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Vv7-fX-CjS">
+                                <rect key="frame" x="184" y="56" width="90" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Deconnexion">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deconnection:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kNq-im-AJa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -1394,29 +1424,29 @@
             <objects>
                 <viewController storyboardIdentifier="MainView" title="Page principale" extendedLayoutIncludesOpaqueBars="YES" modalPresentationStyle="formSheet" id="rTf-Kw-dH5" customClass="MainViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hib-7z-TYh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="accueil_4.jpg" id="MIs-8U-WMK">
-                                <rect key="frame" x="-1" y="2" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistiques" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lBk-2C-Xu8">
-                                <rect key="frame" x="35" y="277" width="105" height="21"/>
+                                <rect key="frame" x="61" y="445" width="105" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Concours" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6E8-JT-waM">
-                                <rect key="frame" x="185" y="277" width="96" height="21"/>
+                                <rect key="frame" x="263" y="445" width="96" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <navigationBar contentMode="scaleToFill" translucent="NO" id="aef-ae-JJ4">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <textAttributes key="titleTextAttributes">
@@ -1427,7 +1457,7 @@
                                     <navigationItem title="Accueil" id="DlN-kc-16B">
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="rik-Lu-32I">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wd2-sJ-dyA">
-                                                <rect key="frame" x="272" y="5" width="32" height="33"/>
+                                                <rect key="frame" x="362" y="5" width="32" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button" image="satelliteoff.png"/>
                                             </button>
@@ -1436,21 +1466,21 @@
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" id="NOE-Vv-8za">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jeW-2V-hqq">
-                                <rect key="frame" x="31" y="75" width="113" height="94"/>
+                                <rect key="frame" x="33" y="102" width="160" height="149"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" image="iconMap.png"/>
                                 <connections>
-                                    <segue destination="Q5G-pe-J1x" kind="modal" modalTransitionStyle="crossDissolve" id="3sI-kr-d9b"/>
+                                    <segue destination="Q5G-pe-J1x" kind="modal" identifier="CarteSegue" modalTransitionStyle="crossDissolve" id="3sI-kr-d9b"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Yh6-rN-leN">
-                                <rect key="frame" x="179" y="97" width="108" height="53"/>
+                                <rect key="frame" x="237" y="132" width="149" height="95"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="iconInfo.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1460,7 +1490,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lXt-xN-iVq">
-                                <rect key="frame" x="178" y="192" width="112" height="82"/>
+                                <rect key="frame" x="230" y="311" width="163" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="iconConcours.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1470,83 +1500,41 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carte" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OMj-bA-Lc6">
-                                <rect key="frame" x="59" y="154" width="56" height="21"/>
+                                <rect key="frame" x="85" y="230" width="56" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Informations" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="deS-je-y9g">
-                                <rect key="frame" x="172" y="154" width="127" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ouvertures" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4xY-ov-n6q">
-                                <rect key="frame" x="188" y="409" width="91" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Météo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jc3-EM-Faq">
-                                <rect key="frame" x="48" y="409" width="78" height="21"/>
+                                <rect key="frame" x="248" y="229" width="127" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mxf-Ud-6al">
-                                <rect key="frame" x="51" y="193" width="73" height="77"/>
+                                <rect key="frame" x="55" y="315" width="117" height="122"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="iconStats.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="G7b-tI-sjH" kind="modal" modalTransitionStyle="crossDissolve" id="15F-1e-nd1"/>
+                                    <segue destination="G7b-tI-sjH" kind="modal" identifier="StatsSegue" modalTransitionStyle="crossDissolve" id="15F-1e-nd1"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FQJ-cU-sXY">
-                                <rect key="frame" x="44" y="320" width="83" height="87"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6Zx-1Z-fI4">
+                                <rect key="frame" x="51" y="533" width="125" height="125"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="iconMeteo.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6Zx-1Z-fI4">
-                                <rect key="frame" x="182" y="320" width="99" height="86"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="iconHoraires.png">
+                                <state key="normal" image="iconHoraires2.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="Gt0-2T-xTm" kind="modal" modalTransitionStyle="crossDissolve" id="qJ3-ur-bzc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Pae-2B-TRc">
-                                <rect key="frame" x="45" y="439" width="84" height="84"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="iconTroc.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="y8A-qD-HDi">
-                                <rect key="frame" x="185" y="436" width="92" height="92"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="iconContact.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="32s-4P-y3z">
-                                <rect key="frame" x="206" y="530" width="58" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Troc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iHT-Az-wmC">
-                                <rect key="frame" x="67" y="530" width="40" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ouvertures" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4xY-ov-n6q">
+                                <rect key="frame" x="68" y="666" width="91" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1557,33 +1545,27 @@
                     </view>
                     <navigationItem key="navigationItem" id="P5v-7R-NCT"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="barre" destination="aef-ae-JJ4" id="Rxk-XF-a9o"/>
                         <outlet property="carte" destination="jeW-2V-hqq" id="BGJ-Os-FDB"/>
                         <outlet property="concours" destination="lXt-xN-iVq" id="g2T-oa-Odb"/>
-                        <outlet property="contact" destination="y8A-qD-HDi" id="KYx-Qk-IFH"/>
                         <outlet property="fondEcran" destination="MIs-8U-WMK" id="QXP-fy-b9R"/>
                         <outlet property="horaires" destination="6Zx-1Z-fI4" id="eey-Yh-Z5y"/>
                         <outlet property="infos" destination="Yh6-rN-leN" id="U78-qd-yqc"/>
-                        <outlet property="meteo" destination="FQJ-cU-sXY" id="0kE-qr-Hv5"/>
                         <outlet property="stats" destination="Mxf-Ud-6al" id="Cm3-N2-Kpw"/>
                         <outlet property="topBande" destination="NOE-Vv-8za" id="V5w-WH-bI0"/>
                         <outlet property="trackAcceptButton" destination="rik-Lu-32I" id="scl-BZ-zBI"/>
-                        <outlet property="troc" destination="Pae-2B-TRc" id="v5Q-yR-cFQ"/>
                         <outlet property="txtCarte" destination="OMj-bA-Lc6" id="cWh-Di-xhB"/>
                         <outlet property="txtConcours" destination="6E8-JT-waM" id="szZ-L6-OBF"/>
-                        <outlet property="txtContact" destination="32s-4P-y3z" id="25H-mF-PAc"/>
                         <outlet property="txtHoraires" destination="4xY-ov-n6q" id="BRw-4c-EGb"/>
                         <outlet property="txtInfos" destination="deS-je-y9g" id="Cfb-hA-MAw"/>
-                        <outlet property="txtMeteo" destination="jc3-EM-Faq" id="qqg-66-nUl"/>
                         <outlet property="txtStats" destination="lBk-2C-Xu8" id="ZMy-iK-Wgu"/>
-                        <outlet property="txtTroc" destination="iHT-Az-wmC" id="Tgd-jl-uOE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DpD-oY-QP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1045" y="99"/>
+            <point key="canvasLocation" x="1036" y="110"/>
         </scene>
         <!--Horaires View Controller-->
         <scene sceneID="CdM-pB-Yoc">
@@ -1808,6 +1790,54 @@
                     <view key="view" contentMode="scaleToFill" id="IFX-oz-BLT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="3ki-ru-KnU">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" id="UKF-wO-UpZ">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Troc" id="ZAD-Ey-uow">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="xBH-Gb-l8D">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zt3-fj-OBU">
+                                                <rect key="frame" x="16" y="11" width="22" height="22"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="flecheGauche.png"/>
+                                            </button>
+                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem id="sMw-hW-qDp">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WA4-CK-ouV">
+                                                    <rect key="frame" x="272" y="5" width="32" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="satelliteoff.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" id="GGT-F5-JvD">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="unS-7T-3HM">
+                                                    <rect key="frame" x="229" y="4" width="35" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="actualiser.png"/>
+                                                    <connections>
+                                                        <action selector="actualiser:" destination="yrl-kZ-yLj" eventType="touchUpInside" id="VXh-aC-zlJ"/>
+                                                        <action selector="actualiser:" destination="IRz-zR-tQK" eventType="touchUpInside" id="zVy-Tx-YaM"/>
+                                                    </connections>
+                                                </button>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
@@ -1954,7 +1984,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y5E-X2-OxX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="171" y="81"/>
+            <point key="canvasLocation" x="1179" y="-731"/>
         </scene>
         <!--Horaires des remontées-->
         <scene sceneID="9p9-0e-mGA">
@@ -1988,19 +2018,17 @@
         <image name="flecheGauche.png" width="256" height="256"/>
         <image name="flecheGaucheHoraires.png" width="256" height="256"/>
         <image name="iconConcours.png" width="450" height="342"/>
-        <image name="iconContact.png" width="1192" height="1200"/>
-        <image name="iconHoraires.png" width="515" height="437"/>
+        <image name="iconHoraires2.png" width="252" height="251"/>
         <image name="iconInfo.png" width="640" height="469"/>
         <image name="iconMap.png" width="256" height="256"/>
-        <image name="iconMeteo.png" width="256" height="272"/>
         <image name="iconStats.png" width="256" height="270"/>
-        <image name="iconTroc.png" width="256" height="256"/>
         <image name="satelliteoff.png" width="512" height="512"/>
         <image name="speedometer.png" width="550" height="550"/>
         <image name="temps.png" width="567" height="567"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="3uO-n3-euh"/>
         <segue reference="qJ3-ur-bzc"/>
-        <segue reference="wtC-IK-wOy"/>
+        <segue reference="sW3-MI-bu6"/>
     </inferredMetricsTieBreakers>
 </document>
