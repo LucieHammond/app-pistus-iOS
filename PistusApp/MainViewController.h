@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *carte;
 @property (weak, nonatomic) IBOutlet UIButton *infos;
 @property (weak, nonatomic) IBOutlet UIButton *stats;
-@property (weak, nonatomic) IBOutlet UIButton *troc;
 @property (weak, nonatomic) IBOutlet UIButton *concours;
 @property (weak, nonatomic) IBOutlet UIButton *horaires;
 @property (weak, nonatomic) IBOutlet UILabel *txtCarte;
@@ -27,6 +26,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *txtStats;
 @property (weak, nonatomic) IBOutlet UILabel *txtConcours;
 @property (weak, nonatomic) IBOutlet UILabel *txtHoraires;
-@property (weak, nonatomic) IBOutlet UILabel *txtTroc;
 
 @end

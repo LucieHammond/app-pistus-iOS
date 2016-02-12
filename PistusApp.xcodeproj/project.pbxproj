@@ -49,7 +49,6 @@
 		C52D732F1C4D98FF005C05D1 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D732E1C4D98FF005C05D1 /* CustomTableViewCell.m */; };
 		C52D73321C4DB6FB005C05D1 /* HorairesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D73311C4DB6FB005C05D1 /* HorairesViewController.m */; };
 		C539A78D1BF1F56A00B9E3ED /* iconContact.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7881BF1F56A00B9E3ED /* iconContact.png */; };
-		C539A78E1BF1F56A00B9E3ED /* iconHoraires.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A7891BF1F56A00B9E3ED /* iconHoraires.png */; };
 		C539A78F1BF1F56A00B9E3ED /* iconMeteo.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */; };
 		C539A7901BF1F56A00B9E3ED /* iconStats.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78B1BF1F56A00B9E3ED /* iconStats.png */; };
 		C539A7911BF1F56A00B9E3ED /* iconTroc.png in Resources */ = {isa = PBXBuildFile; fileRef = C539A78C1BF1F56A00B9E3ED /* iconTroc.png */; };
@@ -111,6 +110,7 @@
 		C5DDCCA71C52352000FA1515 /* ConcoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DDCCA61C52352000FA1515 /* ConcoursViewController.m */; };
 		C5F3488F1BE8FB98003B94C6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F3488E1BE8FB98003B94C6 /* MainViewController.m */; };
 		C5F7B8AE1C41472E00419A86 /* marker2.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F7B8AD1C41472E00419A86 /* marker2.png */; };
+		C5F8780D1C6E5D80000ABEF8 /* iconHoraires2.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F8780C1C6E5D80000ABEF8 /* iconHoraires2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,7 +182,6 @@
 		C52D73301C4DB6FB005C05D1 /* HorairesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorairesViewController.h; sourceTree = "<group>"; };
 		C52D73311C4DB6FB005C05D1 /* HorairesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorairesViewController.m; sourceTree = "<group>"; };
 		C539A7881BF1F56A00B9E3ED /* iconContact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconContact.png; sourceTree = "<group>"; };
-		C539A7891BF1F56A00B9E3ED /* iconHoraires.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconHoraires.png; sourceTree = "<group>"; };
 		C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconMeteo.png; sourceTree = "<group>"; };
 		C539A78B1BF1F56A00B9E3ED /* iconStats.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconStats.png; sourceTree = "<group>"; };
 		C539A78C1BF1F56A00B9E3ED /* iconTroc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconTroc.png; sourceTree = "<group>"; };
@@ -258,6 +257,7 @@
 		C5F3488D1BE8FB98003B94C6 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		C5F3488E1BE8FB98003B94C6 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		C5F7B8AD1C41472E00419A86 /* marker2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker2.png; sourceTree = "<group>"; };
+		C5F8780C1C6E5D80000ABEF8 /* iconHoraires2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconHoraires2.png; sourceTree = "<group>"; };
 		D0F8C00AA3DA8C893901048B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -489,7 +489,7 @@
 				C5C05E741BEFF6FC007D763E /* iconInfo.png */,
 				C5C05E751BEFF6FC007D763E /* iconMap.png */,
 				C539A7881BF1F56A00B9E3ED /* iconContact.png */,
-				C539A7891BF1F56A00B9E3ED /* iconHoraires.png */,
+				C5F8780C1C6E5D80000ABEF8 /* iconHoraires2.png */,
 				C539A78A1BF1F56A00B9E3ED /* iconMeteo.png */,
 				C539A78B1BF1F56A00B9E3ED /* iconStats.png */,
 				C539A78C1BF1F56A00B9E3ED /* iconTroc.png */,
@@ -625,7 +625,6 @@
 				C52D731C1C4D8630005C05D1 /* boardercrossBleu.png in Resources */,
 				C52D732C1C4D8630005C05D1 /* TSD.png in Resources */,
 				C5DC56E01C6740780011A9F1 /* marker1.png in Resources */,
-				C539A78E1BF1F56A00B9E3ED /* iconHoraires.png in Resources */,
 				C539A7901BF1F56A00B9E3ED /* iconStats.png in Resources */,
 				C570B8681C2EDC23003E0E16 /* satelliteoff.png in Resources */,
 				C58083F61C5D171B00BE73A3 /* medaille vermeil.png in Resources */,
@@ -634,6 +633,7 @@
 				C5C05E881BEFF7A0007D763E /* connexion.png in Resources */,
 				C52D73231C4D8630005C05D1 /* pisteNoire.png in Resources */,
 				C52D730A1C4D1D64005C05D1 /* remontee.png in Resources */,
+				C5F8780D1C6E5D80000ABEF8 /* iconHoraires2.png in Resources */,
 				C58083FD1C5D209100BE73A3 /* fleche-or.png in Resources */,
 				C58083FE1C5D209100BE73A3 /* fleche-vermeil.png in Resources */,
 				C5C05E8C1BEFF7A0007D763E /* Login@2x~iphone.png in Resources */,
