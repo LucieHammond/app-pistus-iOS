@@ -16,7 +16,7 @@
     // Encoding sha1
     const char *cStr = [password UTF8String];
     unsigned char result[CC_SHA1_DIGEST_LENGTH];
-    CC_SHA1(cStr, strlen(cStr), result);
+    CC_SHA1(cStr, (unsigned int)strlen(cStr), result);
     
     // Base64 encoding
     NSData *nsdataPassword = [[NSData alloc] initWithBytes:result length:sizeof(result)];
@@ -31,21 +31,28 @@
     
     NSMutableDictionary *responseJson = [self postToApi:url :body];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:responseJson[@"authKey"] forKey:@"authKey"];
-    [defaults setObject:responseJson[@"data"][@"login"] forKey:@"login"];
-    [defaults synchronize];
-    
-    NSUserDefaults *defaults2 = [NSUserDefaults standardUserDefaults];
-    NSLog(@"%@",[defaults2 stringForKey:@"authKey"]);
-
-    return responseJson;
+    if(responseJson) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:responseJson[@"authKey"] forKey:@"authKey"];
+        [defaults setObject:responseJson[@"data"][@"login"] forKey:@"login"];
+        [defaults synchronize];
+        
+        return responseJson;
+    }
+    else {
+        return NULL;
+    }
 }
 
 
 +(NSMutableDictionary*)getFromApi:(NSString *)url{
     NSLog(@"get from api");
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    
+    NSString *authKey = [[NSUserDefaults standardUserDefaults] stringForKey:@"authKey"];
+
+    url = [url stringByReplacingOccurrencesOfString:@"AUTH_KEY" withString:authKey];
+    
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"GET"];
     NSError *error = nil;
@@ -54,7 +61,13 @@
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
     NSMutableDictionary *responseJson = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil];
     
-    return responseJson;
+    if((long)[responseCode statusCode] == 200)
+    {
+        return responseJson;
+    }
+    else {
+        return NULL;
+    }
     
 }
 
@@ -62,6 +75,10 @@
     NSLog(@"post to api");
     NSError *error = nil;
     NSHTTPURLResponse *responseCode = nil;
+    
+    NSString *authKey = [[NSUserDefaults standardUserDefaults] stringForKey:@"authKey"];
+    
+    url = [url stringByReplacingOccurrencesOfString:@"AUTH_KEY" withString:authKey];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     NSData *postdata = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&error];
@@ -73,8 +90,13 @@
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
     NSMutableDictionary *responseJson = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil];
     
-    NSLog(@"%@", responseJson);
-    return responseJson;
+    if((long)[responseCode statusCode] == 200)
+    {
+        return responseJson;
+    }
+    else {
+        return NULL;
+    }
 }
 
 

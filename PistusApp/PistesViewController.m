@@ -58,7 +58,7 @@
     pistes = [NSArray arrayWithObjects:pistesLF, pistesPL, pistesLS, nil];
     
     //Getting data
-    _apiSlopes = [APIManager getFromApi:@"http://apistus.via.ecp.fr/slope/56b60925608aa"];
+    _apiSlopes = [APIManager getFromApi:@"http://apistus.via.ecp.fr/slope/AUTH_KEY"];
     
     closedSlopes = [[NSMutableArray alloc] init];
     NSInteger i;

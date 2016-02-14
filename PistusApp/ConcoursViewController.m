@@ -40,7 +40,7 @@
                forControlEvents:UIControlEventTouchUpInside];
     
     //Getting data
-    _contests = [APIManager getFromApi:@"http://apistus.via.ecp.fr/contest/56b60925608aa"];
+    _contests = [APIManager getFromApi:@"http://apistus.via.ecp.fr/contest/AUTH_KEY"];
     
     // Configuration de la TableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-65)];

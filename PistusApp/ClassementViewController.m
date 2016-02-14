@@ -24,7 +24,7 @@
     [self setNeedsStatusBarAppearanceUpdate];
 
     //Getting data
-    _rankings = [APIManager getFromApi:@"http://apistus.via.ecp.fr/ranking/56b60925608aa"];
+    _rankings = [APIManager getFromApi:@"http://apistus.via.ecp.fr/ranking/AUTH_KEY"];
     NSLog(@"%@", _rankings);
 
     // VITESSE
@@ -49,56 +49,56 @@
     _classementAltitude.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"altMax"][@"count"]];
     
     _g1Altitude.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][0][@"lastName"]];
-    _v1Altitude.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"altMax"][@"ranking"][0][@"altMax"] floatValue] * 3.6];
+    _v1Altitude.text = [NSString stringWithFormat:@"%@ m", _rankings[@"data"][@"altMax"][@"ranking"][0][@"altMax"]];
     
     _g2Altitude.text = [NSString stringWithFormat:@"2 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][1][@"lastName"]];
-    _v2Altitude.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"altMax"][@"ranking"][1][@"altMax"] floatValue] * 3.6];
+    _v2Altitude.text = [NSString stringWithFormat:@"%@ m", _rankings[@"data"][@"altMax"][@"ranking"][1][@"altMax"]];
     
     _g3Altitude.text = [NSString stringWithFormat:@"3 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][2][@"lastName"]];
-    _v3Altitude.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"altMax"][@"ranking"][2][@"altMax"] floatValue] * 3.6];
+    _v3Altitude.text = [NSString stringWithFormat:@"%@ m", _rankings[@"data"][@"altMax"][@"ranking"][2][@"altMax"]];
     
     _g4Altitude.text = [NSString stringWithFormat:@"4 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][3][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][3][@"lastName"]];
-    _v4Altitude.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"altMax"][@"ranking"][3][@"altMax"] floatValue] * 3.6];
+    _v4Altitude.text = [NSString stringWithFormat:@"%@ m", _rankings[@"data"][@"altMax"][@"ranking"][3][@"altMax"]];
     
     _g5Altitude.text = [NSString stringWithFormat:@"5 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][4][@"lastName"]];
-    _v5Altitude.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"altMax"][@"ranking"][4][@"altMax"] floatValue] * 3.6];
+    _v5Altitude.text = [NSString stringWithFormat:@"%@ m", _rankings[@"data"][@"altMax"][@"ranking"][4][@"altMax"]];
     
     
     // DISTANCE
     _classementDistance.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"kmSki"][@"count"]];
     
     _g1Distance.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][0][@"lastName"]];
-    _v1Distance.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"kmSki"][@"ranking"][0][@"kmSki"] floatValue] * 3.6];
+    _v1Distance.text = [NSString stringWithFormat:@"%@ m", _rankings[@"data"][@"kmSki"][@"ranking"][0][@"kmSki"]];
     
     _g2Distance.text = [NSString stringWithFormat:@"2 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][1][@"lastName"]];
-    _v2Distance.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"kmSki"][@"ranking"][1][@"kmSki"] floatValue] * 3.6];
+    _v2Distance.text = [NSString stringWithFormat:@"%@ m", _rankings[@"data"][@"kmSki"][@"ranking"][1][@"kmSki"]];
     
     _g3Distance.text = [NSString stringWithFormat:@"3 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][2][@"lastName"]];
-    _v3Distance.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"kmSki"][@"ranking"][2][@"kmSki"] floatValue] * 3.6];
+    _v3Distance.text = [NSString stringWithFormat:@"%@ m", _rankings[@"data"][@"kmSki"][@"ranking"][2][@"kmSki"]];
     
     _g4Distance.text = [NSString stringWithFormat:@"4 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][3][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][3][@"lastName"]];
-    _v4Distance.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"kmSki"][@"ranking"][3][@"kmSki"] floatValue] * 3.6];
+    _v4Distance.text = [NSString stringWithFormat:@"%@ m", _rankings[@"data"][@"kmSki"][@"ranking"][3][@"kmSki"]];
     
     _g5Distance.text = [NSString stringWithFormat:@"5 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][4][@"lastName"]];
-    _v5Distance.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"kmSki"][@"ranking"][4][@"kmSki"] floatValue] * 3.6];
+    _v5Distance.text = [NSString stringWithFormat:@"%@ m", _rankings[@"data"][@"kmSki"][@"ranking"][4][@"kmSki"]];
     
     // TEMPS
     _classementTemps.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"skiTime"][@"count"]];
     
     _g1Temps.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][0][@"lastName"]];
-    _v1Temps.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"skiTime"][@"ranking"][0][@"skiTime"] floatValue] * 3.6];
+    _v1Temps.text = [NSString stringWithFormat:@"%@ h", _rankings[@"data"][@"skiTime"][@"ranking"][0][@"skiTime"]];
     
-    _g2Temps.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][1][@"lastName"]];
-    _v2Temps.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"skiTime"][@"ranking"][1][@"skiTime"] floatValue] * 3.6];
+    _g2Temps.text = [NSString stringWithFormat:@"2 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][1][@"lastName"]];
+    _v2Temps.text = [NSString stringWithFormat:@"%@ h", _rankings[@"data"][@"skiTime"][@"ranking"][1][@"skiTime"]];
     
-    _g3Temps.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][2][@"lastName"]];
-    _v3Temps.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"skiTime"][@"ranking"][2][@"skiTime"] floatValue] * 3.6];
+    _g3Temps.text = [NSString stringWithFormat:@"3 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][2][@"lastName"]];
+    _v3Temps.text = [NSString stringWithFormat:@"%@ h", _rankings[@"data"][@"skiTime"][@"ranking"][2][@"skiTime"]];
     
-    _g4Temps.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][3][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][3][@"lastName"]];
-    _v4Temps.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"skiTime"][@"ranking"][3][@"skiTime"] floatValue] * 3.6];
+    _g4Temps.text = [NSString stringWithFormat:@"4 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][3][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][3][@"lastName"]];
+    _v4Temps.text = [NSString stringWithFormat:@"%@ h", _rankings[@"data"][@"skiTime"][@"ranking"][3][@"skiTime"]];
     
-    _g5Temps.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][4][@"lastName"]];
-    _v5Temps.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"skiTime"][@"ranking"][4][@"skiTime"] floatValue] * 3.6];
+    _g5Temps.text = [NSString stringWithFormat:@"5 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][4][@"lastName"]];
+    _v5Temps.text = [NSString stringWithFormat:@"%@ h", _rankings[@"data"][@"skiTime"][@"ranking"][4][@"skiTime"]];
     
     
 
