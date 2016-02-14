@@ -20,8 +20,25 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // On récupère les données de localisation et les statistiques de l'utilisateur
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    NSString *authKey = [defaults stringForKey:@"authKey"];
+    UIViewController *viewController;
+    if([authKey length] < 1)
+    {
+        viewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginView"];
+    }
+    else {
+        viewController = [storyboard instantiateViewControllerWithIdentifier:@"MainView"];
+    }
+    
+    self.window.rootViewController = viewController;
+    [self.window makeKeyAndVisible];
+        
+    // On récupère les données de localisation et les statistiques de l'utilisateur
     NSData *gmEncoded = [[defaults objectForKey:@"GeolocalisationManager"] objectAtIndex:0];
     GeolocalisationManager *gm = [NSKeyedUnarchiver unarchiveObjectWithData:gmEncoded];
     [GeolocalisationManager setSharedInstance:gm];

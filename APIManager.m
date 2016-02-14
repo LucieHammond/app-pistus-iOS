@@ -31,7 +31,7 @@
     
     NSMutableDictionary *responseJson = [self postToApi:url :body];
     
-    if(responseJson) {
+    if(responseJson != NULL) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:responseJson[@"authKey"] forKey:@"authKey"];
         [defaults setObject:responseJson[@"data"][@"login"] forKey:@"login"];
@@ -51,7 +51,10 @@
     
     NSString *authKey = [[NSUserDefaults standardUserDefaults] stringForKey:@"authKey"];
 
-    url = [url stringByReplacingOccurrencesOfString:@"AUTH_KEY" withString:authKey];
+    if(authKey != NULL)
+    {
+        url = [url stringByReplacingOccurrencesOfString:@"AUTH_KEY" withString:authKey];
+    }
     
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"GET"];
@@ -78,7 +81,10 @@
     
     NSString *authKey = [[NSUserDefaults standardUserDefaults] stringForKey:@"authKey"];
     
-    url = [url stringByReplacingOccurrencesOfString:@"AUTH_KEY" withString:authKey];
+    if(authKey != NULL)
+    {
+        url = [url stringByReplacingOccurrencesOfString:@"AUTH_KEY" withString:authKey];
+    }
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     NSData *postdata = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&error];

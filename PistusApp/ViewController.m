@@ -19,6 +19,7 @@
     [super viewDidLoad];
     translation = 0;
     success = false;
+
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -104,7 +105,7 @@
 }
 
 - (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
-    return true;
+    return success;
 }
 
 - (void)didReceiveMemoryWarning {

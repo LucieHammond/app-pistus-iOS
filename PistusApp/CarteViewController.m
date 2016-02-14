@@ -203,7 +203,7 @@
         _etoile_BAB.center = CGPointMake(X,Y);
         X = _scrollView.contentSize.width/7452*2824 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
         Y = _scrollView.contentSize.height/3174*1566 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-        _etoile_BAB.center = CGPointMake(X,Y);
+        _etoile_Yooner.center = CGPointMake(X,Y);
 
         
         NSLog(@"1");
