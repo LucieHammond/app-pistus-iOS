@@ -29,10 +29,10 @@
     UIViewController *viewController;
     if([authKey length] < 1)
     {
-        viewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginView"];
+        viewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewNavigator"];
     }
     else {
-        viewController = [storyboard instantiateViewControllerWithIdentifier:@"MainView"];
+        viewController = [storyboard instantiateViewControllerWithIdentifier:@"MainViewNavigator"];
     }
     
     self.window.rootViewController = viewController;

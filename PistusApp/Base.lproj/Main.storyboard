@@ -1965,7 +1965,39 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cmq-oc-phm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="849"/>
+            <point key="canvasLocation" x="418" y="841"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cBN-af-5ih">
+            <objects>
+                <navigationController storyboardIdentifier="LoginViewNavigator" navigationBarHidden="YES" id="TwW-Yi-fWG" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OKH-hH-3L9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="WbJ-ab-oSD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="its-dt-SM2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1676" y="419"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8fS-cV-t96">
+            <objects>
+                <navigationController storyboardIdentifier="MainViewNavigator" navigationBarHidden="YES" id="jHn-zg-Pd3" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="k9C-2e-Zcd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="rTf-Kw-dH5" kind="relationship" relationship="rootViewController" id="BKf-J3-vZE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yr0-L6-woj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1163" y="911"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Yne-4I-BPX">
@@ -1984,7 +2016,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y5E-X2-OxX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1179" y="-731"/>
+            <point key="canvasLocation" x="1455" y="-613"/>
         </scene>
         <!--Horaires des remontées-->
         <scene sceneID="9p9-0e-mGA">
@@ -2027,7 +2059,7 @@
         <image name="temps.png" width="567" height="567"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lQ6-pM-AE6"/>
+        <segue reference="BKf-J3-vZE"/>
         <segue reference="qJ3-ur-bzc"/>
         <segue reference="sW3-MI-bu6"/>
     </inferredMetricsTieBreakers>

@@ -821,17 +821,22 @@ static GeolocalisationManager* sharedInstance=nil;
     // Si l'utilisateur est sur la carte ou sur les statistiques on update la vue automatiquement
     AppDelegate *tmpDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     UINavigationController *nav= (UINavigationController*)tmpDelegate.window.rootViewController;
+    NSLog(@"my nav : %@", nav);
     if ([nav.visibleViewController.title isEqual:@"Carte View Controller"])
     {
+        NSLog(@"here");
         CarteViewController * CVcontroller = (CarteViewController*) nav.visibleViewController;
         [CVcontroller updateSelfPosition];
     }
     else if([nav.visibleViewController.title isEqual:@"Statistiques"])
     {
+        NSLog(@"there");
+
         UITabBarController *tb = (UITabBarController *) nav.visibleViewController;
         if([tb.selectedViewController.title isEqual:@"Mes statistiques"])
             [tb.selectedViewController viewDidLoad];
     }
+    NSLog(@"finished");
 }
 
 - (void)locationManager:(CLLocationManager *)manager
