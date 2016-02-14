@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "APIManager.h"
 
 @interface ViewController ()
 
@@ -103,10 +104,7 @@
 }
 
 - (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
-    if (success == true)
-        return true;
-    else
-        return false;
+    return true;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -183,8 +181,10 @@
     }
     else
     {
+        [APIManager authenticate:login :mdp];
+        
         // Transition vers la vue principale de l'appli (Main View Controller)
-        success = false;
+        success = true;
         [self shouldPerformSegueWithIdentifier:@"loginReussi" sender:self];
                 
     }
