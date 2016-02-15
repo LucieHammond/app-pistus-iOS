@@ -9,6 +9,7 @@
 #import "GeolocalisationManager.h"
 #import "AppDelegate.h"
 #import "DBManager.h"
+#import "APIManager.h"
 #import "CarteViewController.h"
 
 @interface GeolocalisationManager ()
@@ -75,8 +76,10 @@ static GeolocalisationManager* sharedInstance=nil;
 -(BOOL)beginTrack
 {
     _trackAccept = true;
+    NSLog(@"begin Track");
     if ([CLLocationManager locationServicesEnabled])
     {
+        NSLog(@"track begun");
         locationManager = [[CLLocationManager alloc] init];
         locationManager.delegate = self;
         
@@ -95,7 +98,7 @@ static GeolocalisationManager* sharedInstance=nil;
         [locationManager startUpdatingLocation];
         
         // Toutes les minutes, on envoie sa position au serveur (le timer continue même quand l'appli est en background)
-        timerPosition = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(envoyerInfos) userInfo:nil repeats:YES];
+        timerPosition = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(envoyerInfos) userInfo:nil repeats:YES];
         
         return true;
     }
@@ -134,13 +137,31 @@ static GeolocalisationManager* sharedInstance=nil;
     }
     // On envoie les infos au serveur dans la table AppUser
     /*id, eleves_id et auth_key sont probablement obtenus avec Auth, surnom est donné dans "profil"
-     last_seen = _derniereDate
+     last_pos_update = _derniereDate
      maxSpeed = _vitesseMax
      altMax = _altitudeMax
      Map_pointX = _dernierX
      Map_pointY = _dernierY
      kmSki = _distanceSki
      skiTime = _tempsDeSki*/
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *stringFromLastDate = [dateFormat stringFromDate:_derniereDate];
+    //NSMutableDictionary *userData = [NSMutableDictionary dictionaryWithObjectsAndKeys: stringFromLastDate, @"lastPosUpdate", _vitesseMax, @"maxSpeed", _altitudeMax, @"altMax", _dernierX, @"mapPointX", _dernierY, @"mapPointY", _distanceSki, @"kmSki", _tempsDeSki, @"skiTime", nil];
+    
+    NSMutableDictionary *userData = [NSMutableDictionary dictionary];
+    [userData setObject:stringFromLastDate forKey:@"lastPosUpdate"];
+    [userData setObject:[NSNumber numberWithDouble:_vitesseMax] forKey:@"maxSpeed"];
+    [userData setObject:[NSNumber numberWithDouble:_altitudeMax] forKey:@"altMax"];
+    [userData setObject:[NSNumber numberWithInt:_dernierX] forKey:@"mapPointX"];
+    [userData setObject:[NSNumber numberWithInt:_dernierY] forKey:@"mapPointY"];
+    [userData setObject:[NSNumber numberWithDouble:_distanceSki] forKey:@"kmSki"];
+    [userData setObject:[NSNumber numberWithInt:_tempsDeSki] forKey:@"skiTime"];
+    
+    NSLog(@"%@", userData);
+    NSDictionary *responseJson = [APIManager postToApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData];
+    NSLog(@"%@", responseJson);
+    
 }
 
 -(BOOL)trackAccept

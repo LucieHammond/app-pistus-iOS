@@ -14,7 +14,7 @@
 
 + (NSMutableDictionary*)authenticate:(NSString *)login :(NSString *)password;
 + (NSMutableDictionary*)getFromApi:(NSString *)url;
-+ (NSMutableDictionary*)postToApi:(NSString *)url :(NSObject *)dict;
++ (NSMutableDictionary*)postToApi:(NSString *)url :(NSDictionary *)dict;
 
 
 @end

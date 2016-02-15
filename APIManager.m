@@ -60,12 +60,13 @@
     [request setHTTPMethod:@"GET"];
     NSError *error = nil;
     NSHTTPURLResponse *responseCode = nil;
-    
+    NSLog(@"a");
+
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
-    NSMutableDictionary *responseJson = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil];
-    
+
     if((long)[responseCode statusCode] == 200)
     {
+        NSMutableDictionary *responseJson = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil];
         return responseJson;
     }
     else {
@@ -74,10 +75,12 @@
     
 }
 
-+(NSMutableDictionary*)postToApi:(NSString *)url :(NSObject *)dict{
++(NSMutableDictionary*)postToApi:(NSString *)url :(NSDictionary *)dict{
     NSLog(@"post to api");
     NSError *error = nil;
     NSHTTPURLResponse *responseCode = nil;
+    
+    NSLog(@"%@", dict);
     
     NSString *authKey = [[NSUserDefaults standardUserDefaults] stringForKey:@"authKey"];
     
