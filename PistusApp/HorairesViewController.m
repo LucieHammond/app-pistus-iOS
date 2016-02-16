@@ -25,6 +25,7 @@
     _titre.text = _titreText;
     _ouverture.text = _ouvertureText;
     _fermeture.text = _fermetureText;
+    _statut.text = _statutText;
     
     // Définition de l'icone
     [_icone setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",_typeIcone,@".png"]]];

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet NSString *ouvertureText;
 @property (weak, nonatomic) IBOutlet NSString *fermetureText;
 @property (weak, nonatomic) IBOutlet NSString *typeIcone;
+@property (weak, nonatomic) IBOutlet NSString *statutText;
 
 // Objects de la vue
 @property (weak, nonatomic) IBOutlet UILabel *titre;
