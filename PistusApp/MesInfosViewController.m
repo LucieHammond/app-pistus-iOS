@@ -9,13 +9,12 @@
 #import "MesInfosViewController.h"
 #import "GeolocalisationManager.h"
 #import "CustomTableViewCell.h"
+#import "APIManager.h"
 
 @interface MesInfosViewController ()
 
 @property (nonatomic,strong) UIButton *boutonSatellite;
-@property (nonatomic,strong) NSArray *infosHTML;
-@property (nonatomic,strong) NSArray *titreInfos;
-@property (nonatomic,strong) NSArray *dateInfos;
+@property (nonatomic,strong) NSArray *myNews;
 
 @end
 
@@ -45,20 +44,8 @@
     [_boutonSatellite addTarget:self action:@selector(trackChange)
                forControlEvents:UIControlEventTouchUpInside];
     
-    // Remplir les infos
-    _titreInfos=@[@"Pipo 1",@"Pipo 2"];
-    _dateInfos = @[@"16/02/2016 12h30",@"17/05/2016 07h25"];
-    NSString *info1=
-    @"<body style = \"font-size:11px; text-align:justify; font-family:'Trebuchet MS'\">"
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. </br>"
-    "</br>"
-    "<body />";
-    NSString *info2 =
-    @"<body style = \"font-size:11px; text-align:justify; font-family:'Trebuchet MS'\">"
-    "Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. </br>"
-    "</br>"
-    "<body />";
-    _infosHTML=@[info1,info2];
+    // Get MesInfos from API
+    _myNews = [APIManager getFromApi:@"http://apistus.via.ecp.fr/news/AUTH_KEY"][@"myNews"];
     
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
@@ -82,7 +69,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _infosHTML.count;
+    return _myNews.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -93,10 +80,16 @@
     if(cell == nil) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"TableViewCell" owner:nil options:nil] firstObject];
     }
-    NSString *titre = _titreInfos[indexPath.row];
-    NSString *html = _infosHTML[indexPath.row];
-    NSString *date = _dateInfos[indexPath.row];
-    hauteurSection = [cell configUIWithTitle:titre date:date HTML:html];
+    NSString *title = _myNews[indexPath.row][@"title"];
+    NSString *content = _myNews[indexPath.row][@"text"];
+    
+    NSDateFormatter* df = [[NSDateFormatter alloc]init];
+    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *nsdate = [df dateFromString:_myNews[indexPath.row][@"date"]];
+    [df setDateFormat:@"dd/MM/yyyy HH:mm"];
+    NSString *date = [df stringFromDate:nsdate];
+
+    hauteurSection = [cell configUIWithTitle:title date:date HTML:content];
     [self tableView:tableView heightForRowAtIndexPath:indexPath];
     return cell;
 }
