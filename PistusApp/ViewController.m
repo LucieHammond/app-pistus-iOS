@@ -182,11 +182,17 @@
     }
     else
     {
-        [APIManager authenticate:login :mdp];
+        NSDictionary *tryAuthenticate = [APIManager authenticate:login :mdp];
         
-        // Transition vers la vue principale de l'appli (Main View Controller)
-        success = true;
-        [self shouldPerformSegueWithIdentifier:@"loginReussi" sender:self];
+        if(tryAuthenticate != nil){
+            success = true;
+            // Transition vers la vue principale de l'appli (Main View Controller)
+            [self shouldPerformSegueWithIdentifier:@"loginReussi" sender:self];
+        }
+        else {
+            // Display error message
+        }
+
                 
     }
 
