@@ -21,6 +21,10 @@
 
 @implementation MesInfosViewController
 
+- (void) viewWillAppear:(BOOL)animated{
+    [self viewDidLoad];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
@@ -128,6 +132,7 @@
     }
     [_trackAcceptButton setCustomView:_boutonSatellite];
 }
+
 - (IBAction)actualiser:(id)sender {
     [self viewDidLoad];
 }

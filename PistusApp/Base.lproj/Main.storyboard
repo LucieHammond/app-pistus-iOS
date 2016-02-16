@@ -292,7 +292,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="urY-Dl-hpI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="824" y="-1549"/>
+            <point key="canvasLocation" x="811" y="-1549"/>
         </scene>
         <!--Informations générales-->
         <scene sceneID="N1C-4C-60f">
@@ -368,7 +368,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ow5-UR-KEP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1210" y="-1532"/>
+            <point key="canvasLocation" x="1210" y="-1549"/>
         </scene>
         <!--Flash news-->
         <scene sceneID="Av8-1Y-CEc">
@@ -465,6 +465,7 @@
             <objects>
                 <tabBarController id="iiv-ZI-ahq" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Ciw-ke-CHk"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="P8y-GF-TdT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -478,7 +479,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oee-jU-S6E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="853" y="-871"/>
+            <point key="canvasLocation" x="837" y="-964"/>
         </scene>
         <!--Concours View Controller-->
         <scene sceneID="Hgs-Ib-0M8">
@@ -2068,7 +2069,7 @@
         <image name="temps.png" width="567" height="567"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wEp-gv-cju"/>
+        <segue reference="5Ng-b7-TDJ"/>
         <segue reference="qJ3-ur-bzc"/>
         <segue reference="sW3-MI-bu6"/>
     </inferredMetricsTieBreakers>

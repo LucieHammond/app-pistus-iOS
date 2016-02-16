@@ -18,6 +18,10 @@
 
 @implementation StatsViewController
 
+- (void) viewWillAppear:(BOOL)animated{
+    [self viewDidLoad];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];

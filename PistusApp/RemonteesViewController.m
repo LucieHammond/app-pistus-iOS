@@ -22,6 +22,10 @@
 
 @implementation RemonteesViewController
 
+- (void) viewWillAppear:(BOOL)animated{
+    [self viewDidLoad];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
@@ -114,6 +118,7 @@
 
 - (void)trackChange
 {
+    NSLog(@"Coucou");
     if(![[GeolocalisationManager sharedInstance] trackAccept])
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
