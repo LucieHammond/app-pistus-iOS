@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MesInfosViewController : UIViewController //<UITableViewDataSource,UITableViewDelegate>
+@interface MesInfosViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+{
+    int hauteurSection;
+}
 
 @property (weak, nonatomic) IBOutlet UIView *topBande;
 @property (weak, nonatomic) IBOutlet UINavigationBar *barre;

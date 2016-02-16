@@ -12,6 +12,8 @@
 @interface NewsViewController ()
 
 @property (nonatomic,strong) UIButton *boutonSatellite;
+@property (nonatomic,strong) NSArray *infosHTML;
+@property (nonatomic,strong) NSArray *titreInfos;
 
 @end
 
