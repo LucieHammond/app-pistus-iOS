@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewsViewController : UIViewController //<UITableViewDataSource,UITableViewDelegate>
+@interface NewsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+{
+    int hauteurSection;
+}
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *trackAcceptButton;
 @property (weak, nonatomic) IBOutlet UIView *topBande;
