@@ -70,6 +70,8 @@
           forControlEvents:UIControlEventTouchUpInside];
     [_etoile_Yooner addTarget:self action:@selector(afficherDetailsPourMarqueur:)
           forControlEvents:UIControlEventTouchUpInside];
+    [_etoile_Cine addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+             forControlEvents:UIControlEventTouchUpInside];
     
     // Ajout du bouton pour recentrer sur la position de l'utilisateur
     UIButton *ciblage = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-60,[UIScreen mainScreen].bounds.size.height*7/10,47,47)];
@@ -204,6 +206,9 @@
         X = _scrollView.contentSize.width/7452*2824 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
         Y = _scrollView.contentSize.height/3174*1566 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         _etoile_Yooner.center = CGPointMake(X,Y);
+        X = _scrollView.contentSize.width/7452*3300 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        Y = _scrollView.contentSize.height/3174*1895 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        _etoile_Cine.center = CGPointMake(X,Y);
 
         
         NSLog(@"1");
@@ -485,6 +490,8 @@
             _titre.text=@"Big Air Bag";
         else if(sender==_etoile_Yooner)
             _titre.text=@"Depart Yooner";
+        else if(sender==_etoile_Cine)
+            _titre.text=@"Cinema";
         [_titre sizeToFit];
         _titre.center=CGPointMake(sender.center.x,sender.frame.origin.y-20);
         _titre.hidden=false;
@@ -574,6 +581,9 @@
     X = _scrollView.contentSize.width/7452*2824 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
     Y = _scrollView.contentSize.height/3174*1566 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
     _etoile_Yooner.center = CGPointMake(X,Y);
+    X = _scrollView.contentSize.width/7452*3300 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    Y = _scrollView.contentSize.height/3174*1895 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    _etoile_Cine.center = CGPointMake(X,Y);
     
     for(UIButton *marqueurUtilisateur in marqueursUtilisateurs)
     {

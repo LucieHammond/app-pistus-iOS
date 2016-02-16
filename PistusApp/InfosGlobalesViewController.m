@@ -105,10 +105,10 @@
                 return 6;
                 break;
             case 3:
-                return 4;
+                return 3;
                 break;
             case 4:
-                return 3;
+                return 4;
                 break;
             case 5:
                 return 2;
@@ -162,13 +162,13 @@
             label.text = @"Présentation des activités";
             break;
         case 3:
-            label.text = @"Procédure en cas d'accident";
+            label.text = @"La sécurité en montagne";
             break;
         case 4:
-            label.text = @"Conseils, avertissements, risques";
+            label.text = @"Procédure en cas d'accident";
             break;
         case 5:
-            label.text = @"Quelques règles à respecter";
+            label.text = @"Bonne conduite sur la résidence";
             break;
     }
     [header addSubview:label];
@@ -252,23 +252,23 @@
 }
 
 -(void) remplirInfos{
-    _titreInfos = @[@[@"Planning du 5 au 12 mars 2016"],@[@"Domaine skiable",@"Alimentation",@"Hébergement"],@[@"Bar de Glace",@"Yooner",@"Big Air Bag",@"Slalom",@"Luge sur rails",@"Patinoire"],@[@"Accident sur les pistes",@"Accident en hors piste",@"Premiers soins médicaux",@"Tarifs des secours"],@[@"Conseils et astuces de skieurs",@"Les risques en montagne",@"Consommation d'alcool"],@[@"Bonne conduite sur les pistes",@"Respect des biens et des personnes"]];
+    _titreInfos = @[@[@"Planning du 5 au 12 mars 2016"],@[@"Domaine skiable",@"Alimentation",@"Hébergement"],@[@"Bar de Glace",@"Yooner",@"Big Air Bag",@"Slalom",@"Luge sur rails",@"Patinoire"],@[@"Les risques des sports d'hiver",@"Quelques règles sur les pistes",@"Conseils et astuces de skieurs"],@[@"Accident sur les pistes",@"Accident en hors piste",@"Premiers soins médicaux",@"Tarifs des secours"],@[@"Respect des biens et des personnes",@"Consommation d'alcool"]];
     NSString *planning = @"";
     NSString *skier =
-    @"<body style = \"font-size:13px; text-align:justify\">"
+    @"<body style = \"font-size:11px; text-align:justify; font-family:'Trebuchet MS'\">"
     "Ton forfait te sera remis à l’arrivée dans la station après la sortie des cars. Nous te recommandons de le garder précieusement : sans lui, tu ne pourras plus skier ! </br>"
     "</br>"
     "Sache que ce forfait couvre l’intégralité de l’Espace lumière, soit un domaine de 46 remontées mécaniques et 108 pistes qui s’étend sur trois stations :</br>"
     "<p style = \"text-align:left\">"
     "&nbsp;&nbsp; <b>•	&nbsp; Val d’Allos La Foux</b> (où se trouve notre résidence)</br>"
-    "&nbsp;&nbsp; <b>•	&nbsp; Val d’Allos Le Seignus</b> (liaison gratuite par navettes </br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; possible depuis La Foux)</br>"
+    "&nbsp;&nbsp; <b>•	&nbsp; Val d’Allos Le Seignus</b> (liaison gratuite par navettes possible depuis La Foux)</br>"
     "&nbsp;&nbsp; <b>•	&nbsp; Pra Loup </b>(liaison à ski au niveau du télésiège Agneliers)"
     "</p>"
     "<body />";
     NSString *manger = @"";
     NSString *dormir= @"";
     NSString *barDeGlace =
-    @"<body style = \"font-size:13px; text-align:justify\">"
+    @"<body style = \"font-size:11px; text-align:justify; font-family:'Trebuchet MS'\">"
     "Véritable point de rassemblement des centraliens après une journée de ski bien remplie, le bar de glace sera l’occasion de te sustenter grâce aux patisseries, brioches, pain de mie, nutella, carembars et autres friandises servies sur un comptoir fait de neige tassée ! Tu pourras également te réchauffer grâce aux fameux vin chaud et chocolat chaud du Pistus, ou te désaltérer au gré de quelques verres de jus de fruit, le tout dans une ambiance très conviviale. Enfin, La Band’ à Joe viendra aussi apporter un peu d’animation et d’ambiance pendant ce goûter quotidien. </br>"
     "</br>"
     "<b>Quand ? : Tous les jours de 16h30 à 18h30</b></br>"
@@ -276,7 +276,7 @@
     "</br>"
     "<body />";
     NSString *yooner =
-    @"<body style = \"font-size:13px; text-align:justify\">"
+    @"<body style = \"font-size:11px; text-align:justify; font-family:'Trebuchet MS'\">"
     "Bien que peu connue du grand public, cette activité sportive au nom un peu étrange est pourtant restée gravée dans la mémoire de tous les centraliens qui y ont participé. Le yooner est en fait d’une sorte de luge légère et facile d’utilisation dotée d’un amortisseur pour le confort et d’un patin pour tailler des courbes comme en ski. Avec une assise à 20 cm du sol, cet engin offre des sensations de glisse surprenantes. Tu auras le plaisir de découvrir (ou redécouvrir) cette activité bonne enfant mais aussi terriblement amusante en participant au Yooner contest, course à plusieurs organisée sur la piste du crocus ! </br>"
     "</br>"
     "<b>Quand ? : Mardi de 11h00 à 16h00</b></br>"
@@ -284,7 +284,7 @@
     "</br>"
     "<body />";
     NSString *bigAirBag =
-    @"<body style = \"font-size:13px; text-align:justify\">"
+    @"<body style = \"font-size:11px; text-align:justify; font-family:'Trebuchet MS'\">"
     "Occasion rêvée de s’envoyer en l’air sans subir de conséquences, le Big Air Bag est un bon moyen d’expérimenter la glisse comme tu n’as jamais osé le faire ! Avec ce coussin d’air géant pour te réceptionner, tu pourras tenter sans crainte les sauts les plus périlleux, réaliser les figures les plus complexes, découvrir l'apesanteur, l'adrénaline, la liberté ! Que tu sois débutant ou confirmé, à ski ou à snowboard, le Big Air Bag t’assureras un maximum de sensations en toute sécurité ! </br>"
     "</br>"
     "<b>Quand ? : Indéterminé pour le moment</b></br>"
@@ -292,7 +292,7 @@
     "</br>"
     "<body />";
     NSString *slalom =
-    @"<body style = \"font-size:13px; text-align:justify\">"
+    @"<body style = \"font-size:11px; text-align:justify; font-family:'Trebuchet MS'\">"
     "Organisé par l’ESF de Val d’Allos, le slalom que nous vous proposons sera homologué et correspondra à un géant pour l’épreuve de flèche. Tu devras confirmer ta participation la veille afin de te voir attribuer un dossard et de pouvoir concourir. De plus, si tu as pris un cours d’entrainement au slalom en option, celui-ci auras lieu le matin de l’épreuve. Plusieurs lots seront à gagner à l’issue de la course et remis lors du direct NX ! </br>"
     "</br>"
     "<b>Quand ? : Mercredi à 14h00</b></br>"
@@ -300,7 +300,7 @@
     "</br>"
     "<body />";
     NSString *lugeSurRail =
-    @"<body style = \"font-size:13px; text-align:justify\">"
+    @"<body style = \"font-size:11px; text-align:justify; font-family:'Trebuchet MS'\">"
     "Cette attraction inédite située en haut de la station La Foux ressemble un peu à un roller coaster à la différence qu’il est possible de moduler sa vitesse grâce à des freins latéraux. La piste de luge forme une boucle fermée de 995m comprenant une montée de 330m suivie d’une descente de 665m pour un temps de trajet total compris entre 4 et 7 minutes. Le parcours te réserve une série de virages en épingle, des accélérations toniques, un pont sur la route du Col et une vrille très aérienne, laissant un souvenir impérissable et un sentiment de très grande sécurité. Un tour gratuit te seras offert n’importe quand dans la semaine sur présentation de ton bracelet Pistus. </br>"
     "</br>"
     "<b>Quand ? : N’importe quand, sur présentation de ton bracelet Pistus (un seul tour)</b></br>"
@@ -308,7 +308,7 @@
     "</br>"
     "<body />";
     NSString *patinoire =
-    @"<body style = \"font-size:13px; text-align:justify\">"
+    @"<body style = \"font-size:11px; text-align:justify; font-family:'Trebuchet MS'\">"
     "Si toi aussi tu souhaites expérimenter la glisse sous toutes ses formes, nous t’invitons à passer un moment à la patinoire de Val d’Allos La Foux qui sera privatisée un soir de semaine. Située au cœur de la station, cette patinoire artificielle en plein air de 600m² est l’endroit idéal pour t’amuser avec tes potes en glissant sur la glace dans un décor de montagne. Les patins seront fournis sur place mais il faudra prévoir des vêtements chauds, des gants et un bonnet. </br>"
     "</br>"
     "<b>Quand ? : Lundi soir, de 17h00 à 21h00</b></br>"
@@ -324,7 +324,7 @@
     NSString *alcool = @"";
     NSString *reglesPistes= @"";
     NSString *reglesRez = @"";
-    _infosHTML = @[@[planning],@[skier,manger,dormir],@[barDeGlace,yooner,bigAirBag,slalom,lugeSurRail,patinoire],@[accidentsPistes,accidentsHP,soinsMedicaux,tarifsSecours],@[conseils,risques,alcool],@[reglesPistes,reglesRez]];
+    _infosHTML = @[@[planning],@[skier,manger,dormir],@[barDeGlace,yooner,bigAirBag,slalom,lugeSurRail,patinoire],@[risques,reglesPistes,conseils],@[accidentsPistes,accidentsHP,soinsMedicaux,tarifsSecours],@[reglesRez,alcool]];
 }
 
 /*
