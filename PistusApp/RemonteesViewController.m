@@ -185,7 +185,6 @@
     NSString *nomImage;
     
     if([closedLifts containsObject:idLift]) {
-        NSLog(@"%@", comments);
         cell.detailTextLabel.text = comments[idLift];
         nomImage = @"feuRouge.png";
     }
@@ -275,6 +274,15 @@
         horairesVC.fermetureText = [remontees[indexPath.section] objectAtIndex:indexPath.row][4];
 
         horairesVC.typeIcone = [remontees[indexPath.section] objectAtIndex:indexPath.row][2];
+        
+        NSString *idLift = remontees[indexPath.section][indexPath.row][0];
+        if([closedLifts containsObject:idLift]) {
+            NSLog(@"bite");
+            horairesVC.statutText = comments[idLift];
+        }
+        else{
+            horairesVC.statutText = @"En fonctionnement";
+        }
     }
 }
 
