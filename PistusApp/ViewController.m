@@ -191,6 +191,11 @@
         }
         else {
             // Display error message
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Echec de l'authentification"
+                                  message:@"Votre identifiant ou votre mot de passe est incorrect"delegate:self
+                                  cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
         }
 
                 
