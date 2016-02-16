@@ -157,6 +157,7 @@ static GeolocalisationManager* sharedInstance=nil;
     [userData setObject:[NSNumber numberWithInt:_dernierY] forKey:@"mapPointY"];
     [userData setObject:[NSNumber numberWithDouble:_distanceSki/1000] forKey:@"kmSki"];
     [userData setObject:[NSNumber numberWithInt:_tempsDeSki] forKey:@"skiTime"];
+    [userData setObject:_dernierePiste forKey:@"lastSlope"];
     
     NSLog(@"%@", userData);
     NSDictionary *responseJson = [APIManager postToApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData];
