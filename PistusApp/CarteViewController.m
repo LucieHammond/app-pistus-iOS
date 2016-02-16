@@ -8,6 +8,7 @@
 
 #import "CarteViewController.h"
 #import "DBManager.h"
+#import "APIManager.h"
 #import "GeolocalisationManager.h"
 
 @interface CarteViewController ()
@@ -19,9 +20,10 @@
 
 @implementation CarteViewController
 {
-    NSArray *participants;
+    NSMutableArray *participants;
     NSArray *resultatsRecherche;
     NSMutableArray *marqueursUtilisateurs;
+    NSMutableArray *loginsUtilisateurs;
     NSMutableArray *nomsUtilisateurs;
     NSMutableArray *posXUtilisateurs;
     NSMutableArray *posYUtilisateurs;
@@ -141,7 +143,10 @@
     [self.view insertSubview:marqueur aboveSubview:_scrollView];
     
     // Initialisation du tableau Participants (à remplacer par une recherche dans la BDD ?)
-    participants = @[@"Enguerran Henniart",@"Lucie Hammond",@"Tom Brendlé",@"Alexis Filipozzi",@"Martin Ramette",@"Maxime Reiz",@"Joris Mancini",@"Manon Leger",@"Hélène Chambrette",@"Solène Duchamp",@"Martin Guillier",@"Sofia Bonnetaud",@"Alphe Fournier",@"Raphaël Bizmut",@"Nicolas Vo Van",@"Maxime Gardet",@"Olivier Agier",@"Robin Schwob",@"Remi Schneider",@"Roxane Letournel"];
+    participants = [[NSMutableArray alloc] init];
+    NSDictionary *participantsData = [APIManager getFromApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY"];
+    participants = participantsData[@"data"];
+
     if (marqueursUtilisateurs==nil){
         marqueursUtilisateurs = [[NSMutableArray alloc]initWithCapacity:[GeolocalisationManager sharedInstance].utilisateursSuivis.count];
         nomsUtilisateurs = [[NSMutableArray alloc]initWithCapacity:[GeolocalisationManager sharedInstance].utilisateursSuivis.count];
@@ -287,13 +292,17 @@
     {
         int i = [marqueursUtilisateurs indexOfObject:marqueurUtilisateur];
         
-        // On demande à la bdd le nom de l'utilisateur
-        NSString *nom = [GeolocalisationManager sharedInstance].utilisateursSuivis[i];
-        nomsUtilisateurs[i] = nom;
+
+        // On demande à la bdd le login de l'utilisateur
+        NSString *login = [GeolocalisationManager sharedInstance].utilisateursSuivis[i];
+        loginsUtilisateurs[i] = login;
         
+        NSDictionary *userInfos = [APIManager getFromApi:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", login]][@"data"];
+        
+        nomsUtilisateurs[i] = userInfos[@"fullName"];
         // On demande à la bdd la position de l'utilisateur
-        int posX = 3325;
-        int posY = 2427;
+        int posX = [userInfos[@"mapPointX"] floatValue];
+        int posY = [userInfos[@"mapPointY"] floatValue];
         float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
         float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         posXUtilisateurs[i] = [NSNumber numberWithInteger:posX];
@@ -301,11 +310,11 @@
         marqueurUtilisateur.center = CGPointMake(X,Y);
         
         // On demande à la bdd la dernière date à laquelle on a vu l'utilisateur à cette position
-        NSString *dateString = @"2016-02-07 14:41:00.000";
+        NSString *dateString = userInfos[@"lastPosUpdate"];
         datesUtilisateurs[i] = dateString;
         
         // On demande à la bdd la piste sur laquelle l'utilisateur était
-        NSString *piste = @"Digitales";
+        NSString *piste = userInfos[@"lastSlope"];
         pistesUtilisateurs[i] = piste;
     }
 }
@@ -440,7 +449,7 @@
         
         // Temps écoulé depuis la dernière localisation
         NSDateFormatter* df = [[NSDateFormatter alloc]init];
-        [df setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+        [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         NSDate *date = [df dateFromString:datesUtilisateurs[i]];
         NSTimeInterval intervalle = -[date timeIntervalSinceNow];
         int jour = intervalle/86400;
@@ -666,6 +675,7 @@
 // Méthodes pour l'affichage de la recherche des participants
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"count : %@", resultatsRecherche);
     return [resultatsRecherche count];
 }
 
@@ -681,7 +691,7 @@
     
     // Display recipe in the table cell
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        cell.textLabel.text = [resultatsRecherche objectAtIndex:indexPath.row];
+        cell.textLabel.text = [resultatsRecherche objectAtIndex:indexPath.row][@"fullName"];
     }
     
     return cell;
@@ -692,7 +702,7 @@
     [self.searchDisplayController setActive:NO];
     [self searchBarCancelButtonClicked:_searchBar];
     NSString *utilisateur;
-    utilisateur = [resultatsRecherche objectAtIndex:indexPath.row];
+    utilisateur = [resultatsRecherche objectAtIndex:indexPath.row][@"login"];
     if(![[GeolocalisationManager sharedInstance].utilisateursSuivis containsObject:utilisateur])
     {
         // On ajoute l'utilsateur dans la liste des utilisateurs suivis
@@ -711,8 +721,9 @@
         [marqueurUtilisateur addGestureRecognizer:doubleClick];
         
         // on demande à la bdd la position de l'utilisateur
-        int posX = 3325;
-        int posY = 2427;
+        NSDictionary *userInfos = [APIManager getFromApi:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", utilisateur]][@"data"];
+        int posX = [userInfos[@"mapPointX"] floatValue];
+        int posY = [userInfos[@"mapPointY"] floatValue];
         float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
         float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         marqueurUtilisateur.center = CGPointMake(X,Y);
@@ -722,23 +733,25 @@
         [posYUtilisateurs addObject:[NSNumber numberWithInt:posY]];
         
         // On demande à la bdd le nom de l'utilisateur
-        NSString *nom = utilisateur;
+        NSString *nom = userInfos[@"fullName"];
         [nomsUtilisateurs addObject:nom];
         
         // On demande à la bdd la dernière date à laquelle on a vu l'utilisateur à cette position
-        NSString *dateString = @"2016-02-07 14:41:00.000";
+        NSString *dateString = userInfos[@"lastPosUpdate"];
         [datesUtilisateurs addObject: dateString];
         
         // On demande à la bdd la piste sur laquelle l'utilisateur était
-        NSString *piste = @"Digitales";
+        NSString *piste = userInfos[@"lastSlope"];
         [pistesUtilisateurs addObject:piste];
     }
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"self contains[c] %@", searchText];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"self.fullName contains[c] %@", searchText];
+    NSLog(@"result Predicate : %@", resultPredicate);
     resultatsRecherche = [participants filteredArrayUsingPredicate:resultPredicate];
+    NSLog(@"%@", resultatsRecherche);
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
