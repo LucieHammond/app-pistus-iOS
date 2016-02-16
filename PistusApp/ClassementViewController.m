@@ -72,19 +72,19 @@
     _classementDistance.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"kmSki"][@"count"]];
     
     _g1Distance.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][0][@"lastName"]];
-    _v1Distance.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"kmSki"][@"ranking"][0][@"kmSki"] integerValue]];
+    _v1Distance.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"kmSki"][@"ranking"][0][@"kmSki"] integerValue]*1000];
     
     _g2Distance.text = [NSString stringWithFormat:@"2 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][1][@"lastName"]];
-    _v2Distance.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"kmSki"][@"ranking"][1][@"kmSki"] integerValue]];
+    _v2Distance.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"kmSki"][@"ranking"][1][@"kmSki"] integerValue]*1000];
     
     _g3Distance.text = [NSString stringWithFormat:@"3 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][2][@"lastName"]];
-    _v3Distance.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"kmSki"][@"ranking"][2][@"kmSki"] integerValue]];
+    _v3Distance.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"kmSki"][@"ranking"][2][@"kmSki"] integerValue]*1000];
     
     _g4Distance.text = [NSString stringWithFormat:@"4 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][3][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][3][@"lastName"]];
-    _v4Distance.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"kmSki"][@"ranking"][3][@"kmSki"] integerValue]];
+    _v4Distance.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"kmSki"][@"ranking"][3][@"kmSki"] integerValue]*1000];
     
     _g5Distance.text = [NSString stringWithFormat:@"5 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][4][@"lastName"]];
-    _v5Distance.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"kmSki"][@"ranking"][4][@"kmSki"] integerValue]];
+    _v5Distance.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"kmSki"][@"ranking"][4][@"kmSki"] integerValue]*1000];
     
     // TEMPS
     _classementTemps.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"skiTime"][@"count"]];

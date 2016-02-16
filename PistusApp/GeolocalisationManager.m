@@ -98,7 +98,7 @@ static GeolocalisationManager* sharedInstance=nil;
         [locationManager startUpdatingLocation];
         
         // Toutes les minutes, on envoie sa position au serveur (le timer continue même quand l'appli est en background)
-        timerPosition = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(envoyerInfos) userInfo:nil repeats:YES];
+        timerPosition = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(envoyerInfos) userInfo:nil repeats:YES];
         
         return true;
     }
@@ -155,7 +155,7 @@ static GeolocalisationManager* sharedInstance=nil;
     [userData setObject:[NSNumber numberWithDouble:_altitudeMax] forKey:@"altMax"];
     [userData setObject:[NSNumber numberWithInt:_dernierX] forKey:@"mapPointX"];
     [userData setObject:[NSNumber numberWithInt:_dernierY] forKey:@"mapPointY"];
-    [userData setObject:[NSNumber numberWithDouble:_distanceSki] forKey:@"kmSki"];
+    [userData setObject:[NSNumber numberWithDouble:_distanceSki/1000] forKey:@"kmSki"];
     [userData setObject:[NSNumber numberWithInt:_tempsDeSki] forKey:@"skiTime"];
     
     NSLog(@"%@", userData);
