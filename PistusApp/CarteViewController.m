@@ -433,6 +433,9 @@
             [_nomPiste setFrame:CGRectMake(_titre.frame.origin.x,_nomPiste.frame.origin.y,_nomPiste.frame.size.width,_nomPiste.frame.size.height)];
         else
             [_titre setFrame:CGRectMake(_nomPiste.frame.origin.x,_titre.frame.origin.y,_titre.frame.size.width,_titre.frame.size.height)];
+        
+        // On vérifie que la date est bien cachée
+        _derniereDate.hidden=true;
     }
     else if([marqueursUtilisateurs containsObject:sender])
     {
@@ -510,6 +513,10 @@
         // Fond de la bulle
         [_bulle setFrame: CGRectMake(0,0,_titre.frame.size.width+13,23)];
         _bulle.center = CGPointMake(sender.center.x, sender.frame.origin.y-20);
+        
+        // On vérifie que la date et la piste sont bien cachées
+        _derniereDate.hidden=true;
+        _nomPiste.hidden = true;
     }
     _bulle.hidden=false;
     marqueurBulle=sender;

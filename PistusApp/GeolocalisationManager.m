@@ -97,8 +97,8 @@ static GeolocalisationManager* sharedInstance=nil;
         }
         [locationManager startUpdatingLocation];
         
-        // Toutes les minutes, on envoie sa position au serveur (le timer continue même quand l'appli est en background)
-        timerPosition = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(envoyerInfos) userInfo:nil repeats:YES];
+        // Toutes les 2 minutes, on envoie sa position au serveur (le timer continue même quand l'appli est en background)
+        timerPosition = [NSTimer scheduledTimerWithTimeInterval:120 target:self selector:@selector(envoyerInfos) userInfo:nil repeats:YES];
         
         return true;
     }
