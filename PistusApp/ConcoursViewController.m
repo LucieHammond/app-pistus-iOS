@@ -139,10 +139,25 @@
         [gagnant2 setFont:[UIFont systemFontOfSize:20]];
         [gagnant3 setFont:[UIFont systemFontOfSize:20]];
         [gagnant4 setFont:[UIFont systemFontOfSize:20]];
-        gagnant1.text = [NSString stringWithFormat:@"%@ %@", podium[0][@"firstName"], podium[0][@"lastName"]];
-        gagnant2.text = [NSString stringWithFormat:@"%@ %@", podium[1][@"firstName"], podium[1][@"lastName"]];
-        gagnant3.text = [NSString stringWithFormat:@"%@ %@", podium[2][@"firstName"], podium[2][@"lastName"]];
-        gagnant4.text = [NSString stringWithFormat:@"%@ %@", podium[3][@"firstName"], podium[3][@"lastName"]];
+        gagnant1.text = @"";
+        gagnant2.text = @"";
+        gagnant3.text = @"";
+        gagnant4.text = @"";
+        
+        NSLog(@"%@", [podium[0] class]);
+
+        if(![podium[0] isEqual:[NSNull null]] && [podium[0] objectForKey:@"fullName"]) {
+            gagnant1.text = podium[0][@"fullName"];
+        }
+        if(![podium[1] isEqual:[NSNull null]] && [podium[1] objectForKey:@"fullName"]) {
+            gagnant2.text = podium[1][@"fullName"];
+        }
+        if(![podium[2] isEqual:[NSNull null]] && [podium[2] objectForKey:@"fullName"]) {
+            gagnant3.text = podium[2][@"fullName"];
+        }
+        if(![podium[3] isEqual:[NSNull null]] && [podium[3] objectForKey:@"fullName"]) {
+            gagnant4.text = podium[3][@"fullName"];
+        }
         [cell addSubview:gagnant1];
         [cell addSubview:gagnant2];
         [cell addSubview:gagnant3];
@@ -153,6 +168,7 @@
         UILabel *score = [[UILabel alloc]initWithFrame:CGRectMake(37, 15, 140, 60)];
         [score setFont:[UIFont boldSystemFontOfSize:18]];
         score.numberOfLines = 2;
+        //TODO
         score.text = @"Score de votre\nappartement :";
         score.textAlignment = NSTextAlignmentCenter;
         [cell addSubview:score];
