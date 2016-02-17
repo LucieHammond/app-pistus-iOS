@@ -290,7 +290,7 @@
 - (void) updateUsersPositions{
     for(UIButton *marqueurUtilisateur in marqueursUtilisateurs)
     {
-        int i = [marqueursUtilisateurs indexOfObject:marqueurUtilisateur];
+        int i = (int)[marqueursUtilisateurs indexOfObject:marqueurUtilisateur];
         
 
         // On demande à la bdd le login de l'utilisateur
@@ -321,7 +321,7 @@
 
 - (IBAction)supprimerMarqueur:(id)sender {
     // On supprime marqueurBulle
-    int i = [marqueursUtilisateurs indexOfObject:marqueurBulle];
+    int i = (int)[marqueursUtilisateurs indexOfObject:marqueurBulle];
     [nomsUtilisateurs removeObjectAtIndex:i];
     [posXUtilisateurs removeObjectAtIndex:i];
     [posYUtilisateurs removeObjectAtIndex:i];
@@ -330,6 +330,8 @@
     [[GeolocalisationManager sharedInstance].utilisateursSuivis removeObjectAtIndex:i];
     [marqueurBulle removeFromSuperview];
     [marqueursUtilisateurs removeObject:marqueurBulle];
+    _apresClic = true;
+    [self effacerBulle];
 }
 
 - (IBAction)actualiser:(id)sender {
@@ -434,7 +436,7 @@
     }
     else if([marqueursUtilisateurs containsObject:sender])
     {
-        int i = [marqueursUtilisateurs indexOfObject:sender];
+        int i = (int)[marqueursUtilisateurs indexOfObject:sender];
         //Titre
         _titre.text=nomsUtilisateurs[i];
         [_titre sizeToFit];
@@ -596,9 +598,9 @@
     
     for(UIButton *marqueurUtilisateur in marqueursUtilisateurs)
     {
-        int i = [marqueursUtilisateurs indexOfObject:marqueurUtilisateur];
-        int posX = [posXUtilisateurs[i] integerValue];
-        int posY = [posYUtilisateurs[i] integerValue];
+        int i = (int)[marqueursUtilisateurs indexOfObject:marqueurUtilisateur];
+        int posX = (int)[posXUtilisateurs[i] integerValue];
+        int posY = (int)[posYUtilisateurs[i] integerValue];
         float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
         float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         marqueurUtilisateur.center = CGPointMake(X,Y);
@@ -705,44 +707,68 @@
     utilisateur = [resultatsRecherche objectAtIndex:indexPath.row][@"login"];
     if(![[GeolocalisationManager sharedInstance].utilisateursSuivis containsObject:utilisateur])
     {
-        // On ajoute l'utilsateur dans la liste des utilisateurs suivis
-        [[GeolocalisationManager sharedInstance].utilisateursSuivis addObject:utilisateur];
-        
-        // Créer marqueur
-        UIButton *marqueurUtilisateur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,16,16)];
-        [marqueurUtilisateur setImage:[UIImage imageNamed:@"marker1.png"] forState:UIControlStateNormal];
-        [marqueurUtilisateur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
-           forControlEvents:UIControlEventTouchUpInside];
-        
-        // Rendre le marqueur réceptif au double clic
-        UITapGestureRecognizer *doubleClick = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleClickMarqueur:)];
-        doubleClick.delegate = self;
-        doubleClick.numberOfTapsRequired = 2;
-        [marqueurUtilisateur addGestureRecognizer:doubleClick];
-        
-        // on demande à la bdd la position de l'utilisateur
+        // On demande à la bdd la position de l'utilisateur
         NSDictionary *userInfos = [APIManager getFromApi:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", utilisateur]][@"data"];
         int posX = [userInfos[@"mapPointX"] floatValue];
         int posY = [userInfos[@"mapPointY"] floatValue];
-        float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-        marqueurUtilisateur.center = CGPointMake(X,Y);
-        [self.view insertSubview:marqueurUtilisateur aboveSubview:_scrollView];
-        [marqueursUtilisateurs addObject:marqueurUtilisateur];
-        [posXUtilisateurs addObject:[NSNumber numberWithInt:posX]];
-        [posYUtilisateurs addObject:[NSNumber numberWithInt:posY]];
         
-        // On demande à la bdd le nom de l'utilisateur
-        NSString *nom = userInfos[@"fullName"];
-        [nomsUtilisateurs addObject:nom];
-        
-        // On demande à la bdd la dernière date à laquelle on a vu l'utilisateur à cette position
-        NSString *dateString = userInfos[@"lastPosUpdate"];
-        [datesUtilisateurs addObject: dateString];
-        
-        // On demande à la bdd la piste sur laquelle l'utilisateur était
-        NSString *piste = userInfos[@"lastSlope"];
-        [pistesUtilisateurs addObject:piste];
+        if(posX==0 && posY == 0){
+            // Ca veut dire que l'utilisateur n'a jamais été localisé
+            // Dans ce cas on affiche un message à l'écran
+            NSString *nom = userInfos[@"fullName"];
+            NSString *titre = [NSString stringWithFormat:@"%@ n'a encore jamais été localisé(e) sur la station",nom];
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: titre
+                                  message:@"Réessayez plus tard" delegate:self
+                                  cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+        else
+        {
+            // On ajoute l'utilsateur dans la liste des utilisateurs suivis
+            [[GeolocalisationManager sharedInstance].utilisateursSuivis addObject:utilisateur];
+            
+            // Créer marqueur
+            UIButton *marqueurUtilisateur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,16,16)];
+            [marqueurUtilisateur setImage:[UIImage imageNamed:@"marker1.png"] forState:UIControlStateNormal];
+            [marqueurUtilisateur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+                          forControlEvents:UIControlEventTouchUpInside];
+            
+            // Rendre le marqueur réceptif au double clic
+            UITapGestureRecognizer *doubleClick = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleClickMarqueur:)];
+            doubleClick.delegate = self;
+            doubleClick.numberOfTapsRequired = 2;
+            [marqueurUtilisateur addGestureRecognizer:doubleClick];
+            
+            // On place le marqueur à la bonne position
+            float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+            float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+            marqueurUtilisateur.center = CGPointMake(X,Y);
+            [self.view insertSubview:marqueurUtilisateur aboveSubview:_scrollView];
+            [marqueursUtilisateurs addObject:marqueurUtilisateur];
+            [posXUtilisateurs addObject:[NSNumber numberWithInt:posX]];
+            [posYUtilisateurs addObject:[NSNumber numberWithInt:posY]];
+            
+            // On demande à la bdd le nom de l'utilisateur
+            NSString *nom = userInfos[@"fullName"];
+            [nomsUtilisateurs addObject:nom];
+            
+            // On demande à la bdd la dernière date à laquelle on a vu l'utilisateur à cette position
+            NSString *dateString = userInfos[@"lastPosUpdate"];
+            [datesUtilisateurs addObject: dateString];
+            
+            // On demande à la bdd la piste sur laquelle l'utilisateur était
+            NSString *piste = userInfos[@"lastSlope"];
+            [pistesUtilisateurs addObject:piste];
+            
+            // On centre sur la position de l'utilisateur et on affiche les détails
+            float Xcentre = _scrollView.contentSize.width/7452*posX;
+            float Ycentre = _scrollView.contentSize.height/3174*posY;
+            float largeur = _scrollView.frame.size.width;
+            float hauteur = _scrollView.frame.size.height;
+            [_scrollView scrollRectToVisible:CGRectMake(Xcentre-largeur/2,Ycentre-hauteur/2,largeur,hauteur) animated:true];
+            [self afficherDetailsPourMarqueur:marqueurUtilisateur];
+        }
     }
 }
 
