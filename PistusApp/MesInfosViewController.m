@@ -45,7 +45,7 @@
                forControlEvents:UIControlEventTouchUpInside];
     
     // Get MesInfos from API
-    _myNews = [APIManager getFromApi:@"http://apistus.via.ecp.fr/news/AUTH_KEY"][@"myNews"];
+    _myNews = [APIManager getFromApi:@"http://apistus.via.ecp.fr/news/AUTH_KEY/my"][@"myNews"];
     
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];

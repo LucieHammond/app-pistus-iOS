@@ -70,7 +70,7 @@
     [[[self.tabBarController.viewControllers objectAtIndex:2] tabBarItem]  setImageInsets:UIEdgeInsetsMake(0,0,0,0)];
     
     // Get News from API
-    _generalNews = [APIManager getFromApi:@"http://apistus.via.ecp.fr/news/AUTH_KEY"][@"generalNews"];
+    _generalNews = [APIManager getFromApi:@"http://apistus.via.ecp.fr/news/AUTH_KEY/general"][@"generalNews"];
     
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
