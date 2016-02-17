@@ -290,7 +290,7 @@
 - (void) updateUsersPositions{
     for(UIButton *marqueurUtilisateur in marqueursUtilisateurs)
     {
-        int i = [marqueursUtilisateurs indexOfObject:marqueurUtilisateur];
+        int i = (int)[marqueursUtilisateurs indexOfObject:marqueurUtilisateur];
         
 
         // On demande à la bdd le login de l'utilisateur
@@ -321,7 +321,7 @@
 
 - (IBAction)supprimerMarqueur:(id)sender {
     // On supprime marqueurBulle
-    int i = [marqueursUtilisateurs indexOfObject:marqueurBulle];
+    int i = (int)[marqueursUtilisateurs indexOfObject:marqueurBulle];
     [nomsUtilisateurs removeObjectAtIndex:i];
     [posXUtilisateurs removeObjectAtIndex:i];
     [posYUtilisateurs removeObjectAtIndex:i];
@@ -330,6 +330,8 @@
     [[GeolocalisationManager sharedInstance].utilisateursSuivis removeObjectAtIndex:i];
     [marqueurBulle removeFromSuperview];
     [marqueursUtilisateurs removeObject:marqueurBulle];
+    _apresClic = true;
+    [self effacerBulle];
 }
 
 - (IBAction)actualiser:(id)sender {
@@ -434,7 +436,7 @@
     }
     else if([marqueursUtilisateurs containsObject:sender])
     {
-        int i = [marqueursUtilisateurs indexOfObject:sender];
+        int i = (int)[marqueursUtilisateurs indexOfObject:sender];
         //Titre
         _titre.text=nomsUtilisateurs[i];
         [_titre sizeToFit];
@@ -596,9 +598,9 @@
     
     for(UIButton *marqueurUtilisateur in marqueursUtilisateurs)
     {
-        int i = [marqueursUtilisateurs indexOfObject:marqueurUtilisateur];
-        int posX = [posXUtilisateurs[i] integerValue];
-        int posY = [posYUtilisateurs[i] integerValue];
+        int i = (int)[marqueursUtilisateurs indexOfObject:marqueurUtilisateur];
+        int posX = (int)[posXUtilisateurs[i] integerValue];
+        int posY = (int)[posYUtilisateurs[i] integerValue];
         float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
         float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         marqueurUtilisateur.center = CGPointMake(X,Y);
@@ -743,6 +745,14 @@
         // On demande à la bdd la piste sur laquelle l'utilisateur était
         NSString *piste = userInfos[@"lastSlope"];
         [pistesUtilisateurs addObject:piste];
+        
+        // On centre sur la position de l'utilisateur et on affiche les détails
+        float Xcentre = _scrollView.contentSize.width/7452*posX;
+        float Ycentre = _scrollView.contentSize.height/3174*posY;
+        float largeur = _scrollView.frame.size.width;
+        float hauteur = _scrollView.frame.size.height;
+        [_scrollView scrollRectToVisible:CGRectMake(Xcentre-largeur/2,Ycentre-hauteur/2,largeur,hauteur) animated:true];
+        [self afficherDetailsPourMarqueur:marqueurUtilisateur];
     }
 }
 
