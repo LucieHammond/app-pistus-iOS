@@ -34,78 +34,144 @@
     // VITESSE
     _classementVitesse.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"maxSpeed"][@"count"]];
 
-    _g1Vitesse.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][0][@"lastName"]];
-    _v1Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][0][@"maxSpeed"] floatValue] * 3.6];
-
-    _g2Vitesse.text = [NSString stringWithFormat:@"2 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][1][@"lastName"]];
-    _v2Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][1][@"maxSpeed"] floatValue] * 3.6];
-
-    _g3Vitesse.text = [NSString stringWithFormat:@"3 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][2][@"lastName"]];
-    _v3Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][2][@"maxSpeed"] floatValue] * 3.6];
+    if([_rankings[@"data"][@"maxSpeed"][@"ranking"][0][@"maxSpeed"] floatValue]!=0){
+        _g1Vitesse.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][0][@"lastName"]];
+        _v1Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][0][@"maxSpeed"] floatValue] * 3.6];
+    }
     
-    _g4Vitesse.text = [NSString stringWithFormat:@"4 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][3][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][3][@"lastName"]];
-    _v4Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][3][@"maxSpeed"] floatValue] * 3.6];
+    if([_rankings[@"data"][@"maxSpeed"][@"ranking"][1][@"maxSpeed"] floatValue]!=0){
+        _g2Vitesse.text = [NSString stringWithFormat:@"2 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][1][@"lastName"]];
+        _v2Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][1][@"maxSpeed"] floatValue] * 3.6];
+    }
+
+    if([_rankings[@"data"][@"maxSpeed"][@"ranking"][2][@"maxSpeed"] floatValue]!=0){
+        _g3Vitesse.text = [NSString stringWithFormat:@"3 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][2][@"lastName"]];
+        _v3Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][2][@"maxSpeed"] floatValue] * 3.6];
+    }
     
-    _g5Vitesse.text = [NSString stringWithFormat:@"5 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][4][@"lastName"]];
+    if([_rankings[@"data"][@"maxSpeed"][@"ranking"][3][@"maxSpeed"] floatValue]!=0){
+        _g4Vitesse.text = [NSString stringWithFormat:@"4 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][3][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][3][@"lastName"]];
+        _v4Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][3][@"maxSpeed"] floatValue] * 3.6];
+    }
+    
+    if([_rankings[@"data"][@"maxSpeed"][@"ranking"][4][@"maxSpeed"] floatValue]!=0){
+        _g5Vitesse.text = [NSString stringWithFormat:@"5 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][4][@"lastName"]];
     _v5Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][4][@"maxSpeed"] floatValue] * 3.6];
+    }
     
     // ALTITUDE
     _classementAltitude.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"altMax"][@"count"]];
     
-    _g1Altitude.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][0][@"lastName"]];
-    _v1Altitude.text = [NSString stringWithFormat:@"%ld m",[_rankings[@"data"][@"altMax"][@"ranking"][0][@"altMax"] integerValue]];
+    if([_rankings[@"data"][@"altMax"][@"ranking"][0][@"altMax"] integerValue]!=0){
+        _g1Altitude.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][0][@"lastName"]];
+        _v1Altitude.text = [NSString stringWithFormat:@"%ld m",[_rankings[@"data"][@"altMax"][@"ranking"][0][@"altMax"] integerValue]];
+    }
     
-    _g2Altitude.text = [NSString stringWithFormat:@"2 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][1][@"lastName"]];
-    _v2Altitude.text = [NSString stringWithFormat:@"%ld m",[_rankings[@"data"][@"altMax"][@"ranking"][1][@"altMax"] integerValue]];
+    if([_rankings[@"data"][@"altMax"][@"ranking"][1][@"altMax"] integerValue]!=0){
+        _g2Altitude.text = [NSString stringWithFormat:@"2 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][1][@"lastName"]];
+        _v2Altitude.text = [NSString stringWithFormat:@"%ld m",[_rankings[@"data"][@"altMax"][@"ranking"][1][@"altMax"] integerValue]];
+    }
     
-    _g3Altitude.text = [NSString stringWithFormat:@"3 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][2][@"lastName"]];
-    _v3Altitude.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"altMax"][@"ranking"][2][@"altMax"] integerValue]];
+    if([_rankings[@"data"][@"altMax"][@"ranking"][2][@"altMax"] integerValue]!=0){
+        _g3Altitude.text = [NSString stringWithFormat:@"3 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][2][@"lastName"]];
+        _v3Altitude.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"altMax"][@"ranking"][2][@"altMax"] integerValue]];
+    }
     
-    _g4Altitude.text = [NSString stringWithFormat:@"4 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][3][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][3][@"lastName"]];
-    _v4Altitude.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"altMax"][@"ranking"][3][@"altMax"] integerValue]];
+    if([_rankings[@"data"][@"altMax"][@"ranking"][3][@"altMax"] integerValue]!=0){
+        _g4Altitude.text = [NSString stringWithFormat:@"4 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][3][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][3][@"lastName"]];
+        _v4Altitude.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"altMax"][@"ranking"][3][@"altMax"] integerValue]];
+    }
     
-    _g5Altitude.text = [NSString stringWithFormat:@"5 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][4][@"lastName"]];
-    _v5Altitude.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"altMax"][@"ranking"][4][@"altMax"] integerValue]];
-    
+    if([_rankings[@"data"][@"altMax"][@"ranking"][4][@"altMax"] integerValue]!=0){
+        _g5Altitude.text = [NSString stringWithFormat:@"5 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][4][@"lastName"]];
+        _v5Altitude.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"altMax"][@"ranking"][4][@"altMax"] integerValue]];
+    }
     
     // DISTANCE
     _classementDistance.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"kmSki"][@"count"]];
     
-    _g1Distance.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][0][@"lastName"]];
-    _v1Distance.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"kmSki"][@"ranking"][0][@"kmSki"] integerValue]*1000];
+    if([_rankings[@"data"][@"kmSki"][@"ranking"][0][@"kmSki"] integerValue]!=0){
+        _g1Distance.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][0][@"lastName"]];
+        _v1Distance.text = [NSString stringWithFormat:@"%ld km", [_rankings[@"data"][@"kmSki"][@"ranking"][0][@"kmSki"] integerValue]];
+    }
     
-    _g2Distance.text = [NSString stringWithFormat:@"2 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][1][@"lastName"]];
-    _v2Distance.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"kmSki"][@"ranking"][1][@"kmSki"] integerValue]*1000];
+    if([_rankings[@"data"][@"kmSki"][@"ranking"][1][@"kmSki"] integerValue]!=0){
+        _g2Distance.text = [NSString stringWithFormat:@"2 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][1][@"lastName"]];
+        _v2Distance.text = [NSString stringWithFormat:@"%ld km", [_rankings[@"data"][@"kmSki"][@"ranking"][1][@"kmSki"] integerValue]];
+    }
     
-    _g3Distance.text = [NSString stringWithFormat:@"3 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][2][@"lastName"]];
-    _v3Distance.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"kmSki"][@"ranking"][2][@"kmSki"] integerValue]*1000];
+    if([_rankings[@"data"][@"kmSki"][@"ranking"][2][@"kmSki"] integerValue]!=0){
+        _g3Distance.text = [NSString stringWithFormat:@"3 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][2][@"lastName"]];
+        _v3Distance.text = [NSString stringWithFormat:@"%ld km", [_rankings[@"data"][@"kmSki"][@"ranking"][2][@"kmSki"] integerValue]];
+    }
     
-    _g4Distance.text = [NSString stringWithFormat:@"4 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][3][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][3][@"lastName"]];
-    _v4Distance.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"kmSki"][@"ranking"][3][@"kmSki"] integerValue]*1000];
+    if([_rankings[@"data"][@"kmSki"][@"ranking"][3][@"kmSki"] integerValue]!=0){
+        _g4Distance.text = [NSString stringWithFormat:@"4 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][3][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][3][@"lastName"]];
+        _v4Distance.text = [NSString stringWithFormat:@"%ld km", [_rankings[@"data"][@"kmSki"][@"ranking"][3][@"kmSki"] integerValue]];
+    }
     
-    _g5Distance.text = [NSString stringWithFormat:@"5 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][4][@"lastName"]];
-    _v5Distance.text = [NSString stringWithFormat:@"%ld m", [_rankings[@"data"][@"kmSki"][@"ranking"][4][@"kmSki"] integerValue]*1000];
+    if([_rankings[@"data"][@"kmSki"][@"ranking"][4][@"kmSki"] integerValue]!=0){
+        _g5Distance.text = [NSString stringWithFormat:@"5 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][4][@"lastName"]];
+        _v5Distance.text = [NSString stringWithFormat:@"%ld km", [_rankings[@"data"][@"kmSki"][@"ranking"][4][@"kmSki"] integerValue]];
+    }
     
     // TEMPS
     _classementTemps.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"skiTime"][@"count"]];
     
-    _g1Temps.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][0][@"lastName"]];
-    _v1Temps.text = [NSString stringWithFormat:@"%ld h", [_rankings[@"data"][@"skiTime"][@"ranking"][0][@"skiTime"] integerValue]];
+    long temps = [_rankings[@"data"][@"skiTime"][@"ranking"][0][@"skiTime"] integerValue];
+    if(temps!=0){
+        _g1Temps.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][0][@"lastName"]];
+        long heures = temps/3600;
+        long minutes = (temps-heures*3600)/60;
+        if(heures !=0)
+            _v1Temps.text = [NSString stringWithFormat:@"%ldh %ldmin", heures, minutes];
+        else
+            _v1Temps.text = [NSString stringWithFormat:@"%ldmin %lds", minutes, temps-60*minutes];
+    }
     
-    _g2Temps.text = [NSString stringWithFormat:@"2 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][1][@"lastName"]];
-    _v2Temps.text = [NSString stringWithFormat:@"%ld h", [_rankings[@"data"][@"skiTime"][@"ranking"][1][@"skiTime"] integerValue]];
+    temps = [_rankings[@"data"][@"skiTime"][@"ranking"][1][@"skiTime"] integerValue];
+    if(temps!=0){
+        _g2Temps.text = [NSString stringWithFormat:@"2 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][1][@"lastName"]];
+        long heures = temps/3600;
+        long minutes = (temps-heures*3600)/60;
+        if(heures !=0)
+            _v2Temps.text = [NSString stringWithFormat:@"%ldh %ldmin", heures, minutes];
+        else
+            _v2Temps.text = [NSString stringWithFormat:@"%ldmin %lds", minutes, temps-60*minutes];
+    }
     
-    _g3Temps.text = [NSString stringWithFormat:@"3 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][2][@"lastName"]];
-    _v3Temps.text = [NSString stringWithFormat:@"%ld h", [_rankings[@"data"][@"skiTime"][@"ranking"][2][@"skiTime"] integerValue]];
+    temps = [_rankings[@"data"][@"skiTime"][@"ranking"][2][@"skiTime"] integerValue];
+    if(temps!=0){
+        _g3Temps.text = [NSString stringWithFormat:@"3 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][2][@"lastName"]];
+        long heures = temps/3600;
+        long minutes = (temps-heures*3600)/60;
+        if(heures !=0)
+            _v3Temps.text = [NSString stringWithFormat:@"%ldh %ldmin", heures, minutes];
+        else
+            _v3Temps.text = [NSString stringWithFormat:@"%ldmin %lds", minutes, temps-60*minutes];
+    }
     
-    _g4Temps.text = [NSString stringWithFormat:@"4 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][3][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][3][@"lastName"]];
-    _v4Temps.text = [NSString stringWithFormat:@"%ld h", [_rankings[@"data"][@"skiTime"][@"ranking"][3][@"skiTime"] integerValue]];
+    temps = [_rankings[@"data"][@"skiTime"][@"ranking"][3][@"skiTime"] integerValue];
+    if(temps!=0){
+        _g4Temps.text = [NSString stringWithFormat:@"4 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][3][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][3][@"lastName"]];
+        long heures = temps/3600;
+        long minutes = (temps-heures*3600)/60;
+        if(heures !=0)
+            _v4Temps.text = [NSString stringWithFormat:@"%ldh %ldmin", heures, minutes];
+        else
+            _v4Temps.text = [NSString stringWithFormat:@"%ldmin %lds", minutes, temps-60*minutes];
+    }
     
-    _g5Temps.text = [NSString stringWithFormat:@"5 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][4][@"lastName"]];
-    _v5Temps.text = [NSString stringWithFormat:@"%ld h", [_rankings[@"data"][@"skiTime"][@"ranking"][4][@"skiTime"] integerValue]];
-    
-    
-
+    temps = [_rankings[@"data"][@"skiTime"][@"ranking"][4][@"skiTime"] integerValue];
+    if(temps!=0){
+        _g5Temps.text = [NSString stringWithFormat:@"5 - %@ %@ :",_rankings[@"data"][@"skiTime"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"skiTime"][@"ranking"][4][@"lastName"]];
+        long heures = temps/3600;
+        long minutes = (temps-heures*3600)/60;
+        if(heures!=0)
+            _v5Temps.text = [NSString stringWithFormat:@"%ldh %ldmin", heures, minutes];
+        else
+            _v5Temps.text = [NSString stringWithFormat:@"%ldmin %lds", minutes, temps-60*minutes];
+    }
 }
 
 -(void) viewDidLayoutSubviews{
