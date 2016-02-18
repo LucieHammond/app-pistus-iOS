@@ -305,7 +305,8 @@
         NSString *login = [GeolocalisationManager sharedInstance].utilisateursSuivis[i];
         loginsUtilisateurs[i] = login;
         
-        NSDictionary *userInfos = [APIManager getFromApi:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", login]][@"data"];
+        NSData *userInfosData = [APIManager getFromApi:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", login]];
+        NSMutableDictionary *userInfos = [NSJSONSerialization JSONObjectWithData:userInfosData options:NSJSONReadingMutableContainers error:nil][@"data"];
         
         nomsUtilisateurs[i] = userInfos[@"fullName"];
         // On demande à la bdd la position de l'utilisateur
@@ -723,7 +724,9 @@
     if(![[GeolocalisationManager sharedInstance].utilisateursSuivis containsObject:utilisateur])
     {
         // On demande à la bdd la position de l'utilisateur
-        NSDictionary *userInfos = [APIManager getFromApi:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", utilisateur]][@"data"];
+        NSData *userInfosData = [APIManager getFromApi:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", utilisateur]];
+        NSMutableDictionary *userInfos = [NSJSONSerialization JSONObjectWithData:userInfosData options:NSJSONReadingMutableContainers error:nil][@"data"];
+
         int posX = [userInfos[@"mapPointX"] floatValue];
         int posY = [userInfos[@"mapPointY"] floatValue];
         

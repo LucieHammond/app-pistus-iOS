@@ -29,9 +29,30 @@
     return ep;
 }
 
+
 + (NSMutableDictionary*)getData:(NSString *)type {
     NSString *url = [NSString stringWithFormat:@"%@%@", DataManager.baseUrl, DataManager.endpoints[type]];
-    return [APIManager getFromApi:url];
+    NSData *apiResponseData = [APIManager getFromApi:url];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSString *jsonPath=[[paths objectAtIndex:0] stringByAppendingFormat:[NSString stringWithFormat:@"/%@.json", type]];
+    
+    if(apiResponseData == nil) {
+        NSData *localResponseData = [NSData dataWithContentsOfFile:jsonPath];
+        if(localResponseData == nil) {
+            return NULL;
+        }
+        else {
+            NSMutableDictionary *localResponse = [NSJSONSerialization JSONObjectWithData:localResponseData options:NSJSONReadingMutableContainers error:nil];
+            return localResponse;
+        }
+    }
+    else {
+        [apiResponseData writeToFile:jsonPath atomically:YES];
+
+        return [NSJSONSerialization JSONObjectWithData:apiResponseData options:NSJSONReadingMutableContainers error:nil];
+    }
 }
 
 

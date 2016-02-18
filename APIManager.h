@@ -11,7 +11,7 @@
 @interface APIManager : NSObject
 
 + (NSMutableDictionary*)authenticate:(NSString *)login :(NSString *)password;
-+ (NSMutableDictionary*)getFromApi:(NSString *)url;
++ (NSData*)getFromApi:(NSString *)url;
 + (NSMutableDictionary*)postToApi:(NSString *)url :(NSDictionary *)dict;
 
 
