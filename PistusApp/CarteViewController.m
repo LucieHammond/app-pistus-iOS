@@ -9,6 +9,7 @@
 #import "CarteViewController.h"
 #import "DBManager.h"
 #import "APIManager.h"
+#import "DataManager.h"
 #import "GeolocalisationManager.h"
 
 @interface CarteViewController ()
@@ -144,7 +145,7 @@
     
     // Initialisation du tableau Participants
     participants = [[NSArray alloc] init];
-    NSDictionary *participantsData = [APIManager getFromApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY"];
+    NSDictionary *participantsData = [DataManager getData:@"users"];
     NSArray *participantsFull = participantsData[@"data"];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *loginUser = [defaults stringForKey:@"login"];

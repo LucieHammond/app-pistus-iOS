@@ -66,6 +66,12 @@
 
     if((long)[responseCode statusCode] == 200)
     {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+
+        NSString *jsonPath=[[paths objectAtIndex:0] stringByAppendingFormat:@"/data.json"];
+
+        [responseData writeToFile:jsonPath atomically:YES];
+        
         NSMutableDictionary *responseJson = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil];
         return responseJson;
     }

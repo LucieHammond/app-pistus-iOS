@@ -9,7 +9,7 @@
 #import "PistesViewController.h"
 #import "GeolocalisationManager.h"
 #import "DBManager.h"
-#import "APIManager.h"
+#import "DataManager.h"
 #import "CustomTableViewCell.h"
 
 @interface PistesViewController ()
@@ -62,7 +62,7 @@
     pistes = [NSArray arrayWithObjects:pistesLF, pistesPL, pistesLS, nil];
     
     //Getting data
-    _apiSlopes = [APIManager getFromApi:@"http://apistus.via.ecp.fr/slope/AUTH_KEY"];
+    _apiSlopes = [DataManager getData:@"slope"];
     
     closedSlopes = [[NSMutableArray alloc] init];
     NSInteger i;

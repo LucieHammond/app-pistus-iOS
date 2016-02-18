@@ -9,7 +9,7 @@
 #import "InfosGlobalesViewController.h"
 #import "GeolocalisationManager.h"
 #import "CustomTableViewCell.h"
-#import "APIManager.h"
+#import "DataManager.h"
 
 @interface InfosGlobalesViewController ()
 
@@ -47,7 +47,7 @@
                forControlEvents:UIControlEventTouchUpInside];
     
     // Get MesInfos from API
-    _infos = [APIManager getFromApi:@"http://apistus.via.ecp.fr/info/AUTH_KEY"][@"generalInfo"];
+    _infos = [DataManager getData:@"generalInfos"][@"generalInfo"];
     
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];

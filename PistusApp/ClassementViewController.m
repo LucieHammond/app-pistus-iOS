@@ -8,7 +8,7 @@
 
 #import "ClassementViewController.h"
 #import "GeolocalisationManager.h"
-#import "APIManager.h"
+#import "DataManager.h"
 
 @interface ClassementViewController ()
 
@@ -28,7 +28,7 @@
     [self setNeedsStatusBarAppearanceUpdate];
 
     //Getting data
-    _rankings = [APIManager getFromApi:@"http://apistus.via.ecp.fr/ranking/AUTH_KEY"];
+    _rankings = [DataManager getData:@"ranking"];
     NSLog(@"%@", _rankings);
 
     // VITESSE

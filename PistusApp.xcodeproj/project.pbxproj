@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5240FB68FE034B1DA5B994AE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 972F0108189D20F19292CCB6 /* libPods.a */; };
 		B716299B1C66357300675886 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B716299A1C66357300675886 /* APIManager.m */; };
+		B76F05971C768712003FCFD7 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B76F05961C768712003FCFD7 /* DataManager.m */; };
 		B77E891B1C408158005CBD6D /* libNXOAuth2Client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B77E891A1C408158005CBD6D /* libNXOAuth2Client.a */; };
 		C52D72CC1C4ACA09005C05D1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52D72CB1C4ACA09005C05D1 /* Foundation.framework */; };
 		C52D72D11C4ACBDD005C05D1 /* GraphTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72D01C4ACBDD005C05D1 /* GraphTableViewCell.m */; };
@@ -127,6 +128,8 @@
 		972F0108189D20F19292CCB6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71629991C66357300675886 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		B716299A1C66357300675886 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		B76F05951C768712003FCFD7 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		B76F05961C768712003FCFD7 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		B77E891A1C408158005CBD6D /* libNXOAuth2Client.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNXOAuth2Client.a; path = "Pods/../build/Debug-iphoneos/libNXOAuth2Client.a"; sourceTree = "<group>"; };
 		C1B1D9BD10AC26036BFAEE20 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C52D72CB1C4ACA09005C05D1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -326,6 +329,8 @@
 		C54F8AB31BD94D5A00CE7B3A = {
 			isa = PBXGroup;
 			children = (
+				B76F05951C768712003FCFD7 /* DataManager.h */,
+				B76F05961C768712003FCFD7 /* DataManager.m */,
 				B71629991C66357300675886 /* APIManager.h */,
 				B716299A1C66357300675886 /* APIManager.m */,
 				C570B83B1C2B44C5003E0E16 /* DBManager.h */,
@@ -371,9 +376,9 @@
 				C593B4F21C45E198009F5896 /* GraphsViewController.h */,
 				C593B4F31C45E198009F5896 /* GraphsViewController.m */,
 				C52D72CF1C4ACBDD005C05D1 /* GraphTableViewCell.h */,
+				C52D72D01C4ACBDD005C05D1 /* GraphTableViewCell.m */,
 				C54F8AC91BD94D5A00CE7B3A /* Main.storyboard */,
 				C52D72EB1C4BB0E3005C05D1 /* NewsViewController.h */,
-				C52D72D01C4ACBDD005C05D1 /* GraphTableViewCell.m */,
 				C52D72EC1C4BB0E3005C05D1 /* NewsViewController.m */,
 				C52D72EE1C4BB12D005C05D1 /* MesInfosViewController.h */,
 				C52D72EF1C4BB12D005C05D1 /* MesInfosViewController.m */,
@@ -743,6 +748,7 @@
 				B716299B1C66357300675886 /* APIManager.m in Sources */,
 				C570B83D1C2B44C5003E0E16 /* DBManager.m in Sources */,
 				C52D73061C4CF093005C05D1 /* PistesViewController.m in Sources */,
+				B76F05971C768712003FCFD7 /* DataManager.m in Sources */,
 				C52D72F31C4BB173005C05D1 /* InfosGlobalesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
