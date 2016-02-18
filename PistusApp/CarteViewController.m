@@ -20,7 +20,7 @@
 
 @implementation CarteViewController
 {
-    NSMutableArray *participants;
+    NSArray *participants;
     NSArray *resultatsRecherche;
     NSMutableArray *marqueursUtilisateurs;
     NSMutableArray *loginsUtilisateurs;
@@ -142,10 +142,15 @@
        forControlEvents:UIControlEventTouchUpInside];
     [self.view insertSubview:marqueur aboveSubview:_scrollView];
     
-    // Initialisation du tableau Participants (à remplacer par une recherche dans la BDD ?)
-    participants = [[NSMutableArray alloc] init];
+    // Initialisation du tableau Participants
+    participants = [[NSArray alloc] init];
     NSDictionary *participantsData = [APIManager getFromApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY"];
-    participants = participantsData[@"data"];
+    NSArray *participantsFull = participantsData[@"data"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *loginUser = [defaults stringForKey:@"login"];
+    NSPredicate *loginPredicate = [NSPredicate predicateWithFormat:@"self.login != %@", loginUser];
+    participants = [participantsFull filteredArrayUsingPredicate:loginPredicate];
+    
 
     if (marqueursUtilisateurs==nil){
         marqueursUtilisateurs = [[NSMutableArray alloc]initWithCapacity:[GeolocalisationManager sharedInstance].utilisateursSuivis.count];
