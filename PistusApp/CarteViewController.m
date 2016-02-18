@@ -217,7 +217,9 @@
 
         
         NSLog(@"1");
+        // Pour afficher tout de suite à l'arrivée sur la vue sans avoir à scroller
         [self updateSelfPosition];
+        [self updateUsersPositions];
     }
     else{
         NSLog(@"2");

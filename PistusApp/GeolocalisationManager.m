@@ -98,8 +98,7 @@ static GeolocalisationManager* sharedInstance=nil;
         [locationManager startUpdatingLocation];
         
         // Toutes les 2 minutes, on envoie sa position au serveur (le timer continue même quand l'appli est en background)
-        timerPosition = [NSTimer scheduledTimerWithTimeInterval:120 target:self selector:@selector(envoyerInfos) userInfo:nil repeats:YES];
-        
+        timerPosition = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(envoyerInfos) userInfo:nil repeats:YES];
         return true;
     }
     else
@@ -135,15 +134,6 @@ static GeolocalisationManager* sharedInstance=nil;
         _tempsDeSki+=[[NSDate date] timeIntervalSinceDate:dateDebutSki];
         dateDebutSki=[NSDate date];
     }
-    // On envoie les infos au serveur dans la table AppUser
-    /*id, eleves_id et auth_key sont probablement obtenus avec Auth, surnom est donné dans "profil"
-     last_pos_update = _derniereDate
-     maxSpeed = _vitesseMax
-     altMax = _altitudeMax
-     Map_pointX = _dernierX
-     Map_pointY = _dernierY
-     kmSki = _distanceSki
-     skiTime = _tempsDeSki*/
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *stringFromLastDate = [dateFormat stringFromDate:_derniereDate];
@@ -157,13 +147,16 @@ static GeolocalisationManager* sharedInstance=nil;
     [userData setObject:[NSNumber numberWithInt:_dernierY] forKey:@"mapPointY"];
     [userData setObject:[NSNumber numberWithDouble:_distanceSki/1000] forKey:@"kmSki"];
     [userData setObject:[NSNumber numberWithInt:_tempsDeSki] forKey:@"skiTime"];
-    if(_dernierePiste!=nil)
-        [userData setObject:_dernierePiste forKey:@"lastSlope"];
-    
-    NSLog(@"%@", userData);
+    if(_dernierePiste!=nil){
+        self.dbManager=[[DBManager alloc]initWithDatabaseFilename:@"bddPistes.db"];
+        NSString *query = [NSString stringWithFormat:@"select nom from pistes where id='%@'",_dernierePiste];
+        NSString *piste = [self.dbManager loadDataFromDB:query][0][0];
+        [userData setObject:piste forKey:@"lastSlope"];
+    }
+        
+    NSLog(@"Envoi données");
     NSDictionary *responseJson = [APIManager postToApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData];
     NSLog(@"%@", responseJson);
-    
 }
 
 -(BOOL)trackAccept
@@ -244,8 +237,9 @@ static GeolocalisationManager* sharedInstance=nil;
                     // On met à jour les statistiques seulement si on est pas en station
                     if(!_enStation)
                     {
-                        _vitesseActuelle=lastLocation.speed;
-                        if(_vitesseActuelle!=0)
+                        if(_vitesseActuelle>=0)
+                            _vitesseActuelle=lastLocation.speed;
+                        if(_vitesseActuelle>0)
                         {
                             _vitesseCumulee+=_vitesseActuelle;
                             _totalPositions++;
@@ -383,8 +377,9 @@ static GeolocalisationManager* sharedInstance=nil;
                     // On met à jour les statistiques sauf si on est en station
                     if(!_enStation)
                     {
-                        _vitesseActuelle=lastLocation.speed;
-                        if(_vitesseActuelle!=0)
+                        if(_vitesseActuelle>=0)
+                            _vitesseActuelle=lastLocation.speed;
+                        if(_vitesseActuelle>0)
                         {
                             _vitesseCumulee+=_vitesseActuelle;
                             _totalPositions++;
@@ -631,8 +626,9 @@ static GeolocalisationManager* sharedInstance=nil;
                     // On met à jour les statistiques seulement si on est pas en station
                     if(!_enStation)
                     {
-                        _vitesseActuelle=lastLocation.speed;
-                        if(_vitesseActuelle!=0)
+                        if(_vitesseActuelle>=0)
+                            _vitesseActuelle=lastLocation.speed;
+                        if(_vitesseActuelle>0)
                         {
                             _vitesseCumulee+=_vitesseActuelle;
                             _totalPositions++;
@@ -775,8 +771,9 @@ static GeolocalisationManager* sharedInstance=nil;
                     // On met à jour les statistiques sauf si on est en station
                     if(!_enStation)
                     {
-                        _vitesseActuelle=lastLocation.speed;
-                        if(_vitesseActuelle!=0)
+                        if(_vitesseActuelle>=0)
+                            _vitesseActuelle=lastLocation.speed;
+                        if(_vitesseActuelle>0)
                         {
                             _vitesseCumulee+=_vitesseActuelle;
                             _totalPositions++;
@@ -921,7 +918,6 @@ static GeolocalisationManager* sharedInstance=nil;
     [coder encodeObject:_tabDistance forKey:@"tabDistance"];
     [coder encodeObject:_tabTemps forKey:@"tabTemps"];
     [coder encodeObject:_station forKey:@"station"];
-    [coder encodeBool:_trackAccept forKey:@"trackAccept"];
     [coder encodeInt:_dernierX forKey:@"dernierX"];
     [coder encodeInt:_dernierY forKey:@"dernierY"];
     [coder encodeObject:_dernierePiste forKey:@"dernierePiste"];
@@ -950,7 +946,6 @@ static GeolocalisationManager* sharedInstance=nil;
         self.tabDistance = [decoder decodeObjectForKey:@"tabDistance"];
         self.tabTemps = [decoder decodeObjectForKey:@"tabTemps"];
         self.station = [decoder decodeObjectForKey:@"station"];
-        self.trackAccept = [decoder decodeBoolForKey:@"trackAccept"];
         self.dernierX = [decoder decodeIntForKey:@"dernierX"];
         self.dernierY = [decoder decodeIntForKey:@"dernierY"];
         self.dernierePiste = [decoder decodeObjectForKey:@"dernierePiste"];

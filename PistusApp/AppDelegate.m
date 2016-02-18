@@ -139,7 +139,6 @@
 
 + (void) initialize{    
     // On désactive la géolocalisation par défaut
-    [[GeolocalisationManager sharedInstance] endTrack];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
