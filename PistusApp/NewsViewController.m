@@ -9,7 +9,7 @@
 #import "NewsViewController.h"
 #import "GeolocalisationManager.h"
 #import "CustomTableViewCell.h"
-#import "APIManager.h"
+#import "DataManager.h"
 
 @interface NewsViewController ()
 
@@ -71,7 +71,7 @@
     [[[self.tabBarController.viewControllers objectAtIndex:2] tabBarItem]  setImageInsets:UIEdgeInsetsMake(0,0,0,0)];
     
     // Get News from API
-    _generalNews = [APIManager getFromApi:@"http://apistus.via.ecp.fr/news/AUTH_KEY/general"][@"generalNews"];
+    _generalNews = [DataManager getData:@"generalNews"][@"generalNews"];
     
     // Enlever les marqueurs pour les alertes passées
     [UIApplication sharedApplication].applicationIconBadgeNumber=0;

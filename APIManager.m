@@ -45,7 +45,7 @@
 }
 
 
-+(NSMutableDictionary*)getFromApi:(NSString *)url{
++(NSData*)getFromApi:(NSString *)url{
     NSLog(@"get from api");
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     
@@ -65,9 +65,8 @@
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
 
     if((long)[responseCode statusCode] == 200)
-    {
-        NSMutableDictionary *responseJson = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil];
-        return responseJson;
+    {   
+        return responseData;
     }
     else {
         return NULL;

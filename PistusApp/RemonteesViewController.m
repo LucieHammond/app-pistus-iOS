@@ -9,7 +9,7 @@
 #import "RemonteesViewController.h"
 #import "GeolocalisationManager.h"
 #import "DBManager.h"
-#import "APIManager.h"
+#import "DataManager.h"
 #import "HorairesViewController.h"
 
 @interface RemonteesViewController ()
@@ -80,7 +80,7 @@
     remontees = [NSArray arrayWithObjects:remonteesLF, remonteesPL, remonteesLS, nil];
 
     //Getting data
-    _apiLifts = [APIManager getFromApi:@"http://apistus.via.ecp.fr/lift/AUTH_KEY"];
+    _apiLifts = [DataManager getData:@"lift"];
     
     closedLifts = [[NSMutableArray alloc] init];
     comments = [[NSMutableDictionary alloc] init];

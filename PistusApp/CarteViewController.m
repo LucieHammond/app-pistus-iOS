@@ -9,6 +9,7 @@
 #import "CarteViewController.h"
 #import "DBManager.h"
 #import "APIManager.h"
+#import "DataManager.h"
 #import "GeolocalisationManager.h"
 
 @interface CarteViewController ()
@@ -20,7 +21,7 @@
 
 @implementation CarteViewController
 {
-    NSMutableArray *participants;
+    NSArray *participants;
     NSArray *resultatsRecherche;
     NSMutableArray *marqueursUtilisateurs;
     NSMutableArray *loginsUtilisateurs;
@@ -142,10 +143,15 @@
        forControlEvents:UIControlEventTouchUpInside];
     [self.view insertSubview:marqueur aboveSubview:_scrollView];
     
-    // Initialisation du tableau Participants (à remplacer par une recherche dans la BDD ?)
-    participants = [[NSMutableArray alloc] init];
-    NSDictionary *participantsData = [APIManager getFromApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY"];
-    participants = participantsData[@"data"];
+    // Initialisation du tableau Participants
+    participants = [[NSArray alloc] init];
+    NSDictionary *participantsData = [DataManager getData:@"users"];
+    NSArray *participantsFull = participantsData[@"data"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *loginUser = [defaults stringForKey:@"login"];
+    NSPredicate *loginPredicate = [NSPredicate predicateWithFormat:@"self.login != %@", loginUser];
+    participants = [participantsFull filteredArrayUsingPredicate:loginPredicate];
+    
 
     if (marqueursUtilisateurs==nil){
         marqueursUtilisateurs = [[NSMutableArray alloc]initWithCapacity:[GeolocalisationManager sharedInstance].utilisateursSuivis.count];
@@ -299,7 +305,8 @@
         NSString *login = [GeolocalisationManager sharedInstance].utilisateursSuivis[i];
         loginsUtilisateurs[i] = login;
         
-        NSDictionary *userInfos = [APIManager getFromApi:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", login]][@"data"];
+        NSData *userInfosData = [APIManager getFromApi:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", login]];
+        NSMutableDictionary *userInfos = [NSJSONSerialization JSONObjectWithData:userInfosData options:NSJSONReadingMutableContainers error:nil][@"data"];
         
         nomsUtilisateurs[i] = userInfos[@"fullName"];
         // On demande à la bdd la position de l'utilisateur
@@ -717,7 +724,9 @@
     if(![[GeolocalisationManager sharedInstance].utilisateursSuivis containsObject:utilisateur])
     {
         // On demande à la bdd la position de l'utilisateur
-        NSDictionary *userInfos = [APIManager getFromApi:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", utilisateur]][@"data"];
+        NSData *userInfosData = [APIManager getFromApi:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", utilisateur]];
+        NSMutableDictionary *userInfos = [NSJSONSerialization JSONObjectWithData:userInfosData options:NSJSONReadingMutableContainers error:nil][@"data"];
+
         int posX = [userInfos[@"mapPointX"] floatValue];
         int posY = [userInfos[@"mapPointY"] floatValue];
         

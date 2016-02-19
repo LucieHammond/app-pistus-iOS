@@ -9,7 +9,7 @@
 #import "MesInfosViewController.h"
 #import "GeolocalisationManager.h"
 #import "CustomTableViewCell.h"
-#import "APIManager.h"
+#import "DataManager.h"
 
 @interface MesInfosViewController ()
 
@@ -46,7 +46,7 @@
                forControlEvents:UIControlEventTouchUpInside];
     
     // Get MesInfos from API
-    _myNews = [APIManager getFromApi:@"http://apistus.via.ecp.fr/news/AUTH_KEY/my"][@"myNews"];
+    _myNews = [DataManager getData:@"myNews"][@"myNews"];
     
     // Enlever les marqueurs pour les alertes passées
     [UIApplication sharedApplication].applicationIconBadgeNumber=0;
