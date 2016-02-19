@@ -486,7 +486,7 @@
             <objects>
                 <viewController id="IRz-zR-tQK" customClass="ConcoursViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S7C-cy-jCC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="xkx-FL-fGM">
@@ -2069,8 +2069,8 @@
         <image name="temps.png" width="567" height="567"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5Ng-b7-TDJ"/>
-        <segue reference="rRc-zV-nkw"/>
+        <segue reference="bjE-Kw-uPa"/>
         <segue reference="kd7-MD-GbW"/>
+        <segue reference="rRc-zV-nkw"/>
     </inferredMetricsTieBreakers>
 </document>

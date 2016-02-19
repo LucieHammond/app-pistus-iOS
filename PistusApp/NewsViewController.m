@@ -15,6 +15,7 @@
 
 @property (nonatomic,strong) UIButton *boutonSatellite;
 @property (nonatomic,strong) NSArray *generalNews;
+@property (nonatomic,strong) NSMutableArray *displayedNews;
 
 @end
 
@@ -72,6 +73,30 @@
     // Get News from API
     _generalNews = [APIManager getFromApi:@"http://apistus.via.ecp.fr/news/AUTH_KEY/general"][@"generalNews"];
     
+    // Enlever les marqueurs pour les alertes passées
+    [UIApplication sharedApplication].applicationIconBadgeNumber=0;
+    
+    // Sort news to keep only those with an earlier date
+    _displayedNews = [[NSMutableArray alloc]init];
+    NSDateFormatter* df = [[NSDateFormatter alloc]init];
+    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    for(int i=_generalNews.count-1;i>=0;i--){
+        NSDate *dateTime = [df dateFromString:_generalNews[i][@"date"]];
+        if([dateTime compare:[NSDate date]]==NSOrderedDescending)
+        {
+            UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+            localNotification.fireDate = dateTime;
+            localNotification.alertTitle= _generalNews[i][@"title"];
+            localNotification.alertBody = _generalNews[i][@"text"];
+            localNotification.alertAction = @"Fais glisser pour voir la news";
+            localNotification.soundName = UILocalNotificationDefaultSoundName;
+            localNotification.applicationIconBadgeNumber = 1;
+            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        }
+        else
+            [_displayedNews insertObject:_generalNews[i] atIndex:0];
+    }
+    
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
     self.tableView.delegate = self;
@@ -94,7 +119,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _generalNews.count;
+    NSLog(@"%i",_displayedNews.count);return _displayedNews.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -105,12 +130,12 @@
     if(cell == nil) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"TableViewCell" owner:nil options:nil] firstObject];
     }
-    NSString *title = _generalNews[indexPath.row][@"title"];
-    NSString *content = _generalNews[indexPath.row][@"text"];
+    NSString *title = _displayedNews[indexPath.row][@"title"];
+    NSString *content = _displayedNews[indexPath.row][@"text"];
     
     NSDateFormatter* df = [[NSDateFormatter alloc]init];
     [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *nsdate = [df dateFromString:_generalNews[indexPath.row][@"date"]];
+    NSDate *nsdate = [df dateFromString:_displayedNews[indexPath.row][@"date"]];
     [df setDateFormat:@"dd/MM/yyyy HH:mm"];
     NSString *date = [df stringFromDate:nsdate];
     
@@ -164,5 +189,6 @@
 */
 
 - (IBAction)actualiser:(id)sender {
+    [self viewDidLoad];
 }
 @end

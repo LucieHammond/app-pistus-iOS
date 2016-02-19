@@ -105,6 +105,10 @@
         [[NSRunLoop currentRunLoop] addTimer:timer4 forMode:NSDefaultRunLoopMode];
     }
     
+    // Ask the user the permission to display alerts
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]) {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeSound|UIUserNotificationTypeBadge categories:nil]];
+    }
     // Override point for customization after application launch.
     return YES;
 }
@@ -139,6 +143,14 @@
 
 + (void) initialize{    
     // On désactive la géolocalisation par défaut
+}
+
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:notification.alertTitle
+                          message:notification.alertBody delegate:self
+                          cancelButtonTitle:@"J'ai compris" otherButtonTitles:nil];
+    [alert show];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
