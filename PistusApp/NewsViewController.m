@@ -102,6 +102,9 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [_tableView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 
 - (void)didReceiveMemoryWarning {
