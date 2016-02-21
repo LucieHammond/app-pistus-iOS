@@ -38,6 +38,7 @@ static GeolocalisationManager* sharedInstance=nil;
         sharedInstance.deniveleTotal=0;
         sharedInstance.tempsDeSki=0;
         sharedInstance.enStation=false;
+        sharedInstance.erreurLocalisation= false;
         
         NSDateComponents *composants = [[NSDateComponents alloc] init];
         [composants setYear:2016];
@@ -171,6 +172,7 @@ static GeolocalisationManager* sharedInstance=nil;
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
+    _erreurLocalisation=false;
     NSLog(@"Nombre localisations : %lu",(unsigned long)locations.count);
     CLLocation *lastLocation = locations.lastObject;
     double latitude = lastLocation.coordinate.latitude;
@@ -863,6 +865,7 @@ static GeolocalisationManager* sharedInstance=nil;
        didFailWithError:(NSError *)error
 {
     NSLog(@"Erreur de localisation");
+    _erreurLocalisation = true;
 }
 
 - (void)locationManagerDidPausedLocationUpdates:(CLLocationManager *)manager

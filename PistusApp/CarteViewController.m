@@ -16,6 +16,7 @@
 
 @property (nonatomic,strong) UIButton *boutonSatellite;
 @property (nonatomic,strong) DBManager *dbManager;
+@property (nonatomic) BOOL afficherAlerte;
 
 @end
 
@@ -36,6 +37,7 @@
     [super viewDidLoad];
     NSLog(@"View did load");
     [self setNeedsStatusBarAppearanceUpdate];
+    _afficherAlerte = true;
     
     // Configuration du bouton satellite
     _boutonSatellite = [[UIButton alloc] initWithFrame:CGRectMake(0,0,32,33)];
@@ -240,7 +242,17 @@
     _texteDistance.text= @"";
     if([[GeolocalisationManager sharedInstance] trackAccept])
     {
-        if([GeolocalisationManager sharedInstance].pisteProche!=nil)
+        if([GeolocalisationManager sharedInstance].erreurLocalisation){
+            if(_afficherAlerte){
+                UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Erreur de localisation"
+                                  message:@"Allez dans \"Reglage/Confidentialité/Service de localisation\" puis désactivez et réactivez la localisation pour l'application" delegate:self
+                                  cancelButtonTitle:@"J'ai compris" otherButtonTitles:nil];
+                [alert show];
+                _afficherAlerte=false;
+            }
+        }
+        else if([GeolocalisationManager sharedInstance].pisteProche!=nil)
         {
             double distance = [GeolocalisationManager sharedInstance].distanceStation;
             NSString *pisteProche = [GeolocalisationManager sharedInstance].pisteProche;
@@ -817,6 +829,10 @@
                         _searchBar.hidden = true;
                     } completion:nil];
     [self viewDidLoad];
+}
+
+-(void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    [self effacerBulle];
 }
 
 #pragma mark - Navigation

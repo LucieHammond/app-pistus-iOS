@@ -50,6 +50,7 @@
 @property (nonatomic) NSDate *derniereDate;
 @property (nonatomic) BOOL enStation;
 @property (nonatomic) NSMutableArray *utilisateursSuivis;
+@property (nonatomic) BOOL erreurLocalisation;
 
 // Controllers
 @property (nonatomic) BOOL carte;
