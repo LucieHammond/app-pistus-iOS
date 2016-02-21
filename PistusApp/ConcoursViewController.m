@@ -175,7 +175,7 @@
         score.numberOfLines = 2;
         
         
-        if([_room objectForKey:@"comment"] && ![[_room objectForKey:@"comment"]  isEqual:[NSNull null]]) {
+        if(![_room isEqual:[NSNull null]] && [_room objectForKey:@"comment"] && ![[_room objectForKey:@"comment"]  isEqual:[NSNull null]]) {
             score.text = [NSString stringWithFormat:@"Score de votre appartement : %@", _room[@"comment"]];
         }
         else {
