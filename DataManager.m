@@ -25,6 +25,7 @@
                         @"/info/AUTH_KEY", @"generalInfo",
                         @"/slope/AUTH_KEY", @"slope",
                         @"/lift/AUTH_KEY", @"lift",
+                        @"/room/AUTH_KEY/my", @"room",
                         nil];
     return ep;
 }

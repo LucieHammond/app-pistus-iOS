@@ -14,6 +14,7 @@
 
 @property (nonatomic,strong) UIButton *boutonSatellite;
 @property (nonatomic,strong) NSMutableDictionary *contests;
+@property (nonatomic,strong) NSMutableDictionary *room;
 
 @end
 
@@ -41,6 +42,10 @@
     
     //Getting data
     _contests = [DataManager getData:@"contest"];
+    _room = [DataManager getData:@"room"];
+    if([_room objectForKey:@"data"]) {
+        _room = [_room objectForKey:@"data"];
+    }
     
     // Configuration de la TableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-65)];
@@ -168,8 +173,15 @@
         UILabel *score = [[UILabel alloc]initWithFrame:CGRectMake(37, 15, 140, 60)];
         [score setFont:[UIFont boldSystemFontOfSize:18]];
         score.numberOfLines = 2;
-        //TODO
-        score.text = @"Score de votre\nappartement :";
+        
+        
+        if([_room objectForKey:@"comment"] && ![[_room objectForKey:@"comment"]  isEqual:[NSNull null]]) {
+            score.text = [NSString stringWithFormat:@"Score de votre appartement : %@", _room[@"comment"]];
+        }
+        else {
+            score.text = @"Score de votre appartement : pas encore de score";
+        }
+        
         score.textAlignment = NSTextAlignmentCenter;
         [cell addSubview:score];
     }
