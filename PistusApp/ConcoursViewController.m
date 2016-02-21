@@ -146,17 +146,17 @@
         
         NSLog(@"%@", [podium[0] class]);
 
-        if(![podium[0] isEqual:[NSNull null]] && [podium[0] objectForKey:@"fullName"]) {
-            gagnant1.text = podium[0][@"fullName"];
+        if(![podium[0] isEqual:[NSNull null]]) {
+            gagnant1.text = podium[0];
         }
-        if(![podium[1] isEqual:[NSNull null]] && [podium[1] objectForKey:@"fullName"]) {
-            gagnant2.text = podium[1][@"fullName"];
+        if(![podium[1] isEqual:[NSNull null]]) {
+            gagnant2.text = podium[1];
         }
-        if(![podium[2] isEqual:[NSNull null]] && [podium[2] objectForKey:@"fullName"]) {
-            gagnant3.text = podium[2][@"fullName"];
+        if(![podium[2] isEqual:[NSNull null]]) {
+            gagnant3.text = podium[2];
         }
-        if(![podium[3] isEqual:[NSNull null]] && [podium[3] objectForKey:@"fullName"]) {
-            gagnant4.text = podium[3][@"fullName"];
+        if(![podium[3] isEqual:[NSNull null]]) {
+            gagnant4.text = podium[3];
         }
         [cell addSubview:gagnant1];
         [cell addSubview:gagnant2];
