@@ -19,6 +19,7 @@
     NSDictionary *ep = [NSDictionary dictionaryWithObjectsAndKeys:
                         @"/news/AUTH_KEY/my", @"myNews",
                         @"/news/AUTH_KEY/general", @"generalNews",
+                        @"/news/AUTH_KEY", @"allNews",
                         @"/user/AUTH_KEY", @"users",
                         @"/ranking/AUTH_KEY", @"ranking",
                         @"/contest/AUTH_KEY", @"contest",
