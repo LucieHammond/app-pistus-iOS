@@ -96,10 +96,10 @@
     [request setURL:[NSURL URLWithString:url]];
     
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
-    NSMutableDictionary *responseJson = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil];
     
     if((long)[responseCode statusCode] == 200)
     {
+        NSMutableDictionary *responseJson = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil];
         return responseJson;
     }
     else {
