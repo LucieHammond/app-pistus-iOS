@@ -486,7 +486,7 @@
             <objects>
                 <viewController id="IRz-zR-tQK" customClass="ConcoursViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S7C-cy-jCC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="xkx-FL-fGM">
@@ -557,6 +557,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.8780483603477478" green="0.93075567483901978" blue="0.987110435962677" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="barre" destination="qbL-wv-Ovu" id="JQy-jo-6YW"/>
                         <outlet property="tableView" destination="lew-1a-TRv" id="yP2-qs-gFs"/>
@@ -2076,8 +2077,8 @@
         <image name="temps.png" width="567" height="567"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bjE-Kw-uPa"/>
-        <segue reference="kd7-MD-GbW"/>
+        <segue reference="3uO-n3-euh"/>
         <segue reference="rRc-zV-nkw"/>
+        <segue reference="kd7-MD-GbW"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -170,16 +170,20 @@
     }
     else
     {
-        UILabel *score = [[UILabel alloc]initWithFrame:CGRectMake(37, 15, 140, 60)];
-        [score setFont:[UIFont boldSystemFontOfSize:18]];
-        score.numberOfLines = 2;
+        UILabel *annonceScore = [[UILabel alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width/8, 15, 140, 60)];
+        [annonceScore setFont:[UIFont boldSystemFontOfSize:18]];
+        annonceScore.numberOfLines = 2;
+        annonceScore.text = @"Score de votre appartement :";
+        UILabel *score = [[UILabel alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width*5/8, 15, [UIScreen mainScreen].bounds.size.width*2/8, 60)];
+        score.textAlignment = NSTextAlignmentCenter;
         
-        
-        if([_room objectForKey:@"comment"] && ![[_room objectForKey:@"comment"]  isEqual:[NSNull null]]) {
-            score.text = [NSString stringWithFormat:@"Score de votre appartement : %@", _room[@"comment"]];
+        if(![_room isEqual:[NSNull null]] && [_room objectForKey:@"comment"] && ![[_room objectForKey:@"comment"]  isEqual:[NSNull null]]) {
+            [score setFont:[UIFont boldSystemFontOfSize:18]];
+            score.text = [NSString stringWithFormat:@"%@", _room[@"comment"]];
         }
         else {
-            score.text = @"Score de votre appartement : pas encore de score";
+            [score setFont:[UIFont boldSystemFontOfSize:16]];
+            score.text = @"pas encore de score";
         }
         
         score.textAlignment = NSTextAlignmentCenter;
