@@ -11,8 +11,11 @@
 #import "StatsViewController.h"
 #import "ClassementViewController.h"
 #import "GraphsViewController.h"
+#import "DataManager.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic,strong) NSDictionary *news;
 
 @end
 
@@ -103,6 +106,32 @@
         NSDate *dateTimer4 = [[NSCalendar currentCalendar] dateFromComponents:composants];
         timer4 = [[NSTimer alloc] initWithFireDate:dateTimer4 interval:3600 target:self selector:@selector(stopTimers:) userInfo:nil repeats:NO];
         [[NSRunLoop currentRunLoop] addTimer:timer4 forMode:NSDefaultRunLoopMode];
+    }
+    
+    // On télécharge les news
+    // Get News from API
+    _news = [DataManager getData:@"allNews"];
+    
+    NSMutableArray *myAndGeneralNews = [[NSMutableArray alloc] init];
+    [myAndGeneralNews addObjectsFromArray:_news[@"myNews"]];
+    [myAndGeneralNews addObjectsFromArray:_news[@"generalNews"]];
+    
+    // Sort news to keep only those with an earlier date
+    NSDateFormatter* df = [[NSDateFormatter alloc]init];
+    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    for(int i=myAndGeneralNews.count-1;i>=0;i--){
+        NSDate *dateTime = [df dateFromString:myAndGeneralNews[i][@"date"]];
+        if([dateTime compare:[NSDate date]]==NSOrderedDescending)
+        {
+            UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+            localNotification.fireDate = dateTime;
+            localNotification.alertTitle= myAndGeneralNews[i][@"title"];
+            localNotification.alertBody = myAndGeneralNews[i][@"text"];
+            localNotification.alertAction = @"Fais glisser pour voir la news";
+            localNotification.soundName = UILocalNotificationDefaultSoundName;
+            localNotification.applicationIconBadgeNumber = 1;
+            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        }
     }
     
     // Ask the user the permission to display alerts
