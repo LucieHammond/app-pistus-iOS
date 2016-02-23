@@ -26,14 +26,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
-
+    
     //Getting data
     _rankings = [DataManager getData:@"ranking"];
     NSLog(@"%@", _rankings);
-
+    
     // VITESSE
-    _classementVitesse.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"maxSpeed"][@"count"]];
-
+    _classementVitesse.text = @"Votre classement : --";
+    NSLog(@"%@", _rankings[@"data"][@"maxSpeed"][@"count"] );
+    
+    if(_rankings[@"data"][@"maxSpeed"][@"count"] != nil) {
+        _classementVitesse.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"maxSpeed"][@"count"]];
+    }
+    
     if([_rankings[@"data"][@"maxSpeed"][@"ranking"][0][@"maxSpeed"] floatValue]!=0){
         _g1Vitesse.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][0][@"lastName"]];
         _v1Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][0][@"maxSpeed"] floatValue] * 3.6];
@@ -43,7 +48,7 @@
         _g2Vitesse.text = [NSString stringWithFormat:@"2 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][1][@"lastName"]];
         _v2Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][1][@"maxSpeed"] floatValue] * 3.6];
     }
-
+    
     if([_rankings[@"data"][@"maxSpeed"][@"ranking"][2][@"maxSpeed"] floatValue]!=0){
         _g3Vitesse.text = [NSString stringWithFormat:@"3 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][2][@"lastName"]];
         _v3Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][2][@"maxSpeed"] floatValue] * 3.6];
@@ -56,11 +61,14 @@
     
     if([_rankings[@"data"][@"maxSpeed"][@"ranking"][4][@"maxSpeed"] floatValue]!=0){
         _g5Vitesse.text = [NSString stringWithFormat:@"5 - %@ %@ :",_rankings[@"data"][@"maxSpeed"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"maxSpeed"][@"ranking"][4][@"lastName"]];
-    _v5Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][4][@"maxSpeed"] floatValue] * 3.6];
+        _v5Vitesse.text = [NSString stringWithFormat:@"%.1f km/h", [_rankings[@"data"][@"maxSpeed"][@"ranking"][4][@"maxSpeed"] floatValue] * 3.6];
     }
     
     // ALTITUDE
-    _classementAltitude.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"altMax"][@"count"]];
+    _classementAltitude.text = @"Votre classement : --";
+    if(_rankings[@"data"][@"altMax"][@"count"] != nil) {
+        _classementAltitude.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"altMax"][@"count"]];
+    }
     
     if([_rankings[@"data"][@"altMax"][@"ranking"][0][@"altMax"] integerValue]!=0){
         _g1Altitude.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"altMax"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"altMax"][@"ranking"][0][@"lastName"]];
@@ -88,7 +96,10 @@
     }
     
     // DISTANCE
-    _classementDistance.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"kmSki"][@"count"]];
+    _classementDistance.text = @"Votre classement : --";
+    if(_rankings[@"data"][@"kmSki"][@"count"] != nil) {
+        _classementDistance.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"kmSki"][@"count"]];
+    }
     
     if([_rankings[@"data"][@"kmSki"][@"ranking"][0][@"kmSki"] integerValue]!=0){
         _g1Distance.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][0][@"lastName"]];
@@ -116,7 +127,10 @@
     }
     
     // TEMPS
-    _classementTemps.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"skiTime"][@"count"]];
+    _classementTemps.text = @"Votre classement : --";
+    if(_rankings[@"data"][@"skiTime"][@"count"] != nil) {
+        _classementTemps.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"skiTime"][@"count"]];
+    }
     
     long temps = [_rankings[@"data"][@"skiTime"][@"ranking"][0][@"skiTime"] integerValue];
     if(temps!=0){
