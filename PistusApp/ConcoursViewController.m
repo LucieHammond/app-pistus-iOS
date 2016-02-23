@@ -184,10 +184,12 @@
         else {
             [score setFont:[UIFont boldSystemFontOfSize:16]];
             score.text = @"pas encore de score";
+            score.numberOfLines=2;
         }
         
         score.textAlignment = NSTextAlignmentCenter;
         [cell addSubview:score];
+        [cell addSubview:annonceScore];
     }
     return cell;
 }
