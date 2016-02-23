@@ -193,7 +193,7 @@
             // Display error message
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:@"Echec de l'authentification"
-                                  message:@"Votre identifiant ou votre mot de passe est incorrect"delegate:self
+                                  message:@"Votre identifiant ou votre mot de passe est incorrect. Il se peut aussi que vous ne soyez pas connecté à Internet" delegate:self
                                   cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }
