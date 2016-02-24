@@ -48,6 +48,26 @@
     [GeolocalisationManager setSharedInstance:gm];
     gm = [GeolocalisationManager sharedInstance];
     
+    // Envoyer toutes les données personnelles de localisation au cas où l'utilisateur a deux portables
+    NSMutableDictionary *userData = [NSMutableDictionary dictionary];
+    [userData setObject:[NSNumber numberWithDouble:gm.vitesseMax] forKey:@"maxSpeed"];
+    double vitesseMoy;
+    if(gm.totalPositions!=0)
+        vitesseMoy = gm.vitesseCumulee/gm.totalPositions;
+    else
+        vitesseMoy=0;
+    [userData setObject:[NSNumber numberWithDouble:vitesseMoy] forKey:@"avgSpeed"];
+    [userData setObject:[NSNumber numberWithDouble:gm.altitudeMax] forKey:@"altMax"];
+    [userData setObject:[NSNumber numberWithDouble:gm.altitudeMin] forKey:@"altMin"];
+    [userData setObject:[NSNumber numberWithDouble:gm.deniveleTotal] forKey:@"denivele"];
+    [userData setObject:[NSNumber numberWithInt:gm.dernierX] forKey:@"mapPointX"];
+    [userData setObject:[NSNumber numberWithInt:gm.dernierY] forKey:@"mapPointY"];
+    [userData setObject:[NSNumber numberWithDouble:gm.distanceSki/1000] forKey:@"kmSki"];
+    [userData setObject:[NSNumber numberWithDouble:gm.distanceTot/1000] forKey:@"kmTot"];
+    [userData setObject:[NSNumber numberWithInt:gm.tempsDeSki] forKey:@"skiTime"];
+    NSLog(@"Envoi données");
+    [APIManager postToApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData];
+    
     NSDate *date = [NSDate date];
     NSCalendar *calendrier = [NSCalendar currentCalendar];
     NSDateComponents *composants = [calendrier components:(NSDayCalendarUnit|NSMonthCalendarUnit) fromDate:date];
@@ -158,26 +178,6 @@
     [archiveArray addObject:gmEncoded];
     [defaults setObject:archiveArray forKey:@"GeolocalisationManager"];
     [defaults synchronize];
-    
-    // Envoyer toutes les données personnelles de localisation au cas où l'utilisateur a deux portables
-    NSMutableDictionary *userData = [NSMutableDictionary dictionary];
-    [userData setObject:[NSNumber numberWithDouble:gm.vitesseMax] forKey:@"maxSpeed"];
-    double vitesseMoy;
-    if(gm.totalPositions!=0)
-        vitesseMoy = gm.vitesseCumulee/gm.totalPositions;
-    else
-        vitesseMoy=0;
-    [userData setObject:[NSNumber numberWithDouble:vitesseMoy] forKey:@"avgSpeed"];
-    [userData setObject:[NSNumber numberWithDouble:gm.altitudeMax] forKey:@"altMax"];
-    [userData setObject:[NSNumber numberWithDouble:gm.altitudeMin] forKey:@"altMin"];
-    [userData setObject:[NSNumber numberWithDouble:gm.deniveleTotal] forKey:@"denivele"];
-    [userData setObject:[NSNumber numberWithInt:gm.dernierX] forKey:@"mapPointX"];
-    [userData setObject:[NSNumber numberWithInt:gm.dernierY] forKey:@"mapPointY"];
-    [userData setObject:[NSNumber numberWithDouble:gm.distanceSki/1000] forKey:@"kmSki"];
-    [userData setObject:[NSNumber numberWithDouble:gm.distanceTot/1000] forKey:@"kmTot"];
-    [userData setObject:[NSNumber numberWithInt:gm.tempsDeSki] forKey:@"skiTime"];
-    NSLog(@"Envoi données");
-    [APIManager postToApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
