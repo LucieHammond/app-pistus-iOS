@@ -156,8 +156,7 @@ static GeolocalisationManager* sharedInstance=nil;
     }
         
     NSLog(@"Envoi données");
-    NSDictionary *responseJson = [APIManager postToApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData];
-    NSLog(@"%@", responseJson);
+    [APIManager postToApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData];
 }
 
 -(BOOL)trackAccept

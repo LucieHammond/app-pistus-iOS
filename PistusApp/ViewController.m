@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "APIManager.h"
+#import "GeolocalisationManager.h"
 
 @interface ViewController ()
 
@@ -188,6 +189,12 @@
             success = true;
             // Transition vers la vue principale de l'appli (Main View Controller)
             [self shouldPerformSegueWithIdentifier:@"loginReussi" sender:self];
+            
+            // Reprendre les données du serveur si elles sont non nulles
+            GeolocalisationManager *gm = [GeolocalisationManager sharedInstance];
+                // On regarde si il y a des données sur le serveur
+                // On vérifie par exemple que la derniere position X n'est pas nulle
+                // Si c'est le cas on charge les données dans le gm
         }
         else {
             // Display error message
@@ -201,10 +208,6 @@
                 
     }
 
-}
-
-- (IBAction)deconnection:(id)sender {
-    //
 }
 
 

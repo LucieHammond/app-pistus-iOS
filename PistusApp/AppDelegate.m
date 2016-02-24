@@ -12,6 +12,7 @@
 #import "ClassementViewController.h"
 #import "GraphsViewController.h"
 #import "DataManager.h"
+#import "APIManager.h"
 
 @interface AppDelegate ()
 
@@ -119,7 +120,7 @@
     // Sort news to keep only those with an earlier date
     NSDateFormatter* df = [[NSDateFormatter alloc]init];
     [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    for(int i=myAndGeneralNews.count-1;i>=0;i--){
+    for(long i=myAndGeneralNews.count-1;i>=0;i--){
         NSDate *dateTime = [df dateFromString:myAndGeneralNews[i][@"date"]];
         if([dateTime compare:[NSDate date]]==NSOrderedDescending)
         {
@@ -127,7 +128,7 @@
             localNotification.fireDate = dateTime;
             localNotification.alertTitle= myAndGeneralNews[i][@"title"];
             localNotification.alertBody = myAndGeneralNews[i][@"text"];
-            localNotification.alertAction = @"Fais glisser pour voir la news";
+            localNotification.alertAction = @"Faire glisser pour voir la news";
             localNotification.soundName = UILocalNotificationDefaultSoundName;
             localNotification.applicationIconBadgeNumber = 1;
             [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
@@ -152,10 +153,31 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *archiveArray = [NSMutableArray arrayWithCapacity:1];
-    NSData *gmEncoded = [NSKeyedArchiver archivedDataWithRootObject:[GeolocalisationManager sharedInstance]];
+    GeolocalisationManager *gm = [GeolocalisationManager sharedInstance];
+    NSData *gmEncoded = [NSKeyedArchiver archivedDataWithRootObject:gm];
     [archiveArray addObject:gmEncoded];
     [defaults setObject:archiveArray forKey:@"GeolocalisationManager"];
     [defaults synchronize];
+    
+    // Envoyer toutes les données personnelles de localisation au cas où l'utilisateur a deux portables
+    NSMutableDictionary *userData = [NSMutableDictionary dictionary];
+    [userData setObject:[NSNumber numberWithDouble:gm.vitesseMax] forKey:@"maxSpeed"];
+    double vitesseMoy;
+    if(gm.totalPositions!=0)
+        vitesseMoy = gm.vitesseCumulee/gm.totalPositions;
+    else
+        vitesseMoy=0;
+    [userData setObject:[NSNumber numberWithDouble:vitesseMoy] forKey:@"avgSpeed"];
+    [userData setObject:[NSNumber numberWithDouble:gm.altitudeMax] forKey:@"altMax"];
+    [userData setObject:[NSNumber numberWithDouble:gm.altitudeMin] forKey:@"altMin"];
+    [userData setObject:[NSNumber numberWithDouble:gm.deniveleTotal] forKey:@"denivele"];
+    [userData setObject:[NSNumber numberWithInt:gm.dernierX] forKey:@"mapPointX"];
+    [userData setObject:[NSNumber numberWithInt:gm.dernierY] forKey:@"mapPointY"];
+    [userData setObject:[NSNumber numberWithDouble:gm.distanceSki/1000] forKey:@"kmSki"];
+    [userData setObject:[NSNumber numberWithDouble:gm.distanceTot/1000] forKey:@"kmTot"];
+    [userData setObject:[NSNumber numberWithInt:gm.tempsDeSki] forKey:@"skiTime"];
+    NSLog(@"Envoi données");
+    [APIManager postToApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
