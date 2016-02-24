@@ -981,13 +981,6 @@
                                         <rect key="frame" x="32" y="276" width="63" height="63"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..... km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fgh-3R-nBU">
-                                        <rect key="frame" x="283" y="97" width="80" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -1036,7 +1029,7 @@
                         <outlet property="topBande" destination="mFC-fn-2AO" id="Dj3-bl-GBM"/>
                         <outlet property="trackAcceptButton" destination="xmz-Gm-Sx9" id="vb4-Em-jrt"/>
                         <outlet property="v1Altitude" destination="Oda-yo-vES" id="GbH-GE-dYv"/>
-                        <outlet property="v1Distance" destination="Fgh-3R-nBU" id="dJl-a8-5XE"/>
+                        <outlet property="v1Distance" destination="pXQ-sv-kFt" id="2HN-uR-VVa"/>
                         <outlet property="v1Temps" destination="NK4-B9-Mfa" id="1ty-WP-gRT"/>
                         <outlet property="v1Vitesse" destination="zbp-yV-7aC" id="S82-pf-VQS"/>
                         <outlet property="v2Altitude" destination="QNR-xs-EYA" id="HEe-dO-2zx"/>

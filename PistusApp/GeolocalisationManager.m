@@ -894,11 +894,10 @@ static GeolocalisationManager* sharedInstance=nil;
     NSDateComponents *composants = [calendrier components:(NSHourCalendarUnit|NSDayCalendarUnit) fromDate:date];
     if([composants hour]==12 || [composants hour] ==17)
     {
-        [self sauvegarderDonnéesJour:(int)[composants day]-23 :false];// A changer pour le Pistus (remplacer 23 par 5)
+        [self sauvegarderDonnéesJour:(int)[composants day]-5 :false];
     }
-    else
-    {
-        [self sauvegarderDonnéesJour:(int)[composants day]-23 :true];// A changer pour le Pistis
+    else{
+        [self sauvegarderDonnéesJour:(int)[composants day]-5 :true];
     }
 }
 
