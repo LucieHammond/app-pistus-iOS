@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UINavigationBar *barre;
 @property (weak, nonatomic) IBOutlet UIView *topBande;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *trackAcceptButton;
+- (IBAction)deconnection:(id)sender;
 
 //Icones
 @property (weak, nonatomic) IBOutlet UIButton *carte;

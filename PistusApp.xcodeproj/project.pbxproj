@@ -109,6 +109,7 @@
 		C5DC56DE1C66AC980011A9F1 /* feuVert.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DC56DB1C66AC980011A9F1 /* feuVert.png */; };
 		C5DC56E01C6740780011A9F1 /* marker1.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DC56DF1C6740780011A9F1 /* marker1.png */; };
 		C5DDCCA71C52352000FA1515 /* ConcoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DDCCA61C52352000FA1515 /* ConcoursViewController.m */; };
+		C5DE62B71C7E47E5008D36B9 /* deconnection.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DE62B61C7E47E5008D36B9 /* deconnection.png */; };
 		C5F3488F1BE8FB98003B94C6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F3488E1BE8FB98003B94C6 /* MainViewController.m */; };
 		C5F7B8AE1C41472E00419A86 /* marker2.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F7B8AD1C41472E00419A86 /* marker2.png */; };
 		C5F8780D1C6E5D80000ABEF8 /* iconHoraires2.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F8780C1C6E5D80000ABEF8 /* iconHoraires2.png */; };
@@ -257,6 +258,7 @@
 		C5DC56DF1C6740780011A9F1 /* marker1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker1.png; sourceTree = "<group>"; };
 		C5DDCCA51C52352000FA1515 /* ConcoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcoursViewController.h; sourceTree = "<group>"; };
 		C5DDCCA61C52352000FA1515 /* ConcoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcoursViewController.m; sourceTree = "<group>"; };
+		C5DE62B61C7E47E5008D36B9 /* deconnection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deconnection.png; sourceTree = "<group>"; };
 		C5F3488D1BE8FB98003B94C6 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		C5F3488E1BE8FB98003B94C6 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		C5F7B8AD1C41472E00419A86 /* marker2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker2.png; sourceTree = "<group>"; };
@@ -430,6 +432,7 @@
 		C54F8B1D1BD97E1800CE7B3A /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				C5DE62B61C7E47E5008D36B9 /* deconnection.png */,
 				C5DC56DF1C6740780011A9F1 /* marker1.png */,
 				C5DC56D91C66AC980011A9F1 /* feuOrange.png */,
 				C5DC56DA1C66AC980011A9F1 /* feuRouge.png */,
@@ -614,6 +617,7 @@
 				C5DC56DC1C66AC980011A9F1 /* feuOrange.png in Resources */,
 				C52D72F51C4BB5F4005C05D1 /* news.png in Resources */,
 				C5C05E7E1BEFF6FC007D763E /* iconInfo.png in Resources */,
+				C5DE62B71C7E47E5008D36B9 /* deconnection.png in Resources */,
 				C52D73291C4D8630005C05D1 /* TK.png in Resources */,
 				C58083F51C5D171B00BE73A3 /* medaille or.png in Resources */,
 				C5AED9961C41B8B30086E570 /* ciblage.png in Resources */,
