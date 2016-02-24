@@ -26,6 +26,8 @@
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
     
+    NSLog(@"View Did Load");
+    
     GeolocalisationManager *gm = [GeolocalisationManager sharedInstance];
     
     // Affichage des valeurs des statistiques
@@ -55,9 +57,16 @@
         _altitudeMax.text = [NSString stringWithFormat:@"Altitude maximale : %.f m",gm.altitudeMax];
     
         // Distance
-    _distanceSki.text = [NSString stringWithFormat:@"Distance à ski : %.f m",gm.distanceSki];
-    _distanceTot.text = [NSString stringWithFormat:@"Distance totale : %.f m",gm.distanceTot];
+    if(gm.distanceSki>=0)
+        _distanceSki.text = [NSString stringWithFormat:@"Distance à ski : %.f m",gm.distanceSki];
+    else
+        _distanceSki.text = [NSString stringWithFormat:@"Distance à ski : 0 m"];
+    if(gm.distanceTot>=0)
+        _distanceTot.text = [NSString stringWithFormat:@"Distance totale : %.f m",gm.distanceTot];
+    else
+        _distanceTot.text = [NSString stringWithFormat:@"Distance totale : 0 m"];
     _denivele.text = [NSString stringWithFormat:@"Dénivelé de descente : %.f m",gm.deniveleTotal];
+    NSLog(@"Distance ski : %.f",gm.distanceSki);
     
         // Temps à ski
     int heure = floor(gm.tempsDeSki/3600);

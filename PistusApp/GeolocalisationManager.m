@@ -188,6 +188,7 @@ static GeolocalisationManager* sharedInstance=nil;
             locationManager.distanceFilter = 3.0f;
             locationManager.pausesLocationUpdatesAutomatically = true;
             locationManager.activityType = CLActivityTypeFitness;
+            goto marqueur;
         }
         
         // Si aucune position récente n'a été gardée, on cherche dans toute la bdd
@@ -840,10 +841,11 @@ static GeolocalisationManager* sharedInstance=nil;
         }
     }
     
+    marqueur:;
     // Si l'utilisateur est sur la carte ou sur les statistiques on update la vue automatiquement
     AppDelegate *tmpDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     UINavigationController *nav= (UINavigationController*)tmpDelegate.window.rootViewController;
-    NSLog(@"my nav : %@", nav);
+    NSLog(@"my nav : %@", nav.title);
     if ([nav.visibleViewController.title isEqual:@"Carte View Controller"])
     {
         NSLog(@"here");
@@ -853,7 +855,6 @@ static GeolocalisationManager* sharedInstance=nil;
     else if([nav.visibleViewController.title isEqual:@"Statistiques"])
     {
         NSLog(@"there");
-
         UITabBarController *tb = (UITabBarController *) nav.visibleViewController;
         if([tb.selectedViewController.title isEqual:@"Mes statistiques"])
             [tb.selectedViewController viewDidLoad];
