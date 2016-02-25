@@ -101,27 +101,27 @@
         _classementDistance.text = [NSString stringWithFormat:@"Votre classement : %@", _rankings[@"data"][@"kmSki"][@"count"]];
     }
     
-    if([_rankings[@"data"][@"kmSki"][@"ranking"][0][@"kmSki"] integerValue]!=0){
+    if([_rankings[@"data"][@"kmSki"][@"ranking"][0][@"kmSki"] floatValue]!=0){
         _g1Distance.text = [NSString stringWithFormat:@"1 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][0][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][0][@"lastName"]];
         _v1Distance.text = [NSString stringWithFormat:@"%.2f km", [_rankings[@"data"][@"kmSki"][@"ranking"][0][@"kmSki"] floatValue]];
     }
     
-    if([_rankings[@"data"][@"kmSki"][@"ranking"][1][@"kmSki"] integerValue]!=0){
+    if([_rankings[@"data"][@"kmSki"][@"ranking"][1][@"kmSki"] floatValue]!=0){
         _g2Distance.text = [NSString stringWithFormat:@"2 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][1][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][1][@"lastName"]];
         _v2Distance.text = [NSString stringWithFormat:@"%.2f km", [_rankings[@"data"][@"kmSki"][@"ranking"][1][@"kmSki"] floatValue]];
     }
     
-    if([_rankings[@"data"][@"kmSki"][@"ranking"][2][@"kmSki"] integerValue]!=0){
+    if([_rankings[@"data"][@"kmSki"][@"ranking"][2][@"kmSki"] floatValue]!=0){
         _g3Distance.text = [NSString stringWithFormat:@"3 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][2][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][2][@"lastName"]];
         _v3Distance.text = [NSString stringWithFormat:@"%.2f km", [_rankings[@"data"][@"kmSki"][@"ranking"][2][@"kmSki"] floatValue]];
     }
     
-    if([_rankings[@"data"][@"kmSki"][@"ranking"][3][@"kmSki"] integerValue]!=0){
+    if([_rankings[@"data"][@"kmSki"][@"ranking"][3][@"kmSki"] floatValue]!=0){
         _g4Distance.text = [NSString stringWithFormat:@"4 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][3][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][3][@"lastName"]];
         _v4Distance.text = [NSString stringWithFormat:@"%.2f km", [_rankings[@"data"][@"kmSki"][@"ranking"][3][@"kmSki"] floatValue]];
     }
     
-    if([_rankings[@"data"][@"kmSki"][@"ranking"][4][@"kmSki"] integerValue]!=0){
+    if([_rankings[@"data"][@"kmSki"][@"ranking"][4][@"kmSki"] floatValue]!=0){
         _g5Distance.text = [NSString stringWithFormat:@"5 - %@ %@ :",_rankings[@"data"][@"kmSki"][@"ranking"][4][@"firstName"],_rankings[@"data"][@"kmSki"][@"ranking"][4][@"lastName"]];
         _v5Distance.text = [NSString stringWithFormat:@"%.2f km", [_rankings[@"data"][@"kmSki"][@"ranking"][4][@"kmSki"] floatValue]];
     }
