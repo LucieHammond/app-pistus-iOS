@@ -883,7 +883,7 @@ static GeolocalisationManager* sharedInstance=nil;
     _tabVitesseCumulee[jour] = [NSNumber numberWithFloat: _vitesseCumulee];
     _tabNbPositions[jour] = [NSNumber numberWithFloat:_totalPositions];
     _tabDistance[jour] = [NSNumber numberWithFloat:_distanceSki];
-    _tabTemps[jour] = [NSNumber numberWithFloat:_tempsDeSki];
+    _tabTemps[jour] = [NSNumber numberWithFloat:_tempsDeSki/3600];
     if(definitivement==true)
         _joursFinis[jour]=[NSNumber numberWithBool:true];
 }
