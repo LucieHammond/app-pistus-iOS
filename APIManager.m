@@ -46,7 +46,6 @@
 
 
 +(NSData*)getFromApi:(NSString *)url{
-    NSLog(@"get from api");
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     
     NSString *authKey = [[NSUserDefaults standardUserDefaults] stringForKey:@"authKey"];
@@ -60,7 +59,6 @@
     [request setHTTPMethod:@"GET"];
     NSError *error = nil;
     NSHTTPURLResponse *responseCode = nil;
-    NSLog(@"a");
 
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
 

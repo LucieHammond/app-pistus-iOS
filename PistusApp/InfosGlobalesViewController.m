@@ -47,7 +47,7 @@
                forControlEvents:UIControlEventTouchUpInside];
     
     // Get MesInfos from API
-    _infos = [DataManager getData:@"generalInfos"][@"generalInfo"];
+    _infos = [DataManager getData:@"generalInfo"][@"generalInfo"];
     
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
