@@ -1522,7 +1522,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="gXk-uj-1Ka" kind="modal" id="KZ7-oq-S9Q"/>
+                                    <segue destination="gXk-uj-1Ka" kind="modal" modalTransitionStyle="crossDissolve" id="KZ7-oq-S9Q"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carte" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OMj-bA-Lc6">
