@@ -12,7 +12,6 @@
 #import "ClassementViewController.h"
 #import "GraphsViewController.h"
 #import "DataManager.h"
-#import "APIManager.h"
 
 @interface AppDelegate ()
 
@@ -47,26 +46,6 @@
     GeolocalisationManager *gm = [NSKeyedUnarchiver unarchiveObjectWithData:gmEncoded];
     [GeolocalisationManager setSharedInstance:gm];
     gm = [GeolocalisationManager sharedInstance];
-    
-    // Envoyer toutes les données personnelles de localisation au cas où l'utilisateur a deux portables
-    NSMutableDictionary *userData = [NSMutableDictionary dictionary];
-    [userData setObject:[NSNumber numberWithDouble:gm.vitesseMax] forKey:@"maxSpeed"];
-    double vitesseMoy;
-    if(gm.totalPositions!=0)
-        vitesseMoy = gm.vitesseCumulee/gm.totalPositions;
-    else
-        vitesseMoy=0;
-    [userData setObject:[NSNumber numberWithDouble:vitesseMoy] forKey:@"avgSpeed"];
-    [userData setObject:[NSNumber numberWithDouble:gm.altitudeMax] forKey:@"altMax"];
-    [userData setObject:[NSNumber numberWithDouble:gm.altitudeMin] forKey:@"altMin"];
-    [userData setObject:[NSNumber numberWithDouble:gm.deniveleTotal] forKey:@"denivele"];
-    [userData setObject:[NSNumber numberWithInt:gm.dernierX] forKey:@"mapPointX"];
-    [userData setObject:[NSNumber numberWithInt:gm.dernierY] forKey:@"mapPointY"];
-    [userData setObject:[NSNumber numberWithDouble:gm.distanceSki/1000] forKey:@"kmSki"];
-    [userData setObject:[NSNumber numberWithDouble:gm.distanceTot/1000] forKey:@"kmTot"];
-    [userData setObject:[NSNumber numberWithInt:gm.tempsDeSki] forKey:@"skiTime"];
-    NSLog(@"Envoi données");
-    [APIManager postToApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData];
     
     NSDate *date = [NSDate date];
     NSCalendar *calendrier = [NSCalendar currentCalendar];
@@ -173,8 +152,7 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *archiveArray = [NSMutableArray arrayWithCapacity:1];
-    GeolocalisationManager *gm = [GeolocalisationManager sharedInstance];
-    NSData *gmEncoded = [NSKeyedArchiver archivedDataWithRootObject:gm];
+    NSData *gmEncoded = [NSKeyedArchiver archivedDataWithRootObject:[GeolocalisationManager sharedInstance]];
     [archiveArray addObject:gmEncoded];
     [defaults setObject:archiveArray forKey:@"GeolocalisationManager"];
     [defaults synchronize];
