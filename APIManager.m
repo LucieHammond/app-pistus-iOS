@@ -44,8 +44,35 @@
     }
 }
 
-
 +(NSData*)getFromApi:(NSString *)url{
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    
+    NSString *authKey = [[NSUserDefaults standardUserDefaults] stringForKey:@"authKey"];
+    
+    if(authKey != NULL)
+    {
+        url = [url stringByReplacingOccurrencesOfString:@"AUTH_KEY" withString:authKey];
+    }
+    
+    [request setURL:[NSURL URLWithString:url]];
+    [request setHTTPMethod:@"GET"];
+    NSError *error = nil;
+    NSHTTPURLResponse *responseCode = nil;
+    
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
+    
+    if((long)[responseCode statusCode] == 200)
+    {
+        return responseData;
+    }
+    else {
+        return NULL;
+    }
+    
+}
+
+
++(void)getFromApi2:(NSString *)url completion:(void(^)(NSData *data, NSError *error))completion {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     
     NSString *authKey = [[NSUserDefaults standardUserDefaults] stringForKey:@"authKey"];
@@ -57,18 +84,24 @@
     
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"GET"];
-    NSError *error = nil;
-    NSHTTPURLResponse *responseCode = nil;
 
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+    {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
 
-    if((long)[responseCode statusCode] == 200)
-    {   
-        return responseData;
-    }
-    else {
-        return NULL;
-    }
+        if((long)[httpResponse statusCode] == 200) {
+            if(completion) {
+                completion(data, error);
+            }
+        }
+        else {
+            completion(nil, error);
+        }
+     }];
+    
+
     
 }
 

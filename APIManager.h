@@ -12,7 +12,7 @@
 
 + (NSMutableDictionary*)authenticate:(NSString *)login :(NSString *)password;
 + (NSData*)getFromApi:(NSString *)url;
++ (void)getFromApi2:(NSString *)url completion:(void(^)(NSData *data, NSError *error))completion;
 + (NSMutableDictionary*)postToApi:(NSString *)url :(NSDictionary *)dict;
-
 
 @end

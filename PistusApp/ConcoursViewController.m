@@ -41,7 +41,12 @@
                forControlEvents:UIControlEventTouchUpInside];
     
     //Getting data
-    _contests = [DataManager getData:@"contest"];
+
+    [DataManager getData2:@"contest" completion:^(NSMutableDictionary *dict) {
+        _contests = dict;
+    }];
+        
+    //_contests = [DataManager getData:@"contest"];
     _room = [DataManager getData:@"room"];
     if([_room objectForKey:@"data"]) {
         _room = [_room objectForKey:@"data"];

@@ -14,5 +14,6 @@
 + (NSDictionary*) endpoints;
 
 + (NSMutableDictionary*)getData:(NSString *)type;
++ (void)getData2:(NSString *)type completion:(void(^)(NSMutableDictionary *dict))completion;
 
 @end
