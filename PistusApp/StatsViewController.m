@@ -57,14 +57,14 @@
         _altitudeMax.text = [NSString stringWithFormat:@"Altitude maximale : %.f m",gm.altitudeMax];
     
         // Distance
-    if(gm.distanceSki>=0)
+    if(gm.distanceSki<=1000)
         _distanceSki.text = [NSString stringWithFormat:@"Distance à ski : %.f m",gm.distanceSki];
     else
-        _distanceSki.text = [NSString stringWithFormat:@"Distance à ski : 0 m"];
+        _distanceSki.text = [NSString stringWithFormat:@"Distance à ski : %.2f km",gm.distanceSki/1000];
     if(gm.distanceTot>=0)
         _distanceTot.text = [NSString stringWithFormat:@"Distance totale : %.f m",gm.distanceTot];
     else
-        _distanceTot.text = [NSString stringWithFormat:@"Distance totale : 0 m"];
+        _distanceTot.text = [NSString stringWithFormat:@"Distance totale : %.2f m",gm.distanceTot/1000];
     _denivele.text = [NSString stringWithFormat:@"Dénivelé de descente : %.f m",gm.deniveleTotal];
     NSLog(@"Distance ski : %.f",gm.distanceSki);
     

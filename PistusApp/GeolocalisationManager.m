@@ -147,7 +147,7 @@ static GeolocalisationManager* sharedInstance=nil;
     [userData setObject:[NSNumber numberWithInt:_dernierX] forKey:@"mapPointX"];
     [userData setObject:[NSNumber numberWithInt:_dernierY] forKey:@"mapPointY"];
     [userData setObject:[NSNumber numberWithDouble:_distanceSki/1000] forKey:@"kmSki"];
-    [userData setObject:[NSNumber numberWithInt:_tempsDeSki] forKey:@"skiTime"];
+    [userData setObject:[NSNumber numberWithDouble:_tempsDeSki] forKey:@"skiTime"];
     if(_dernierePiste!=nil){
         self.dbManager=[[DBManager alloc]initWithDatabaseFilename:@"bddPistes.db"];
         NSString *query = [NSString stringWithFormat:@"select nom from pistes where id='%@'",_dernierePiste];
@@ -239,9 +239,9 @@ static GeolocalisationManager* sharedInstance=nil;
                     // On met à jour les statistiques seulement si on est pas en station
                     if(!_enStation)
                     {
-                        if(_vitesseActuelle>=0)
+                        if(lastLocation.speed>=0)
                             _vitesseActuelle=lastLocation.speed;
-                        if(_vitesseActuelle>0)
+                        if(lastLocation.speed>0)
                         {
                             _vitesseCumulee+=_vitesseActuelle;
                             _totalPositions++;
@@ -352,7 +352,7 @@ static GeolocalisationManager* sharedInstance=nil;
                             _altitudeActuelle=-1;
                             _vitesseActuelle=-1;
                             
-                            _distanceTot+=[lastLocation distanceFromLocation:avantDerniereLoc];
+                            _distanceTot+= MAX([lastLocation distanceFromLocation:avantDerniereLoc],0);
                             avantDerniereLoc = lastLocation;
                             NSLog(@"D.3");
                         }
@@ -379,9 +379,9 @@ static GeolocalisationManager* sharedInstance=nil;
                     // On met à jour les statistiques sauf si on est en station
                     if(!_enStation)
                     {
-                        if(_vitesseActuelle>=0)
+                        if(lastLocation.speed>=0)
                             _vitesseActuelle=lastLocation.speed;
-                        if(_vitesseActuelle>0)
+                        if(lastLocation.speed>0)
                         {
                             _vitesseCumulee+=_vitesseActuelle;
                             _totalPositions++;
@@ -404,7 +404,7 @@ static GeolocalisationManager* sharedInstance=nil;
                         _vitesseActuelle = -1;
                         _altitudeActuelle = -1;
                     }
-                    _distanceTot+=[lastLocation distanceFromLocation:avantDerniereLoc];
+                    _distanceTot+= MAX(0,[lastLocation distanceFromLocation:avantDerniereLoc]);
                     avantDerniereLoc = lastLocation;
                     
                     // On ajoute finalement la position trouvée à la table maPosition
@@ -600,7 +600,7 @@ static GeolocalisationManager* sharedInstance=nil;
                             _altitudeActuelle=-1;
                             _vitesseActuelle=-1;
                         
-                            _distanceTot+=[lastLocation distanceFromLocation:avantDerniereLoc];
+                            _distanceTot+= MAX([lastLocation distanceFromLocation:avantDerniereLoc],0);
                             avantDerniereLoc = lastLocation;
                             NSLog(@"B.3");
                         }
@@ -628,9 +628,9 @@ static GeolocalisationManager* sharedInstance=nil;
                     // On met à jour les statistiques seulement si on est pas en station
                     if(!_enStation)
                     {
-                        if(_vitesseActuelle>=0)
+                        if(lastLocation.speed>=0)
                             _vitesseActuelle=lastLocation.speed;
-                        if(_vitesseActuelle>0)
+                        if(lastLocation.speed>0)
                         {
                             _vitesseCumulee+=_vitesseActuelle;
                             _totalPositions++;
@@ -654,8 +654,8 @@ static GeolocalisationManager* sharedInstance=nil;
                         _tempsDeSki+=[lastLocation.timestamp timeIntervalSinceDate:dateDebutSki];
                         dateDebutSki=nil;
                     }
-                    _distanceSki+=[lastLocation distanceFromLocation:avantDerniereLoc];
-                    _distanceTot+=[lastLocation distanceFromLocation:avantDerniereLoc];
+                    _distanceSki+= MAX([lastLocation distanceFromLocation:avantDerniereLoc],0);
+                    _distanceTot+= MAX([lastLocation distanceFromLocation:avantDerniereLoc],0);
                     avantDerniereLoc = lastLocation;
                     
                     // On ajoute finalement la position trouvée à la table maPosition
@@ -742,7 +742,7 @@ static GeolocalisationManager* sharedInstance=nil;
                                 _tempsDeSki+=[lastLocation.timestamp timeIntervalSinceDate:dateDebutSki];
                             dateDebutSki=nil;
                             
-                            _distanceTot+=[lastLocation distanceFromLocation:avantDerniereLoc];
+                            _distanceTot+= MAX([lastLocation distanceFromLocation:avantDerniereLoc],0);
                             avantDerniereLoc = lastLocation;
                             NSLog(@"C.3");
                         }
@@ -751,9 +751,9 @@ static GeolocalisationManager* sharedInstance=nil;
                 if(localisable)
                 {
                     // A ce stade, on a obtenu un array qui représente le point de localisation voulu, quelle que soit le parcours réalisé dans le code ci-dessus. On met à jour la position avec l'array
-                    _distanceTot+=[lastLocation distanceFromLocation:avantDerniereLoc];
+                    _distanceTot+= MAX([lastLocation distanceFromLocation:avantDerniereLoc],0);
                     if(_pisteProche==nil)
-                        _distanceSki+=[lastLocation distanceFromLocation:avantDerniereLoc];
+                        _distanceSki+= MAX([lastLocation distanceFromLocation:avantDerniereLoc],0);
                     avantDerniereLoc = lastLocation;
                     _dernierX = (int)[array[0][3] integerValue];
                     _dernierY = (int)[array[0][4] integerValue];
@@ -773,9 +773,9 @@ static GeolocalisationManager* sharedInstance=nil;
                     // On met à jour les statistiques sauf si on est en station
                     if(!_enStation)
                     {
-                        if(_vitesseActuelle>=0)
+                        if(lastLocation.speed>=0)
                             _vitesseActuelle=lastLocation.speed;
-                        if(_vitesseActuelle>0)
+                        if(lastLocation.speed>0)
                         {
                             _vitesseCumulee+=_vitesseActuelle;
                             _totalPositions++;

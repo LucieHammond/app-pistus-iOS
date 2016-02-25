@@ -190,11 +190,24 @@
             // Transition vers la vue principale de l'appli (Main View Controller)
             [self shouldPerformSegueWithIdentifier:@"loginReussi" sender:self];
             
-            // Reprendre les données du serveur si elles sont non nulles
-            GeolocalisationManager *gm = [GeolocalisationManager sharedInstance];
-                // On regarde si il y a des données sur le serveur
-                // On vérifie par exemple que la derniere position X n'est pas nulle
+            NSLog(@"%@",tryAuthenticate);
+            // On regarde si il y a des données sur le serveur
+            int nbpositions = [tryAuthenticate[@"data"][@"numPointSpeed"]intValue];
+            if(nbpositions!=0){
                 // Si c'est le cas on charge les données dans le gm
+                GeolocalisationManager *gm = [GeolocalisationManager sharedInstance];
+                gm.totalPositions = nbpositions;
+                gm.vitesseMax = [tryAuthenticate[@"data"][@"maxSpeed"] doubleValue];
+                gm.vitesseCumulee = [tryAuthenticate[@"data"][@"maxSpeed"] doubleValue];
+                gm.altitudeMax = [tryAuthenticate[@"data"][@"altMax"] doubleValue];
+                gm.altitudeMin = [tryAuthenticate[@"data"][@"altMin"] doubleValue];
+                gm.deniveleTotal = [tryAuthenticate[@"data"][@"denivele"] doubleValue];
+                gm.dernierX = [tryAuthenticate[@"data"][@"mapPointX"] intValue];
+                gm.dernierY = [tryAuthenticate[@"data"][@"mapPointY"] intValue];
+                gm.distanceSki = [tryAuthenticate[@"data"][@"kmSki"] doubleValue]*1000;
+                gm.distanceTot = [tryAuthenticate[@"data"][@"kmTot"] doubleValue]*1000;
+                gm.tempsDeSki = [tryAuthenticate[@"data"][@"skiTime"] doubleValue];
+            }
         }
         else {
             // Display error message

@@ -171,17 +171,13 @@
 */
 
 - (IBAction)deconnection:(id)sender {
+
     // Envoyer toutes les données personnelles de localisation au cas où l'utilisateur a deux portables
     GeolocalisationManager *gm = [GeolocalisationManager sharedInstance];
-    
     NSMutableDictionary *userData = [NSMutableDictionary dictionary];
     [userData setObject:[NSNumber numberWithDouble:gm.vitesseMax] forKey:@"maxSpeed"];
-    double vitesseMoy;
-    if(gm.totalPositions!=0)
-        vitesseMoy = gm.vitesseCumulee/gm.totalPositions;
-    else
-        vitesseMoy=0;
-    [userData setObject:[NSNumber numberWithDouble:vitesseMoy] forKey:@"avgSpeed"];
+    [userData setObject:[NSNumber numberWithDouble:gm.totalPositions] forKey:@"numPointSpeed"];
+    [userData setObject:[NSNumber numberWithDouble:gm.vitesseCumulee] forKey:@"totalSpeed"];
     [userData setObject:[NSNumber numberWithDouble:gm.altitudeMax] forKey:@"altMax"];
     [userData setObject:[NSNumber numberWithDouble:gm.altitudeMin] forKey:@"altMin"];
     [userData setObject:[NSNumber numberWithDouble:gm.deniveleTotal] forKey:@"denivele"];
@@ -189,9 +185,14 @@
     [userData setObject:[NSNumber numberWithInt:gm.dernierY] forKey:@"mapPointY"];
     [userData setObject:[NSNumber numberWithDouble:gm.distanceSki/1000] forKey:@"kmSki"];
     [userData setObject:[NSNumber numberWithDouble:gm.distanceTot/1000] forKey:@"kmTot"];
-    [userData setObject:[NSNumber numberWithInt:gm.tempsDeSki] forKey:@"skiTime"];
+    [userData setObject:[NSNumber numberWithDouble:gm.tempsDeSki] forKey:@"skiTime"];
     NSLog(@"Envoi données");
     [APIManager postToApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData];
+
+    // Déconnecter l'utilisateur
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"authKey"];
+    [defaults synchronize];
 }
 
 @end
