@@ -126,8 +126,7 @@
     // Repositionnement de l'affichage des statistiques de temps (pas la place dans IB)
     [_iconeTemps setFrame:CGRectMake(32, 555, 66, 66)];
     [_titreTemps setFrame:CGRectMake(117, 576, 115, 34)];
-    [_tempsSki setFrame:CGRectMake(47, 634, 230, 21)];
-    //[self viewDidLoad];
+    [_tempsSki setFrame:CGRectMake(47, 634, 260, 21)];
 }
 
 - (void)didReceiveMemoryWarning {

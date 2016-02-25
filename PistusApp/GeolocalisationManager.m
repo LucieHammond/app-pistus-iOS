@@ -123,7 +123,7 @@ static GeolocalisationManager* sharedInstance=nil;
     [self.dbManager executeQuery:query];
     
     if(dateDebutSki!=nil)
-        _tempsDeSki+=[[NSDate date] timeIntervalSinceDate:dateDebutSki];
+        _tempsDeSki+=MAX([[NSDate date] timeIntervalSinceDate:dateDebutSki],0);
     
     [timerPosition invalidate];
 }
@@ -132,7 +132,7 @@ static GeolocalisationManager* sharedInstance=nil;
 {
     if(dateDebutSki!=nil)
     {
-        _tempsDeSki+=[[NSDate date] timeIntervalSinceDate:dateDebutSki];
+        _tempsDeSki+= MAX([[NSDate date] timeIntervalSinceDate:dateDebutSki],0);
         dateDebutSki=[NSDate date];
     }
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -565,7 +565,7 @@ static GeolocalisationManager* sharedInstance=nil;
                         localisable=false;
                         _altitudeActuelle=-1;
                         _vitesseActuelle=-1;
-                        _tempsDeSki+=[lastLocation.timestamp timeIntervalSinceDate:dateDebutSki];
+                        _tempsDeSki+=MAX([lastLocation.timestamp timeIntervalSinceDate:dateDebutSki],0);
                         dateDebutSki=nil;
                         NSString *newQuery = @"DELETE FROM maPosition";
                         [self.dbManager executeQuery:newQuery];
@@ -594,7 +594,7 @@ static GeolocalisationManager* sharedInstance=nil;
                             if([_station containsObject:_dernierePiste])
                                 _enStation = true;
                             _distanceStation = distance;
-                            _tempsDeSki+=[lastLocation.timestamp timeIntervalSinceDate:dateDebutSki];
+                            _tempsDeSki+=MAX([lastLocation.timestamp timeIntervalSinceDate:dateDebutSki],0);
                             dateDebutSki=nil;
                             localisable=false;
                             _altitudeActuelle=-1;
@@ -651,7 +651,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     {
                         _vitesseActuelle = -1;
                         _altitudeActuelle = -1;
-                        _tempsDeSki+=[lastLocation.timestamp timeIntervalSinceDate:dateDebutSki];
+                        _tempsDeSki+=MAX([lastLocation.timestamp timeIntervalSinceDate:dateDebutSki],0);
                         dateDebutSki=nil;
                     }
                     _distanceSki+= MAX([lastLocation distanceFromLocation:avantDerniereLoc],0);
@@ -706,7 +706,7 @@ static GeolocalisationManager* sharedInstance=nil;
                         _altitudeActuelle=-1;
                         _vitesseActuelle=-1;
                         if(dateDebutSki!=nil)
-                            _tempsDeSki+=[lastLocation.timestamp timeIntervalSinceDate:dateDebutSki];
+                            _tempsDeSki+= MAX([lastLocation.timestamp timeIntervalSinceDate:dateDebutSki],0);
                         dateDebutSki=nil;
                         NSString *newQuery = @"DELETE FROM maPosition";
                         [self.dbManager executeQuery:newQuery];
@@ -739,7 +739,7 @@ static GeolocalisationManager* sharedInstance=nil;
                             _altitudeActuelle=-1;
                             _vitesseActuelle=-1;
                             if(dateDebutSki!=nil)
-                                _tempsDeSki+=[lastLocation.timestamp timeIntervalSinceDate:dateDebutSki];
+                                _tempsDeSki+= MAX([lastLocation.timestamp timeIntervalSinceDate:dateDebutSki],0);
                             dateDebutSki=nil;
                             
                             _distanceTot+= MAX([lastLocation distanceFromLocation:avantDerniereLoc],0);
@@ -798,7 +798,7 @@ static GeolocalisationManager* sharedInstance=nil;
                     {
                         _vitesseActuelle = -1;
                         _altitudeActuelle = -1;
-                        _tempsDeSki+=[lastLocation.timestamp timeIntervalSinceDate:dateDebutSki];
+                        _tempsDeSki+=MAX([lastLocation.timestamp timeIntervalSinceDate:dateDebutSki],0);
                         dateDebutSki=nil;
                     }
                     

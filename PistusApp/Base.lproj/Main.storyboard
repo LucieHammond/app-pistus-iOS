@@ -1236,8 +1236,8 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temps de Ski :" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RjK-pm-0zS">
-                                        <rect key="frame" x="47" y="280" width="280" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temps de Ski : 33 h 52 min 43 s" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RjK-pm-0zS">
+                                        <rect key="frame" x="47" y="280" width="260" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2109,7 +2109,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vXf-WP-iyC"/>
-        <segue reference="g37-fO-HCh"/>
+        <segue reference="e3Z-RT-3uN"/>
         <segue reference="kd7-MD-GbW"/>
     </inferredMetricsTieBreakers>
 </document>
