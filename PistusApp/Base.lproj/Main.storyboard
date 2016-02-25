@@ -1512,7 +1512,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="bGY-gP-lOX" kind="modal" id="JN4-Yc-xIo"/>
+                                    <segue destination="bGY-gP-lOX" kind="modal" modalTransitionStyle="crossDissolve" id="JN4-Yc-xIo"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lXt-xN-iVq">
