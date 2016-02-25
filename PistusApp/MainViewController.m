@@ -170,5 +170,10 @@
 */
 
 - (IBAction)deconnection:(id)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults removeObjectForKey:@"authKey"];
+    [defaults synchronize];
+
 }
 @end
