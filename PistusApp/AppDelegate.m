@@ -110,29 +110,29 @@
     
     // On télécharge les news
     // Get News from API
-    _news = [DataManager getData:@"allNews"];
-    
-    NSMutableArray *myAndGeneralNews = [[NSMutableArray alloc] init];
-    [myAndGeneralNews addObjectsFromArray:_news[@"myNews"]];
-    [myAndGeneralNews addObjectsFromArray:_news[@"generalNews"]];
-    
-    // Sort news to keep only those with an earlier date
-    NSDateFormatter* df = [[NSDateFormatter alloc]init];
-    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    for(long i=myAndGeneralNews.count-1;i>=0;i--){
-        NSDate *dateTime = [df dateFromString:myAndGeneralNews[i][@"date"]];
-        if([dateTime compare:[NSDate date]]==NSOrderedDescending)
-        {
-            UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-            localNotification.fireDate = dateTime;
-            localNotification.alertTitle= myAndGeneralNews[i][@"title"];
-            localNotification.alertBody = myAndGeneralNews[i][@"text"];
-            localNotification.alertAction = @"Faire glisser pour voir la news";
-            localNotification.soundName = UILocalNotificationDefaultSoundName;
-            localNotification.applicationIconBadgeNumber = 1;
-            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    [DataManager getData2:@"contest" completion:^(NSMutableDictionary *dict) {
+        _news = dict;
+        NSMutableArray *myAndGeneralNews = [[NSMutableArray alloc] init];
+        [myAndGeneralNews addObjectsFromArray:_news[@"myNews"]];
+        [myAndGeneralNews addObjectsFromArray:_news[@"generalNews"]];
+        // Sort news to keep only those with an earlier date
+        NSDateFormatter* df = [[NSDateFormatter alloc]init];
+        [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        for(long i=myAndGeneralNews.count-1;i>=0;i--){
+            NSDate *dateTime = [df dateFromString:myAndGeneralNews[i][@"date"]];
+            if([dateTime compare:[NSDate date]]==NSOrderedDescending)
+            {
+                UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+                localNotification.fireDate = dateTime;
+                localNotification.alertTitle= myAndGeneralNews[i][@"title"];
+                localNotification.alertBody = myAndGeneralNews[i][@"text"];
+                localNotification.alertAction = @"Faire glisser pour voir la news";
+                localNotification.soundName = UILocalNotificationDefaultSoundName;
+                localNotification.applicationIconBadgeNumber = 1;
+                [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+            }
         }
-    }
+    }];
     
     // Ask the user the permission to display alerts
     if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]) {

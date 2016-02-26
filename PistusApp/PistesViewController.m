@@ -62,17 +62,21 @@
     pistes = [NSArray arrayWithObjects:pistesLF, pistesPL, pistesLS, nil];
     
     //Getting data
-    _apiSlopes = [DataManager getData:@"slope"];
-    
-    closedSlopes = [[NSMutableArray alloc] init];
-    NSInteger i;
-    for (i=0;i < [_apiSlopes[@"data"] count]; i++) {
-        if ([[_apiSlopes[@"data"][i] objectForKey:@"status"]boolValue] == NO) {
-            NSString *name = _apiSlopes[@"data"][i][@"name"];
-            [closedSlopes addObject:name];
+    [DataManager getData2:@"slope" completion:^(NSMutableDictionary *dict) {
+        _apiSlopes = dict;
+        
+        closedSlopes = [[NSMutableArray alloc] init];
+        NSInteger i;
+        for (i=0;i < [_apiSlopes[@"data"] count]; i++) {
+            if ([[_apiSlopes[@"data"][i] objectForKey:@"status"]boolValue] == NO) {
+                NSString *name = _apiSlopes[@"data"][i][@"name"];
+                [closedSlopes addObject:name];
+            }
         }
-    }
-    
+        
+        [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+    }];
+
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
     self.tableView.delegate = self;

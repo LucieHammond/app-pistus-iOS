@@ -80,21 +80,26 @@
     remontees = [NSArray arrayWithObjects:remonteesLF, remonteesPL, remonteesLS, nil];
 
     //Getting data
-    _apiLifts = [DataManager getData:@"lift"];
-    
-    closedLifts = [[NSMutableArray alloc] init];
-    comments = [[NSMutableDictionary alloc] init];
-    NSInteger i;
-    for (i=0;i < [_apiLifts[@"data"] count]; i++) {
-        if ([[_apiLifts[@"data"][i] objectForKey:@"status"]boolValue] == NO) {
-            NSString *name = _apiLifts[@"data"][i][@"name"];
-            NSString *comment = _apiLifts[@"data"][i][@"comment"];
-            
-            [closedLifts addObject:name];
-            [comments setObject:comment forKey:name];
-            NSLog(@"%@", comments);
+    [DataManager getData2:@"lift" completion:^(NSMutableDictionary *dict) {
+        _apiLifts = dict;
+        
+        closedLifts = [[NSMutableArray alloc] init];
+        comments = [[NSMutableDictionary alloc] init];
+        NSInteger i;
+        for (i=0;i < [_apiLifts[@"data"] count]; i++) {
+            if ([[_apiLifts[@"data"][i] objectForKey:@"status"]boolValue] == NO) {
+                NSString *name = _apiLifts[@"data"][i][@"name"];
+                NSString *comment = _apiLifts[@"data"][i][@"comment"];
+                
+                [closedLifts addObject:name];
+                [comments setObject:comment forKey:name];
+                NSLog(@"%@", comments);
+            }
         }
-    }
+        [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+    }];
+    
+    
     
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];

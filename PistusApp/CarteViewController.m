@@ -145,14 +145,15 @@
     
     // Initialisation du tableau Participants
     participants = [[NSArray alloc] init];
-    NSDictionary *participantsData = [DataManager getData:@"users"];
-    NSArray *participantsFull = participantsData[@"data"];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *loginUser = [defaults stringForKey:@"login"];
-    NSPredicate *loginPredicate = [NSPredicate predicateWithFormat:@"self.login != %@", loginUser];
-    participants = [participantsFull filteredArrayUsingPredicate:loginPredicate];
+    [DataManager getData2:@"users" completion:^(NSMutableDictionary *dict) {
+        NSDictionary *participantsData = dict;
+        NSArray *participantsFull = participantsData[@"data"];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *loginUser = [defaults stringForKey:@"login"];
+        NSPredicate *loginPredicate = [NSPredicate predicateWithFormat:@"self.login != %@", loginUser];
+        participants = [participantsFull filteredArrayUsingPredicate:loginPredicate];
+    }];
     
-
     if (marqueursUtilisateurs==nil){
         marqueursUtilisateurs = [[NSMutableArray alloc]initWithCapacity:[GeolocalisationManager sharedInstance].utilisateursSuivis.count];
         nomsUtilisateurs = [[NSMutableArray alloc]initWithCapacity:[GeolocalisationManager sharedInstance].utilisateursSuivis.count];

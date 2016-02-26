@@ -47,7 +47,10 @@
                forControlEvents:UIControlEventTouchUpInside];
     
     // Get MesInfos from API
-    _infos = [DataManager getData:@"generalInfo"][@"generalInfo"];
+    [DataManager getData2:@"generalInfo" completion:^(NSMutableDictionary *dict) {
+        _infos = dict[@"generalInfo"];
+        [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+    }];
     
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
