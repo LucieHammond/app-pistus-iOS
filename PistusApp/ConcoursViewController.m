@@ -44,20 +44,24 @@
 
     [DataManager getData2:@"contest" completion:^(NSMutableDictionary *dict) {
         _contests = dict;
+        [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+        NSLog(@"contest updated");
     }];
-        
-    //_contests = [DataManager getData:@"contest"];
-    _room = [DataManager getData:@"room"];
-    if([_room objectForKey:@"data"]) {
-        _room = [_room objectForKey:@"data"];
-    }
+    
+    [DataManager getData2:@"room" completion:^(NSMutableDictionary *dict) {
+        if([dict objectForKey:@"data"]) {
+            _room = [dict objectForKey:@"data"];
+        }
+        [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+        NSLog(@"room updated");
+    }];
     
     // Configuration de la TableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-65)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [_tableView reloadData];
-
+    NSLog(@"view did load finished");
 }
 
 - (void)didReceiveMemoryWarning {
