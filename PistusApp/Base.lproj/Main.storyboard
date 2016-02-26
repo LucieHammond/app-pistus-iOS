@@ -70,6 +70,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="etoile.png"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ncF-kP-ceK">
+                                <rect key="frame" x="180" y="144" width="17" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="etoile.png"/>
+                            </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Lna-m2-4PE">
                                 <rect key="frame" x="237" y="141" width="17" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -154,7 +159,7 @@
                                 <color key="backgroundColor" red="0.19596734639999999" green="0.3650684059" blue="0.67178130150000004" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SZn-YF-YPF">
-                                <rect key="frame" x="47" y="135" width="160" height="28"/>
+                                <rect key="frame" x="6" y="136" width="160" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Supprimer le marqueur"/>
@@ -176,6 +181,7 @@
                         <outlet property="etoile_Luge" destination="tCx-dx-Mgy" id="BSF-0U-LMJ"/>
                         <outlet property="etoile_Pat" destination="6LY-zC-U2a" id="z2e-7S-onb"/>
                         <outlet property="etoile_Rez" destination="QBf-tf-lWj" id="Bq4-ZW-NWW"/>
+                        <outlet property="etoile_Slalom" destination="ncF-kP-ceK" id="j6z-pj-cr8"/>
                         <outlet property="etoile_Yooner" destination="6Bh-sm-hwT" id="Zrd-B5-TfV"/>
                         <outlet property="fondTexteDistance" destination="lGN-gA-AFZ" id="MdX-1v-UaY"/>
                         <outlet property="pinchGesture" destination="H6q-3p-j7c" id="f4G-b9-dWG"/>
@@ -2108,8 +2114,8 @@
         <image name="temps.png" width="567" height="567"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vXf-WP-iyC"/>
-        <segue reference="e3Z-RT-3uN"/>
         <segue reference="kd7-MD-GbW"/>
+        <segue reference="vXf-WP-iyC"/>
+        <segue reference="sW3-MI-bu6"/>
     </inferredMetricsTieBreakers>
 </document>

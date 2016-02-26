@@ -557,7 +557,7 @@
 				TargetAttributes = {
 					C54F8ABB1BD94D5A00CE7B3A = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = S5T5M7NBAD;
+						DevelopmentTeam = LLQZDA62GD;
 					};
 					C54F8AD41BD94D5A00CE7B3A = {
 						CreatedOnToolsVersion = 6.4;
@@ -903,7 +903,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = enguerran.henniart;
+				PRODUCT_BUNDLE_IDENTIFIER = lucie.hammond;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -939,7 +939,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = enguerran.henniart;
+				PRODUCT_BUNDLE_IDENTIFIER = lucie.hammond;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
