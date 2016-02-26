@@ -11,7 +11,6 @@
 @interface ViewController : UIViewController
 {
     int translation;
-    BOOL success;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *background;

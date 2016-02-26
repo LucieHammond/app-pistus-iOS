@@ -19,8 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     translation = 0;
-    success = false;
-
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -105,10 +103,6 @@
     
 }
 
-- (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
-    return success;
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -185,21 +179,13 @@
     {
         [APIManager authenticate2:login :mdp completion:^(NSMutableDictionary *dict) {
             if(dict != nil){
-                success = true;
                 // Transition vers la vue principale de l'appli (Main View Controller)
-                ///[self performSelectorOnMainThread:@selector(shouldPerformSegueWithIdentifier:sender:) withObject:@"loginReussi" withObject:self waitUntilDone:YES];
-                
                 
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    NSLog(@"%d", YES);
-                    NSLog(@"%d", NSThread.isMainThread);
-                    NSLog(@"pre segue");
-                    [self shouldPerformSegueWithIdentifier:@"loginReussi" sender:self];
+                    [self performSegueWithIdentifier:@"loginReussi" sender:self];
                     NSLog(@"post segue");
-
                 }];
 
-                
                 NSLog(@"%@",dict);
                 // On regarde si il y a des données sur le serveur
                 int nbpositions = [dict[@"data"][@"numPointSpeed"]intValue];
