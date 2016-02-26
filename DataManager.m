@@ -59,7 +59,6 @@
 
 + (void)getData2:(NSString *)type completion:(void(^)(NSMutableDictionary *dict))completion {
     NSString *url = [NSString stringWithFormat:@"%@%@", DataManager.baseUrl, DataManager.endpoints[type]];
-    NSData *apiResponseData;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *jsonPath=[[paths objectAtIndex:0] stringByAppendingFormat:[NSString stringWithFormat:@"/%@.json", type]];
     
@@ -67,8 +66,6 @@
         if (error) {
             // ok, handle the error here
         } else {
-            NSMutableDictionary *localResponse;
-
             if(data == nil) {
                 NSData *localResponseData = [NSData dataWithContentsOfFile:jsonPath];
                 if(localResponseData == nil) {
