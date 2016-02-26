@@ -27,17 +27,8 @@
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
     
-    // On initialise un icone de chargement
-    UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    loader.center = self.view.center;
-    [self.view addSubview:loader];
-    [loader startAnimating];
-    
     //Getting data
     _rankings = [DataManager getData:@"ranking"];
-    
-    [loader stopAnimating];
-    [loader removeFromSuperview];
     
     // VITESSE
     _classementVitesse.text = @"Votre classement : --";

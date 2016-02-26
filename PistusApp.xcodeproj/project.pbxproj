@@ -109,7 +109,7 @@
 		C5DC56DE1C66AC980011A9F1 /* feuVert.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DC56DB1C66AC980011A9F1 /* feuVert.png */; };
 		C5DC56E01C6740780011A9F1 /* marker1.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DC56DF1C6740780011A9F1 /* marker1.png */; };
 		C5DDCCA71C52352000FA1515 /* ConcoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DDCCA61C52352000FA1515 /* ConcoursViewController.m */; };
-		C5DE62B71C7E47E5008D36B9 /* deconnection.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DE62B61C7E47E5008D36B9 /* deconnection.png */; };
+		C5DE62BB1C7FDEDC008D36B9 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DE62BA1C7FDEDC008D36B9 /* logout.png */; };
 		C5F3488F1BE8FB98003B94C6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F3488E1BE8FB98003B94C6 /* MainViewController.m */; };
 		C5F7B8AE1C41472E00419A86 /* marker2.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F7B8AD1C41472E00419A86 /* marker2.png */; };
 		C5F8780D1C6E5D80000ABEF8 /* iconHoraires2.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F8780C1C6E5D80000ABEF8 /* iconHoraires2.png */; };
@@ -258,7 +258,7 @@
 		C5DC56DF1C6740780011A9F1 /* marker1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker1.png; sourceTree = "<group>"; };
 		C5DDCCA51C52352000FA1515 /* ConcoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcoursViewController.h; sourceTree = "<group>"; };
 		C5DDCCA61C52352000FA1515 /* ConcoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcoursViewController.m; sourceTree = "<group>"; };
-		C5DE62B61C7E47E5008D36B9 /* deconnection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deconnection.png; sourceTree = "<group>"; };
+		C5DE62BA1C7FDEDC008D36B9 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
 		C5F3488D1BE8FB98003B94C6 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		C5F3488E1BE8FB98003B94C6 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		C5F7B8AD1C41472E00419A86 /* marker2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker2.png; sourceTree = "<group>"; };
@@ -432,7 +432,7 @@
 		C54F8B1D1BD97E1800CE7B3A /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
-				C5DE62B61C7E47E5008D36B9 /* deconnection.png */,
+				C5DE62BA1C7FDEDC008D36B9 /* logout.png */,
 				C5DC56DF1C6740780011A9F1 /* marker1.png */,
 				C5DC56D91C66AC980011A9F1 /* feuOrange.png */,
 				C5DC56DA1C66AC980011A9F1 /* feuRouge.png */,
@@ -557,7 +557,7 @@
 				TargetAttributes = {
 					C54F8ABB1BD94D5A00CE7B3A = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = S5T5M7NBAD;
+						DevelopmentTeam = LLQZDA62GD;
 					};
 					C54F8AD41BD94D5A00CE7B3A = {
 						CreatedOnToolsVersion = 6.4;
@@ -617,10 +617,10 @@
 				C5DC56DC1C66AC980011A9F1 /* feuOrange.png in Resources */,
 				C52D72F51C4BB5F4005C05D1 /* news.png in Resources */,
 				C5C05E7E1BEFF6FC007D763E /* iconInfo.png in Resources */,
-				C5DE62B71C7E47E5008D36B9 /* deconnection.png in Resources */,
 				C52D73291C4D8630005C05D1 /* TK.png in Resources */,
 				C58083F51C5D171B00BE73A3 /* medaille or.png in Resources */,
 				C5AED9961C41B8B30086E570 /* ciblage.png in Resources */,
+				C5DE62BB1C7FDEDC008D36B9 /* logout.png in Resources */,
 				C5A59B5F1C6401CA0097B81F /* bddPistes.db in Resources */,
 				C5C05E8E1BEFFBA5007D763E /* accueil_4.jpg in Resources */,
 				C539A78D1BF1F56A00B9E3ED /* iconContact.png in Resources */,
@@ -903,7 +903,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = enguerran.henniart;
+				PRODUCT_BUNDLE_IDENTIFIER = lucie.hammond;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -939,7 +939,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = enguerran.henniart;
+				PRODUCT_BUNDLE_IDENTIFIER = lucie.hammond;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

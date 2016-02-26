@@ -66,7 +66,6 @@
     else
         _distanceTot.text = [NSString stringWithFormat:@"Distance totale : %.2f m",gm.distanceTot/1000];
     _denivele.text = [NSString stringWithFormat:@"Dénivelé de descente : %.f m",gm.deniveleTotal];
-    NSLog(@"Distance ski : %.f",gm.distanceSki);
     
         // Temps à ski
     int heure = floor(gm.tempsDeSki/3600);
