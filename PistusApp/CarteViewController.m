@@ -312,26 +312,29 @@
         NSString *login = [GeolocalisationManager sharedInstance].utilisateursSuivis[i];
         loginsUtilisateurs[i] = login;
         
-        NSData *userInfosData = [APIManager getFromApi:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", login]];
-        NSMutableDictionary *userInfos = [NSJSONSerialization JSONObjectWithData:userInfosData options:NSJSONReadingMutableContainers error:nil][@"data"];
-        
-        nomsUtilisateurs[i] = userInfos[@"fullName"];
-        // On demande à la bdd la position de l'utilisateur
-        int posX = [userInfos[@"mapPointX"] floatValue];
-        int posY = [userInfos[@"mapPointY"] floatValue];
-        float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-        posXUtilisateurs[i] = [NSNumber numberWithInteger:posX];
-        posYUtilisateurs[i] = [NSNumber numberWithInteger:posY];
-        marqueurUtilisateur.center = CGPointMake(X,Y);
-        
-        // On demande à la bdd la dernière date à laquelle on a vu l'utilisateur à cette position
-        NSString *dateString = userInfos[@"lastPosUpdate"];
-        datesUtilisateurs[i] = dateString;
-        
-        // On demande à la bdd la piste sur laquelle l'utilisateur était
-        NSString *piste = userInfos[@"lastSlope"];
-        pistesUtilisateurs[i] = piste;
+        [APIManager getFromApi2:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", login] completion:^(NSData *data, NSError *error) {
+            NSData *userInfosData = data;
+            NSMutableDictionary *userInfos = [NSJSONSerialization JSONObjectWithData:userInfosData options:NSJSONReadingMutableContainers error:nil][@"data"];
+            
+            nomsUtilisateurs[i] = userInfos[@"fullName"];
+            // On demande à la bdd la position de l'utilisateur
+            int posX = [userInfos[@"mapPointX"] floatValue];
+            int posY = [userInfos[@"mapPointY"] floatValue];
+            float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+            float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+            posXUtilisateurs[i] = [NSNumber numberWithInteger:posX];
+            posYUtilisateurs[i] = [NSNumber numberWithInteger:posY];
+            marqueurUtilisateur.center = CGPointMake(X,Y);
+            
+            // On demande à la bdd la dernière date à laquelle on a vu l'utilisateur à cette position
+            NSString *dateString = userInfos[@"lastPosUpdate"];
+            datesUtilisateurs[i] = dateString;
+            
+            // On demande à la bdd la piste sur laquelle l'utilisateur était
+            NSString *piste = userInfos[@"lastSlope"];
+            pistesUtilisateurs[i] = piste;
+
+        }];
     }
 }
 
