@@ -1472,7 +1472,7 @@
                                     <navigationItem title="Accueil" id="DlN-kc-16B">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="2Eo-5T-3Pi">
                                             <button key="customView" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gQJ-6Z-kYs">
-                                                <rect key="frame" x="20" y="8" width="34" height="27"/>
+                                                <rect key="frame" x="20" y="9" width="32" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Deconnection" image="logout.png"/>
                                                 <connections>
