@@ -69,18 +69,22 @@
             if(data == nil) {
                 NSData *localResponseData = [NSData dataWithContentsOfFile:jsonPath];
                 if(localResponseData == nil) {
-                    completion(nil);
+                    if(completion) {
+                        completion(nil);
+                    }
                 }
                 else {
                     NSMutableDictionary *localResponse = [NSJSONSerialization JSONObjectWithData:localResponseData options:NSJSONReadingMutableContainers error:nil];
-                    completion(localResponse);
+                    if(completion) {
+                        completion(localResponse);
+                    }
                 }
             }
             else {
                 [data writeToFile:jsonPath atomically:YES];
-                
-                completion([NSJSONSerialization JSONObjectWithData:data
-                                                           options:NSJSONReadingMutableContainers error:nil]);
+                if(completion){
+                    completion([NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil]);
+                }
             }
         }
     }];

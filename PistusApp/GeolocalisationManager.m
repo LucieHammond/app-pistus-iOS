@@ -156,7 +156,7 @@ static GeolocalisationManager* sharedInstance=nil;
     }
         
     NSLog(@"Envoi données");
-    [APIManager postToApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData];
+    [APIManager postToApi2:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData completion:nil];
 }
 
 -(BOOL)trackAccept
