@@ -424,6 +424,7 @@
 
 -(void)afficherDetailsPourMarqueur:(UIButton *)sender
 {
+    NSLog(@"%d", [NSThread isMainThread]);
     _apresClic = true;
     _supprimer.hidden = true;
     
@@ -742,69 +743,78 @@
     if(![[GeolocalisationManager sharedInstance].utilisateursSuivis containsObject:utilisateur])
     {
         // On demande à la bdd la position de l'utilisateur
-        NSData *userInfosData = [APIManager getFromApi:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", utilisateur]];
-        NSMutableDictionary *userInfos = [NSJSONSerialization JSONObjectWithData:userInfosData options:NSJSONReadingMutableContainers error:nil][@"data"];
-
-        int posX = [userInfos[@"mapPointX"] floatValue];
-        int posY = [userInfos[@"mapPointY"] floatValue];
-        
-        if(posX==0 && posY == 0){
-            // Ca veut dire que l'utilisateur n'a jamais été localisé
-            // Dans ce cas on affiche un message à l'écran
-            NSString *nom = userInfos[@"fullName"];
-            NSString *titre = [NSString stringWithFormat:@"%@ n'a encore jamais été localisé(e) sur la station",nom];
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle: titre
-                                  message:@"Réessayez plus tard" delegate:self
-                                  cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
-        else
-        {
-            // On ajoute l'utilsateur dans la liste des utilisateurs suivis
-            [[GeolocalisationManager sharedInstance].utilisateursSuivis addObject:utilisateur];
+        [APIManager getFromApi2:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", utilisateur] completion:^(NSData *data, NSError *error) {
+            NSData *userInfosData = data;
             
-            // Créer marqueur
-            UIButton *marqueurUtilisateur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,16,16)];
-            [marqueurUtilisateur setImage:[UIImage imageNamed:@"marker1.png"] forState:UIControlStateNormal];
-            [marqueurUtilisateur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
-                          forControlEvents:UIControlEventTouchUpInside];
+            NSMutableDictionary *userInfos = [NSJSONSerialization JSONObjectWithData:userInfosData options:NSJSONReadingMutableContainers error:nil][@"data"];
             
-            // Rendre le marqueur réceptif au double clic
-            UITapGestureRecognizer *doubleClick = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleClickMarqueur:)];
-            doubleClick.delegate = self;
-            doubleClick.numberOfTapsRequired = 2;
-            [marqueurUtilisateur addGestureRecognizer:doubleClick];
+            int posX = [userInfos[@"mapPointX"] floatValue];
+            int posY = [userInfos[@"mapPointY"] floatValue];
             
-            // On place le marqueur à la bonne position
-            float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-            float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-            marqueurUtilisateur.center = CGPointMake(X,Y);
-            [self.view insertSubview:marqueurUtilisateur aboveSubview:_scrollView];
-            [marqueursUtilisateurs addObject:marqueurUtilisateur];
-            [posXUtilisateurs addObject:[NSNumber numberWithInt:posX]];
-            [posYUtilisateurs addObject:[NSNumber numberWithInt:posY]];
-            
-            // On demande à la bdd le nom de l'utilisateur
-            NSString *nom = userInfos[@"fullName"];
-            [nomsUtilisateurs addObject:nom];
-            
-            // On demande à la bdd la dernière date à laquelle on a vu l'utilisateur à cette position
-            NSString *dateString = userInfos[@"lastPosUpdate"];
-            [datesUtilisateurs addObject: dateString];
-            
-            // On demande à la bdd la piste sur laquelle l'utilisateur était
-            NSString *piste = userInfos[@"lastSlope"];
-            [pistesUtilisateurs addObject:piste];
-            
-            // On centre sur la position de l'utilisateur et on affiche les détails
-            float Xcentre = _scrollView.contentSize.width/7452*posX;
-            float Ycentre = _scrollView.contentSize.height/3174*posY;
-            float largeur = _scrollView.frame.size.width;
-            float hauteur = _scrollView.frame.size.height;
-            [_scrollView scrollRectToVisible:CGRectMake(Xcentre-largeur/2,Ycentre-hauteur/2,largeur,hauteur) animated:true];
-            [self afficherDetailsPourMarqueur:marqueurUtilisateur];
-        }
+            if(posX==0 && posY == 0){
+                // Ca veut dire que l'utilisateur n'a jamais été localisé
+                // Dans ce cas on affiche un message à l'écran
+                NSString *nom = userInfos[@"fullName"];
+                NSString *titre = [NSString stringWithFormat:@"%@ n'a encore jamais été localisé(e) sur la station",nom];
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle: titre
+                                      message:@"Réessayez plus tard" delegate:self
+                                      cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [alert show];
+                }];
+            }
+            else
+            {
+                // On ajoute l'utilsateur dans la liste des utilisateurs suivis
+                [[GeolocalisationManager sharedInstance].utilisateursSuivis addObject:utilisateur];
+                
+                // Créer marqueur
+                UIButton *marqueurUtilisateur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,16,16)];
+                [marqueurUtilisateur setImage:[UIImage imageNamed:@"marker1.png"] forState:UIControlStateNormal];
+                [marqueurUtilisateur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+                              forControlEvents:UIControlEventTouchUpInside];
+                
+                // Rendre le marqueur réceptif au double clic
+                UITapGestureRecognizer *doubleClick = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleClickMarqueur:)];
+                doubleClick.delegate = self;
+                doubleClick.numberOfTapsRequired = 2;
+                [marqueurUtilisateur addGestureRecognizer:doubleClick];
+                
+                // On place le marqueur à la bonne position
+                float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+                float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+                marqueurUtilisateur.center = CGPointMake(X,Y);
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.view insertSubview:marqueurUtilisateur aboveSubview:_scrollView];
+                }];
+                [marqueursUtilisateurs addObject:marqueurUtilisateur];
+                [posXUtilisateurs addObject:[NSNumber numberWithInt:posX]];
+                [posYUtilisateurs addObject:[NSNumber numberWithInt:posY]];
+                
+                // On demande à la bdd le nom de l'utilisateur
+                NSString *nom = userInfos[@"fullName"];
+                [nomsUtilisateurs addObject:nom];
+                
+                // On demande à la bdd la dernière date à laquelle on a vu l'utilisateur à cette position
+                NSString *dateString = userInfos[@"lastPosUpdate"];
+                [datesUtilisateurs addObject: dateString];
+                
+                // On demande à la bdd la piste sur laquelle l'utilisateur était
+                NSString *piste = userInfos[@"lastSlope"];
+                [pistesUtilisateurs addObject:piste];
+                
+                // On centre sur la position de l'utilisateur et on affiche les détails
+                float Xcentre = _scrollView.contentSize.width/7452*posX;
+                float Ycentre = _scrollView.contentSize.height/3174*posY;
+                float largeur = _scrollView.frame.size.width;
+                float hauteur = _scrollView.frame.size.height;
+                [_scrollView scrollRectToVisible:CGRectMake(Xcentre-largeur/2,Ycentre-hauteur/2,largeur,hauteur) animated:true];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self afficherDetailsPourMarqueur:marqueurUtilisateur];
+                }];
+            }
+        }];
     }
 }
 
