@@ -182,7 +182,6 @@
 + (void)postToApi2:(NSString *)url :(NSDictionary *)dict completion:(void(^)(NSData *data, NSError *error))completion {
     NSLog(@"post to api2");
     NSError *error = nil;
-    NSHTTPURLResponse *responseCode = nil;
     
     NSString *authKey = [[NSUserDefaults standardUserDefaults] stringForKey:@"authKey"];
     
