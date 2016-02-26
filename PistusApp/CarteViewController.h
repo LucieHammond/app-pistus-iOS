@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *etoile_ESF;
 @property (weak, nonatomic) IBOutlet UIButton *etoile_Yooner;
 @property (weak, nonatomic) IBOutlet UIButton *etoile_Cine;
+@property (weak, nonatomic) IBOutlet UIButton *etoile_Slalom;
 @property (strong, nonatomic) IBOutlet UIImageView *pateBulle;
 @property (strong, nonatomic) IBOutlet UILabel *titre;
 @property (strong, nonatomic) IBOutlet UILabel *nomPiste;

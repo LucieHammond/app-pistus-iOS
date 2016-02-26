@@ -54,7 +54,7 @@
     int mois = (int)[composants month];
     if(mois==3 && jour>5 && jour<=12)
     {
-        if(!gm.joursFinis[jour-6])
+        if(![gm.joursFinis[jour-6] boolValue])
         {
             // On sauvegarde les infos sur le dernier jour ou l'appli a été active
             composants = [calendrier components:NSDayCalendarUnit fromDate:gm.derniereDate];

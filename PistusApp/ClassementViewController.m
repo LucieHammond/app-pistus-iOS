@@ -27,12 +27,6 @@
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
     
-    // On initialise un icone de chargement
-    UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    loader.center = self.view.center;
-    [self.view addSubview:loader];
-    [loader startAnimating];
-    
     //Getting data
     [DataManager getData2:@"ranking" completion:^(NSMutableDictionary *dict) {
         _rankings = dict;
@@ -401,8 +395,6 @@
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-
-
 
 - (IBAction)actualiser:(id)sender
 {

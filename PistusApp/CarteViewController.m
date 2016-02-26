@@ -75,6 +75,8 @@
           forControlEvents:UIControlEventTouchUpInside];
     [_etoile_Cine addTarget:self action:@selector(afficherDetailsPourMarqueur:)
              forControlEvents:UIControlEventTouchUpInside];
+    [_etoile_Slalom addTarget:self action:@selector(afficherDetailsPourMarqueur:)
+           forControlEvents:UIControlEventTouchUpInside];
     
     // Ajout du bouton pour recentrer sur la position de l'utilisateur
     UIButton *ciblage = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-60,[UIScreen mainScreen].bounds.size.height*7/10,47,47)];
@@ -221,9 +223,10 @@
         X = _scrollView.contentSize.width/7452*3300 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
         Y = _scrollView.contentSize.height/3174*1895 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         _etoile_Cine.center = CGPointMake(X,Y);
-
+        X = _scrollView.contentSize.width/7452*3303 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        Y = _scrollView.contentSize.height/3174*2250 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        _etoile_Slalom.center = CGPointMake(X,Y);
         
-        NSLog(@"1");
         // Pour afficher tout de suite à l'arrivée sur la vue sans avoir à scroller
         [self updateSelfPosition];
         [self updateUsersPositions];
@@ -525,6 +528,8 @@
             _titre.text=@"Depart Yooner";
         else if(sender==_etoile_Cine)
             _titre.text=@"Cinema";
+        else if(sender==_etoile_Slalom)
+            _titre.text=@"Slalom";
         [_titre sizeToFit];
         _titre.center=CGPointMake(sender.center.x,sender.frame.origin.y-20);
         _titre.hidden=false;
@@ -621,6 +626,9 @@
     X = _scrollView.contentSize.width/7452*3300 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
     Y = _scrollView.contentSize.height/3174*1895 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
     _etoile_Cine.center = CGPointMake(X,Y);
+    X = _scrollView.contentSize.width/7452*3303 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    Y = _scrollView.contentSize.height/3174*2250 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    _etoile_Slalom.center = CGPointMake(X,Y);
     
     for(UIButton *marqueurUtilisateur in marqueursUtilisateurs)
     {
