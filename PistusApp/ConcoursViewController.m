@@ -49,7 +49,7 @@
     
     __block NSInteger nbCalls = 2;
     
-    [DataManager getData2:@"contest" completion:^(NSMutableDictionary *dict) {
+    [DataManager getData:@"contest" completion:^(NSMutableDictionary *dict) {
         _contests = dict;
         
         nbCalls--;
@@ -62,7 +62,7 @@
         NSLog(@"contest updated");
     }];
     
-    [DataManager getData2:@"room" completion:^(NSMutableDictionary *dict) {
+    [DataManager getData:@"room" completion:^(NSMutableDictionary *dict) {
         if([dict objectForKey:@"data"]) {
             _room = [dict objectForKey:@"data"];
         }

@@ -184,7 +184,7 @@
         [self.view addSubview:loader];
         [loader startAnimating];
         
-        [APIManager authenticate2:login :mdp completion:^(NSMutableDictionary *dict) {
+        [APIManager authenticate:login :mdp completion:^(NSMutableDictionary *dict) {
             [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];
             [loader performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
 

@@ -77,7 +77,7 @@
     [self.view addSubview:loader];
     [loader startAnimating];
 
-    [DataManager getData2:@"generalNews" completion:^(NSMutableDictionary *dict) {
+    [DataManager getData:@"generalNews" completion:^(NSMutableDictionary *dict) {
         _generalNews = dict[@"generalNews"];
                 
         [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];

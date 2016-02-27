@@ -86,7 +86,7 @@
     [self.view addSubview:loader];
     [loader startAnimating];
     
-    [DataManager getData2:@"lift" completion:^(NSMutableDictionary *dict) {
+    [DataManager getData:@"lift" completion:^(NSMutableDictionary *dict) {
         _apiLifts = dict;
         
         [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];

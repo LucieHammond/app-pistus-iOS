@@ -34,7 +34,7 @@
     [loader startAnimating];
     
     //Getting data
-    [DataManager getData2:@"ranking" completion:^(NSMutableDictionary *dict) {
+    [DataManager getData:@"ranking" completion:^(NSMutableDictionary *dict) {
         _rankings = dict;
         [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];
         [loader performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];

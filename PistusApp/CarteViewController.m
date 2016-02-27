@@ -147,7 +147,7 @@
     
     // Initialisation du tableau Participants
     participants = [[NSArray alloc] init];
-    [DataManager getData2:@"users" completion:^(NSMutableDictionary *dict) {
+    [DataManager getData:@"users" completion:^(NSMutableDictionary *dict) {
         NSDictionary *participantsData = dict;
         NSArray *participantsFull = participantsData[@"data"];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -315,7 +315,7 @@
         NSString *login = [GeolocalisationManager sharedInstance].utilisateursSuivis[i];
         loginsUtilisateurs[i] = login;
         
-        [APIManager getFromApi2:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", login] completion:^(NSData *data, NSError *error) {
+        [APIManager getFromApi:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", login] completion:^(NSData *data, NSError *error) {
             NSData *userInfosData = data;
             if(data != nil) {
                 NSMutableDictionary *userInfos = [NSJSONSerialization JSONObjectWithData:userInfosData options:NSJSONReadingMutableContainers error:nil][@"data"];

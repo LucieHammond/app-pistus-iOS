@@ -53,7 +53,7 @@
     [self.view addSubview:loader];
     [loader startAnimating];
     
-    [DataManager getData2:@"generalInfo" completion:^(NSMutableDictionary *dict) {
+    [DataManager getData:@"generalInfo" completion:^(NSMutableDictionary *dict) {
         _infos = dict[@"generalInfo"];
         
         [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];

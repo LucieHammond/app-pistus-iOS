@@ -68,7 +68,7 @@
     [self.view addSubview:loader];
     [loader startAnimating];
     
-    [DataManager getData2:@"slope" completion:^(NSMutableDictionary *dict) {
+    [DataManager getData:@"slope" completion:^(NSMutableDictionary *dict) {
         _apiSlopes = dict;
         
         [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];
