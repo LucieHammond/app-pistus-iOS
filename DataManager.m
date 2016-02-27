@@ -63,28 +63,24 @@
     NSString *jsonPath=[[paths objectAtIndex:0] stringByAppendingFormat:[NSString stringWithFormat:@"/%@.json", type]];
     
     [APIManager getFromApi2:url completion:^(NSData *data, NSError *error) {
-        if (error) {
-            // ok, handle the error here
-        } else {
-            if(data == nil) {
-                NSData *localResponseData = [NSData dataWithContentsOfFile:jsonPath];
-                if(localResponseData == nil) {
-                    if(completion) {
-                        completion(nil);
-                    }
-                }
-                else {
-                    NSMutableDictionary *localResponse = [NSJSONSerialization JSONObjectWithData:localResponseData options:NSJSONReadingMutableContainers error:nil];
-                    if(completion) {
-                        completion(localResponse);
-                    }
+        if(data == nil) {
+            NSData *localResponseData = [NSData dataWithContentsOfFile:jsonPath];
+            if(localResponseData == nil) {
+                if(completion) {
+                    completion(nil);
                 }
             }
             else {
-                [data writeToFile:jsonPath atomically:YES];
-                if(completion){
-                    completion([NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil]);
+                NSMutableDictionary *localResponse = [NSJSONSerialization JSONObjectWithData:localResponseData options:NSJSONReadingMutableContainers error:nil];
+                if(completion) {
+                    completion(localResponse);
                 }
+            }
+        }
+        else {
+            [data writeToFile:jsonPath atomically:YES];
+            if(completion){
+                completion([NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil]);
             }
         }
     }];
