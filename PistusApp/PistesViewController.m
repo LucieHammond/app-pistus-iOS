@@ -62,8 +62,17 @@
     pistes = [NSArray arrayWithObjects:pistesLF, pistesPL, pistesLS, nil];
     
     //Getting data
+    // On initialise un icone de chargement
+    UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    loader.center = self.view.center;
+    [self.view addSubview:loader];
+    [loader startAnimating];
+    
     [DataManager getData2:@"slope" completion:^(NSMutableDictionary *dict) {
         _apiSlopes = dict;
+        
+        [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];
+        [loader performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
         
         closedSlopes = [[NSMutableArray alloc] init];
         NSInteger i;

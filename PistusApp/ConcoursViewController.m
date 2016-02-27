@@ -41,9 +41,23 @@
                forControlEvents:UIControlEventTouchUpInside];
     
     //Getting data
-
+    // On initialise un icone de chargement
+    UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    loader.center = self.view.center;
+    [self.view addSubview:loader];
+    [loader startAnimating];
+    
+    __block NSInteger nbCalls = 2;
+    
     [DataManager getData2:@"contest" completion:^(NSMutableDictionary *dict) {
         _contests = dict;
+        
+        nbCalls--;
+        if(nbCalls == 0) {
+            [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];
+            [loader performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
+        }
+        
         [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
         NSLog(@"contest updated");
     }];
@@ -52,6 +66,13 @@
         if([dict objectForKey:@"data"]) {
             _room = [dict objectForKey:@"data"];
         }
+        
+        nbCalls--;
+        if(nbCalls == 0) {
+            [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];
+            [loader performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
+        }
+        
         [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
         NSLog(@"room updated");
     }];
@@ -192,7 +213,7 @@
         }
         else {
             [score setFont:[UIFont boldSystemFontOfSize:16]];
-            score.text = @"pas encore de score";
+            score.text = @"...";
             score.numberOfLines=2;
         }
         

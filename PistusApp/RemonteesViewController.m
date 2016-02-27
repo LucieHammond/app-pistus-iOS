@@ -80,8 +80,17 @@
     remontees = [NSArray arrayWithObjects:remonteesLF, remonteesPL, remonteesLS, nil];
 
     //Getting data
+    // On initialise un icone de chargement
+    UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    loader.center = self.view.center;
+    [self.view addSubview:loader];
+    [loader startAnimating];
+    
     [DataManager getData2:@"lift" completion:^(NSMutableDictionary *dict) {
         _apiLifts = dict;
+        
+        [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];
+        [loader performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
         
         closedLifts = [[NSMutableArray alloc] init];
         comments = [[NSMutableDictionary alloc] init];

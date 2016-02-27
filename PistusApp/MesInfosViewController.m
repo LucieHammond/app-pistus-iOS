@@ -46,8 +46,17 @@
                forControlEvents:UIControlEventTouchUpInside];
     
     // Get MesInfos from API
+    // On initialise un icone de chargement
+    UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    loader.center = self.view.center;
+    [self.view addSubview:loader];
+    [loader startAnimating];
+    
     [DataManager getData2:@"myNews" completion:^(NSMutableDictionary *dict) {
         _myNews = dict[@"myNews"];
+        
+        [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];
+        [loader performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
         
         // Enlever les marqueurs pour les alertes passées
         [UIApplication sharedApplication].applicationIconBadgeNumber=0;

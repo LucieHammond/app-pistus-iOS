@@ -177,7 +177,17 @@
     }
     else
     {
+     
+        // On initialise un icone de chargement
+        UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        loader.center = self.view.center;
+        [self.view addSubview:loader];
+        [loader startAnimating];
+        
         [APIManager authenticate2:login :mdp completion:^(NSMutableDictionary *dict) {
+            [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];
+            [loader performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
+
             if(dict != nil){
                 // Transition vers la vue principale de l'appli (Main View Controller)
                 

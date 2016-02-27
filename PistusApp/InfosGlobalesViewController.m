@@ -47,8 +47,18 @@
                forControlEvents:UIControlEventTouchUpInside];
     
     // Get MesInfos from API
+    // On initialise un icone de chargement
+    UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    loader.center = self.view.center;
+    [self.view addSubview:loader];
+    [loader startAnimating];
+    
     [DataManager getData2:@"generalInfo" completion:^(NSMutableDictionary *dict) {
         _infos = dict[@"generalInfo"];
+        
+        [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];
+        [loader performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
+        
         [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     }];
     
