@@ -44,6 +44,7 @@
     // On récupère les données de localisation et les statistiques de l'utilisateur
     NSData *gmEncoded = [[defaults objectForKey:@"GeolocalisationManager"] objectAtIndex:0];
     GeolocalisationManager *gm = [NSKeyedUnarchiver unarchiveObjectWithData:gmEncoded];
+    NSLog(@"coucou %d", gm.trackAccept);
     [GeolocalisationManager setSharedInstance:gm];
     gm = [GeolocalisationManager sharedInstance];
     
@@ -61,7 +62,7 @@
             int dernierJour = (int)[composants day];
             for(int j=dernierJour;j<jour;j++)
             {
-                [gm sauvegarderDonnéesJour:j-5 :true];
+                [gm sauvegarderDonneesJour:j-5 :true];
             }
         }
     }
@@ -71,7 +72,7 @@
         int dernierJour = (int)[composants day];
         for(int j=dernierJour;j<=12;j++)
         {
-            [gm sauvegarderDonnéesJour:j-5 :true];
+            [gm sauvegarderDonneesJour:j-5 :true];
         }
     }
     if(mois ==3 && jour>=5 && jour<12)
@@ -106,6 +107,11 @@
         NSDate *dateTimer4 = [[NSCalendar currentCalendar] dateFromComponents:composants];
         timer4 = [[NSTimer alloc] initWithFireDate:dateTimer4 interval:3600 target:self selector:@selector(stopTimers:) userInfo:nil repeats:NO];
         [[NSRunLoop currentRunLoop] addTimer:timer4 forMode:NSDefaultRunLoopMode];
+    }
+    
+    if([[GeolocalisationManager sharedInstance] trackAccept])
+    {
+        [[GeolocalisationManager sharedInstance] beginTrack];
     }
     
     // On télécharge les news

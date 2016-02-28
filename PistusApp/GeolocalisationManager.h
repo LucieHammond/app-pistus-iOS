@@ -61,7 +61,7 @@
 -(BOOL)beginTrack;
 -(void)endTrack;
 -(BOOL)trackAccept;
--(void)sauvegarderDonnéesJour:(int)jour :(bool)definitivement;
+-(void)sauvegarderDonneesJour:(int)jour :(bool)definitivement;
 -(void)sauvegardeParTimer:(NSTimer*)timer;
 
 @end
