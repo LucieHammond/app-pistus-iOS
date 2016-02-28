@@ -10,9 +10,8 @@
 
 @interface APIManager : NSObject
 
-+ (NSMutableDictionary*)authenticate:(NSString *)login :(NSString *)password;
-+ (NSData*)getFromApi:(NSString *)url;
-+ (NSMutableDictionary*)postToApi:(NSString *)url :(NSDictionary *)dict;
-
++ (void)authenticate:(NSString *)login :(NSString *)password completion:(void(^)(NSMutableDictionary *dict))completion;
++ (void)getFromApi:(NSString *)url completion:(void(^)(NSData *data, NSError *error))completion;
++ (void)postToApi:(NSString *)url :(NSDictionary *)dict completion:(void(^)(NSData *data, NSError *error))completion;
 
 @end

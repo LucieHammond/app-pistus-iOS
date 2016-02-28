@@ -38,7 +38,7 @@
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
     }
-    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    else
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
     }
@@ -80,21 +80,35 @@
     remontees = [NSArray arrayWithObjects:remonteesLF, remonteesPL, remonteesLS, nil];
 
     //Getting data
-    _apiLifts = [DataManager getData:@"lift"];
+    // On initialise un icone de chargement
+    UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    loader.center = self.view.center;
+    [self.view addSubview:loader];
+    [loader startAnimating];
     
-    closedLifts = [[NSMutableArray alloc] init];
-    comments = [[NSMutableDictionary alloc] init];
-    NSInteger i;
-    for (i=0;i < [_apiLifts[@"data"] count]; i++) {
-        if ([[_apiLifts[@"data"][i] objectForKey:@"status"]boolValue] == NO) {
-            NSString *name = _apiLifts[@"data"][i][@"name"];
-            NSString *comment = _apiLifts[@"data"][i][@"comment"];
-            
-            [closedLifts addObject:name];
-            [comments setObject:comment forKey:name];
-            NSLog(@"%@", comments);
+    [DataManager getData:@"lift" completion:^(NSMutableDictionary *dict) {
+        _apiLifts = dict;
+        
+        [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];
+        [loader performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
+        
+        closedLifts = [[NSMutableArray alloc] init];
+        comments = [[NSMutableDictionary alloc] init];
+        NSInteger i;
+        for (i=0;i < [_apiLifts[@"data"] count]; i++) {
+            if ([[_apiLifts[@"data"][i] objectForKey:@"status"]boolValue] == NO) {
+                NSString *name = _apiLifts[@"data"][i][@"name"];
+                NSString *comment = _apiLifts[@"data"][i][@"comment"];
+                
+                [closedLifts addObject:name];
+                [comments setObject:comment forKey:name];
+                NSLog(@"%@", comments);
+            }
         }
-    }
+        [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+    }];
+    
+    
     
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
@@ -133,7 +147,7 @@
             [[GeolocalisationManager sharedInstance] endTrack];
         }
     }
-    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    else
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
         [[GeolocalisationManager sharedInstance] endTrack];

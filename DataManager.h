@@ -13,6 +13,6 @@
 + (NSString*) baseUrl;
 + (NSDictionary*) endpoints;
 
-+ (NSMutableDictionary*)getData:(NSString *)type;
++ (void)getData:(NSString *)type completion:(void(^)(NSMutableDictionary *dict))completion;
 
 @end

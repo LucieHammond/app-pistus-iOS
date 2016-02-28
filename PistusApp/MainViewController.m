@@ -51,7 +51,7 @@
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
     }
-    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    else
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:    UIControlStateNormal];
     }
@@ -136,7 +136,7 @@
             [[GeolocalisationManager sharedInstance] endTrack];
         }
     }
-    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    else
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
         [[GeolocalisationManager sharedInstance] endTrack];
@@ -187,7 +187,10 @@
     [userData setObject:[NSNumber numberWithDouble:gm.distanceTot/1000] forKey:@"kmTot"];
     [userData setObject:[NSNumber numberWithDouble:gm.tempsDeSki] forKey:@"skiTime"];
     NSLog(@"Envoi données");
-    [APIManager postToApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData];
+    
+    [[GeolocalisationManager sharedInstance] endTrack];
+    
+    [APIManager postToApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData completion:nil];
 
     // Déconnecter l'utilisateur
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

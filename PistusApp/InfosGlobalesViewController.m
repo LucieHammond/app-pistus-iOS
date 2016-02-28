@@ -38,7 +38,7 @@
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
     }
-    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    else
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
     }
@@ -47,7 +47,20 @@
                forControlEvents:UIControlEventTouchUpInside];
     
     // Get MesInfos from API
-    _infos = [DataManager getData:@"generalInfo"][@"generalInfo"];
+    // On initialise un icone de chargement
+    UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    loader.center = self.view.center;
+    [self.view addSubview:loader];
+    [loader startAnimating];
+    
+    [DataManager getData:@"generalInfo" completion:^(NSMutableDictionary *dict) {
+        _infos = dict[@"generalInfo"];
+        
+        [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];
+        [loader performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
+        
+        [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+    }];
     
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
@@ -85,7 +98,7 @@
             [[GeolocalisationManager sharedInstance] endTrack];
         }
     }
-    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    else
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
         [[GeolocalisationManager sharedInstance] endTrack];

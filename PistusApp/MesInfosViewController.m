@@ -37,7 +37,7 @@
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
     }
-    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    else
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
     }
@@ -46,31 +46,44 @@
                forControlEvents:UIControlEventTouchUpInside];
     
     // Get MesInfos from API
-    _myNews = [DataManager getData:@"myNews"][@"myNews"];
+    // On initialise un icone de chargement
+    UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    loader.center = self.view.center;
+    [self.view addSubview:loader];
+    [loader startAnimating];
     
-    // Enlever les marqueurs pour les alertes passées
-    [UIApplication sharedApplication].applicationIconBadgeNumber=0;
-    
-    // Sort news to keep only those with an earlier date
-    _displayedNews = [[NSMutableArray alloc]init];
-    NSDateFormatter* df = [[NSDateFormatter alloc]init];
-    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    for(int i=_myNews.count-1;i>=0;i--){
-        NSDate *dateTime = [df dateFromString:_myNews[i][@"date"]];
-        if([dateTime compare:[NSDate date]]==NSOrderedDescending)
-        {
-            UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-            localNotification.fireDate = dateTime;
-            localNotification.alertTitle= _myNews[i][@"title"];
-            localNotification.alertBody = _myNews[i][@"text"];
-            localNotification.alertAction = @"Fais glisser pour voir la news";
-            localNotification.soundName = UILocalNotificationDefaultSoundName;
-            localNotification.applicationIconBadgeNumber = 1;
-            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    [DataManager getData:@"myNews" completion:^(NSMutableDictionary *dict) {
+        _myNews = dict[@"myNews"];
+        
+        [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];
+        [loader performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
+        
+        // Enlever les marqueurs pour les alertes passées
+        [UIApplication sharedApplication].applicationIconBadgeNumber=0;
+        
+        // Sort news to keep only those with an earlier date
+        _displayedNews = [[NSMutableArray alloc]init];
+        NSDateFormatter* df = [[NSDateFormatter alloc]init];
+        [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        for(int i=_myNews.count-1;i>=0;i--){
+            NSDate *dateTime = [df dateFromString:_myNews[i][@"date"]];
+            if([dateTime compare:[NSDate date]]==NSOrderedDescending)
+            {
+                UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+                localNotification.fireDate = dateTime;
+                localNotification.alertTitle= _myNews[i][@"title"];
+                localNotification.alertBody = _myNews[i][@"text"];
+                localNotification.alertAction = @"Fais glisser pour voir la news";
+                localNotification.soundName = UILocalNotificationDefaultSoundName;
+                localNotification.applicationIconBadgeNumber = 1;
+                [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+            }
+            else
+                [_displayedNews insertObject:_myNews[i] atIndex:0];
         }
-        else
-            [_displayedNews insertObject:_myNews[i] atIndex:0];
-    }
+        [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+    }];
+    
     
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
@@ -143,7 +156,7 @@
             [[GeolocalisationManager sharedInstance] endTrack];
         }
     }
-    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    else
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
         [[GeolocalisationManager sharedInstance] endTrack];

@@ -39,7 +39,7 @@
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
     }
-    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    else
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
     }
@@ -62,17 +62,30 @@
     pistes = [NSArray arrayWithObjects:pistesLF, pistesPL, pistesLS, nil];
     
     //Getting data
-    _apiSlopes = [DataManager getData:@"slope"];
+    // On initialise un icone de chargement
+    UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    loader.center = self.view.center;
+    [self.view addSubview:loader];
+    [loader startAnimating];
     
-    closedSlopes = [[NSMutableArray alloc] init];
-    NSInteger i;
-    for (i=0;i < [_apiSlopes[@"data"] count]; i++) {
-        if ([[_apiSlopes[@"data"][i] objectForKey:@"status"]boolValue] == NO) {
-            NSString *name = _apiSlopes[@"data"][i][@"name"];
-            [closedSlopes addObject:name];
+    [DataManager getData:@"slope" completion:^(NSMutableDictionary *dict) {
+        _apiSlopes = dict;
+        
+        [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];
+        [loader performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
+        
+        closedSlopes = [[NSMutableArray alloc] init];
+        NSInteger i;
+        for (i=0;i < [_apiSlopes[@"data"] count]; i++) {
+            if ([[_apiSlopes[@"data"][i] objectForKey:@"status"]boolValue] == NO) {
+                NSString *name = _apiSlopes[@"data"][i][@"name"];
+                [closedSlopes addObject:name];
+            }
         }
-    }
-    
+        
+        [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+    }];
+
     // Ajustement de la tableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
     self.tableView.delegate = self;
@@ -107,7 +120,7 @@
             [[GeolocalisationManager sharedInstance] endTrack];
         }
     }
-    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    else
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
         [[GeolocalisationManager sharedInstance] endTrack];

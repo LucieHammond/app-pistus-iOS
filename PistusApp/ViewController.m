@@ -19,8 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     translation = 0;
-    success = false;
-
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -105,10 +103,6 @@
     
 }
 
-- (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
-    return success;
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -183,42 +177,56 @@
     }
     else
     {
-        NSDictionary *tryAuthenticate = [APIManager authenticate:login :mdp];
+     
+        // On initialise un icone de chargement
+        UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        loader.center = self.view.center;
+        [self.view addSubview:loader];
+        [loader startAnimating];
         
-        if(tryAuthenticate != nil){
-            success = true;
-            // Transition vers la vue principale de l'appli (Main View Controller)
-            [self shouldPerformSegueWithIdentifier:@"loginReussi" sender:self];
-            
-            NSLog(@"%@",tryAuthenticate);
-            // On regarde si il y a des données sur le serveur
-            int nbpositions = [tryAuthenticate[@"data"][@"numPointSpeed"]intValue];
-            if(nbpositions!=0){
-                // Si c'est le cas on charge les données dans le gm
-                GeolocalisationManager *gm = [GeolocalisationManager sharedInstance];
-                gm.totalPositions = nbpositions;
-                gm.vitesseMax = [tryAuthenticate[@"data"][@"maxSpeed"] doubleValue];
-                gm.vitesseCumulee = [tryAuthenticate[@"data"][@"maxSpeed"] doubleValue];
-                gm.altitudeMax = [tryAuthenticate[@"data"][@"altMax"] doubleValue];
-                gm.altitudeMin = [tryAuthenticate[@"data"][@"altMin"] doubleValue];
-                gm.deniveleTotal = [tryAuthenticate[@"data"][@"denivele"] doubleValue];
-                gm.dernierX = [tryAuthenticate[@"data"][@"mapPointX"] intValue];
-                gm.dernierY = [tryAuthenticate[@"data"][@"mapPointY"] intValue];
-                gm.distanceSki = [tryAuthenticate[@"data"][@"kmSki"] doubleValue]*1000;
-                gm.distanceTot = [tryAuthenticate[@"data"][@"kmTot"] doubleValue]*1000;
-                gm.tempsDeSki = [tryAuthenticate[@"data"][@"skiTime"] doubleValue];
-            }
-        }
-        else {
-            // Display error message
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Echec de l'authentification"
-                                  message:@"Votre identifiant ou votre mot de passe est incorrect. Il se peut aussi que vous ne soyez pas connecté à Internet" delegate:self
-                                  cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
+        [APIManager authenticate:login :mdp completion:^(NSMutableDictionary *dict) {
+            [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];
+            [loader performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
 
+            if(dict != nil){
+                // Transition vers la vue principale de l'appli (Main View Controller)
                 
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self performSegueWithIdentifier:@"loginReussi" sender:self];
+                    NSLog(@"post segue");
+                }];
+
+                NSLog(@"%@",dict);
+                // On regarde si il y a des données sur le serveur
+                int nbpositions = [dict[@"data"][@"numPointSpeed"]intValue];
+                if(nbpositions!=0){
+                    // Si c'est le cas on charge les données dans le gm
+                    GeolocalisationManager *gm = [GeolocalisationManager sharedInstance];
+                    gm.totalPositions = nbpositions;
+                    gm.vitesseMax = [dict[@"data"][@"maxSpeed"] doubleValue];
+                    gm.vitesseCumulee = [dict[@"data"][@"maxSpeed"] doubleValue];
+                    gm.altitudeMax = [dict[@"data"][@"altMax"] doubleValue];
+                    gm.altitudeMin = [dict[@"data"][@"altMin"] doubleValue];
+                    gm.deniveleTotal = [dict[@"data"][@"denivele"] doubleValue];
+                    gm.dernierX = [dict[@"data"][@"mapPointX"] intValue];
+                    gm.dernierY = [dict[@"data"][@"mapPointY"] intValue];
+                    gm.distanceSki = [dict[@"data"][@"kmSki"] doubleValue]*1000;
+                    gm.distanceTot = [dict[@"data"][@"kmTot"] doubleValue]*1000;
+                    gm.tempsDeSki = [dict[@"data"][@"skiTime"] doubleValue];
+                }
+            }
+            else {
+                // Display error message
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle:@"Echec de l'authentification"
+                                      message:@"Votre identifiant ou votre mot de passe est incorrect. Il se peut aussi que vous ne soyez pas connecté à Internet" delegate:self
+                                      cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [alert show];
+                }];
+            }
+
+        }];
     }
 
 }

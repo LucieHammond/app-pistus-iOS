@@ -43,7 +43,7 @@
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
     }
-    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    else
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:    UIControlStateNormal];
     }
@@ -147,14 +147,15 @@
     
     // Initialisation du tableau Participants
     participants = [[NSArray alloc] init];
-    NSDictionary *participantsData = [DataManager getData:@"users"];
-    NSArray *participantsFull = participantsData[@"data"];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *loginUser = [defaults stringForKey:@"login"];
-    NSPredicate *loginPredicate = [NSPredicate predicateWithFormat:@"self.login != %@", loginUser];
-    participants = [participantsFull filteredArrayUsingPredicate:loginPredicate];
+    [DataManager getData:@"users" completion:^(NSMutableDictionary *dict) {
+        NSDictionary *participantsData = dict;
+        NSArray *participantsFull = participantsData[@"data"];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *loginUser = [defaults stringForKey:@"login"];
+        NSPredicate *loginPredicate = [NSPredicate predicateWithFormat:@"self.login != %@", loginUser];
+        participants = [participantsFull filteredArrayUsingPredicate:loginPredicate];
+    }];
     
-
     if (marqueursUtilisateurs==nil){
         marqueursUtilisateurs = [[NSMutableArray alloc]initWithCapacity:[GeolocalisationManager sharedInstance].utilisateursSuivis.count];
         nomsUtilisateurs = [[NSMutableArray alloc]initWithCapacity:[GeolocalisationManager sharedInstance].utilisateursSuivis.count];
@@ -314,26 +315,30 @@
         NSString *login = [GeolocalisationManager sharedInstance].utilisateursSuivis[i];
         loginsUtilisateurs[i] = login;
         
-        NSData *userInfosData = [APIManager getFromApi:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", login]];
-        NSMutableDictionary *userInfos = [NSJSONSerialization JSONObjectWithData:userInfosData options:NSJSONReadingMutableContainers error:nil][@"data"];
-        
-        nomsUtilisateurs[i] = userInfos[@"fullName"];
-        // On demande à la bdd la position de l'utilisateur
-        int posX = [userInfos[@"mapPointX"] floatValue];
-        int posY = [userInfos[@"mapPointY"] floatValue];
-        float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-        posXUtilisateurs[i] = [NSNumber numberWithInteger:posX];
-        posYUtilisateurs[i] = [NSNumber numberWithInteger:posY];
-        marqueurUtilisateur.center = CGPointMake(X,Y);
-        
-        // On demande à la bdd la dernière date à laquelle on a vu l'utilisateur à cette position
-        NSString *dateString = userInfos[@"lastPosUpdate"];
-        datesUtilisateurs[i] = dateString;
-        
-        // On demande à la bdd la piste sur laquelle l'utilisateur était
-        NSString *piste = userInfos[@"lastSlope"];
-        pistesUtilisateurs[i] = piste;
+        [APIManager getFromApi:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", login] completion:^(NSData *data, NSError *error) {
+            NSData *userInfosData = data;
+            if(data != nil) {
+                NSMutableDictionary *userInfos = [NSJSONSerialization JSONObjectWithData:userInfosData options:NSJSONReadingMutableContainers error:nil][@"data"];
+                
+                nomsUtilisateurs[i] = userInfos[@"fullName"];
+                // On demande à la bdd la position de l'utilisateur
+                int posX = [userInfos[@"mapPointX"] floatValue];
+                int posY = [userInfos[@"mapPointY"] floatValue];
+                float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+                float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+                posXUtilisateurs[i] = [NSNumber numberWithInteger:posX];
+                posYUtilisateurs[i] = [NSNumber numberWithInteger:posY];
+                marqueurUtilisateur.center = CGPointMake(X,Y);
+                
+                // On demande à la bdd la dernière date à laquelle on a vu l'utilisateur à cette position
+                NSString *dateString = userInfos[@"lastPosUpdate"];
+                datesUtilisateurs[i] = dateString;
+                
+                // On demande à la bdd la piste sur laquelle l'utilisateur était
+                NSString *piste = userInfos[@"lastSlope"];
+                pistesUtilisateurs[i] = piste;
+            }
+        }];
     }
 }
 
@@ -410,7 +415,7 @@
             [[GeolocalisationManager sharedInstance] endTrack];
         }
     }
-    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    else
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
         [[GeolocalisationManager sharedInstance] endTrack];
@@ -420,6 +425,7 @@
 
 -(void)afficherDetailsPourMarqueur:(UIButton *)sender
 {
+    NSLog(@"%d", [NSThread isMainThread]);
     _apresClic = true;
     _supprimer.hidden = true;
     
@@ -628,12 +634,18 @@
     
     for(UIButton *marqueurUtilisateur in marqueursUtilisateurs)
     {
-        int i = (int)[marqueursUtilisateurs indexOfObject:marqueurUtilisateur];
-        int posX = (int)[posXUtilisateurs[i] integerValue];
-        int posY = (int)[posYUtilisateurs[i] integerValue];
-        float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-        marqueurUtilisateur.center = CGPointMake(X,Y);
+        @try {
+            int i = (int)[marqueursUtilisateurs indexOfObject:marqueurUtilisateur];
+            int posX = (int)[posXUtilisateurs[i] integerValue];
+            int posY = (int)[posYUtilisateurs[i] integerValue];
+            float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+            float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+            marqueurUtilisateur.center = CGPointMake(X,Y);
+        }
+        @catch (NSException * e) {
+            NSLog(@"Exception: %@", e);
+        }
+        
     }
 
     if(_bulle.hidden==false && marqueurBulle!=nil)
@@ -708,6 +720,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSLog(@"count : %@", resultatsRecherche);
+    //Si on a pas encore récupéré les participants, on affiche qu'on est entrain de les récupérer...
+    if([participants count] == 0) {
+        return 1;
+    }
     return [resultatsRecherche count];
 }
 
@@ -721,9 +737,15 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    // Display recipe in the table cell
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        cell.textLabel.text = [resultatsRecherche objectAtIndex:indexPath.row][@"fullName"];
+    //Si on a pas encore récupéré les participants, on affiche qu'on est entrain de les récupérer...
+    if([participants count] == 0) {
+        cell.textLabel.text = @"Informations en cours de récupération...";
+    }
+    else {
+        // Display recipe in the table cell
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            cell.textLabel.text = [resultatsRecherche objectAtIndex:indexPath.row][@"fullName"];
+        }
     }
     
     return cell;
@@ -737,22 +759,20 @@
     utilisateur = [resultatsRecherche objectAtIndex:indexPath.row][@"login"];
     if(![[GeolocalisationManager sharedInstance].utilisateursSuivis containsObject:utilisateur])
     {
-        // On demande à la bdd la position de l'utilisateur
-        NSData *userInfosData = [APIManager getFromApi:[NSString stringWithFormat:@"http://apistus.via.ecp.fr/user/AUTH_KEY/%@", utilisateur]];
-        NSMutableDictionary *userInfos = [NSJSONSerialization JSONObjectWithData:userInfosData options:NSJSONReadingMutableContainers error:nil][@"data"];
-
+        NSMutableDictionary *userInfos = [resultatsRecherche objectAtIndex:indexPath.row];
+        
         int posX = [userInfos[@"mapPointX"] floatValue];
         int posY = [userInfos[@"mapPointY"] floatValue];
-        
+            
         if(posX==0 && posY == 0){
             // Ca veut dire que l'utilisateur n'a jamais été localisé
             // Dans ce cas on affiche un message à l'écran
             NSString *nom = userInfos[@"fullName"];
             NSString *titre = [NSString stringWithFormat:@"%@ n'a encore jamais été localisé(e) sur la station",nom];
             UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle: titre
-                                  message:@"Réessayez plus tard" delegate:self
-                                  cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                    initWithTitle: titre
+                                    message:@"Réessayez plus tard" delegate:self
+                                    cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }
         else
@@ -764,14 +784,14 @@
             UIButton *marqueurUtilisateur = [[UIButton alloc] initWithFrame:CGRectMake(0,0,16,16)];
             [marqueurUtilisateur setImage:[UIImage imageNamed:@"marker1.png"] forState:UIControlStateNormal];
             [marqueurUtilisateur addTarget:self action:@selector(afficherDetailsPourMarqueur:)
-                          forControlEvents:UIControlEventTouchUpInside];
-            
+                            forControlEvents:UIControlEventTouchUpInside];
+                
             // Rendre le marqueur réceptif au double clic
             UITapGestureRecognizer *doubleClick = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleClickMarqueur:)];
             doubleClick.delegate = self;
             doubleClick.numberOfTapsRequired = 2;
             [marqueurUtilisateur addGestureRecognizer:doubleClick];
-            
+                
             // On place le marqueur à la bonne position
             float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
             float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
@@ -780,8 +800,7 @@
             [marqueursUtilisateurs addObject:marqueurUtilisateur];
             [posXUtilisateurs addObject:[NSNumber numberWithInt:posX]];
             [posYUtilisateurs addObject:[NSNumber numberWithInt:posY]];
-            
-            // On demande à la bdd le nom de l'utilisateur
+                
             NSString *nom = userInfos[@"fullName"];
             [nomsUtilisateurs addObject:nom];
             

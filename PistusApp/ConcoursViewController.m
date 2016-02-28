@@ -32,7 +32,7 @@
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
     }
-    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    else
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
     }
@@ -41,18 +41,48 @@
                forControlEvents:UIControlEventTouchUpInside];
     
     //Getting data
-    _contests = [DataManager getData:@"contest"];
-    _room = [DataManager getData:@"room"];
-    if([_room objectForKey:@"data"]) {
-        _room = [_room objectForKey:@"data"];
-    }
+    // On initialise un icone de chargement
+    UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    loader.center = self.view.center;
+    [self.view addSubview:loader];
+    [loader startAnimating];
+    
+    __block NSInteger nbCalls = 2;
+    
+    [DataManager getData:@"contest" completion:^(NSMutableDictionary *dict) {
+        _contests = dict;
+        
+        nbCalls--;
+        if(nbCalls == 0) {
+            [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];
+            [loader performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
+        }
+        
+        [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+        NSLog(@"contest updated");
+    }];
+    
+    [DataManager getData:@"room" completion:^(NSMutableDictionary *dict) {
+        if([dict objectForKey:@"data"]) {
+            _room = [dict objectForKey:@"data"];
+        }
+        
+        nbCalls--;
+        if(nbCalls == 0) {
+            [loader performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:YES];
+            [loader performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
+        }
+        
+        [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+        NSLog(@"room updated");
+    }];
     
     // Configuration de la TableView
     [_tableView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-65)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [_tableView reloadData];
-
+    NSLog(@"view did load finished");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,7 +111,7 @@
             [[GeolocalisationManager sharedInstance] endTrack];
         }
     }
-    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    else
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
         [[GeolocalisationManager sharedInstance] endTrack];
@@ -183,7 +213,7 @@
         }
         else {
             [score setFont:[UIFont boldSystemFontOfSize:16]];
-            score.text = @"pas encore de score";
+            score.text = @"...";
             score.numberOfLines=2;
         }
         

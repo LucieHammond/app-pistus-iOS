@@ -71,12 +71,13 @@ static GeolocalisationManager* sharedInstance=nil;
 
 +(void)setSharedInstance:(GeolocalisationManager*)gm
 {
+    NSLog(@"%d", gm.trackAccept);
     sharedInstance = gm;
 }
 
 -(BOOL)beginTrack
 {
-    _trackAccept = true;
+    _trackAccept = YES;
     NSLog(@"begin Track");
     if ([CLLocationManager locationServicesEnabled])
     {
@@ -156,7 +157,7 @@ static GeolocalisationManager* sharedInstance=nil;
     }
         
     NSLog(@"Envoi données");
-    [APIManager postToApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData];
+    [APIManager postToApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData completion:nil];
 }
 
 -(BOOL)trackAccept
@@ -882,7 +883,7 @@ static GeolocalisationManager* sharedInstance=nil;
     
 }
 
-- (void)sauvegarderDonnéesJour:(int)jour :(bool)definitivement
+- (void)sauvegarderDonneesJour:(int)jour :(bool)definitivement
 {
     _tabVitesseCumulee[jour] = [NSNumber numberWithFloat: _vitesseCumulee];
     _tabNbPositions[jour] = [NSNumber numberWithFloat:_totalPositions];
@@ -898,10 +899,10 @@ static GeolocalisationManager* sharedInstance=nil;
     NSDateComponents *composants = [calendrier components:(NSHourCalendarUnit|NSDayCalendarUnit) fromDate:date];
     if([composants hour]==12 || [composants hour] ==17)
     {
-        [self sauvegarderDonnéesJour:(int)[composants day]-5 :false];
+        [self sauvegarderDonneesJour:(int)[composants day]-5 :false];
     }
     else{
-        [self sauvegarderDonnéesJour:(int)[composants day]-5 :true];
+        [self sauvegarderDonneesJour:(int)[composants day]-5 :true];
     }
 }
 
@@ -931,6 +932,7 @@ static GeolocalisationManager* sharedInstance=nil;
     [coder encodeObject:_derniereDate forKey:@"derniereDate"];
     [coder encodeBool:_enStation forKey:@"enStation"];
     [coder encodeObject:_utilisateursSuivis forKey:@"utilisateursSuivis"];
+    [coder encodeBool:_trackAccept forKey:@"trackAccept"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
@@ -959,6 +961,7 @@ static GeolocalisationManager* sharedInstance=nil;
         self.derniereDate = [decoder decodeObjectForKey:@"derniereDate"];
         self.enStation = [decoder decodeBoolForKey:@"enStation"];
         self.utilisateursSuivis = [decoder decodeObjectForKey:@"utilisateursSuivis"];
+        self.trackAccept = [decoder decodeBoolForKey:@"trackAccept"];
     }
     return self;
 }
