@@ -39,7 +39,7 @@
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
     }
-    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    else
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
     }
@@ -120,7 +120,7 @@
             [[GeolocalisationManager sharedInstance] endTrack];
         }
     }
-    else if([[GeolocalisationManager sharedInstance] trackAccept])
+    else
     {
         [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
         [[GeolocalisationManager sharedInstance] endTrack];
