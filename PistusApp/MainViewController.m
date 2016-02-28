@@ -187,6 +187,9 @@
     [userData setObject:[NSNumber numberWithDouble:gm.distanceTot/1000] forKey:@"kmTot"];
     [userData setObject:[NSNumber numberWithDouble:gm.tempsDeSki] forKey:@"skiTime"];
     NSLog(@"Envoi données");
+    
+    [[GeolocalisationManager sharedInstance] endTrack];
+    
     [APIManager postToApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData completion:nil];
 
     // Déconnecter l'utilisateur
