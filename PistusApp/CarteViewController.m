@@ -634,12 +634,18 @@
     
     for(UIButton *marqueurUtilisateur in marqueursUtilisateurs)
     {
-        int i = (int)[marqueursUtilisateurs indexOfObject:marqueurUtilisateur];
-        int posX = (int)[posXUtilisateurs[i] integerValue];
-        int posY = (int)[posYUtilisateurs[i] integerValue];
-        float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
-        marqueurUtilisateur.center = CGPointMake(X,Y);
+        @try {
+            int i = (int)[marqueursUtilisateurs indexOfObject:marqueurUtilisateur];
+            int posX = (int)[posXUtilisateurs[i] integerValue];
+            int posY = (int)[posYUtilisateurs[i] integerValue];
+            float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+            float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+            marqueurUtilisateur.center = CGPointMake(X,Y);
+        }
+        @catch (NSException * e) {
+            NSLog(@"Exception: %@", e);
+        }
+        
     }
 
     if(_bulle.hidden==false && marqueurBulle!=nil)
