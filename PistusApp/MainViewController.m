@@ -172,30 +172,48 @@
 
 - (IBAction)deconnection:(id)sender {
 
-    // Envoyer toutes les données personnelles de localisation au cas où l'utilisateur a deux portables
-    GeolocalisationManager *gm = [GeolocalisationManager sharedInstance];
-    NSMutableDictionary *userData = [NSMutableDictionary dictionary];
-    [userData setObject:[NSNumber numberWithDouble:gm.vitesseMax] forKey:@"maxSpeed"];
-    [userData setObject:[NSNumber numberWithDouble:gm.totalPositions] forKey:@"numPointSpeed"];
-    [userData setObject:[NSNumber numberWithDouble:gm.vitesseCumulee] forKey:@"totalSpeed"];
-    [userData setObject:[NSNumber numberWithDouble:gm.altitudeMax] forKey:@"altMax"];
-    [userData setObject:[NSNumber numberWithDouble:gm.altitudeMin] forKey:@"altMin"];
-    [userData setObject:[NSNumber numberWithDouble:gm.deniveleTotal] forKey:@"denivele"];
-    [userData setObject:[NSNumber numberWithInt:gm.dernierX] forKey:@"mapPointX"];
-    [userData setObject:[NSNumber numberWithInt:gm.dernierY] forKey:@"mapPointY"];
-    [userData setObject:[NSNumber numberWithDouble:gm.distanceSki/1000] forKey:@"kmSki"];
-    [userData setObject:[NSNumber numberWithDouble:gm.distanceTot/1000] forKey:@"kmTot"];
-    [userData setObject:[NSNumber numberWithDouble:gm.tempsDeSki] forKey:@"skiTime"];
-    NSLog(@"Envoi données");
-    
-    [[GeolocalisationManager sharedInstance] endTrack];
-    
-    [APIManager postToApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData completion:nil];
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"Voulez-vous vraiment vous déconnecter ?"
+                          message:@"Si vous confirmez, vous serez redirigé vers la page d'authentification" delegate:self
+                          cancelButtonTitle:@"Annuler" otherButtonTitles:nil];
+    [alert addButtonWithTitle:@"Confirmer"];
+    [alert show];
+}
 
-    // Déconnecter l'utilisateur
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:@"authKey"];
-    [defaults synchronize];
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if([alertView.title isEqualToString:@"Voulez-vous vraiment vous déconnecter ?"]){
+        if (buttonIndex == 0)
+            NSLog(@"Vous avez cliqué sur Annuler");
+        
+        else{
+            // Envoyer toutes les données personnelles de localisation au cas où l'utilisateur a deux portables
+            GeolocalisationManager *gm = [GeolocalisationManager sharedInstance];
+            NSMutableDictionary *userData = [NSMutableDictionary dictionary];
+            [userData setObject:[NSNumber numberWithDouble:gm.vitesseMax] forKey:@"maxSpeed"];
+            [userData setObject:[NSNumber numberWithDouble:gm.totalPositions] forKey:@"numPointSpeed"];
+            [userData setObject:[NSNumber numberWithDouble:gm.vitesseCumulee] forKey:@"totalSpeed"];
+            [userData setObject:[NSNumber numberWithDouble:gm.altitudeMax] forKey:@"altMax"];
+            [userData setObject:[NSNumber numberWithDouble:gm.altitudeMin] forKey:@"altMin"];
+            [userData setObject:[NSNumber numberWithDouble:gm.deniveleTotal] forKey:@"denivele"];
+            [userData setObject:[NSNumber numberWithInt:gm.dernierX] forKey:@"mapPointX"];
+            [userData setObject:[NSNumber numberWithInt:gm.dernierY] forKey:@"mapPointY"];
+            [userData setObject:[NSNumber numberWithDouble:gm.distanceSki/1000] forKey:@"kmSki"];
+            [userData setObject:[NSNumber numberWithDouble:gm.distanceTot/1000] forKey:@"kmTot"];
+            [userData setObject:[NSNumber numberWithDouble:gm.tempsDeSki] forKey:@"skiTime"];
+            NSLog(@"Envoi données");
+            
+            [[GeolocalisationManager sharedInstance] endTrack];
+            
+            [APIManager postToApi:@"http://apistus.via.ecp.fr/user/AUTH_KEY/update" :userData completion:nil];
+            
+            // Déconnecter l'utilisateur
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults removeObjectForKey:@"authKey"];
+            [defaults synchronize];
+            
+            [self performSegueWithIdentifier:@"deconnexion" sender:self];
+        }
+    }
 }
 
 @end
