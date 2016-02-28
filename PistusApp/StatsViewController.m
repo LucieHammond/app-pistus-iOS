@@ -26,6 +26,22 @@
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
     
+    //Ajustement de la barre de navigation en haut et configuration des icones
+    [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
+    [_topBande setFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, 20)];
+    _boutonSatellite = [[UIButton alloc] initWithFrame:CGRectMake(0,0,32,33)];
+    if(![[GeolocalisationManager sharedInstance] trackAccept])
+    {
+        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
+    }
+    [_trackAcceptButton setCustomView:_boutonSatellite];
+    [_boutonSatellite addTarget:self action:@selector(trackChange)
+               forControlEvents:UIControlEventTouchUpInside];
+    
     NSLog(@"View Did Load");
     
     GeolocalisationManager *gm = [GeolocalisationManager sharedInstance];
@@ -76,22 +92,6 @@
 
 -(void) viewDidLayoutSubviews
 {
-    //Ajustement de la barre de navigation en haut et configuration des icones
-    [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
-    [_topBande setFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, 20)];
-    _boutonSatellite = [[UIButton alloc] initWithFrame:CGRectMake(0,0,32,33)];
-    if(![[GeolocalisationManager sharedInstance] trackAccept])
-    {
-        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
-    }
-    else
-    {
-        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
-    }
-    [_trackAcceptButton setCustomView:_boutonSatellite];
-    [_boutonSatellite addTarget:self action:@selector(trackChange)
-               forControlEvents:UIControlEventTouchUpInside];
-    
     // Redimensionnement du bouton de la barre d'onglets
     UIImage *image = [UIImage imageNamed:@"mesStats.png"];
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(45,35),NO,3);

@@ -27,6 +27,22 @@
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
     
+    //Ajustement de la barre de navigation en haut et configuration des icones
+    [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
+    [_topBande setFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, 20)];
+    _boutonSatellite = [[UIButton alloc] initWithFrame:CGRectMake(0,0,32,33)];
+    if(![[GeolocalisationManager sharedInstance] trackAccept])
+    {
+        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
+    }
+    [_trackAcceptButton setCustomView:_boutonSatellite];
+    [_boutonSatellite addTarget:self action:@selector(trackChange)
+               forControlEvents:UIControlEventTouchUpInside];
+    
     // On initialise un icone de chargement
     UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     loader.center = self.view.center;
@@ -198,22 +214,6 @@
     }
 
 -(void) viewDidLayoutSubviews{
-    
-    //Ajustement de la barre de navigation en haut et configuration des icones
-    [_barre setFrame:CGRectMake(0,20,[UIScreen mainScreen].bounds.size.width, 45)];
-    [_topBande setFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, 20)];
-    _boutonSatellite = [[UIButton alloc] initWithFrame:CGRectMake(0,0,32,33)];
-    if(![[GeolocalisationManager sharedInstance] trackAccept])
-    {
-        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
-    }
-    else
-    {
-        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
-    }
-    [_trackAcceptButton setCustomView:_boutonSatellite];
-    [_boutonSatellite addTarget:self action:@selector(trackChange)
-               forControlEvents:UIControlEventTouchUpInside];
     
     // Ajustement du scrollView
     [_scrollView setFrame:CGRectMake(0,65,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height-114)];
