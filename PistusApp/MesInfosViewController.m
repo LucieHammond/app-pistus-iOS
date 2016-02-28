@@ -47,7 +47,7 @@
     
     // Get MesInfos from API
     // On initialise un icone de chargement
-    UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    UIActivityIndicatorView *loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     loader.center = self.view.center;
     [self.view addSubview:loader];
     [loader startAnimating];
