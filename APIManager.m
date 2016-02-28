@@ -99,7 +99,14 @@
     }
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    NSData *postdata = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&error];
+    
+    NSData *postdata;
+    @try {
+        postdata = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&error];
+    }
+    @catch (NSException * e) {
+        postdata = nil;
+    }
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postdata];
     [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postdata length]] forHTTPHeaderField:@"Content-Length"];
