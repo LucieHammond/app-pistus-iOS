@@ -44,7 +44,6 @@
     // On récupère les données de localisation et les statistiques de l'utilisateur
     NSData *gmEncoded = [[defaults objectForKey:@"GeolocalisationManager"] objectAtIndex:0];
     GeolocalisationManager *gm = [NSKeyedUnarchiver unarchiveObjectWithData:gmEncoded];
-    NSLog(@"coucou %d", gm.trackAccept);
     [GeolocalisationManager setSharedInstance:gm];
     gm = [GeolocalisationManager sharedInstance];
     
