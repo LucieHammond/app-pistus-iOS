@@ -1433,7 +1433,7 @@
                         <outlet property="login" destination="9kG-7y-Na6" id="xQO-LV-JHK"/>
                         <outlet property="mdp" destination="sAD-VO-ciU" id="kJ2-Fc-uy4"/>
                         <outlet property="valider" destination="FA0-sh-QaK" id="TAt-6x-hC8"/>
-                        <segue destination="rTf-Kw-dH5" kind="modal" identifier="loginReussi" modalTransitionStyle="crossDissolve" id="kmb-QG-YKK"/>
+                        <segue destination="M25-bk-U8u" kind="modal" identifier="loginReussi" modalTransitionStyle="crossDissolve" id="dT9-UE-kPI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -2114,8 +2114,7 @@
         <image name="temps.png" width="567" height="567"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kmb-QG-YKK"/>
-        <segue reference="sW3-MI-bu6"/>
+        <segue reference="dT9-UE-kPI"/>
         <segue reference="kd7-MD-GbW"/>
     </inferredMetricsTieBreakers>
 </document>
