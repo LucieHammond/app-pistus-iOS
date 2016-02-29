@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5240FB68FE034B1DA5B994AE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 972F0108189D20F19292CCB6 /* libPods.a */; };
 		B716299B1C66357300675886 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B716299A1C66357300675886 /* APIManager.m */; };
 		B76F05971C768712003FCFD7 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B76F05961C768712003FCFD7 /* DataManager.m */; };
-		B77E891B1C408158005CBD6D /* libNXOAuth2Client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B77E891A1C408158005CBD6D /* libNXOAuth2Client.a */; };
 		C52D72CC1C4ACA09005C05D1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52D72CB1C4ACA09005C05D1 /* Foundation.framework */; };
 		C52D72D11C4ACBDD005C05D1 /* GraphTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72D01C4ACBDD005C05D1 /* GraphTableViewCell.m */; };
 		C52D72DF1C4ACC46005C05D1 /* UUBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C52D72D41C4ACC46005C05D1 /* UUBar.m */; };
@@ -126,12 +124,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		972F0108189D20F19292CCB6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71629991C66357300675886 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		B716299A1C66357300675886 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		B76F05951C768712003FCFD7 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		B76F05961C768712003FCFD7 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
-		B77E891A1C408158005CBD6D /* libNXOAuth2Client.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNXOAuth2Client.a; path = "Pods/../build/Debug-iphoneos/libNXOAuth2Client.a"; sourceTree = "<group>"; };
 		C1B1D9BD10AC26036BFAEE20 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C52D72CB1C4ACA09005C05D1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C52D72CF1C4ACBDD005C05D1 /* GraphTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphTableViewCell.h; sourceTree = "<group>"; };
@@ -272,10 +268,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C52D72CC1C4ACA09005C05D1 /* Foundation.framework in Frameworks */,
-				B77E891B1C408158005CBD6D /* libNXOAuth2Client.a in Frameworks */,
 				C570B86C1C30999B003E0E16 /* CoreLocation.framework in Frameworks */,
 				C570B8391C2B440F003E0E16 /* libsqlite3.dylib in Frameworks */,
-				5240FB68FE034B1DA5B994AE /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,8 +288,6 @@
 			children = (
 				C570B86B1C30999B003E0E16 /* CoreLocation.framework */,
 				C52D72CB1C4ACA09005C05D1 /* Foundation.framework */,
-				B77E891A1C408158005CBD6D /* libNXOAuth2Client.a */,
-				972F0108189D20F19292CCB6 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -512,12 +504,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C54F8ADF1BD94D5A00CE7B3A /* Build configuration list for PBXNativeTarget "PistusApp" */;
 			buildPhases = (
-				575A8F01ED6D39C9337E9FD2 /* Check Pods Manifest.lock */,
 				C54F8AB81BD94D5A00CE7B3A /* Sources */,
 				C54F8ABA1BD94D5A00CE7B3A /* Resources */,
 				C54F8AB91BD94D5A00CE7B3A /* Frameworks */,
-				03B7D47A1FD7BA82753FEE02 /* Embed Pods Frameworks */,
-				A34E0551504BE4B32BF7FB0D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -673,54 +662,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		03B7D47A1FD7BA82753FEE02 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		575A8F01ED6D39C9337E9FD2 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		A34E0551504BE4B32BF7FB0D /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C54F8AB81BD94D5A00CE7B3A /* Sources */ = {
