@@ -22,7 +22,19 @@
 @implementation InfosGlobalesViewController
 
 - (void) viewWillAppear:(BOOL)animated{
-    [self viewDidLoad];
+    //Configuration du bouton satellite
+    _boutonSatellite = [[UIButton alloc] initWithFrame:CGRectMake(0,0,32,33)];
+    if(![[GeolocalisationManager sharedInstance] trackAccept])
+    {
+        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteon.png"] forState:UIControlStateNormal];
+    }
+    [_trackAcceptButton setCustomView:_boutonSatellite];
+    [_boutonSatellite addTarget:self action:@selector(trackChange)
+               forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)viewDidLoad {
