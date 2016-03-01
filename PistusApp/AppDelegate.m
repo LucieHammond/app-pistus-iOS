@@ -133,7 +133,9 @@
             {
                 UILocalNotification *localNotification = [[UILocalNotification alloc] init];
                 localNotification.fireDate = dateTime;
+                NSLog(@"ici");
                 localNotification.alertTitle= myAndGeneralNews[i][@"title"];
+                NSLog(@"là");
                 /*
                 // Transformer le texte HTML en texte sans balises HTML
                 NSScanner *myScanner;

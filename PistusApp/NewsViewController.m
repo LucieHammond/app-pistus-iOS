@@ -150,7 +150,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"%i",_displayedNews.count);return _displayedNews.count;
+    NSLog(@"%lu",(unsigned long)_displayedNews.count);return _displayedNews.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

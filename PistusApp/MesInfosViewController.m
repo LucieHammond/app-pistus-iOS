@@ -119,7 +119,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _myNews.count;
+    return _displayedNews.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -130,12 +130,12 @@
     if(cell == nil) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"TableViewCell" owner:nil options:nil] firstObject];
     }
-    NSString *title = _myNews[indexPath.row][@"title"];
-    NSString *content = _myNews[indexPath.row][@"text"];
+    NSString *title = _displayedNews[indexPath.row][@"title"];
+    NSString *content = _displayedNews[indexPath.row][@"text"];
     
     NSDateFormatter* df = [[NSDateFormatter alloc]init];
     [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *nsdate = [df dateFromString:_myNews[indexPath.row][@"date"]];
+    NSDate *nsdate = [df dateFromString:_displayedNews[indexPath.row][@"date"]];
     [df setDateFormat:@"dd/MM/yyyy HH:mm"];
     NSString *date = [df stringFromDate:nsdate];
 
