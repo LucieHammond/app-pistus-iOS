@@ -123,6 +123,7 @@
         NSMutableArray *myAndGeneralNews = [[NSMutableArray alloc] init];
         [myAndGeneralNews addObjectsFromArray:_news[@"myNews"]];
         [myAndGeneralNews addObjectsFromArray:_news[@"generalNews"]];
+        
         // Sort news to keep only those with an earlier date
         NSDateFormatter* df = [[NSDateFormatter alloc]init];
         [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -133,7 +134,7 @@
                 UILocalNotification *localNotification = [[UILocalNotification alloc] init];
                 localNotification.fireDate = dateTime;
                 localNotification.alertTitle= myAndGeneralNews[i][@"title"];
-                
+                /*
                 // Transformer le texte HTML en texte sans balises HTML
                 NSScanner *myScanner;
                 NSString *text = nil;
@@ -148,8 +149,8 @@
                     html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>", text] withString:@""];
                 }
                 html = [html stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                
-                localNotification.alertBody = html;
+                */
+                localNotification.alertBody = myAndGeneralNews[i][@"text"];
                 localNotification.alertAction = @"Faire glisser pour voir la news";
                 localNotification.soundName = UILocalNotificationDefaultSoundName;
                 localNotification.applicationIconBadgeNumber = 1;

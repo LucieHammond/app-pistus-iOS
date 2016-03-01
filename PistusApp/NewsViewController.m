@@ -98,6 +98,8 @@
     
         // Enlever les marqueurs pour les alertes passées
         [UIApplication sharedApplication].applicationIconBadgeNumber=0;
+        // Supprimer les notifications ajoutées précédemment car on va les réajouter juste après
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
         
         // Sort news to keep only those with an earlier date
         _displayedNews = [[NSMutableArray alloc]init];
