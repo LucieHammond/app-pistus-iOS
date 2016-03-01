@@ -133,26 +133,10 @@
             {
                 UILocalNotification *localNotification = [[UILocalNotification alloc] init];
                 localNotification.fireDate = dateTime;
-                NSLog(@"ici");
                 localNotification.alertTitle= myAndGeneralNews[i][@"title"];
-                NSLog(@"là");
-                /*
+
                 // Transformer le texte HTML en texte sans balises HTML
-                NSScanner *myScanner;
-                NSString *text = nil;
-                NSString *html = myAndGeneralNews[i][@"text"];
-                myScanner = [NSScanner scannerWithString:html];
-                while ([myScanner isAtEnd] == NO) {
-                    
-                    [myScanner scanUpToString:@"<" intoString:NULL] ;
-                    
-                    [myScanner scanUpToString:@">" intoString:&text] ;
-                    
-                    html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>", text] withString:@""];
-                }
-                html = [html stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                */
-                localNotification.alertBody = myAndGeneralNews[i][@"text"];
+                localNotification.alertBody = [self convertHTML:myAndGeneralNews[i][@"text"]];
                 localNotification.alertAction = @"Faire glisser pour voir la news";
                 localNotification.soundName = UILocalNotificationDefaultSoundName;
                 localNotification.applicationIconBadgeNumber = 1;
@@ -217,7 +201,6 @@
 }
 
 -(NSString *)convertHTML:(NSString *)html {
-    NSLog(@"Coucou");
     NSScanner *myScanner;
     NSString *text = nil;
     myScanner = [NSScanner scannerWithString:html];
@@ -229,6 +212,7 @@
         [myScanner scanUpToString:@">" intoString:&text] ;
         
         html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>", text] withString:@""];
+        html = [html stringByReplacingOccurrencesOfString: @"&nbsp;" withString:@""];
     }
     //
     html = [html stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
