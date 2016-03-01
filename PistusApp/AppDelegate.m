@@ -115,7 +115,7 @@
     
     // On télécharge les news
     // Get News from API
-    [DataManager getData:@"contest" completion:^(NSMutableDictionary *dict) {
+    [DataManager getData:@"allNews" completion:^(NSMutableDictionary *dict) {
         _news = dict;
         NSMutableArray *myAndGeneralNews = [[NSMutableArray alloc] init];
         [myAndGeneralNews addObjectsFromArray:_news[@"myNews"]];
