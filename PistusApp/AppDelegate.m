@@ -187,18 +187,6 @@
     [alert show];
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    NSLog(@"Calling Application Bundle ID: %@", sourceApplication);
-    if([[url host]  isEqual: @"login"])
-        NSLog(@"Reponse reçue !");
-    else
-        NSLog(@"Pas le bon URI");
-    
-    return YES;
-}
-
 -(void)stopTimers:(NSTimer*)timer
 {
     [timer1 invalidate];
