@@ -113,6 +113,9 @@
         [[GeolocalisationManager sharedInstance] beginTrack];
     }
     
+    // On supprime toutes les notifications locales précédemment enregistrées
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
     // On télécharge les news
     // Get News from API
     [DataManager getData:@"contest" completion:^(NSMutableDictionary *dict) {
@@ -130,7 +133,23 @@
                 UILocalNotification *localNotification = [[UILocalNotification alloc] init];
                 localNotification.fireDate = dateTime;
                 localNotification.alertTitle= myAndGeneralNews[i][@"title"];
-                localNotification.alertBody = myAndGeneralNews[i][@"text"];
+                
+                // Transformer le texte HTML en texte sans balises HTML
+                NSScanner *myScanner;
+                NSString *text = nil;
+                NSString *html = myAndGeneralNews[i][@"text"];
+                myScanner = [NSScanner scannerWithString:html];
+                while ([myScanner isAtEnd] == NO) {
+                    
+                    [myScanner scanUpToString:@"<" intoString:NULL] ;
+                    
+                    [myScanner scanUpToString:@">" intoString:&text] ;
+                    
+                    html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>", text] withString:@""];
+                }
+                html = [html stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                
+                localNotification.alertBody = html;
                 localNotification.alertAction = @"Faire glisser pour voir la news";
                 localNotification.soundName = UILocalNotificationDefaultSoundName;
                 localNotification.applicationIconBadgeNumber = 1;
@@ -192,6 +211,26 @@
     [timer1 invalidate];
     [timer2 invalidate];
     [timer3 invalidate];
+}
+
+-(NSString *)convertHTML:(NSString *)html {
+    NSLog(@"Coucou");
+    NSScanner *myScanner;
+    NSString *text = nil;
+    myScanner = [NSScanner scannerWithString:html];
+    
+    while ([myScanner isAtEnd] == NO) {
+        
+        [myScanner scanUpToString:@"<" intoString:NULL] ;
+        
+        [myScanner scanUpToString:@">" intoString:&text] ;
+        
+        html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>", text] withString:@""];
+    }
+    //
+    html = [html stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    return html;
 }
 
 @end
