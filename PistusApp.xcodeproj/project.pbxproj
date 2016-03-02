@@ -98,7 +98,6 @@
 		C5C05E7F1BEFF6FC007D763E /* iconMap.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E751BEFF6FC007D763E /* iconMap.png */; };
 		C5C05E881BEFF7A0007D763E /* connexion.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E831BEFF7A0007D763E /* connexion.png */; };
 		C5C05E891BEFF7A0007D763E /* Login-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E841BEFF7A0007D763E /* Login-568h@2x~iphone.png */; };
-		C5C05E8A1BEFF7A0007D763E /* Login-667h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E851BEFF7A0007D763E /* Login-667h@2x~iphone.png */; };
 		C5C05E8B1BEFF7A0007D763E /* Login-736h@3x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E861BEFF7A0007D763E /* Login-736h@3x~iphone.png */; };
 		C5C05E8C1BEFF7A0007D763E /* Login@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E871BEFF7A0007D763E /* Login@2x~iphone.png */; };
 		C5C05E8E1BEFFBA5007D763E /* accueil_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5C05E8D1BEFFBA5007D763E /* accueil_4.jpg */; };
@@ -108,6 +107,7 @@
 		C5DC56E01C6740780011A9F1 /* marker1.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DC56DF1C6740780011A9F1 /* marker1.png */; };
 		C5DDCCA71C52352000FA1515 /* ConcoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DDCCA61C52352000FA1515 /* ConcoursViewController.m */; };
 		C5DE62BB1C7FDEDC008D36B9 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DE62BA1C7FDEDC008D36B9 /* logout.png */; };
+		C5DE62BD1C865367008D36B9 /* Login-667h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DE62BC1C865367008D36B9 /* Login-667h@2x~iphone.png */; };
 		C5F3488F1BE8FB98003B94C6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F3488E1BE8FB98003B94C6 /* MainViewController.m */; };
 		C5F7B8AE1C41472E00419A86 /* marker2.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F7B8AD1C41472E00419A86 /* marker2.png */; };
 		C5F8780D1C6E5D80000ABEF8 /* iconHoraires2.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F8780C1C6E5D80000ABEF8 /* iconHoraires2.png */; };
@@ -244,7 +244,6 @@
 		C5C05E751BEFF6FC007D763E /* iconMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconMap.png; sourceTree = "<group>"; };
 		C5C05E831BEFF7A0007D763E /* connexion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connexion.png; sourceTree = "<group>"; };
 		C5C05E841BEFF7A0007D763E /* Login-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-568h@2x~iphone.png"; sourceTree = "<group>"; };
-		C5C05E851BEFF7A0007D763E /* Login-667h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-667h@2x~iphone.png"; sourceTree = "<group>"; };
 		C5C05E861BEFF7A0007D763E /* Login-736h@3x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-736h@3x~iphone.png"; sourceTree = "<group>"; };
 		C5C05E871BEFF7A0007D763E /* Login@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login@2x~iphone.png"; sourceTree = "<group>"; };
 		C5C05E8D1BEFFBA5007D763E /* accueil_4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = accueil_4.jpg; sourceTree = "<group>"; };
@@ -255,6 +254,7 @@
 		C5DDCCA51C52352000FA1515 /* ConcoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcoursViewController.h; sourceTree = "<group>"; };
 		C5DDCCA61C52352000FA1515 /* ConcoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcoursViewController.m; sourceTree = "<group>"; };
 		C5DE62BA1C7FDEDC008D36B9 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
+		C5DE62BC1C865367008D36B9 /* Login-667h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-667h@2x~iphone.png"; sourceTree = "<group>"; };
 		C5F3488D1BE8FB98003B94C6 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		C5F3488E1BE8FB98003B94C6 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		C5F7B8AD1C41472E00419A86 /* marker2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker2.png; sourceTree = "<group>"; };
@@ -478,8 +478,8 @@
 				C5C05E831BEFF7A0007D763E /* connexion.png */,
 				C53D513D1C5A6D7E00829D9F /* Plan Val d'Allos Official corrigé.jpg */,
 				C5C05E841BEFF7A0007D763E /* Login-568h@2x~iphone.png */,
-				C5C05E851BEFF7A0007D763E /* Login-667h@2x~iphone.png */,
 				C5C05E861BEFF7A0007D763E /* Login-736h@3x~iphone.png */,
+				C5DE62BC1C865367008D36B9 /* Login-667h@2x~iphone.png */,
 				C5C05E871BEFF7A0007D763E /* Login@2x~iphone.png */,
 				C5C05E8D1BEFFBA5007D763E /* accueil_4.jpg */,
 				C5C05E6F1BEFF6FC007D763E /* accueil_5.jpg */,
@@ -614,13 +614,13 @@
 				C5C05E8E1BEFFBA5007D763E /* accueil_4.jpg in Resources */,
 				C539A78D1BF1F56A00B9E3ED /* iconContact.png in Resources */,
 				C52D732A1C4D8630005C05D1 /* TN.png in Resources */,
-				C5C05E8A1BEFF7A0007D763E /* Login-667h@2x~iphone.png in Resources */,
 				C52D73271C4D8630005C05D1 /* TB.png in Resources */,
 				C58083FB1C5D209100BE73A3 /* fleche-argent.png in Resources */,
 				C539A78F1BF1F56A00B9E3ED /* iconMeteo.png in Resources */,
 				C54F8AD01BD94D5A00CE7B3A /* LaunchScreen.xib in Resources */,
 				C52D72E81C4BB073005C05D1 /* infoGenerales.png in Resources */,
 				C52D731C1C4D8630005C05D1 /* boardercrossBleu.png in Resources */,
+				C5DE62BD1C865367008D36B9 /* Login-667h@2x~iphone.png in Resources */,
 				C52D732C1C4D8630005C05D1 /* TSD.png in Resources */,
 				C5DC56E01C6740780011A9F1 /* marker1.png in Resources */,
 				C539A7901BF1F56A00B9E3ED /* iconStats.png in Resources */,

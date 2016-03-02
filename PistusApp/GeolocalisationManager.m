@@ -100,7 +100,7 @@ static GeolocalisationManager* sharedInstance=nil;
         [locationManager startUpdatingLocation];
         
         // Toutes les 2 minutes, on envoie sa position au serveur (le timer continue même quand l'appli est en background)
-        timerPosition = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(envoyerInfos) userInfo:nil repeats:YES];
+        timerPosition = [NSTimer scheduledTimerWithTimeInterval:90 target:self selector:@selector(envoyerInfos) userInfo:nil repeats:YES];
         return true;
     }
     else
@@ -185,7 +185,7 @@ static GeolocalisationManager* sharedInstance=nil;
         if(locationManager.desiredAccuracy!=kCLLocationAccuracyBest)
         {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-            locationManager.distanceFilter = 3.0f;
+            locationManager.distanceFilter = 5.0f;
             locationManager.pausesLocationUpdatesAutomatically = true;
             locationManager.activityType = CLActivityTypeFitness;
             goto marqueur;
