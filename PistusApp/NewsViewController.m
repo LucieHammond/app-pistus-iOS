@@ -112,7 +112,7 @@
                 UILocalNotification *localNotification = [[UILocalNotification alloc] init];
                 localNotification.fireDate = dateTime;
                 localNotification.alertTitle= _generalNews[i][@"title"];
-                localNotification.alertBody = _generalNews[i][@"text"];
+                localNotification.alertBody = [self convertHTML:_generalNews[i][@"text"]];
                 localNotification.alertAction = @"Fais glisser pour voir la news";
                 localNotification.soundName = UILocalNotificationDefaultSoundName;
                 localNotification.applicationIconBadgeNumber = 1;
@@ -134,6 +134,27 @@
         [self.tableView reloadData];
     });
 }
+
+-(NSString *)convertHTML:(NSString *)html {
+    NSScanner *myScanner;
+    NSString *text = nil;
+    myScanner = [NSScanner scannerWithString:html];
+    
+    while ([myScanner isAtEnd] == NO) {
+        
+        [myScanner scanUpToString:@"<" intoString:NULL] ;
+        
+        [myScanner scanUpToString:@">" intoString:&text] ;
+        
+        html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>", text] withString:@""];
+        html = [html stringByReplacingOccurrencesOfString: @"&nbsp;" withString:@""];
+    }
+    //
+    html = [html stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    return html;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

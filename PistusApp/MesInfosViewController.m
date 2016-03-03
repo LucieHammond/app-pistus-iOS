@@ -84,7 +84,7 @@
                 UILocalNotification *localNotification = [[UILocalNotification alloc] init];
                 localNotification.fireDate = dateTime;
                 localNotification.alertTitle= _myNews[i][@"title"];
-                localNotification.alertBody = _myNews[i][@"text"];
+                localNotification.alertBody = [self convertHTML:_myNews[i][@"text"]];
                 localNotification.alertAction = @"Fais glisser pour voir la news";
                 localNotification.soundName = UILocalNotificationDefaultSoundName;
                 localNotification.applicationIconBadgeNumber = 1;
@@ -102,6 +102,26 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [_tableView reloadData];
+}
+
+-(NSString *)convertHTML:(NSString *)html {
+    NSScanner *myScanner;
+    NSString *text = nil;
+    myScanner = [NSScanner scannerWithString:html];
+    
+    while ([myScanner isAtEnd] == NO) {
+        
+        [myScanner scanUpToString:@"<" intoString:NULL] ;
+        
+        [myScanner scanUpToString:@">" intoString:&text] ;
+        
+        html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>", text] withString:@""];
+        html = [html stringByReplacingOccurrencesOfString: @"&nbsp;" withString:@""];
+    }
+    //
+    html = [html stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    return html;
 }
 
 - (void)didReceiveMemoryWarning {
