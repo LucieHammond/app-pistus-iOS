@@ -63,5 +63,6 @@
 -(BOOL)trackAccept;
 -(void)sauvegarderDonneesJour:(int)jour :(bool)definitivement;
 -(void)sauvegardeParTimer:(NSTimer*)timer;
+-(void)requestGeoloc;
 
 @end

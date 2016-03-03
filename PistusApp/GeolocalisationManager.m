@@ -79,16 +79,6 @@ static GeolocalisationManager* sharedInstance=nil;
 {
     _trackAccept = YES;
     NSLog(@"begin Track");
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-    
-    //Si on est pas autorisés, on demande l'autorisation
-    if([CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorized) {
-        if ([locationManager respondsToSelector:@selector(requestAlwaysAuthorization)])
-        {
-            [locationManager requestAlwaysAuthorization];
-        }
-    }
     
     //Si on est autorisé (désormais) et que la géoloc est activée
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized && [CLLocationManager locationServicesEnabled])
@@ -175,6 +165,19 @@ static GeolocalisationManager* sharedInstance=nil;
 -(BOOL)trackAccept
 {
     return _trackAccept;
+}
+
+-(void)requestGeoloc {
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    
+    //Si on est pas autorisés, on demande l'autorisation
+    if([CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorized) {
+        if ([locationManager respondsToSelector:@selector(requestAlwaysAuthorization)])
+        {
+            [locationManager requestAlwaysAuthorization];
+        }
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status

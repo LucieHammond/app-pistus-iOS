@@ -22,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
+    
+    [[GeolocalisationManager sharedInstance] requestGeoloc];
 }
 
 - (void) viewDidLayoutSubviews {
