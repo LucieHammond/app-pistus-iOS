@@ -82,7 +82,6 @@
 		C593B4EF1C45E0AB009F5896 /* maSemaine.png in Resources */ = {isa = PBXBuildFile; fileRef = C593B4EE1C45E0AB009F5896 /* maSemaine.png */; };
 		C593B4F11C45E0B1009F5896 /* classement.png in Resources */ = {isa = PBXBuildFile; fileRef = C593B4F01C45E0B1009F5896 /* classement.png */; };
 		C593B4F41C45E198009F5896 /* GraphsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C593B4F31C45E198009F5896 /* GraphsViewController.m */; };
-		C5A59B5F1C6401CA0097B81F /* bddPistes.db in Resources */ = {isa = PBXBuildFile; fileRef = C5A59B5E1C6401CA0097B81F /* bddPistes.db */; };
 		C5AED9961C41B8B30086E570 /* ciblage.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED9951C41B8B30086E570 /* ciblage.png */; };
 		C5AED9981C4289240086E570 /* pate_bulle.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED9971C4289240086E570 /* pate_bulle.png */; };
 		C5AED9A01C43B10C0086E570 /* speedometer.png in Resources */ = {isa = PBXBuildFile; fileRef = C5AED99F1C43B10C0086E570 /* speedometer.png */; };
@@ -108,6 +107,7 @@
 		C5DDCCA71C52352000FA1515 /* ConcoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DDCCA61C52352000FA1515 /* ConcoursViewController.m */; };
 		C5DE62BB1C7FDEDC008D36B9 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DE62BA1C7FDEDC008D36B9 /* logout.png */; };
 		C5DE62BD1C865367008D36B9 /* Login-667h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DE62BC1C865367008D36B9 /* Login-667h@2x~iphone.png */; };
+		C5DE62BF1C87CC59008D36B9 /* bddPistes.db in Resources */ = {isa = PBXBuildFile; fileRef = C5DE62BE1C87CC59008D36B9 /* bddPistes.db */; };
 		C5F3488F1BE8FB98003B94C6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F3488E1BE8FB98003B94C6 /* MainViewController.m */; };
 		C5F7B8AE1C41472E00419A86 /* marker2.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F7B8AD1C41472E00419A86 /* marker2.png */; };
 		C5F8780D1C6E5D80000ABEF8 /* iconHoraires2.png in Resources */ = {isa = PBXBuildFile; fileRef = C5F8780C1C6E5D80000ABEF8 /* iconHoraires2.png */; };
@@ -227,7 +227,6 @@
 		C593B4F01C45E0B1009F5896 /* classement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classement.png; sourceTree = "<group>"; };
 		C593B4F21C45E198009F5896 /* GraphsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphsViewController.h; sourceTree = "<group>"; };
 		C593B4F31C45E198009F5896 /* GraphsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphsViewController.m; sourceTree = "<group>"; };
-		C5A59B5E1C6401CA0097B81F /* bddPistes.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = bddPistes.db; sourceTree = "<group>"; };
 		C5AED9951C41B8B30086E570 /* ciblage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ciblage.png; sourceTree = "<group>"; };
 		C5AED9971C4289240086E570 /* pate_bulle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pate_bulle.png; sourceTree = "<group>"; };
 		C5AED99F1C43B10C0086E570 /* speedometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speedometer.png; sourceTree = "<group>"; };
@@ -255,6 +254,7 @@
 		C5DDCCA61C52352000FA1515 /* ConcoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcoursViewController.m; sourceTree = "<group>"; };
 		C5DE62BA1C7FDEDC008D36B9 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
 		C5DE62BC1C865367008D36B9 /* Login-667h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-667h@2x~iphone.png"; sourceTree = "<group>"; };
+		C5DE62BE1C87CC59008D36B9 /* bddPistes.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = bddPistes.db; sourceTree = "<group>"; };
 		C5F3488D1BE8FB98003B94C6 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		C5F3488E1BE8FB98003B94C6 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		C5F7B8AD1C41472E00419A86 /* marker2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker2.png; sourceTree = "<group>"; };
@@ -331,7 +331,7 @@
 				C570B83C1C2B44C5003E0E16 /* DBManager.m */,
 				C570B8541C2EBE50003E0E16 /* GeolocalisationManager.h */,
 				C570B8551C2EBE50003E0E16 /* GeolocalisationManager.m */,
-				C5A59B5E1C6401CA0097B81F /* bddPistes.db */,
+				C5DE62BE1C87CC59008D36B9 /* bddPistes.db */,
 				C570B8381C2B440F003E0E16 /* libsqlite3.dylib */,
 				C52D72D21C4ACC25005C05D1 /* UUChart */,
 				C54F8B1D1BD97E1800CE7B3A /* Ressources */,
@@ -605,12 +605,12 @@
 				C5C05E7F1BEFF6FC007D763E /* iconMap.png in Resources */,
 				C5DC56DC1C66AC980011A9F1 /* feuOrange.png in Resources */,
 				C52D72F51C4BB5F4005C05D1 /* news.png in Resources */,
+				C5DE62BF1C87CC59008D36B9 /* bddPistes.db in Resources */,
 				C5C05E7E1BEFF6FC007D763E /* iconInfo.png in Resources */,
 				C52D73291C4D8630005C05D1 /* TK.png in Resources */,
 				C58083F51C5D171B00BE73A3 /* medaille or.png in Resources */,
 				C5AED9961C41B8B30086E570 /* ciblage.png in Resources */,
 				C5DE62BB1C7FDEDC008D36B9 /* logout.png in Resources */,
-				C5A59B5F1C6401CA0097B81F /* bddPistes.db in Resources */,
 				C5C05E8E1BEFFBA5007D763E /* accueil_4.jpg in Resources */,
 				C539A78D1BF1F56A00B9E3ED /* iconContact.png in Resources */,
 				C52D732A1C4D8630005C05D1 /* TN.png in Resources */,
