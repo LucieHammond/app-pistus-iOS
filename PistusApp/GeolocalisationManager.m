@@ -79,7 +79,19 @@ static GeolocalisationManager* sharedInstance=nil;
 {
     _trackAccept = YES;
     NSLog(@"begin Track");
-    if ([CLLocationManager locationServicesEnabled])
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    
+    //Si on est pas autorisés, on demande l'autorisation
+    if([CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorized) {
+        if ([locationManager respondsToSelector:@selector(requestAlwaysAuthorization)])
+        {
+            [locationManager requestAlwaysAuthorization];
+        }
+    }
+    
+    //Si on est autorisé (désormais) et que la géoloc est activée
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized && [CLLocationManager locationServicesEnabled])
     {
         NSLog(@"track begun");
         locationManager = [[CLLocationManager alloc] init];
