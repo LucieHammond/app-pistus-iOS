@@ -108,6 +108,9 @@
         [[NSRunLoop currentRunLoop] addTimer:timer4 forMode:NSDefaultRunLoopMode];
     }
     
+    if([CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorized) {
+        [[GeolocalisationManager sharedInstance] endTrack];
+    }
     if([[GeolocalisationManager sharedInstance] trackAccept])
     {
         [[GeolocalisationManager sharedInstance] beginTrack];
