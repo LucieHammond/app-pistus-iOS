@@ -159,7 +159,7 @@
         {
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:@"Permission refusée"
-                                  message:@"L'application ne peut pas accéder à votre localisation car vous ne lui avez pas donné l'autorisation. Si ce n'est pas volontaire, vérifiez vos réglages !" delegate:self
+                                  message:@"L'application ne peut pas accéder à votre localisation car vous ne lui avez pas donné l'autorisation ou parce que les services de localisation sont désactivés. Si ce n'est pas volontaire, vérifiez vos réglages !" delegate:self
                                   cancelButtonTitle:@"J'ai compris" otherButtonTitles:nil];
             [alert show];
             [_boutonSatellite setImage:[UIImage imageNamed:@"satelliteoff.png"] forState:UIControlStateNormal];
