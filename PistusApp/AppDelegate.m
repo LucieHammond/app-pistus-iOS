@@ -136,8 +136,11 @@
             {
                 UILocalNotification *localNotification = [[UILocalNotification alloc] init];
                 localNotification.fireDate = dateTime;
-                localNotification.alertTitle= myAndGeneralNews[i][@"title"];
-
+                @try {
+                    localNotification.alertTitle= myAndGeneralNews[i][@"title"];
+                } @catch (NSException *exception) {
+                    //
+                }
                 // Transformer le texte HTML en texte sans balises HTML
                 localNotification.alertBody = [self convertHTML:myAndGeneralNews[i][@"text"]];
                 localNotification.alertAction = @"Faire glisser pour voir la news";

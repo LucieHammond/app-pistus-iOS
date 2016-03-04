@@ -111,7 +111,11 @@
             {
                 UILocalNotification *localNotification = [[UILocalNotification alloc] init];
                 localNotification.fireDate = dateTime;
-                localNotification.alertTitle= _generalNews[i][@"title"];
+                @try {
+                    localNotification.alertTitle= _generalNews[i][@"title"];
+                } @catch (NSException *exception) {
+                    //
+                }
                 localNotification.alertBody = [self convertHTML:_generalNews[i][@"text"]];
                 localNotification.alertAction = @"Fais glisser pour voir la news";
                 localNotification.soundName = UILocalNotificationDefaultSoundName;
