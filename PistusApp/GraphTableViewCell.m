@@ -48,6 +48,8 @@
     NSArray *distance;
     NSArray *temps;
 
+    NSLog(@"%@",gm.tabNbPositions );
+    NSLog(@"%@",gm.tabNbPositions[0] );
     if([gm.tabNbPositions[0] floatValue]>0)
         vitesse5 = [gm.tabVitesseCumulee[0] floatValue]/[gm.tabNbPositions[0] floatValue];
     else
@@ -58,27 +60,27 @@
     else
         vitesse6 = 0;
     NSString *v6 = [NSString stringWithFormat:@"%f",vitesse6];
-    if([gm.tabNbPositions[2] floatValue] - [gm.tabNbPositions[1] floatValue]>0)
+    if(([gm.tabNbPositions[2] floatValue] - [gm.tabNbPositions[1] floatValue])>0)
         vitesse7 = ([gm.tabVitesseCumulee[2] floatValue]-[gm.tabVitesseCumulee[1] floatValue])/([gm.tabNbPositions[2] floatValue]-[gm.tabNbPositions[1] floatValue]);
     else
         vitesse7 = 0;
     NSString *v7 = [NSString stringWithFormat:@"%f",vitesse7];
-    if([gm.tabNbPositions[3] floatValue] - [gm.tabNbPositions[2] floatValue]>0)
+    if(([gm.tabNbPositions[3] floatValue] - [gm.tabNbPositions[2] floatValue])>0)
         vitesse8 = ([gm.tabVitesseCumulee[3] floatValue]-[gm.tabVitesseCumulee[2] floatValue])/([gm.tabNbPositions[3] floatValue]-[gm.tabNbPositions[2] floatValue]);
     else
         vitesse8 = 0;
     NSString *v8 = [NSString stringWithFormat:@"%f",vitesse8];
-    if([gm.tabNbPositions[4] floatValue] - [gm.tabNbPositions[3] floatValue]>0)
+    if(([gm.tabNbPositions[4] floatValue] - [gm.tabNbPositions[3] floatValue])>0)
         vitesse9 = ([gm.tabVitesseCumulee[4] floatValue]-[gm.tabVitesseCumulee[3] floatValue])/([gm.tabNbPositions[4] floatValue]-[gm.tabNbPositions[3] floatValue]);
     else
         vitesse9 = 0;
     NSString *v9 = [NSString stringWithFormat:@"%f",vitesse9];
-    if([gm.tabNbPositions[5] floatValue] - [gm.tabNbPositions[4] floatValue]>0)
+    if(([gm.tabNbPositions[5] floatValue] - [gm.tabNbPositions[4] floatValue])>0)
         vitesse10 = ([gm.tabVitesseCumulee[5] floatValue]-[gm.tabVitesseCumulee[4] floatValue])/([gm.tabNbPositions[5] floatValue]-[gm.tabNbPositions[4] floatValue]);
     else
         vitesse10 = 0;
     NSString *v10 = [NSString stringWithFormat:@"%f",vitesse10];
-    if([gm.tabNbPositions[6] floatValue] - [gm.tabNbPositions[5] floatValue]>0)
+    if(([gm.tabNbPositions[6] floatValue] - [gm.tabNbPositions[5] floatValue])>0)
         vitesse11 = ([gm.tabVitesseCumulee[6] floatValue]-[gm.tabVitesseCumulee[5] floatValue])/([gm.tabNbPositions[6] floatValue]-[gm.tabNbPositions[5] floatValue]);
     else
         vitesse11 = 0;
@@ -102,19 +104,19 @@
     
     
     distance5 = [gm.tabDistance[0] floatValue];
-    NSString *d5 = [NSString stringWithFormat:@"%f",distance5];
+    NSString *d5 = [NSString stringWithFormat:@"%f",distance5/1000];
     distance6 = [gm.tabDistance[1] floatValue] - [gm.tabDistance[0] floatValue];
-    NSString *d6 = [NSString stringWithFormat:@"%f",distance6];
+    NSString *d6 = [NSString stringWithFormat:@"%f",distance6/1000];
     distance7 = [gm.tabDistance[2] floatValue] - [gm.tabDistance[1] floatValue];
-    NSString *d7 = [NSString stringWithFormat:@"%f",distance7];
+    NSString *d7 = [NSString stringWithFormat:@"%f",distance7/1000];
     distance8 = [gm.tabDistance[3] floatValue] - [gm.tabDistance[2] floatValue];
-    NSString *d8 = [NSString stringWithFormat:@"%f",distance8];
+    NSString *d8 = [NSString stringWithFormat:@"%f",distance8/1000];
     distance9 = [gm.tabDistance[4] floatValue] - [gm.tabDistance[3] floatValue];
-    NSString *d9 = [NSString stringWithFormat:@"%f",distance9];
+    NSString *d9 = [NSString stringWithFormat:@"%f",distance9/1000];
     distance10 = [gm.tabDistance[5] floatValue] - [gm.tabDistance[4] floatValue];
-    NSString *d10 = [NSString stringWithFormat:@"%f",distance10];
+    NSString *d10 = [NSString stringWithFormat:@"%f",distance10/1000];
     distance11 = [gm.tabDistance[6] floatValue] - [gm.tabDistance[5] floatValue];
-    NSString *d11 = [NSString stringWithFormat:@"%f",distance11];
+    NSString *d11 = [NSString stringWithFormat:@"%f",distance11/1000];
     if(distance5<0)
         distance = @[];
     else if(distance6<0)
@@ -133,19 +135,19 @@
         distance = @[d5,d6,d7,d8,d9,d10,d11];
     
     temps5 = [gm.tabTemps[0] floatValue];
-    NSString *t5 = [NSString stringWithFormat:@"%f",temps5];
+    NSString *t5 = [NSString stringWithFormat:@"%.2f",temps5];
     temps6 = [gm.tabTemps[1] floatValue] - [gm.tabTemps[0] floatValue];
-    NSString *t6 = [NSString stringWithFormat:@"%f",temps6];
+    NSString *t6 = [NSString stringWithFormat:@"%.2f",temps6];
     temps7 = [gm.tabTemps[2] floatValue] - [gm.tabTemps[1] floatValue];
-    NSString *t7 = [NSString stringWithFormat:@"%f",temps7];
+    NSString *t7 = [NSString stringWithFormat:@"%.2f",temps7];
     temps8 = [gm.tabTemps[3] floatValue] - [gm.tabTemps[2] floatValue];
-    NSString *t8 = [NSString stringWithFormat:@"%f",temps8];
+    NSString *t8 = [NSString stringWithFormat:@"%.2f",temps8];
     temps9 = [gm.tabTemps[4] floatValue] - [gm.tabTemps[3] floatValue];
-    NSString *t9 = [NSString stringWithFormat:@"%f",temps9];
+    NSString *t9 = [NSString stringWithFormat:@"%.2f",temps9];
     temps10 = [gm.tabTemps[5] floatValue] - [gm.tabTemps[4] floatValue];
-    NSString *t10 = [NSString stringWithFormat:@"%f",temps10];
+    NSString *t10 = [NSString stringWithFormat:@"%.2f",temps10];
     temps11 = [gm.tabTemps[6] floatValue] - [gm.tabTemps[5] floatValue];
-    NSString *t11 = [NSString stringWithFormat:@"%f",temps11];
+    NSString *t11 = [NSString stringWithFormat:@"%.2f",temps11];
     if(temps5<0)
         temps = @[];
     else if(temps6<0)
@@ -192,7 +194,7 @@
         return CGRangeMake(150, 0);
     }
     else if (path.section==1) {
-        return CGRangeMake(1000, 0);
+        return CGRangeMake(100, 0);
     }
     else if(path.section==2){
         return CGRangeMake(10, 0);

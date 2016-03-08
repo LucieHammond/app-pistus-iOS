@@ -901,7 +901,7 @@ static GeolocalisationManager* sharedInstance=nil;
 - (void)sauvegarderDonneesJour:(int)jour :(bool)definitivement
 {
     _tabVitesseCumulee[jour] = [NSNumber numberWithFloat: _vitesseCumulee];
-    _tabNbPositions[jour] = [NSNumber numberWithFloat:_totalPositions];
+    _tabNbPositions[jour] = [NSNumber numberWithInt:_totalPositions];
     _tabDistance[jour] = [NSNumber numberWithFloat:_distanceSki];
     _tabTemps[jour] = [NSNumber numberWithFloat:_tempsDeSki/3600];
     if(definitivement==true)

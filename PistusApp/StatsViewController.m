@@ -89,10 +89,10 @@
         _distanceSki.text = [NSString stringWithFormat:@"Distance à ski : %.f m",gm.distanceSki];
     else
         _distanceSki.text = [NSString stringWithFormat:@"Distance à ski : %.2f km",gm.distanceSki/1000];
-    if(gm.distanceTot>=0)
+    if(gm.distanceTot<=1000)
         _distanceTot.text = [NSString stringWithFormat:@"Distance totale : %.f m",gm.distanceTot];
     else
-        _distanceTot.text = [NSString stringWithFormat:@"Distance totale : %.2f m",gm.distanceTot/1000];
+        _distanceTot.text = [NSString stringWithFormat:@"Distance totale : %.2f km",gm.distanceTot/1000];
     _denivele.text = [NSString stringWithFormat:@"Dénivelé de descente : %.f m",gm.deniveleTotal];
     
         // Temps à ski
