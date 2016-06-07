@@ -20,6 +20,13 @@
 
 static GeolocalisationManager* sharedInstance=nil;
 
+// Fenêtre géographique qui définit l'emplacement de la station
+// (à modifier pour une autre station)
+float const latMin = 44.21;
+float const latMax = 44.37;
+float const longMin = 6.53;
+float const longMax = 6.63;
+
 @implementation GeolocalisationManager
 
 +(GeolocalisationManager*)sharedInstance
@@ -194,7 +201,7 @@ static GeolocalisationManager* sharedInstance=nil;
     double longitude = lastLocation.coordinate.longitude;
     
     // On vérifie si l'utilisateur se trouve bien sur le domaine skiable de la station
-    if(latitude > 44.21 && latitude < 44.37 && longitude > 6.53 && longitude < 6.63)
+    if(latitude > latMin && latitude < latMax && longitude > longMin && longitude < longMax)
     {
         // On change les réglages par défauts pour les rendre plus précis
         if(locationManager.desiredAccuracy!=kCLLocationAccuracyBest)
@@ -914,10 +921,10 @@ static GeolocalisationManager* sharedInstance=nil;
     NSDateComponents *composants = [calendrier components:(NSHourCalendarUnit|NSDayCalendarUnit) fromDate:date];
     if([composants hour]==12 || [composants hour] ==17)
     {
-        [self sauvegarderDonneesJour:(int)[composants day]-5 :false];
+        [self sauvegarderDonneesJour:(int)[composants day]-startDay :false];
     }
     else{
-        [self sauvegarderDonneesJour:(int)[composants day]-5 :true];
+        [self sauvegarderDonneesJour:(int)[composants day]-startDay :true];
     }
 }
 

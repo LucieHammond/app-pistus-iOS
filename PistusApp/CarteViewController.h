@@ -16,6 +16,17 @@
     BOOL rechercheActivee;
 }
 
+// Marqueurs Val d'Allos (à modifier pour une nouvelle station)
+@property (weak, nonatomic) IBOutlet UIButton *etoile_Rez;
+@property (weak, nonatomic) IBOutlet UIButton *etoile_Pat;
+@property (weak, nonatomic) IBOutlet UIButton *etoile_Luge;
+@property (weak, nonatomic) IBOutlet UIButton *etoile_BAB;
+@property (weak, nonatomic) IBOutlet UIButton *etoile_ESF;
+@property (weak, nonatomic) IBOutlet UIButton *etoile_Yooner;
+@property (weak, nonatomic) IBOutlet UIButton *etoile_Cine;
+@property (weak, nonatomic) IBOutlet UIButton *etoile_Slalom;
+
+
 @property (weak, nonatomic) IBOutlet UINavigationBar *barre;
 @property (weak, nonatomic) IBOutlet UIView *topBande;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -26,14 +37,6 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *searchButton;
 
-@property (weak, nonatomic) IBOutlet UIButton *etoile_Rez;
-@property (weak, nonatomic) IBOutlet UIButton *etoile_Pat;
-@property (weak, nonatomic) IBOutlet UIButton *etoile_Luge;
-@property (weak, nonatomic) IBOutlet UIButton *etoile_BAB;
-@property (weak, nonatomic) IBOutlet UIButton *etoile_ESF;
-@property (weak, nonatomic) IBOutlet UIButton *etoile_Yooner;
-@property (weak, nonatomic) IBOutlet UIButton *etoile_Cine;
-@property (weak, nonatomic) IBOutlet UIButton *etoile_Slalom;
 @property (strong, nonatomic) IBOutlet UIImageView *pateBulle;
 @property (strong, nonatomic) IBOutlet UILabel *titre;
 @property (strong, nonatomic) IBOutlet UILabel *nomPiste;

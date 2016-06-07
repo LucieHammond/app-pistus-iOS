@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+extern const int startDay;
+extern const int startMonth;
+extern const int startYear;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     NSTimer *timer1;

@@ -204,7 +204,7 @@
                     GeolocalisationManager *gm = [GeolocalisationManager sharedInstance];
                     gm.totalPositions = nbpositions;
                     gm.vitesseMax = [dict[@"data"][@"maxSpeed"] doubleValue];
-                    gm.vitesseCumulee = [dict[@"data"][@"maxSpeed"] doubleValue];
+                    gm.vitesseCumulee = [dict[@"data"][@"totalSpeed"] doubleValue];
                     gm.altitudeMax = [dict[@"data"][@"altMax"] doubleValue];
                     gm.altitudeMin = [dict[@"data"][@"altMin"] doubleValue];
                     gm.deniveleTotal = [dict[@"data"][@"denivele"] doubleValue];

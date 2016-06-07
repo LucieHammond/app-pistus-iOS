@@ -168,13 +168,13 @@
     // On affiche ces valeurs
     switch (path.section) {
         case 0:
-            return @[vitesse];
+            return @[@[@"0.4",@"7.84",@"6.47",@"5.92",@"7.53",@"8.39",@"6.83"]];
             break;
         case 1:
-            return @[distance];
+            return @[@[@"2.43",@"37.75",@"31.98",@"26.52",@"42.21",@"29.87",@"35,63"]];
             break;
         case 2:
-            return @[temps];
+            return @[@[@"1.05",@"5.23",@"4.13",@"4.41",@"5.46",@"3.67",@"3.25"]];
             break;
         default:
             return @[@[@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
@@ -191,7 +191,7 @@
 - (CGRange)UUChartChooseRangeInLineChart:(UUChart *)chart
 {
     if (path.section==0) {
-        return CGRangeMake(150, 0);
+        return CGRangeMake(50, 0);
     }
     else if (path.section==1) {
         return CGRangeMake(100, 0);

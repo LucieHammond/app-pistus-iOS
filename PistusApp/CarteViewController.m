@@ -12,6 +12,37 @@
 #import "DataManager.h"
 #import "GeolocalisationManager.h"
 
+// Configuration du plan (à modifier pour une nouvelle station)
+NSString* const plan = @"Plan Val d'Allos Official corrigé.jpg";
+int const nbPixelsX = 7452;
+int const nbPixelsY = 3174;
+
+// Marqueurs spéciaux (à modifier pour une nouvelle station
+NSString* const nameRez = @"Résidence Plein Sud";
+int const xRez = 3424;
+int const yRez = 1710;
+NSString* const namePat = @"Patinoire";
+int const xPat = 3195;
+int const yPat = 2115;
+NSString* const nameLuge = @"Luge sur rails";
+int const xLuge = 3742;
+int const yLuge = 1820;
+NSString* const nameESF = @"Départ cours ESF";
+int const xESF = 3265;
+int const yESF = 1995;
+NSString* const nameBAB = @"Big Air Bag";
+int const xBAB = 3010;
+int const yBAB = 1650;
+NSString* const nameYooner = @"Départ Yooner";
+int const xYooner = 2824;
+int const yYooner = 1566;
+NSString* const nameCine = @"Cinéma";
+int const xCine = 3300;
+int const yCine = 1895;
+NSString* const nameSlalom = @"Slalom";
+int const xSlalom = 3303;
+int const ySlalom = 2250;
+
 @interface CarteViewController ()
 
 @property (nonatomic,strong) UIButton *boutonSatellite;
@@ -52,7 +83,7 @@
                forControlEvents:UIControlEventTouchUpInside];
     
     // Configurer le scrollView
-    imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Plan Val d'Allos Official corrigé.jpg"]];
+    imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:plan]];
     [_scrollView addSubview:imageView];
     [_scrollView setBouncesZoom:NO];
     _scrollView.delegate=self;
@@ -202,29 +233,29 @@
         [_scrollView setContentSize:CGSizeMake(imageView.frame.size.width, imageView.frame.size.height)];
         
         // Ajout de marqueurs pour les lieux importants
-        float X = _scrollView.contentSize.width/7452*3424 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        float Y = _scrollView.contentSize.height/3174*1710 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        float X = _scrollView.contentSize.width/nbPixelsX*xRez - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        float Y = _scrollView.contentSize.height/nbPixelsY*yRez - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         _etoile_Rez.center = CGPointMake(X,Y);
-        X = _scrollView.contentSize.width/7452*3195 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        Y = _scrollView.contentSize.height/3174*2115 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        X = _scrollView.contentSize.width/nbPixelsX*xPat - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        Y = _scrollView.contentSize.height/nbPixelsY*yPat - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         _etoile_Pat.center = CGPointMake(X,Y);
-        X = _scrollView.contentSize.width/7452*3742 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        Y = _scrollView.contentSize.height/3174*1820 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        X = _scrollView.contentSize.width/nbPixelsX*xLuge - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        Y = _scrollView.contentSize.height/nbPixelsY*yLuge - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         _etoile_Luge.center = CGPointMake(X,Y);
-        X = _scrollView.contentSize.width/7452*3265 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        Y = _scrollView.contentSize.height/3174*1995 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        X = _scrollView.contentSize.width/nbPixelsX*xESF - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        Y = _scrollView.contentSize.height/nbPixelsY*yESF - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         _etoile_ESF.center = CGPointMake(X,Y);
-        X = _scrollView.contentSize.width/7452*3010 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        Y = _scrollView.contentSize.height/3174*1650 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        X = _scrollView.contentSize.width/nbPixelsX*xBAB - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        Y = _scrollView.contentSize.height/nbPixelsY*yBAB - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         _etoile_BAB.center = CGPointMake(X,Y);
-        X = _scrollView.contentSize.width/7452*2824 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        Y = _scrollView.contentSize.height/3174*1566 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        X = _scrollView.contentSize.width/nbPixelsX*xYooner - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        Y = _scrollView.contentSize.height/nbPixelsY*yYooner - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         _etoile_Yooner.center = CGPointMake(X,Y);
-        X = _scrollView.contentSize.width/7452*3300 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        Y = _scrollView.contentSize.height/3174*1895 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        X = _scrollView.contentSize.width/nbPixelsX*xCine - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        Y = _scrollView.contentSize.height/nbPixelsY*yCine - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         _etoile_Cine.center = CGPointMake(X,Y);
-        X = _scrollView.contentSize.width/7452*3303 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        Y = _scrollView.contentSize.height/3174*2250 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        X = _scrollView.contentSize.width/nbPixelsX*xSlalom - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        Y = _scrollView.contentSize.height/nbPixelsY*ySlalom - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         _etoile_Slalom.center = CGPointMake(X,Y);
         
         // Pour afficher tout de suite à l'arrivée sur la vue sans avoir à scroller
@@ -296,8 +327,8 @@
             // Affichage du marqueur de position
             int x = [GeolocalisationManager sharedInstance].dernierX;
             int y = [GeolocalisationManager sharedInstance].dernierY;
-            float X = _scrollView.contentSize.width/7452*x - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-            float Y = _scrollView.contentSize.height/3174*y - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+            float X = _scrollView.contentSize.width/nbPixelsX*x - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+            float Y = _scrollView.contentSize.height/nbPixelsY*y - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
             marqueur.center = CGPointMake(X,Y);
             marqueur.hidden = false;
             NSLog(@"touché");
@@ -324,8 +355,8 @@
                 // On demande à la bdd la position de l'utilisateur
                 int posX = [userInfos[@"mapPointX"] floatValue];
                 int posY = [userInfos[@"mapPointY"] floatValue];
-                float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-                float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+                float X = _scrollView.contentSize.width/nbPixelsX*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+                float Y = _scrollView.contentSize.height/nbPixelsY*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
                 posXUtilisateurs[i] = [NSNumber numberWithInteger:posX];
                 posYUtilisateurs[i] = [NSNumber numberWithInteger:posY];
                 marqueurUtilisateur.center = CGPointMake(X,Y);
@@ -517,21 +548,21 @@
     {
         // Titre
         if(sender==_etoile_Rez)
-            _titre.text=@"Résidence Plein Sud";
+            _titre.text=nameRez;
         else if(sender==_etoile_Pat)
-            _titre.text=@"Patinoire";
+            _titre.text=namePat;
         else if(sender==_etoile_Luge)
-            _titre.text=@"Luge sur rails";
+            _titre.text=nameLuge;
         else if(sender==_etoile_ESF)
-            _titre.text=@"Départ cours ESF";
+            _titre.text=nameESF;
         else if(sender==_etoile_BAB)
-            _titre.text=@"Big Air Bag";
+            _titre.text=nameBAB;
         else if(sender==_etoile_Yooner)
-            _titre.text=@"Depart Yooner";
+            _titre.text=nameYooner;
         else if(sender==_etoile_Cine)
-            _titre.text=@"Cinema";
+            _titre.text=nameCine;
         else if(sender==_etoile_Slalom)
-            _titre.text=@"Slalom";
+            _titre.text=nameSlalom;
         [_titre sizeToFit];
         _titre.center=CGPointMake(sender.center.x,sender.frame.origin.y-20);
         _titre.hidden=false;
@@ -587,8 +618,8 @@
     {
         int x = [GeolocalisationManager sharedInstance].dernierX;
         int y = [GeolocalisationManager sharedInstance].dernierY;
-        float X = _scrollView.contentSize.width/7452*x;
-        float Y = _scrollView.contentSize.height/3174*y;
+        float X = _scrollView.contentSize.width/nbPixelsX*x;
+        float Y = _scrollView.contentSize.height/nbPixelsY*y;
         float largeur = _scrollView.frame.size.width;
         float hauteur = _scrollView.frame.size.height;
         [_scrollView scrollRectToVisible:CGRectMake(X-largeur/2,Y-hauteur/2,largeur,hauteur) animated:true];
@@ -602,34 +633,34 @@
     {
         int x = [GeolocalisationManager sharedInstance].dernierX;
         int y = [GeolocalisationManager sharedInstance].dernierY;
-        float X = _scrollView.contentSize.width/7452*x - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-        float Y = _scrollView.contentSize.height/3174*y - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+        float X = _scrollView.contentSize.width/nbPixelsX*x - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+        float Y = _scrollView.contentSize.height/nbPixelsY*y - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
         marqueur.center = CGPointMake(X,Y);
     }
     
-    float X = _scrollView.contentSize.width/7452*3424 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-    float Y = _scrollView.contentSize.height/3174*1710 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    float X = _scrollView.contentSize.width/nbPixelsX*xRez - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    float Y = _scrollView.contentSize.height/nbPixelsY*yRez - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
     _etoile_Rez.center = CGPointMake(X,Y);
-    X = _scrollView.contentSize.width/7452*3195 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-    Y = _scrollView.contentSize.height/3174*2115 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    X = _scrollView.contentSize.width/nbPixelsX*xPat - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    Y = _scrollView.contentSize.height/nbPixelsY*yPat - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
     _etoile_Pat.center = CGPointMake(X,Y);
-    X = _scrollView.contentSize.width/7452*3742 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-    Y = _scrollView.contentSize.height/3174*1820 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    X = _scrollView.contentSize.width/nbPixelsX*xLuge - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    Y = _scrollView.contentSize.height/nbPixelsY*yLuge - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
     _etoile_Luge.center = CGPointMake(X,Y);
-    X = _scrollView.contentSize.width/7452*3265 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-    Y = _scrollView.contentSize.height/3174*1995 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    X = _scrollView.contentSize.width/nbPixelsX*xESF - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    Y = _scrollView.contentSize.height/nbPixelsY*yESF - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
     _etoile_ESF.center = CGPointMake(X,Y);
-    X = _scrollView.contentSize.width/7452*3010 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-    Y = _scrollView.contentSize.height/3174*1650 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    X = _scrollView.contentSize.width/nbPixelsX*xBAB - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    Y = _scrollView.contentSize.height/nbPixelsY*yBAB - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
     _etoile_BAB.center = CGPointMake(X,Y);
-    X = _scrollView.contentSize.width/7452*2824 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-    Y = _scrollView.contentSize.height/3174*1566 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    X = _scrollView.contentSize.width/nbPixelsX*xYooner - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    Y = _scrollView.contentSize.height/nbPixelsY*yYooner - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
     _etoile_Yooner.center = CGPointMake(X,Y);
-    X = _scrollView.contentSize.width/7452*3300 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-    Y = _scrollView.contentSize.height/3174*1895 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    X = _scrollView.contentSize.width/nbPixelsX*xCine - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    Y = _scrollView.contentSize.height/nbPixelsY*yCine - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
     _etoile_Cine.center = CGPointMake(X,Y);
-    X = _scrollView.contentSize.width/7452*3303 - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-    Y = _scrollView.contentSize.height/3174*2250 - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+    X = _scrollView.contentSize.width/nbPixelsX*xSlalom - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+    Y = _scrollView.contentSize.height/nbPixelsY*ySlalom - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
     _etoile_Slalom.center = CGPointMake(X,Y);
     
     for(UIButton *marqueurUtilisateur in marqueursUtilisateurs)
@@ -638,8 +669,8 @@
             int i = (int)[marqueursUtilisateurs indexOfObject:marqueurUtilisateur];
             int posX = (int)[posXUtilisateurs[i] integerValue];
             int posY = (int)[posYUtilisateurs[i] integerValue];
-            float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-            float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+            float X = _scrollView.contentSize.width/nbPixelsX*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+            float Y = _scrollView.contentSize.height/nbPixelsY*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
             marqueurUtilisateur.center = CGPointMake(X,Y);
         }
         @catch (NSException * e) {
@@ -793,8 +824,8 @@
             [marqueurUtilisateur addGestureRecognizer:doubleClick];
                 
             // On place le marqueur à la bonne position
-            float X = _scrollView.contentSize.width/7452*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
-            float Y = _scrollView.contentSize.height/3174*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
+            float X = _scrollView.contentSize.width/nbPixelsX*posX - _scrollView.contentOffset.x + _scrollView.frame.origin.x;
+            float Y = _scrollView.contentSize.height/nbPixelsY*posY - _scrollView.contentOffset.y + _scrollView.frame.origin.y;
             marqueurUtilisateur.center = CGPointMake(X,Y);
             [self.view insertSubview:marqueurUtilisateur aboveSubview:_scrollView];
             [marqueursUtilisateurs addObject:marqueurUtilisateur];
@@ -813,8 +844,8 @@
             [pistesUtilisateurs addObject:piste];
             
             // On centre sur la position de l'utilisateur et on affiche les détails
-            float Xcentre = _scrollView.contentSize.width/7452*posX;
-            float Ycentre = _scrollView.contentSize.height/3174*posY;
+            float Xcentre = _scrollView.contentSize.width/nbPixelsX*posX;
+            float Ycentre = _scrollView.contentSize.height/nbPixelsY*posY;
             float largeur = _scrollView.frame.size.width;
             float hauteur = _scrollView.frame.size.height;
             [_scrollView scrollRectToVisible:CGRectMake(Xcentre-largeur/2,Ycentre-hauteur/2,largeur,hauteur) animated:true];

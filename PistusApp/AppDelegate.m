@@ -19,6 +19,11 @@
 
 @end
 
+// 1er jour du Pistus (samedi de l'arrivée)
+int const startDay = 5;
+int const startMonth = 3;
+int const startYear = 2016;
+
 @implementation AppDelegate
 
 
@@ -52,32 +57,32 @@
     NSDateComponents *composants = [calendrier components:(NSDayCalendarUnit|NSMonthCalendarUnit) fromDate:date];
     int jour = (int)[composants day];
     int mois = (int)[composants month];
-    if(mois==3 && jour>5 && jour<=12)
+    if(mois==startMonth && jour>startDay && jour<=startDay+7)
     {
-        if(![gm.joursFinis[jour-6] boolValue])
+        if(![gm.joursFinis[jour-startDay-1] boolValue])
         {
             // On sauvegarde les infos sur le dernier jour ou l'appli a été active
             composants = [calendrier components:NSDayCalendarUnit fromDate:gm.derniereDate];
             int dernierJour = (int)[composants day];
             for(int j=dernierJour;j<jour;j++)
             {
-                [gm sauvegarderDonneesJour:j-5 :true];
+                [gm sauvegarderDonneesJour:j-startDay :true];
             }
         }
     }
-    else if((jour>12 && mois==3)||(mois>3))
+    else if((jour>startDay+7 && mois==startMonth)||(mois>startMonth))
     {
         composants = [calendrier components:NSDayCalendarUnit fromDate:gm.derniereDate];
         int dernierJour = (int)[composants day];
-        for(int j=dernierJour;j<=12;j++)
+        for(int j=dernierJour;j<=startDay+7;j++)
         {
-            [gm sauvegarderDonneesJour:j-5 :true];
+            [gm sauvegarderDonneesJour:j-startDay :true];
         }
     }
-    if(mois ==3 && jour>=5 && jour<12)
+    if(mois ==startMonth && jour>=startDay && jour<startDay+7)
     {
         // On met en place le timer pour actualiser les statistiques de la semaine trois fois par jour même quand le GPS est désactivé
-        [composants setYear:2016];
+        [composants setYear:startYear];
         [composants setMonth:mois];
         [composants setDay:jour];
         [composants setHour:12];
@@ -99,8 +104,8 @@
         [[NSRunLoop currentRunLoop] addTimer:timer3 forMode:NSDefaultRunLoopMode];
         
         // Le timer 4 permet d'invalider les trois premiers quand le Pistus est fini.
-        [composants setMonth:3];
-        [composants setDay:14];
+        [composants setMonth:startMonth];
+        [composants setDay:startDay+9];
         [composants setHour:0];
         [composants setMinute:0];
         NSDate *dateTimer4 = [[NSCalendar currentCalendar] dateFromComponents:composants];

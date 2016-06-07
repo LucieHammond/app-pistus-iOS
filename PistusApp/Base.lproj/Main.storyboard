@@ -211,7 +211,7 @@
                     </connections>
                 </pinchGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="318" y="-596"/>
+            <point key="canvasLocation" x="261" y="-592"/>
         </scene>
         <!--Mes Infos-->
         <scene sceneID="ss9-CQ-IpP">
@@ -2114,7 +2114,7 @@
         <image name="temps.png" width="567" height="567"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dT9-UE-kPI"/>
+        <segue reference="sW3-MI-bu6"/>
         <segue reference="kd7-MD-GbW"/>
     </inferredMetricsTieBreakers>
 </document>
